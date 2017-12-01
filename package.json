@@ -1,0 +1,47 @@
+{
+  "name": "glace-core",
+  "version": "1.0.0",
+  "description": "GlaceJS minimal functional testing framework",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./bin/glace"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glacejs/glace-core.git"
+  },
+  "author": "Sergei Chipiga",
+  "license": "MIT",
+  "bin": {
+    "glace": "./bin/glace"
+  },
+  "bugs": {
+    "url": "https://github.com/glacejs/glace-core/issues"
+  },
+  "homepage": "https://glacejs.github.io/glace-core",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "colors": "^1.1.2",
+    "es6-error": "^4.0.2",
+    "fs-extra": "^4.0.2",
+    "glace-utils": "^1.0.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.5.3",
+    "testrail-api": "^1.1.0"
+  },
+  "devDependencies": {
+    "cross-spawn": "^5.1.0",
+    "ink-docstrap": "^1.3.0",
+    "jsdoc-strip-async-await": "^0.1.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2"
+  },
+  "engines": {
+    "node": ">= 8.9",
+    "npm": ">= 5.5"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ]
+}
