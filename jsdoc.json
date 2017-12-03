@@ -2,21 +2,13 @@
     "opts": {
         "readme": "README.md",
         "recurse": true,
-        "template": "node_modules/ink-docstrap/template",
-        "tutorials": "tutorials"
+        "template": "node_modules/ink-docstrap/template"
     },
-    "plugins": ["plugins/markdown", "node_modules/jsdoc-strip-async-await"],
+    "plugins": [ "plugins/markdown", "node_modules/jsdoc-strip-async-await" ],
     "source": {
-        "include": [ "lib", "glace.png" ]
+        "include": [ "lib" ]
     },
     "templates": {
-        "default": {
-            "staticFiles": {
-                "include": [
-                    "./static"
-                ]
-            }
-        },
         "theme": "cosmo",
         "outputSourceFiles": true,
         "systemName": "GlaseJS",
