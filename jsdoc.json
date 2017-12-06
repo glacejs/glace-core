@@ -9,6 +9,13 @@
         "include": [ "lib" ]
     },
     "templates": {
+        "default": {
+            "staticFiles": {
+                "include": [
+                    "./static"
+                ]
+            }
+        },
         "theme": "cosmo",
         "outputSourceFiles": true,
         "systemName": "GlaseJS",

@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-config.html">config</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-help.html">help</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-steps_timer.html">steps/timer</a></li><li><a href="module-testing.html">testing</a></li><li><a href="module-utils.html">utils</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-config.html">config</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -54,14 +54,14 @@
 			<li class="dropdown">
 				<a href="mixins.list.html" class="dropdown-toggle" data-toggle="dropdown">Mixins<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-steps_timer-TimerSteps.html">steps/timer~TimerSteps</a></li>
+					<li><a href="TimerSteps.html">TimerSteps</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -102,83 +102,145 @@
 /**
  * Help description.
  *
- * @module
+ * @function
+ * @name help
+ * @arg {function} d - Function to process option description.
+ * @arg {function} cb - Callback to expand default help.
  */
 
 require("colors");
 var U = require("glace-utils");
 
-var utils = require("./utils");
+var plugins = require("./plugins");
 
-var d = U.switchColor();
+module.exports = (d, cb) => {
 
-var result = U.help(d)
-    .usage("\nglace [options] [test-files-or-folders]".white.bold)
-    .options({
-        /* configuration */
-        "user-config": {
-            describe: d("Path to JS file with configuration which will be",
-                        "merged with override default configuration.",
-                        "Default is 'cwd/config.js' (if it exists)."),
-            type: "string",
-            group: "Core:",
-        },
-        "grep": {
-            alias: "g",
-            describe: d("Filter tests by name or name chunk."),
-            type: "string",
-            group: "Core:",
-        },
-        "root-conftest": {
-            describe: d("Path to root conftest.js which will be loaded",
-                        "before all."),
-            type: "string",
-            group: "Core:",
-        },
-        "languages": {
-            describe: d("List of tested languages separated with comma."),
-            type: "string",
-            group: "Core:",
-        },
-        "retry": {
-            describe: d("Number of times to retry failed test.",
-                        "Default is 0."),
-            type: "number",
-            group: "Core:",
-        },
-        "chunk-retry": {
-            describe: d("Number of times to retry failed chunk.",
-                        "Default is 0."),
-            type: "number",
-            group: "Core:",
-        },
-        "uncaught": {
-            describe: d("Strategy to process of uncaught exceptions.",
-                        "Supported values are 'log', 'fail', 'mocha'.",
-                        "Default value is 'log'."),
-            type: "string",
-            group: "Core:",
-        },
-        "testrail": {
-            describe: d("Activate testrail reporter."),
-            type: "boolean",
-            group: "Core:",
-        },
-        "plugins-dir [path]": {
-            describe: d("Path to plugins folder. By default it search plugins",
-                        "inside folder, where 'glace-core' is installed."),
-            type: "string",
-            group: "Core:",
-        },
-    })
+    d = d || U.switchColor();
+    cb = cb || (o => o);
 
-for (var help of utils.plugins("pluginHelp")) {
-    result = help(result, d);
+    var result = U.help(d)
+        .usage("\nglace [options] [test-files-or-folders]".white.bold)
+        .options({
+            /* configuration */
+            "user-config": {
+                describe: d("Path to JS file with configuration which will be",
+                            "merged with override default configuration.",
+                            "Default is 'cwd/config.js' (if it exists)."),
+                type: "string",
+                group: "Core:",
+            },
+            "grep": {
+                alias: "g",
+                describe: d("Filter tests by name or name chunk."),
+                type: "string",
+                group: "Core:",
+            },
+            "report [path]": {
+                describe: d("Path to reports folder. Default is 'cwd/reports'."),
+                type: "string",
+                group: "Core:",
+            },
+            "dont-clear-report": {
+                describe: d("Don't clear previous report on tests run."),
+                type: "boolean",
+                group: "Core:",
+            },
+            "root-conftest": {
+                describe: d("Path to root conftest.js which will be loaded",
+                            "before all."),
+                type: "string",
+                group: "Core:",
+            },
+            "languages": {
+                describe: d("List of tested languages separated with comma."),
+                type: "string",
+                group: "Core:",
+            },
+            "retry": {
+                describe: d("Number of times to retry failed test.",
+                            "Default is 0."),
+                type: "number",
+                group: "Core:",
+            },
+            "chunk-retry": {
+                describe: d("Number of times to retry failed chunk.",
+                            "Default is 0."),
+                type: "number",
+                group: "Core:",
+            },
+            "uncaught": {
+                describe: d("Strategy to process of uncaught exceptions.",
+                            "Supported values are 'log', 'fail', 'mocha'.",
+                            "Default value is 'log'."),
+                type: "string",
+                group: "Core:",
+            },
+            /* plugins */
+            "plugins": {
+                describe: d("Flag to show plugins only."),
+                type: "boolean",
+                group: "Plugins:",
+            },
+            "plugins-dir [path]": {
+                describe: d("Path to custom plugins folder. By default it searches",
+                            "plugins inside folder, where 'glace-core' is installed."),
+                type: "string",
+                group: "Plugins:",
+            },
+            "disable-default-plugins": {
+                describe: d("Flag to disable default plugins."),
+                type: "boolean",
+                group: "Plugins:",
+            },
+            /* testrail */
+            "testrail": {
+                describe: d("Flag to activate testrail reporter."),
+                type: "boolean",
+                group: "TestRail:",
+            },
+            "testrail-host &lt;host>": {
+                describe: d("TestRail host."),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-user &lt;user>": {
+                describe: d("TestRail username or email."),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-token &lt;token>": {
+                describe: d("TestRail token."),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-project-id &lt;id>": {
+                describe: d("TestRail project id"),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-suite-id &lt;id>": {
+                describe: d("TestRail suite id"),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-run-name &lt;name>": {
+                describe: d("TestRail run name"),
+                type: "string",
+                group: "TestRail:",
+            },
+            "testrail-run-desc &lt;description>": {
+                describe: d("TestRail run description."),
+                type: "string",
+                group: "TestRail:",
+            },
+        })
+
+    for (var help of plugins.getModules("pluginHelp")) {
+        result = help(result, d);
+    };
+    result = cb(result);
+    result.epilog("Have a green test ;)".green.bold).argv;
 };
-
-result
-    .epilog("Have a green test ;)".green.bold)
-    .argv;
 </pre>
     </article>
 </section>
@@ -224,7 +286,7 @@ result
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-12-03T21:46:14+02:00
+		on 2017-12-06T21:24:30+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

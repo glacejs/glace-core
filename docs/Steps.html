@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-config.html">config</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-help.html">help</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-steps_timer.html">steps/timer</a></li><li><a href="module-testing.html">testing</a></li><li><a href="module-utils.html">utils</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-config.html">config</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -54,14 +54,14 @@
 			<li class="dropdown">
 				<a href="mixins.list.html" class="dropdown-toggle" data-toggle="dropdown">Mixins<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-steps_timer-TimerSteps.html">steps/timer~TimerSteps</a></li>
+					<li><a href="TimerSteps.html">TimerSteps</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -120,7 +120,7 @@
 
     
     <div class="description">
-        <p>Steps collection which will be executed in test cases.</p>
+        <p>Collection of steps which will be executed in test cases.</p>
     </div>
     
 
@@ -152,7 +152,7 @@
 
         <dd class="mixes"><ul>
         
-            <li>TimerSteps</li>
+            <li><a href="TimerSteps.html">TimerSteps</a></li>
         
         </ul></dd>
     
@@ -226,7 +226,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".register"><span class="type-signature">&lt;static> </span>register()</h4>
+    <h4 class="name" id=".register"><span class="type-signature">&lt;static> </span>register(steps)</h4>
     
     
 </dt>
@@ -234,96 +234,7 @@
 
     
     <div class="description">
-        <p>Registers sequence of objects containing steps.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-42">line 42</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="pause"><span class="type-signature">&lt;async> </span>pause(timeout, message)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Step to make pause in another step or test case. Good style to rid of
-its direct usage in test case, only inside other step.</p>
+        <p>Registers steps.</p>
     </div>
     
 
@@ -346,6 +257,8 @@ its direct usage in test case, only inside other step.</p>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -358,13 +271,13 @@ its direct usage in test case, only inside other step.</p>
 
         <tr>
             
-                <td class="name"><code>timeout</code></td>
+                <td class="name"><code>steps</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">object</span>
 
 
 
@@ -372,34 +285,20 @@ its direct usage in test case, only inside other step.</p>
             </td>
 
             
-
-            
-
-            <td class="description last"><p>Pause time, sec.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-
-            <td class="type">
-            
+                <td class="attributes">
                 
-<span class="param-type">string</span>
 
+                
 
-
-            
-            </td>
-
-            
-
+                
+                    &lt;repeatable><br>
+                
+                </td>
             
 
-            <td class="description last"><p>Pause reason.</p></td>
+            
+
+            <td class="description last"><p>Sequence of steps to register.</p></td>
         </tr>
 
     
@@ -444,7 +343,7 @@ its direct usage in test case, only inside other step.</p>
 		<ul class="dummy">
 			<li>
 				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-31">line 31</a>
+				 <a href="steps_index.js.html#sunlight-1-line-23">line 23</a>
 			</li>
 		</ul>
 	</dd>
@@ -469,26 +368,6 @@ its direct usage in test case, only inside other step.</p>
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;void></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -547,7 +426,7 @@ its direct usage in test case, only inside other step.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-12-03T21:46:14+02:00
+		on 2017-12-06T21:24:30+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
