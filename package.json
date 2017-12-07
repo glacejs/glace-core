@@ -1,6 +1,6 @@
 {
   "name": "glace-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GlaceJS minimal functional testing framework",
   "main": "lib/index.js",
   "scripts": {
@@ -37,8 +37,8 @@
     "gulp-clean": "^0.3.2"
   },
   "engines": {
-    "node": ">= 8.9",
-    "npm": ">= 5.5"
+    "node": ">=8.9",
+    "npm": ">=5.5"
   },
   "files": [
     "bin",
