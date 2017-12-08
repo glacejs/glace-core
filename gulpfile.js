@@ -81,6 +81,14 @@ gulp.task("test-mocha-uncaught", () => {
     console.log("Test queue is broken due to mocha uncaught processing.".white.bold.bgRed);
 });
 
+gulp.task("test-timer-steps", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/integration/testTimerSteps.js",
+               ],
+               { stdio: "inherit" });
+});
+
 gulp.task("test-all", [
     "test-basic",
     "test-retry",
@@ -89,5 +97,6 @@ gulp.task("test-all", [
     "test-suppress-uncaught",
     "test-fail-on-uncaught",
     "test-mocha-uncaught",
+    "test-timer-steps",
 ], () => {
 })
