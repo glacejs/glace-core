@@ -110,7 +110,7 @@ gulp.task("test-all", [
 ], () => {
 });
 
-gulp.task("test-custom-reporter", () => {
+gulp.task("test-unit", () => {
     spawn.sync("./bin/glace",
                [
                    "tests/unit",
