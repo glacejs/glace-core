@@ -108,4 +108,12 @@ gulp.task("test-all", [
     "test-timer-steps",
     "test-custom-reporter",
 ], () => {
-})
+});
+
+gulp.task("test-custom-reporter", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/unit",
+               ],
+               { stdio: "inherit" });
+});
