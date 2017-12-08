@@ -14,7 +14,7 @@ gulp.task("rm-docs", () => {
     gulp.src("docs", {read: false}).pipe(clean());
 });
 
-gulp.task("mk-docs", [ "rm-docs" ], () => {
+gulp.task("mk-docs", () => {
     spawn.sync("jsdoc", [ "-c", "jsdoc.json", "-d", "docs" ], { stdio: "inherit" });
 });
 

@@ -2,7 +2,8 @@
     "opts": {
         "readme": "README.md",
         "recurse": true,
-        "template": "node_modules/ink-docstrap/template"
+        "template": "node_modules/ink-docstrap/template",
+        "tutorials": "articles"
     },
     "plugins": [ "plugins/markdown", "node_modules/jsdoc-strip-async-await" ],
     "source": {

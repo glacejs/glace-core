@@ -7,7 +7,7 @@
 ## Features
 
 - Cross-platform
-- Based on STEPS-architecture and STEPS-protocol
+- Based on [STEPS-architecture](tutorial-steps-architecture.html) and [STEPS-protocol](tutorial-steps-protocol.html)
 - May be extended with plugins implemented STEPS-protocol
 - Oriented to complex functional scenarios
 - Indepentently executed chunks inside a test
