@@ -19,6 +19,7 @@
 - Multiple reporting system
 - Stdout reporter in-box
 - [TestRail](http://www.gurock.com/testrail/) reporter in-box
+- Easy to provide [custom reporter](https://github.com/glacejs/glace-core/blob/master/tests/integration/testCustomReporter.js)
 - May read `CLI` arguments from `JSON` file
 - May be extended with custom `JavaScript` config
 - May be used as platform for own testing frameworks development

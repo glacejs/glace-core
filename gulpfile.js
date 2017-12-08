@@ -89,6 +89,14 @@ gulp.task("test-timer-steps", () => {
                { stdio: "inherit" });
 });
 
+gulp.task("test-custom-reporter", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/integration/testCustomReporter.js",
+               ],
+               { stdio: "inherit" });
+});
+
 gulp.task("test-all", [
     "test-basic",
     "test-retry",
@@ -98,5 +106,6 @@ gulp.task("test-all", [
     "test-fail-on-uncaught",
     "test-mocha-uncaught",
     "test-timer-steps",
+    "test-custom-reporter",
 ], () => {
 })
