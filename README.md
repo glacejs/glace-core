@@ -10,12 +10,14 @@
 npm i glace-core
 ```
 
-Or from github:
+For development:
 
 ```
 git clone https://github.com/glacejs/glace-core
 cd glace-core
 npm i
+gulp test-all  // launch all integration tests
+gulp --tasks  // show all tasks
 ```
 
 ## How to use
@@ -63,3 +65,7 @@ glace [options] [sequence-of-test-files-or-folders]
 `Options`
 - `--version` - Show version number.
 - `-h, --help` - Show help.
+
+## Test examples
+
+See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/integration) in order to explore examples.
