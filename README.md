@@ -2,7 +2,7 @@
 
 ![GlaceJS logo](glace.png)
 
-`GlaceJS` core is a quick-start functional testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
+`GlaceJS` is a quick-start functional testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
 
 ## Features
 
@@ -21,6 +21,7 @@
 - [TestRail](http://www.gurock.com/testrail/) reporter in-box
 - May read `CLI` arguments from `JSON` file
 - May be extended with custom `JavaScript` config
+- May be used as platform for own testing frameworks development
 
 ## How to install
 
@@ -87,3 +88,13 @@ glace [options] [sequence-of-test-files-or-folders]
 ## Test examples
 
 See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/integration) in order to explore examples.
+
+## Frameworks platform
+
+`GlaceJS` may be used as platform for own testing frameworks development.
+
+Simple example:
+
+```javascript
+
+```

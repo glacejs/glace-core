@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+require("colors");
+var glace = require("../../lib");
+
+glace.run().then(errCode => {
+    console.log("These tests were executed by application based on GlaceJS".white.bold.bgRed);
+    if (!errCode) {
+        console.log("It's passed! 🙂".green.bold);
+    } else {
+        console.log("It's failed! 🙁".red.bold);
+    };
+    process.exit(errCode);
+});

@@ -5,6 +5,7 @@
  * @module
  */
 
+require("colors");
 var gulp = require("gulp");
 var clean = require("gulp-clean");
 var spawn = require("cross-spawn");
@@ -43,9 +44,50 @@ gulp.task("test-chunk-retry", () => {
                { stdio: "inherit" });
 });
 
+gulp.task("test-own-app", () => {
+    spawn.sync("./tests/integration/ownApp",
+               [
+                   "tests/integration/testBasic.js",
+               ],
+               { stdio: "inherit" });
+});
+
+gulp.task("test-suppress-uncaught", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/integration/testUncaughtExceptions.js",
+               ],
+               { stdio: "inherit" });
+    console.log("Uncaught exceptions were suppressed and logged.".white.bold.bgRed);
+});
+
+gulp.task("test-fail-on-uncaught", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/integration/testUncaughtExceptions.js",
+                   "--uncaught", "fail",
+               ],
+               { stdio: "inherit" });
+    console.log("Test was failed on uncaught.".white.bold.bgRed);
+});
+
+gulp.task("test-mocha-uncaught", () => {
+    spawn.sync("./bin/glace",
+               [
+                   "tests/integration/testUncaughtExceptions.js",
+                   "--uncaught", "mocha",
+               ],
+               { stdio: "inherit" });
+    console.log("Test queue is broken due to mocha uncaught processing.".white.bold.bgRed);
+});
+
 gulp.task("test-all", [
     "test-basic",
     "test-retry",
     "test-chunk-retry",
+    "test-own-app",
+    "test-suppress-uncaught",
+    "test-fail-on-uncaught",
+    "test-mocha-uncaught",
 ], () => {
 })
