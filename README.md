@@ -91,10 +91,17 @@ See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/
 
 ## Frameworks platform
 
-`GlaceJS` may be used as platform for own testing frameworks development.
-
-Simple example:
+`GlaceJS` may be used as platform for own testing frameworks development. [Simple example](https://github.com/glacejs/glace-core/blob/master/tests/integration/ownApp):
 
 ```javascript
+require("colors");
 
+require("glace-core").run().then(errCode => {
+    if (!errCode) {
+        console.log("It's passed! 🙂".green.bold);
+    } else {
+        console.log("It's failed! 🙁".red.bold);
+    };
+    process.exit(errCode);
+});
 ```
