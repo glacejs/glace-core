@@ -2,7 +2,25 @@
 
 ![GlaceJS logo](glace.png)
 
-`GlaceJS` core is a minimal testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
+`GlaceJS` core is a quick-start functional testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
+
+## Features
+
+- Cross-platform
+- Based on STEPS-architecture and STEPS-protocol
+- May be extended with plugins implemented STEPS-protocol
+- Oriented to complex functional scenarios
+- Indepentently executed chunks inside a test
+- Parameterization inside and outside of test
+- Mechanism to retry failed tests
+- Mechanism to retry failed chunks
+- Mechanism to process uncaught exceptions (`mocha` mechanism isn't reliable but supported)
+- Fixtures support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
+- Multiple reporting system
+- Stdout reporter in-box
+- [TestRail](http://www.gurock.com/testrail/) reporter in-box
+- May read `CLI` arguments from `JSON` file
+- May be extended with custom `JavaScript` config
 
 ## How to install
 
