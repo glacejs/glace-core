@@ -65,3 +65,18 @@ test("It should involve fixture in iterator", ctx => {
         expect(spy.callCount).to.be.equal(languages.length);
     });
 });
+
+test("It should be skipped and absent in report", { skip: true }, () => {
+    chunk(() => {});
+});
+
+var i = 0;
+var retry = 3;
+test(`It should be retried ${retry} times`, { retry: retry }, () => {
+    chunk(() => {
+        if (i < retry) {
+            i++;
+            throw new Error("BOOM!");
+        };
+    });
+});
