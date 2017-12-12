@@ -2,6 +2,8 @@
 
 test("reporting system", () => {
     var reporters;
+    var testrail = CONF.testrail;
+    var xunit = CONF.xunit;
 
     var cleaner = () => {
         var modules = [
@@ -12,10 +14,13 @@ test("reporting system", () => {
         for (var mod of modules) {
             delete require.cache[require.resolve(mod)];
         };
-        CONF.testrail.use = false;
+        CONF.testrail = testrail;
+        CONF.xunit = xunit;
     };
 
     beforeChunk(() => {
+        CONF.testrail = { use: false };
+        CONF.xunit = { use: false };
         reporters = [];
         require("../../lib/reporter/base").register = r => reporters.push(r);
     });
@@ -30,6 +35,13 @@ test("reporting system", () => {
 
     chunk("loads testrail reporter if option is set", () => {
         CONF.testrail = { use: true };
+
+        require("../../lib/reporter");
+        expect(reporters).to.have.lengthOf(2);
+    });
+
+    chunk("loads xunit reporter if option is set", () => {
+        CONF.xunit = { use: true };
 
         require("../../lib/reporter");
         expect(reporters).to.have.lengthOf(2);

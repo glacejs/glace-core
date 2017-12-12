@@ -63,6 +63,7 @@ glace [options] [sequence-of-test-files-or-folders]
 
 `Core`
 - `--user-config [path]` - Path to JS file with configuration which will be merged with override default configuration. Default is `cwd/config.js` (if it exists).
+- `--session-name [name]` - Tests run session name. Default value includes word `session` and datetime.
 - `--grep, -g` - Filter tests by name or name chunk.
 - `--report [path]` - Path to reports folder. Default is `cwd/reports`.
 - `--dont-clear-report` - Don't clear previous report on tests run.
@@ -77,6 +78,11 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--plugins` - Show plugins only.
 - `--plugins-dir [path]` - Path to custom plugins folder. By default it searches plugins inside folder, where `glace-core` is installed.
 - `--disable-default-plugins` - Disable default plugins.
+
+`xUnit`
+- `--xunit` - Activate xUnit reporter.
+- `--xunit-path [path]` - Path to xUnit report. Default is `cwd/xunit.xml`.
+- `--xunit-suite-name [name]` - Tests suite name in xUnit report. By default it's the same as session name.
 
 `TestRail`
 - `--testrail` - Activate testrail reporter.
