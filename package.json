@@ -21,12 +21,14 @@
   "homepage": "https://glacejs.github.io/glace-core",
   "dependencies": {
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "colors": "^1.1.2",
     "es6-error": "^4.0.2",
     "fs-extra": "^4.0.3",
     "glace-utils": "^1.0.2",
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
+    "sinon": "^4.1.3",
     "testrail-api": "^1.1.0"
   },
   "devDependencies": {
@@ -34,8 +36,7 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "ink-docstrap": "^1.3.0",
-    "jsdoc-strip-async-await": "^0.1.0",
-    "sinon": "^4.1.3"
+    "jsdoc-strip-async-await": "^0.1.0"
   },
   "engines": {
     "node": ">=8.9",
