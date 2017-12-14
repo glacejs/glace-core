@@ -21,7 +21,7 @@ gulp.task("mk-docs", () => {
 gulp.task("test-basic", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testBasic.js",
+                   "tests/e2e/testBasic.js",
                ],
                { stdio: "inherit" });
 });
@@ -29,7 +29,7 @@ gulp.task("test-basic", () => {
 gulp.task("test-retry", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testRetry.js",
+                   "tests/e2e/testRetry.js",
                    "--retry", 2,
                ],
                { stdio: "inherit" });
@@ -38,16 +38,16 @@ gulp.task("test-retry", () => {
 gulp.task("test-chunk-retry", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testRetry.js",
+                   "tests/e2e/testRetry.js",
                    "--chunk-retry", 2,
                ],
                { stdio: "inherit" });
 });
 
 gulp.task("test-own-app", () => {
-    spawn.sync("./tests/integration/ownApp",
+    spawn.sync("./tests/e2e/ownApp",
                [
-                   "tests/integration/testBasic.js",
+                   "tests/e2e/testBasic.js",
                ],
                { stdio: "inherit" });
 });
@@ -55,7 +55,7 @@ gulp.task("test-own-app", () => {
 gulp.task("test-suppress-uncaught", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testUncaughtExceptions.js",
+                   "tests/e2e/testUncaughtExceptions.js",
                ],
                { stdio: "inherit" });
     console.log("Uncaught exceptions were suppressed and logged.".white.bold.bgRed);
@@ -64,7 +64,7 @@ gulp.task("test-suppress-uncaught", () => {
 gulp.task("test-fail-on-uncaught", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testUncaughtExceptions.js",
+                   "tests/e2e/testUncaughtExceptions.js",
                    "--uncaught", "fail",
                ],
                { stdio: "inherit" });
@@ -74,7 +74,7 @@ gulp.task("test-fail-on-uncaught", () => {
 gulp.task("test-mocha-uncaught", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testUncaughtExceptions.js",
+                   "tests/e2e/testUncaughtExceptions.js",
                    "--uncaught", "mocha",
                ],
                { stdio: "inherit" });
@@ -84,7 +84,7 @@ gulp.task("test-mocha-uncaught", () => {
 gulp.task("test-timer-steps", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testTimerSteps.js",
+                   "tests/e2e/testTimerSteps.js",
                ],
                { stdio: "inherit" });
 });
@@ -92,7 +92,7 @@ gulp.task("test-timer-steps", () => {
 gulp.task("test-custom-reporter", () => {
     spawn.sync("./bin/glace",
                [
-                   "tests/integration/testCustomReporter.js",
+                   "tests/e2e/testCustomReporter.js",
                ],
                { stdio: "inherit" });
 });
