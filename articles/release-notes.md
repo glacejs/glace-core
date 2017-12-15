@@ -1,3 +1,7 @@
+### v1.0.8
+
+- Supports `xunit` reporter, which may be activated with CLI option `--xunit`.
+
 ### v1.0.7
 
 - Plugin reporters are registered on reporting system loading.
