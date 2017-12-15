@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: testing.js</title>
+	<title>GlaseJS Tutorial: Release Notes</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,142 +98,25 @@
 	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-		<h1 class="page-title">Source: testing.js</h1>
+<header>
     
-<section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * Contains classes and functions to save executed tests data.
- *
- * @module
- */
 
-var _ = require("lodash");
-var expect = require("chai").expect;
-/**
- * Test case data structure.
- *
- * Contains full information and history about test case.
- *
- * @class
- * @arg {string} name - Test name.
- * @prop {string} name - Test name.
- * @prop {status} [status=NOT_STARTED] - Test status.
- * @prop {string[]} [screenshots=[]] - List of test screenshot paths.
- * @prop {string[]} [videos=[]] - List of test video paths.
- * @prop {string[]} [errors=[]] - List of test errors.
- * @prop {string[]} [rawInfo=[]] - List of additional test details.
- * @prop {object[]} [failedParams=[]] - List of test failed parameters.
- * @prop {object} [testParams={}] - Dict of test parameters.
- */
-var TestCase = module.exports.TestCase = function (name) {
-    this.duration = 0;
-    this.name = name;
-    this.status = TestCase.NOT_STARTED;
-};
-/**
- * Starts test case.
- *
- * @method
- */
-TestCase.prototype.start = function () {
-    expect(this.status,
-           `test case '${this.name}' is started already`)
-        .to.not.be.equal(TestCase.IN_PROGRESS);
-    this._startTime = new Date();
-    this.status = TestCase.IN_PROGRESS;
-};
-/**
- * Ends test case.
- *
- * @method
- * @arg {string} status - Test case status.
- */
-TestCase.prototype.end = function (status) {
-    expect(this.status,
-           `test case '${this.name}' isn't started yet`)
-        .to.be.equal(TestCase.IN_PROGRESS);
+    <h2>Release Notes</h2>
+</header>
 
-    this.duration += new Date() - this._startTime;
-    this.status = status;
-};
-/**
- * Resets test case info.
- *
- * @method
- */
-TestCase.prototype.reset = function () {
-    this.screenshots = [];
-    this.videos = [];
-    this.errors = [];
-    this.rawInfo = [];
-    this.failedParams = [];
-    this.testParams = {};
-};
-/**
- * Adds failed params if they don't exist.
- *
- * @method
- * @arg {object} params - Parameters which test was failed with.
- */
-TestCase.prototype.addFailedParams = function (params) {
-    for (var failed of this.failedParams) {
-        if (_.isEqual(params, failed)) break;
-    };
-    this.failedParams.push(params);
-};
-/**
- * Adds error to test case.
- *
- * @method
- * @arg {Error} err - Test error.
- */
-TestCase.prototype.addError = function (err) {
-    this.errors.push(err);
-};
-/**
- * Adds screenshot.
- *
- * @method
- * @arg {string} imagePath - Path to saved screenshot.
- */
-TestCase.prototype.addScreenshot = function (imagePath) {
-    this.screenshots.push(imagePath);
-};
-/**
- * Adds video.
- *
- * @method
- * @arg {string} videoPath - Path to saved video.
- */
-TestCase.prototype.addVideo = function (videoPath) {
-    this.videos.push(videoPath);
-};
-/**
- * Adds additional information.
- *
- * @method
- * @arg {string} info - Additional information.
- */
-TestCase.prototype.addDetails = function (info) {
-    this.rawInfo.push(info);
-};
+<article>
+    <h3>v1.0.7</h3><ul>
+<li>Plugin reporters are registered on reporting system loading.</li>
+<li>CLI option <code>--chunk timeout &lt;timeout&gt;</code> sets time (sec) to execute for all hooks
+and chunks. Default value is 180 sec.</li>
+<li>Test or scope option <code>{ chunkTimeout: &lt;timeout&gt; }</code> sets time (sec) to execute
+for hooks and chunks inside test or scope and overrides global value.</li>
+</ul>
+</article>
 
-TestCase.NOT_STARTED = "not started";
-TestCase.IN_PROGRESS = "in progress";
-TestCase.FAILED = "failed";
-TestCase.PASSED = "passed";
-</pre>
-    </article>
 </section>
-
-
-
-
 
 		</div>
 	</div>

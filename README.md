@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/glacejs/glace-core.svg?branch=master)](https://travis-ci.org/glacejs/glace-core)
 
+[Release Notes](tutorial-release-notes.html)
+
 **Glace** (fr. *glacé* — ice, frozen) is a cold drink based on **coffee** with addition of **ice cream**.
 
 ![GlaceJS logo](glace.png)
