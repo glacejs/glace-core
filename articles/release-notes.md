@@ -1,3 +1,8 @@
+### v1.0.9
+
+- Show a number of executed chunks in report.
+- Show link to xunit report if it is active.
+
 ### v1.0.8
 
 - Supports `xunit` reporter, which may be activated with CLI option `--xunit`.
