@@ -1,3 +1,7 @@
+### v1.1.0
+
+- Generate session ID on start.
+
 ### v1.0.9
 
 - Show a number of executed chunks in report.
