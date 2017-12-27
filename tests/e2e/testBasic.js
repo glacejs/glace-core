@@ -66,7 +66,13 @@ test("It should involve fixture in iterator", ctx => {
     });
 });
 
-test("It should be skipped and absent in report", { skip: true }, () => {
+test("It should be skipped with reason",
+     { skip: true,
+       skipReason: "bug https://bug.tracker.io/BUG-1001" }, () => {
+    chunk(() => {});
+});
+
+test("It should be skipped without reason", { skip: true }, () => {
     chunk(() => {});
 });
 
