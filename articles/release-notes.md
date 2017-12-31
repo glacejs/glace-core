@@ -1,3 +1,8 @@
+### v1.1.2
+
+- Updated `mocha` to latest version.
+- Updated `glace-utils` to support config parents loading.
+
 ### v1.1.1
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/ebda01ce0fb6477c1ee32069cf65ff665f308d81) typo in tests loader method to scan test modules.
