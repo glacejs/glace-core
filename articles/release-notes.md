@@ -1,3 +1,10 @@
+### v1.1.1
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/ebda01ce0fb6477c1ee32069cf65ff665f308d81) typo in tests loader method to scan test modules.
+- [Added](https://github.com/glacejs/glace-core/commit/6999d5177c9dfb424b757f7d1c87d7106a0d1c21) feature to show tests summary time.
+- [Added](https://github.com/glacejs/glace-core/commit/ca22c76bc2f8519ee2649b3f2ff1c3f8a35d5f01) feature to capture skipped tests in reporters.
+- [Fixed](https://github.com/glacejs/glace-core/commit/43d1f7daa301abc22dcfc4be3824910e1e0c78d4) bug with disorder in plugins loader.
+
 ### v1.1.0
 
 - Generate session ID on start.
