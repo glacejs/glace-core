@@ -19,7 +19,7 @@
 - Mechanism to retry failed tests
 - Mechanism to retry failed chunks
 - Mechanism to process uncaught exceptions (`mocha` mechanism isn't reliable but supported)
-- Fixtures support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
+- [Fixtures](tutorial-test-fixtures.html) support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
 - Test & chunk [options](tutorial-test-options.html)
 - Multiple reporting system
 - Stdout reporter in-box
@@ -127,3 +127,9 @@ require("glace-core").run().then(errCode => {
 In order to retry failed tests or chunks you may pass CLI options `--retry` or
 `--chunk-retry` to affect all tests or chunks or to specify `retry` option
 for concrete [test or chunk](tutorial-test-options.html).
+
+### How to use fixtures
+
+In order to avoid copy/paste with `before` and `after` hooks in tests you may use fixtures...
+
+[Read more ➤](tutorial-test-fixtures.html)

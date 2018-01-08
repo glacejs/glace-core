@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: error.js</title>
+	<title>GlaseJS Tutorial: Test fixtures</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,59 +98,47 @@
 	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-		<h1 class="page-title">Source: error.js</h1>
+<header>
     
-<section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * Contains `GlaceJS` errors.
- *
- * @module
- */
-var util = require("util");
 
-var BaseError = require("es6-error");
-/**
- * Error which is thrown in `GlaceJS`, if no more specific error is defined.
- *
- * @class
- * @arg {string} message - Error message.
- */
-var GlaceError = module.exports.GlaceError = function (message) {
-    BaseError.call(this, message);
+    <h2>Test fixtures</h2>
+</header>
+
+<article>
+    <p>If you need to provide some <code>before</code> and/or <code>after</code> hooks in tests or group of
+tests, in order to avoid copy-paste you may develop and reuse fixtures.</p>
+<pre class="prettyprint source lang-javascript"><code>var myFixture = func => {
+
+    before(() => {
+        console.log(&quot;called before&quot;);
+    });
+
+    func();
+
+    after(() => {
+        console.log(&quot;called after&quot;);
+    });
 };
-util.inherits(GlaceError, BaseError);
-/**
- * Error which is thrown when configuration is wrong.
- *
- * @class
- * @arg {string} message - Error message.
- */
-var ConfigError = module.exports.ConfigError = function (message) {
-    GlaceError.call(this, message);
-};
-util.inherits(ConfigError, GlaceError);
-/**
- * Error which is thrown when step execution is wrong.
- *
- * @class
- * @arg {string} message - Error message.
- */
-var StepError = module.exports.StepError = function (message) {
-    GlaceError.call(this, message);
-};
-util.inherits(StepError, GlaceError);
-</pre>
-    </article>
+
+test(&quot;My test&quot;, /* options */ null, [myFixture], () => {
+    chunk(() => {});
+});
+
+scope(&quot;My tests&quot;, /* options */ null, [myFixture], () => {
+
+    test(&quot;#1&quot;, () => {
+        chunk(() => {});
+    });
+
+    test(&quot;#2&quot;, () => {
+        chunk(() => {});
+    });
+});</code></pre>
+</article>
+
 </section>
-
-
-
-
 
 		</div>
 	</div>
