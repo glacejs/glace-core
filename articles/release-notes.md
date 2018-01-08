@@ -1,3 +1,7 @@
+### v1.1.3
+
+- [Expanded](https://github.com/glacejs/glace-core/commit/3a4d090f95b3ffb510ea8dd26ac56a8b8d27b196) test & chunk [options](tutorial-test-options.html).
+
 ### v1.1.2
 
 - Updated `mocha` to latest version.

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: index.js</title>
+	<title>GlaseJS Tutorial: Test & chunk options</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,95 +98,48 @@
 	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-		<h1 class="page-title">Source: index.js</h1>
+<header>
     
-<section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * `GlaceJS` main module.
- *
- * @module
- *
- * @prop {object} config - {@link module:config|Config} module.
- * @prop {object} error - {@link module:error|Error} module.
- * @prop {function} help - {@link module:help|Help} module.
- * @prop {object} reporter - {@link module:reporter/index|Reporter} module.
- * @prop {object} run - {@link module:run|run} module.
- * @prop {object} Steps - {@link module:steps|Steps} module.
- */
 
-var config, error, help, plugins, reporter, run, Steps;
+    <h2>Test & chunk options</h2>
+</header>
 
-Object.defineProperties(exports, {
-    /**
-     * @type {GlaceConfig}
-     */
-    config: {
-        get: function() {
-            config = config || require("./config");
-            return config;
-        },
-    },
-    error: {
-        get: function() {
-            error = error || require("./error");
-            return error;
-        },
-    },
-    /**
-     * Help.
-     */
-    help: {
-        get: function () {
-            help = help || require("./help");
-            return help;
-        },
-    },
-    plugins: {
-        get: function () {
-            plugins = plugins || require("./plugins");
-            return plugins;
-        },
-    },
-    /**
-     * @type {GlaceReporter}
-     */
-    reporter: {
-        get: function() {
-            reporter = reporter || require("./reporter");
-            return reporter;
-        },
-    },
-    /**
-     * @type {run}
-     */
-    run: {
-        get: function() {
-            run = run || require("./run");
-            return run;
-        },
-    },
-    /**
-     * @type {Steps}
-     */
-    Steps: {
-        get: function() {
-            Steps = Steps || require("./steps");
-            return Steps;
-        },
-    },
-});
-</pre>
-    </article>
+<article>
+    <p>When you develop a test you may pass options to test or chunk, which override config values for concrete test or chunk.</p>
+<h3>Test options</h3><h4>skip unwanted test</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, { skip: true }, () => {
+    chunk(() => {
+        // payload
+    });
+});</code></pre><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, { skip: true, skipReason: &quot;Opened bug http://tracker.com/bugs/121&quot; }, () => {
+    chunk(() => {
+        // payload
+    });
+});</code></pre><h4>retry failed test</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, { retry: 2 }, () => {
+    chunk(() => {
+        // payload
+    });
+})</code></pre><h4>retry failed chunks</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, { chunkRetry: 2 }, () => {
+    chunk(() => {
+        // payload
+    });
+});</code></pre><h4>chunks execution timeout</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, { chunkTimeout: 1 }, () => {
+    chunk(() => {
+        // payload
+    });
+});</code></pre><h3>Chunk options</h3><h4>retry failed chunk</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, () => {
+    chunk({ retry: 2 }, () => {
+        // payload
+    });
+});</code></pre><h4>chunk execution timeout</h4><pre class="prettyprint source lang-javascript"><code>test(&quot;My test&quot;, () => {
+    chunk({ timeout: 1 }, () => {
+        // payload
+    });
+});</code></pre>
+</article>
+
 </section>
-
-
-
-
 
 		</div>
 	</div>
