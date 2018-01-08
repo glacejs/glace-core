@@ -76,11 +76,30 @@ test("It should be skipped without reason", { skip: true }, () => {
     chunk(() => {});
 });
 
-var i = 0;
-var retry = 3;
-test(`It should be retried ${retry} times`, { retry: retry }, () => {
+var ii = 0;
+test(`It should be retried 3 times`, { retry: 3 }, () => {
     chunk(() => {
-        if (i < retry) {
+        if (ii < 3) {
+            ii++;
+            throw new Error("BOOM!");
+        };
+    });
+});
+
+test(`Its chunks should be retried 3 times`, { chunkRetry: 3 }, () => {
+    var i = 0;
+    chunk(() => {
+        if (i < 3) {
+            i++;
+            throw new Error("BOOM!");
+        };
+    });
+});
+
+test(`Its chunk should be retried 3 times`, () => {
+    var i = 0;
+    chunk({ retry: 3 }, () => {
+        if (i < 3) {
             i++;
             throw new Error("BOOM!");
         };

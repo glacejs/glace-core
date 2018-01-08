@@ -20,6 +20,7 @@
 - Mechanism to retry failed chunks
 - Mechanism to process uncaught exceptions (`mocha` mechanism isn't reliable but supported)
 - Fixtures support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
+- Test & chunk [options](tutorial-test-options.html)
 - Multiple reporting system
 - Stdout reporter in-box
 - [TestRail](http://www.gurock.com/testrail/) reporter in-box
@@ -69,8 +70,8 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--dont-clear-report` - Don't clear previous report on tests run.
 - `--root-conftest <path>` - Path to root `conftest.js` which will be loaded before all.
 - `--languages` - List of tested languages separated with comma.
-- `--retry` - Number of times to retry failed test. Default is `0`.
-- `--chunk-retry` - Number of times to retry failed chunk. Default is `0`.
+- `--retry [times]` - Number of times to retry failed test. Default is `0`.
+- `--chunk-retry [times]` - Number of times to retry failed chunk. Default is `0`.
 - `--chunk-timeout` - Time to execute chunk or hook, sec. Default is `180`.
 - `--uncaught` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism (unreliable).
 
@@ -118,3 +119,11 @@ require("glace-core").run().then(errCode => {
     process.exit(errCode);
 });
 ```
+
+## Guidelines
+
+### How to retry tests or chunks
+
+In order to retry failed tests or chunks you may pass CLI options `--retry` or
+`--chunk-retry` to affect all tests or chunks or to specify `retry` option
+for concrete [test or chunk](tutorial-test-options.html).
