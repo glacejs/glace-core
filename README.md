@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/glacejs/glace-core.svg?branch=master)](https://travis-ci.org/glacejs/glace-core)
-
-[Release Notes](tutorial-release-notes.html)
+ | [Source Code](https://github.com/glacejs/glace-core)
+ | [Release Notes](tutorial-release-notes.html)
 
 **Glace** (fr. *glacé* — ice, frozen) is a cold drink based on **coffee** with addition of **ice cream**.
 
@@ -100,11 +100,11 @@ glace [options] [sequence-of-test-files-or-folders]
 
 ## Test examples
 
-See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/integration) in order to explore examples.
+See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/e2e) in order to explore examples.
 
 ## Frameworks platform
 
-`GlaceJS` may be used as platform for own testing frameworks development. [Simple example](https://github.com/glacejs/glace-core/blob/master/tests/integration/ownApp):
+`GlaceJS` may be used as platform for own testing frameworks development. [Simple example](https://github.com/glacejs/glace-core/blob/master/tests/e2e/ownApp):
 
 ```javascript
 require("colors");
