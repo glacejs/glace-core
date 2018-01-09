@@ -54,8 +54,14 @@ glace [options] [sequence-of-test-files-or-folders]
 
 ## CLI options
 
+`Common`
+- `--version` - Show version number.
+- `-h, --help` - Show help.
+
 `Arguments`
 - `--config [path], -c` - Path to JSON file with CLI arguments. Default is `cwd/config.json` (if it exists).
+
+**Note!** All options below may be set via `.json` file (see option `--config` above).
 
 `Log`
 - `--stdout-log` - Print log messages to stdout.
@@ -95,9 +101,52 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--testrail-run-name <name>` - TestRail run name.
 - `--testrail-run-desc <description>` - TestRail run description.
 
-`Options`
-- `--version` - Show version number.
-- `-h, --help` - Show help.
+## Quick start
+
+1. Make sure that you have installed `glace-core`
+
+1. Create file `my-test.js` with next content:
+
+    ```javascript
+    "use strict";
+
+    test("#1", () => {
+        chunk(() => {
+            console.log("hello world");
+        });
+    });
+
+    test("#2", () => {
+        chunk(() => {
+            throw new Error("BOOM!");
+        });
+    });
+    ```
+
+1. Launch terminal, navigate to folder with file `my-test.js` and execute command:
+
+    ```
+    glace my-test.js
+    ```
+
+    After that tests will be executed.
+
+1. In current work directory create file `config.json` with next content:
+
+    ```javascript
+    {
+        "grep": "#1",
+        "xunit": true
+    }
+    ```
+
+1. Launch `glace` again:
+
+    ```
+    glace my-test.js
+    ```
+
+    `glace` CLI options will be read from `config.json`.
 
 ## Test examples
 
