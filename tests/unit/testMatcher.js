@@ -1,6 +1,6 @@
 "use strict";
 
-test(".waitFor()", () => {
+test("chai matcher .waitFor()", () => {
     var now;
 
     before(() => {

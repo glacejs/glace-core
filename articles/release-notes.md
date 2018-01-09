@@ -1,3 +1,7 @@
+### v1.1.4
+
+- [Added](https://github.com/glacejs/glace-core/commit/a9a8c8c9da158da35bd4c6099fe80b9392c3a2e0) chai matcher `waitFor`.
+
 ### v1.1.3
 
 - [Expanded](https://github.com/glacejs/glace-core/commit/3a4d090f95b3ffb510ea8dd26ac56a8b8d27b196) test & chunk [options](tutorial-test-options.html).
