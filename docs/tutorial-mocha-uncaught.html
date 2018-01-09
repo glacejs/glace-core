@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Module: reporter/xunit</title>
+	<title>GlaseJS Tutorial: Mocha broken queue with uncaught exceptions</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -95,393 +95,159 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
-
-	<h1 class="page-title">Module: reporter/xunit</h1>
-<section>
+			<section class="tutorial-section">
 
 <header>
     
+
+    <h2>Mocha broken queue with uncaught exceptions</h2>
 </header>
 
-
 <article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p><code>GlaceJS</code> xunit reporter.</p></div>
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="reporter_xunit.js.html">reporter/xunit.js</a>,
-				 <a href="reporter_xunit.js.html#sunlight-1-line-2">line 2</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id="~write"><span class="type-signature">&lt;inner> </span>write(line)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Writes a line.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>line</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Report text line.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="reporter_xunit.js.html">reporter/xunit.js</a>,
-				 <a href="reporter_xunit.js.html#sunlight-1-line-58">line 58</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~writeTest"><span class="type-signature">&lt;inner> </span>writeTest(test)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Writes a test.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>test</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TestCase</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Test case.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="reporter_xunit.js.html">reporter/xunit.js</a>,
-				 <a href="reporter_xunit.js.html#sunlight-1-line-66">line 66</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
+    <p>In <code>mocha</code> it's very easy to break async tests queue due to <code>uncaught exceptions</code> processing mechanism in <code>mocha</code>.</p>
+<ol>
+<li><p>Create tests file with next content:</p>
+<pre class="prettyprint source lang-javascript"><code> &quot;use strict&quot;;
+
+ var sleep = timeout => {
+     return new Promise(resolve => {
+         setTimeout(() => {
+             console.log(`I was sleeping ${timeout} ms`);
+             resolve();
+         }, timeout);
+     });
+ };
+
+ var error = timeout => {
+     setTimeout(() => {
+         throw new Error(&quot;BOOM!!!&quot;);
+     }, timeout);
+ };
+
+ describe(&quot;scope&quot;, () => {
+     it (&quot;test #1&quot;, async () => {
+         error(1000);
+         await sleep(1000);
+     });
+     it (&quot;test #2&quot;, async () => await sleep(1000));
+     it (&quot;test #3&quot;, async () => {
+         error(1000);
+         await sleep(1000);
+     });
+     it (&quot;test #4&quot;, async () => await sleep(1000));
+     it (&quot;test #5&quot;, async () => await sleep(1000));
+     it (&quot;test #6&quot;, async () => await sleep(1000));
+ });</code></pre></li>
+<li><p>Run and get something at first sight incomprehensible:</p>
+</li>
+</ol>
+<pre class="prettyprint source"><code>$ mocha uncaught.js
+
+
+scope
+    1) test #1  # in console it colored as red (failed)
+I was sleeping 1000 ms
+    √ test #1 (1012ms)
+    2) test #3  # in console it colored as red (failed)
+I was sleeping 1000 ms
+I was sleeping 1000 ms
+    √ test #4
+    √ test #4
+I was sleeping 1000 ms
+I was sleeping 1000 ms
+I was sleeping 1000 ms
+    √ test #6 (1002ms)
+    √ test #6 (1002ms)
+    √ test #6 (1003ms)
+
+6 passing (3s)
+2 failing
+
+1) scope
+    test #1:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+
+2) scope
+    test #3:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+
+
+
+
+
+6 passing (3s)
+2 failing
+
+1) scope
+    test #1:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+
+2) scope
+    test #3:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+
+
+
+
+6 passing (3s)
+2 failing
+
+1) scope
+    test #1:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+
+2) scope
+    test #3:
+    Uncaught Error: BOOM!!!
+    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15</code></pre><p>At first, please note that <code>test #1</code> is marked twice: as <strong>passed</strong> and as <strong>failed</strong>!
+Second, <code>test #2</code> and <code>test #5</code> are absent in the report.
+Third, begins simultaneous delivery of messages <code>I was sleeping 1000 ms</code>, first 1 time, then 2 times, then 3 times.</p>
+<p>Now consider why this is so.
+The problem is that <code>mocha</code> <a href="https://github.com/mochajs/mocha/blob/master/lib/runner.js#L698">default handles</a> <code>uncaught exceptions</code>.
+If such an exception occurs, <code>mocha</code> fails current test, no matter whether with him or even <code>uncaught exception</code> was generated
+by an asynchronous call to a lot of tests ago (e.g. due to forgotten / hanging timers, etc.). And since this processor is
+implemented via a <code>listener</code>, then in my example it is a very interesting thing:</p>
+<ol>
+<li><p>On one hand in the test after 1 second <code>uncaught exception</code> happens and invokes its handler, on the other side the test
+explicitly waits for 1 second end of sleep and marks the test as passed.</p>
+</li>
+<li><p>Because of the async of <code>JavaScript</code>, we have two concurrent test processors, which leads to twice appearance of a report of <code>test #1</code>.</p>
+</li>
+<li><p>Moreover, from now on, we have two places which emit event to start a new test. And in fact, one queue was splitted to 2 queues!</p>
+</li>
+<li><p>In <code>test #3</code> the situation is repeated, leading to further division of the queue. And we have 3 competitive operating test queues!
+This can be observed by the increment of the number of messages <code>I was sleeping 1000 ms</code>.</p>
+</li>
+</ol>
+<p>In our work, we periodically met such split of queue, so this example is based on a real existing problem.
+In the end, the whole run was in the trash, because due to queue splitting test results weren't correct.</p>
+<h3>How to fix</h3><p>Simple and working variant to suppress uncaught exception.</p>
+<pre class="prettyprint source lang-javascript"><code>var Mocha = require(&quot;mocha&quot;);
+Mocha.Runner.prototype.uncaught = function (err) {
+logger.error(&quot;UNCAUGHT ERROR&quot;, err);
+};</code></pre><p>Better to get one failed test, and in finalizers to close all descriptors, proxies, to kill processes, etc.,
+to suppress and log <code>uncaught exception</code>, and then analyze the logs for their presence.
+Than to collapse the queue and get failed report of all night run.
+In my work this approach was really helpful. That's why <code>glace</code> supports own variants to process <code>uncaught exceptions</code> (see CLI option <code>--uncaught</code>).</p>
+<p>P. S. <code>mocha</code> has the option <code>--allow-enable - uncaught uncaught errors to propagate</code>.
+But I did not understand what it is, because it certainly does not solve the problem.</p>
 </article>
 
 </section>
-
-
-
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

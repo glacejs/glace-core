@@ -18,7 +18,7 @@
 - Parameterization inside and outside of test
 - Mechanism to retry failed tests
 - Mechanism to retry failed chunks
-- Mechanism to process uncaught exceptions (`mocha` mechanism isn't reliable but supported)
+- Mechanism to process uncaught exceptions (`mocha` mechanism is [unreliable](tutorial-mocha-uncaught.html) but supported)
 - [Fixtures](tutorial-test-fixtures.html) support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
 - Test & chunk [options](tutorial-test-options.html)
 - Multiple reporting system
@@ -79,7 +79,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--retry [times]` - Number of times to retry failed test. Default is `0`.
 - `--chunk-retry [times]` - Number of times to retry failed chunk. Default is `0`.
 - `--chunk-timeout [sec]` - Time to execute chunk or hook, sec. Default is `180`.
-- `--uncaught [type]` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism (unreliable).
+- `--uncaught [type]` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism ([unreliable](tutorial-mocha-uncaught.html)).
 
 `Plugins`
 - `--plugins` - Show plugins only.
