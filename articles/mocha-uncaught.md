@@ -64,12 +64,12 @@ I was sleeping 1000 ms
 1) scope
     test #1:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15)
 
 2) scope
     test #3:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15)
 
 
 
@@ -81,12 +81,12 @@ I was sleeping 1000 ms
 1) scope
     test #1:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15)
 
 2) scope
     test #3:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15)
 
 
 
@@ -97,12 +97,12 @@ I was sleeping 1000 ms
 1) scope
     test #1:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15)
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15)
 
 2) scope
     test #3:
     Uncaught Error: BOOM!!!
-    at Timeout.setTimeout [as _onTimeout] (proba.js:12:15
+    at Timeout.setTimeout [as _onTimeout] (uncaught.js:12:15
 ```
 
 At first, please note that `test #1` is marked twice: as **passed** and as **failed**!
