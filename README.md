@@ -20,6 +20,7 @@
 - Mechanism to retry failed chunks
 - Mechanism to process uncaught exceptions (`mocha` mechanism is [unreliable](tutorial-mocha-uncaught.html) but supported)
 - [Fixtures](tutorial-test-fixtures.html) support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
+- [Conftest](tutorial-tests-loading.html) and preloads support
 - Test & chunk [options](tutorial-test-options.html)
 - Multiple reporting system
 - Stdout reporter in-box
@@ -51,6 +52,8 @@ gulp --tasks  // show all tasks
 ```
 glace [options] [sequence-of-test-files-or-folders]
 ```
+
+[How `glace` loads tests ➤](tutorial-tests-loading.html)
 
 ## CLI options
 
