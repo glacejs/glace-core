@@ -16,3 +16,22 @@ test("global sinon", () => {
         expect(sinon).to.exist;
     });
 });
+
+test("global rewire", () => {
+    chunk("exists", () => {
+        expect(rewire).to.exist;
+    });
+});
+
+test("sinon-chai", () => {
+    var func;
+
+    beforeChunk(() => {
+        func = sinon.spy();
+    });
+
+    chunk("is active", () => {
+        func();
+        expect(func).to.be.calledOnce;
+    });
+})
