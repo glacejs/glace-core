@@ -1,3 +1,7 @@
+### v1.1.6
+
+- [Added](https://github.com/glacejs/glace-core/commit/3b7b4c137a060050cf91106e506b8510e95bc7ab) `rewire` and `sinon-chai`.
+
 ### v1.1.5
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/7ae470289765dc36aceafc37f3a93ebe39d029cc) bug that matcher `waitFor` didn't work correct with async predicates.
