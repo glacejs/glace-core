@@ -1,3 +1,7 @@
+### v1.1.7
+
+- Patched `rewire` in order to add method `__reset__` to restore original module state.
+
 ### v1.1.6
 
 - [Added](https://github.com/glacejs/glace-core/commit/3b7b4c137a060050cf91106e506b8510e95bc7ab) `rewire` and `sinon-chai`.
