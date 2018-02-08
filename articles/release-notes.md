@@ -1,3 +1,7 @@
+### v1.1.8
+
+- [Added](https://github.com/glacejs/glace-core/commit/6c438348440c37a0419989b84ef8aad6d41f9570) step to enter to interactive debug mode.
+
 ### v1.1.7
 
 - Patched `rewire` in order to add method `__reset__` to restore original module state.
