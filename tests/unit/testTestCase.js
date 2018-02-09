@@ -5,12 +5,11 @@ var TestCase = require("../../lib/testing").TestCase;
 test("TestCase class", () => {
     var testCase;
 
+    beforeEach(() => {
+        testCase = new TestCase("test case");
+    });
+
     scope("instance", () => {
-
-        before(() => {
-            testCase = new TestCase("test case");
-        });
-
         chunk("duration is zero", () => {
             expect(testCase.duration).to.be.equal(0);
         });
@@ -26,10 +25,6 @@ test("TestCase class", () => {
 
     scope(".start()", () => {
 
-        beforeChunk(() => {
-            testCase = new TestCase("test case");
-        });
-
         chunk("starts test case", () => {
             expect(testCase._startTime).to.not.exist;
             testCase.start();
@@ -44,10 +39,6 @@ test("TestCase class", () => {
     });
 
     scope(".end()", () => {
-
-        beforeChunk(() => {
-            testCase = new TestCase("test case");
-        });
 
         chunk("ends test case", () => {
             testCase.start();
@@ -65,7 +56,6 @@ test("TestCase class", () => {
     scope(".reset()", () => {
 
         chunk("resets test case", () => {
-            testCase = new TestCase("test case");
             testCase.reset();
 
             expect(testCase.screenshots).to.be.empty;
@@ -74,6 +64,30 @@ test("TestCase class", () => {
             expect(testCase.rawInfo).to.be.empty;
             expect(testCase.failedParams).to.be.empty;
             expect(testCase.testParams).to.be.empty;
+        });
+    });
+
+    scope(".addFailedParams()", () => {
+
+        beforeEach(() => {
+            testCase.addFailedParams({ lang: "ru" });
+        });
+
+        chunk("adds failed params if no failed params before", () => {
+            expect(testCase.failedParams).has.length(1);
+            expect(testCase.failedParams[0].lang).to.be.equal("ru");
+        });
+
+        chunk("doesn't add failed params if they are present already", () => {
+            testCase.addFailedParams({ lang: "ru" });
+            expect(testCase.failedParams).has.length(1);
+            expect(testCase.failedParams[0].lang).to.be.equal("ru");
+        });
+
+        chunk("adds failed params if it doesn't match any of already added", () => {
+            testCase.addFailedParams({ lang: "en" });
+            expect(testCase.failedParams).has.length(2);
+            expect(testCase.failedParams[1].lang).to.be.equal("en");
         });
     });
 });
