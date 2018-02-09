@@ -1,3 +1,7 @@
+### v1.1.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/d563b0148bb99ce8fb2e5a48e8a7b3051ccd7db2) bug that on parametrized test failure failed params may be added to retry more that one time.
+
 ### v1.1.8
 
 - [Added](https://github.com/glacejs/glace-core/commit/6c438348440c37a0419989b84ef8aad6d41f9570) step to enter to interactive debug mode.
