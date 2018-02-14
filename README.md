@@ -151,6 +151,16 @@ glace [options] [sequence-of-test-files-or-folders]
 
     `glace` CLI options will be read from `config.json`.
 
+1. It is a **good style** to use only [Steps](Steps.html) inside chunks via its global instance [SS](global.html#SS) and follow to [STEPS](tutorial-steps-architecture.html) methodology.
+
+    ```javascript
+    test("my test", () => {
+        chunk(async () => {
+            await SS.pause(1, "sleep a bit");
+        });
+    });
+    ```
+
 ## Test examples
 
 See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/e2e) in order to explore examples.
