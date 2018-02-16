@@ -1,3 +1,7 @@
+### v1.2.3
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/f027e9dafd7970cc67fd10064703ee5fa66ce1db) bug that relative root conftest wasn't resolved correct.
+
 ### v1.2.2
 
 - Fixed a bug that glace raised error if steps property didn't exist.
