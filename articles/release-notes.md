@@ -1,3 +1,7 @@
+### v1.2.1
+
+- [Added](https://github.com/glacejs/glace-core/commit/f215464034c0f2f06f6f5d73169bc4c62e7970d3) helpers for easy integration with [glace-testgen](https://glacejs.github.io/glace-testgen/) plugin.
+
 ### v1.2.0
 
 - [Added](https://github.com/glacejs/glace-core/commit/da1b392f2136a9e00597223580209db572015e0c) feature to kill processes before tests run.
