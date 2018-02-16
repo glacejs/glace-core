@@ -1,3 +1,7 @@
+### v1.2.2
+
+- Fixed a bug that glace raised error if steps property didn't exist.
+
 ### v1.2.1
 
 - [Added](https://github.com/glacejs/glace-core/commit/f215464034c0f2f06f6f5d73169bc4c62e7970d3) helpers for easy integration with [glace-testgen](https://glacejs.github.io/glace-testgen/) plugin.
