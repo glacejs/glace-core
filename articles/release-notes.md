@@ -1,3 +1,7 @@
+### v1.2.4
+
+- [Added](https://github.com/glacejs/glace-core/commit/d4e36f12b12ed7a59731e8bae8740d573c21fc46) custom path for log files.
+
 ### v1.2.3
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/f027e9dafd7970cc67fd10064703ee5fa66ce1db) bug that relative root conftest wasn't resolved correct.
