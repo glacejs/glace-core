@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-testing.html">testing</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -61,7 +61,7 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
@@ -126,24 +126,28 @@
  | <a href="tutorial-release-notes.html">Release Notes</a></p>
 <p><strong>Glace</strong> (fr. <em>glacé</em> — ice, frozen) is a cold drink based on <strong>coffee</strong> with addition of <strong>ice cream</strong>.</p>
 <p><img src="glace.png" alt="GlaceJS logo"></p>
-<p><code>GlaceJS</code> is a quick-start functional testing framework based on <a href="http://mochajs.org/">mocha</a> and extensible with <a href="https://github.com/glacejs">plugins</a>.</p>
+<h2>Annotation</h2><p><code>GlaceJS</code> is a quick-start functional testing framework based on <a href="http://mochajs.org/">mocha</a> and extensible with <a href="https://github.com/glacejs">plugins</a>.</p>
+<h2>Why it is</h2><ul>
+<li>Firstly it's <strong>R&amp;D</strong> project for <a href="https://www.linkedin.com/in/sergei-chipiga-05b29661">me</a> to dive deeply to programming and software architecture.</li>
+<li>Current testing frameworks like <a href="http://mochajs.org/">mocha</a> or <a href="https://jasmine.github.io/">jasmine</a> look cool for unit testing but are <strong>not flexible for complex</strong> functional scenarios.</li>
+</ul>
 <h2>Features</h2><ul>
 <li>Cross-platform</li>
 <li>Based on <a href="tutorial-steps-architecture.html">STEPS-architecture</a> and <a href="tutorial-steps-protocol.html">STEPS-protocol</a></li>
 <li>May be extended with plugins implemented STEPS-protocol</li>
-<li>Oriented to complex functional scenarios</li>
-<li>Indepentently executed chunks inside a test</li>
-<li>Parameterization inside and outside of test</li>
-<li>Mechanism to retry failed tests</li>
-<li>Mechanism to retry failed chunks</li>
+<li>Oriented to complex functional <a href="tutorial-concepts.html">scenarios</a></li>
+<li>Indepentently executed <a href="tutorial-concepts.html">chunks</a> inside a test</li>
+<li><a href="tutorial-parameterization.html">Parameterization</a> inside and outside of test</li>
+<li>Mechanism to <a href="tutorial-retry.html">retry</a> failed tests</li>
+<li>Mechanism to <a href="tutorial-retry.html">retry</a> failed chunks</li>
 <li>Mechanism to process uncaught exceptions (<code>mocha</code> mechanism is <a href="tutorial-mocha-uncaught.html">unreliable</a> but supported)</li>
 <li><a href="tutorial-test-fixtures.html">Fixtures</a> support similar to <a href="https://docs.pytest.org/en/latest/fixture.html">pytest fixtures</a></li>
-<li><a href="tutorial-tests-loading.html">Conftest</a> and preloads support</li>
+<li><a href="tutorial-tests-loading.html">Conftest</a> and <a href="tutorial-tests-loading.html">preloads</a> support</li>
 <li>Test &amp; chunk <a href="tutorial-test-options.html">options</a></li>
-<li>Multiple reporting system</li>
+<li>Multiple reporting <a href="tutorial-reports.html">system</a></li>
 <li>Stdout reporter in-box</li>
 <li><a href="http://www.gurock.com/testrail/">TestRail</a> reporter in-box</li>
-<li>Easy to provide <a href="https://github.com/glacejs/glace-core/blob/master/tests/integration/testCustomReporter.js">custom reporter</a></li>
+<li>Easy to provide <a href="https://github.com/glacejs/glace-core/blob/master/tests/e2e/testCustomReporter.js">custom reporter</a></li>
 <li>May read <code>CLI</code> arguments from <code>JSON</code> file</li>
 <li>May be extended with custom <code>JavaScript</code> config</li>
 <li>May be used as platform for own testing frameworks development</li>
@@ -309,7 +313,7 @@ for concrete <a href="tutorial-test-options.html">test or chunk</a>.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-02-20T20:25:35+02:00
+		on 2018-02-21T19:17:17+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Module: runner</title>
+	<title>GlaseJS Tutorial: Tests parameterization</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-runner.html">runner</a></li><li><a href="module-testing.html">testing</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -61,7 +61,7 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
@@ -95,122 +95,28 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
-
-	<h1 class="page-title">Module: runner</h1>
-<section>
+			<section class="tutorial-section">
 
 <header>
     
+
+    <h2>Tests parameterization</h2>
 </header>
 
-
 <article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Makes tests root session.</p>
-<ul>
-<li>runner loads root <code>conftest.js</code> if it is located on one level with
-each of <code>CONF.testDirs</code>;</li>
-<li>if each of <code>CONF.testDirs</code> is file with tests, runner loads and executes it;</li>
-<li>if each of <code>CONF.testDirs</code> is folder runner loads files inside recursive if
-file name starts with <code>test</code> and ends with <code>.js</code>;</li>
-<li>inside each subfolder of each of <code>CONF.testDirs</code> runner loads <code>conftest.js</code>
-file if it is present;</li>
-</ul></div>
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="runner.js.html">runner.js</a>,
-				 <a href="runner.js.html#sunlight-1-line-2">line 2</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
     
 </article>
 
 </section>
-
-
-
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
@@ -243,7 +149,7 @@ file if it is present;</li>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-02-20T20:25:35+02:00
+		on 2018-02-21T19:17:17+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
