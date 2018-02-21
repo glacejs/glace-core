@@ -6,26 +6,33 @@
 
 ![GlaceJS logo](glace.png)
 
+## Annotation
+
 `GlaceJS` is a quick-start functional testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
+
+## Why it is
+
+- Firstly it's **R&D** project for [me](https://www.linkedin.com/in/sergei-chipiga-05b29661) to dive deeply to programming and software architecture.
+- Current testing frameworks like [mocha](http://mochajs.org/) or [jasmine](https://jasmine.github.io/) look cool for unit testing but are **not flexible for complex** functional scenarios.
 
 ## Features
 
 - Cross-platform
 - Based on [STEPS-architecture](tutorial-steps-architecture.html) and [STEPS-protocol](tutorial-steps-protocol.html)
 - May be extended with plugins implemented STEPS-protocol
-- Oriented to complex functional scenarios
-- Indepentently executed chunks inside a test
-- Parameterization inside and outside of test
-- Mechanism to retry failed tests
-- Mechanism to retry failed chunks
+- Oriented to complex functional [scenarios](tutorial-concepts.html)
+- Indepentently executed [chunks](tutorial-concepts.html) inside a test
+- [Parameterization](tutorial-parameterization.html) inside and outside of test
+- Mechanism to [retry](tutorial-retry.html) failed tests
+- Mechanism to [retry](tutorial-retry.html) failed chunks
 - Mechanism to process uncaught exceptions (`mocha` mechanism is [unreliable](tutorial-mocha-uncaught.html) but supported)
 - [Fixtures](tutorial-test-fixtures.html) support similar to [pytest fixtures](https://docs.pytest.org/en/latest/fixture.html)
-- [Conftest](tutorial-tests-loading.html) and preloads support
+- [Conftest](tutorial-tests-loading.html) and [preloads](tutorial-tests-loading.html) support
 - Test & chunk [options](tutorial-test-options.html)
-- Multiple reporting system
+- Multiple reporting [system](tutorial-reports.html)
 - Stdout reporter in-box
 - [TestRail](http://www.gurock.com/testrail/) reporter in-box
-- Easy to provide [custom reporter](https://github.com/glacejs/glace-core/blob/master/tests/integration/testCustomReporter.js)
+- Easy to provide [custom reporter](https://github.com/glacejs/glace-core/blob/master/tests/e2e/testCustomReporter.js)
 - May read `CLI` arguments from `JSON` file
 - May be extended with custom `JavaScript` config
 - May be used as platform for own testing frameworks development
