@@ -1,3 +1,7 @@
+### v1.2.5
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/c21f084aad0a893159ce83d64821ba6814695dfb) bug that option `--chunk-timeout no` leaded to default timeout `2000`.
+
 ### v1.2.4
 
 - [Added](https://github.com/glacejs/glace-core/commit/d4e36f12b12ed7a59731e8bae8740d573c21fc46) custom path for log files.
