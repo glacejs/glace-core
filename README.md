@@ -91,6 +91,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--chunk-timeout [sec]` - Time to execute chunk or hook, sec. Default is `180`.
 - `--uncaught [type]` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism ([unreliable](tutorial-mocha-uncaught.html)).
 - `--kill-procs <sequence>` - List of process names separated with comma, which will be killed before tests run.
+- `--debug-on-fail` - Enter to interactive debug mode on step failure.
 
 `Plugins`
 - `--plugins` - Show plugins only.
