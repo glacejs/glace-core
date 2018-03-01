@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: globals.js</title>
+	<title>GlaseJS Source: globals/test.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals_index.html">globals/index</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -68,7 +68,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#baseTest">baseTest</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sessNum">sessNum</a></li><li><a href="global.html#setLog">setLog</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -100,38 +100,23 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: globals.js</h1>
+		<h1 class="page-title">Source: globals/test.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * Contains global framework functions and helpers.
- *
- * @module
- */
 
-var fs = require("fs");
 var path = require("path");
 
 var _ = require("lodash");
-var chai = require("chai");
-var chai_as_promised = require("chai-as-promised");
-var _rewire = require("rewire");
-var sinon = require("sinon");
-var sinon_chai = require("sinon-chai");
 var U = require("glace-utils");
 var LOG = U.logger;
 
-chai.use(chai_as_promised);
-chai.use(sinon_chai);
+var CONF = require("../config");
+var hacking = require("../hacking");
+var TestCase = require("../testing").TestCase;
 
-require("./matcher");
-var CONF = require("./config");
-var hacking = require("./hacking");
-var plugins = require("./plugins");
-var TestCase = require("./testing").TestCase;
 /**
  * Helper to set actual log file.
  *
@@ -143,194 +128,7 @@ var setLog = () => {
     LOG.setFile(logFile);
 };
 setLog(); // Set log immediatelly.
-/**
- * `chaijs` `expect` function.
- *
- * @global
- * @function
- * @arg {*} actualValue - Some actual value which should be checked.
- * @see {@link http://chaijs.com/|chaijs} to get more details about
- *  `expect` usage.
- * @example
 
-expect(1).to.be.equal(1);
-expect(2).to.be.gte(0);
-
- */
-global.expect = chai.expect;
-/**
- * `SinonJS` is pretty nice lib for mocking.
- *
- * @global
- */
-global.sinon = sinon;
-/**
- * `rewire` is great lib for monkey patching, but it should be a bit patched too :)
- *
- * @global
- */
-global.rewire = filename => {
-
-    var _ = Error.prepareStackTrace;
-    Error.prepareStackTrace = (_, stack) => stack;
-    var stack = new Error().stack.slice(1);
-    Error.prepareStackTrace = _;
-    var callerPath = stack[0].getFileName();
-
-    var callerDir = path.dirname(callerPath);
-    filename = path.resolve(callerDir, filename);
-
-    var mod = _rewire(filename);
-
-    var cache = {};
-
-    var set = mod.__set__;
-    mod.__set__ = function (name, stub) {
-
-        if (!Object.keys(cache).includes(name)) {
-            cache[name] = this.__get__(name);
-        };
-
-        set.call(this, name, stub);
-    };
-
-    mod.__reset__ = function () {
-        for (var [k, v] of Object.entries(cache)) {
-            this.__set__(k, v);
-        };
-        cache = {};
-    };
-
-    return mod;
-};
-/**
- * `GlaceJS` config.
- *
- * @global
- * @see {@link module:config|config} to get more details about its options.
- */
-global.CONF = CONF;
-/**
- * Atomic steps collection.
- *
- * @global
- * @type {Steps}
- * @see {@link module:steps/index|steps} to get more details about its methods.
- */
-global.SS = require("./steps").getInstance();
-/**
- * Execute tests scope.
- *
- * @global
- * @function
- * @arg {string} name - Scope name.
- * @arg {object} [opts] - Scope options.
- * @arg {number} [opts.chunkRetry] - Number of chunk retries on failure.
- * @arg {number} [opts.chunkTimeout] - Time to execute chunk or hook, sec.
- * @arg {function[]} [fixtures] - List of fixtures.
- * @arg {function} func - Function with test cases.
- * @example
-
-scope("Some test scope", () => {
-    test("Some test name", () => {
-        before(() => {
-            someFunc();
-        });
-        chunk("chunk #1", () => {
-            someFunc();
-        });
-        chunk("chunk #2", () => {
-            someFunc();
-        });
-    });
-});
-
- */
-global.scope = (name, opts, fixtures, func) => {
-
-    if (opts instanceof Function) {
-        func = opts;
-        opts = {};
-        fixtures = [];
-    };
-    if (fixtures instanceof Function) {
-        func = fixtures;
-        fixtures = [];
-    };
-    opts = opts || {};
-    fixtures = fixtures || {};
-
-    describe(name, function () {
-        if (opts.chunkRetry) this.retries(opts.chunkRetry);
-        if (opts.chunkTimeout) this.timeout(opts.chunkTimeout * 1000);
-        U.wrap(fixtures, func)();
-    });
-};
-/**
- * Executed sessions counter.
- * 
- * @type {Number}
- */
-var sessNum = 0;
-/**
- * Executes tests session.
- *
- * @global
- * @function
- * @arg {string} [name] - Session name. By default it includes start date time.
- * @arg {object} [ctx] - Session context. By default it's empty.
- * @arg {function} func - Function with test cases.
- * @example
-
-session(() => {
-    test("Test #1", () => {
-        chunk("Chunk #1", () => {
-            someFunc();
-        });
-        chunk("Chunk #2", () => {
-            someFunc();
-        });
-    });
-    test("Test #2", () => {
-        chunk("Chunk #1", () => {
-            someFunc();
-        });
-        chunk("Chunk #2", () => {
-            someFunc();
-        });
-    });
-});
-
- */
-global.session = (name, ctx, fixtures, func) => {
-
-    if (name instanceof Function) {
-        func = name;
-        name = CONF.sessionName;
-        ctx = {};
-        fixtures = [];
-    };
-    if (ctx instanceof Function) {
-        func = ctx;
-        ctx = {};
-        fixtures = [];
-    };
-    if (fixtures instanceof Function) {
-        func = fixtures;
-        fixtures = [];
-    };
-    name = name || CONF.sessionName;
-    ctx = ctx || {};
-    fixtures = fixtures || [];
-
-    sessNum++;
-    ctx.sessionNumber = sessNum;
-
-    scope(name, () => {
-        before(() => CONF.isRunPassed = true);
-        U.wrap(fixtures, func)();
-    });
-};
 /**
  * Basis for any test case.
  *
@@ -466,7 +264,7 @@ test("Some test", () => {
 });
 
  */
-global.test = (name, opts, fixtures, func) => {
+var test = (name, opts, fixtures, func) => {
 
     if (opts instanceof Function) {
         func = opts;
@@ -484,166 +282,8 @@ global.test = (name, opts, fixtures, func) => {
         func(ctx);
     });
 };
-/**
- * Executes test chunk.
- * 
- * Contains actions and verifications, which will be executed separatly
- * from another chunks. This function is used to organize test
- * structure and to allocate independent test actions.
- *
- * @global
- * @function
- * @arg {string} [name] - Name of chunk.
- * @arg {object} [opts] - Chunk options.
- * @arg {number} [opts.retry] - Number of chunk retries on failure.
- * @arg {number} [opts.timeout] - Time to execute chunk, sec.
- * @arg {function} func - Step function.
- * @example
 
-test("Some test", () => {
-    chunk("Some chunk", () => {
-        someFunc();
-    });
-});
-
- */
-global.chunk = (name, opts, func) => {
-
-    if (name instanceof Function) {
-        func = name;
-        name = "";
-        opts = {};
-    };
-
-    if (opts instanceof Function) {
-        func = opts;
-        opts = {};
-    };
-    if (name instanceof Object) {
-        opts = name;
-        name = "";
-    };
-
-    it(name, function () {
-        CONF.curTestCase.addChunk(name);
-        if (opts.retry) this.retries(opts.retry);
-        if (opts.timeout) this.timeout(opts.timeout * 1000);
-        return func();
-    });
-};
-/**
- * Executes before each test chunk.
- *
- * @global
- * @function
- * @arg {string} name - Name of test case.
- * @arg {function} func - Hook function.
- * @example
-
-test("Some test", () => {
-    beforeChunk(() => {
-        someFunc();
-    });
-    chunk("Chunk #1", () => {
-        someFunc();
-    });
-    chunk("Chunk #2", () => {
-        someFunc();
-    });
-});
-
- */
-global.beforeChunk = beforeEach;
-/**
- * Executes after each test chunk.
- *
- * @global
- * @function
- * @arg {string} name - Name of test case.
- * @arg {function} func - Hook function.
- * @example
-
-test("Some test", () => {
-    afterChunk(() => {
-        someFunc();
-    });
-    chunk("Chunk #1", () => {
-        someFunc();
-    });
-    chunk("Chunk #2", () => {
-        someFunc();
-    });
-});
-
- */
-global.afterChunk = afterEach;
-/**
- * Iterates test chunks through all languages specifed in config.
- *
- * It's applicable for multilingual application. If list of languages is
- * specified, it will be used firstly. Otherwise from configuration.
- *
- * @global
- * @function
- * @arg {object} [ctx] - Test case context.
- * @arg {object} [opts] - Options.
- * @arg {?string[]} [opts.languages] - List of tested languages.
- * @arg {function[]} [fixtures] - Involved fixtures list.
- * @arg {function} func - Function with test steps.
- * @example
-
-test("Some test", ctx => {
-    forEachLanguage(ctx, lang => {
-        beforeChunk(() => {
-            someFunc();
-        });
-        chunk("Chunk #1", () => {
-            someFunc();
-        });
-        chunk("Chunk #2", () => {
-            someFunc();
-        });
-    });
-});
-
- */
-global.forEachLanguage = (ctx, opts, fixtures, func) => {
-
-    if (ctx instanceof Function) {
-        func = ctx;
-        ctx = {};
-        opts = {};
-        fixtures = [];
-    };
-    if (opts instanceof Function) {
-        func = opts;
-        opts = {};
-        fixtures = [];
-    };
-    if (fixtures instanceof Function) {
-        func = fixtures;
-        fixtures = [];
-    };
-    ctx = ctx || {};
-    opts = opts || {};
-    fixtures = fixtures || [];
-
-    var languages = ctx.language ? [ctx.language]
-                                 : (opts.languages || CONF.languages);
-    languages.forEach(lang => {
-
-        scope(`for language "${lang}"`, () => {
-            before(() => {
-                if (CONF.curTestCase) {
-                    CONF.curTestCase.testParams.language = lang;
-                };
-            });
-            U.wrap(fixtures, () => func(lang))();
-        });
-    });
-};
-/* Load globals from plugins */
-plugins.getModules("globals");
+module.exports = test;
 </pre>
     </article>
 </section>
@@ -689,7 +329,7 @@ plugins.getModules("globals");
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-02-21T22:08:55+02:00
+		on 2018-03-01T11:43:04+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: run.js</title>
+	<title>GlaseJS Source: globals/scope.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,77 +100,65 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: run.js</h1>
+		<h1 class="page-title">Source: globals/scope.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
+
+var U = require("glace-utils");
+
 /**
- * Runs tests.
+ * Execute tests scope.
  *
- *  - executes `runner.js` file, which is entry point to load and execute
- *    files with tests
- *  - connects custom reporter to `mochajs`.
- *
+ * @global
  * @function
- * @name run
- * @arg {function} cb - Callback.
+ * @arg {string} name - Scope name.
+ * @arg {object} [opts] - Scope options.
+ * @arg {number} [opts.chunkRetry] - Number of chunk retries on failure.
+ * @arg {number} [opts.chunkTimeout] - Time to execute chunk or hook, sec.
+ * @arg {function[]} [fixtures] - List of fixtures.
+ * @arg {function} func - Function with test cases.
+ * @example
+
+scope("Some test scope", () => {
+    test("Some test name", () => {
+        before(() => {
+            someFunc();
+        });
+        chunk("chunk #1", () => {
+            someFunc();
+        });
+        chunk("chunk #2", () => {
+            someFunc();
+        });
+    });
+});
+
  */
+var scope = (name, opts, fixtures, func) => {
 
-var fs = require("fs");
-var path = require("path");
-
-var fse = require("fs-extra");
-var Mocha = require("mocha");
-
-var CONF = require("./config");
-var hacking = require("./hacking");
-
-var run = cb => {
-    resetReport();
-
-    if (CONF.uncaught !== "mocha") hacking.suppressMochaUncaught();
-
-    var mocha = new Mocha({ grep: CONF.grep,
-                            timeout: CONF.timeouts.chunk,
-                            retries: CONF.chunkRetries,
-                            reporter: path.resolve(__dirname, "reporter") });
-    mocha.addFile(path.resolve(__dirname, "loader.js"));
-
-    if (cb) {
-        _run(mocha, cb);
-    } else {
-        return new Promise(resolve => _run(mocha, resolve));
+    if (opts instanceof Function) {
+        func = opts;
+        opts = {};
+        fixtures = [];
     };
-};
+    if (fixtures instanceof Function) {
+        func = fixtures;
+        fixtures = [];
+    };
+    opts = opts || {};
+    fixtures = fixtures || {};
 
-/**
- * Runs mocha.
- *
- * @ignore
- */
-var _run = (mocha, fin) => {
-    mocha.run(code => {
-        var clampedCode = Math.min(code, 255);
-        if (CONF.isRunPassed) clampedCode = 0;
-        fin(clampedCode);
+    describe(name, function () {
+        if (opts.chunkRetry) this.retries(opts.chunkRetry);
+        if (opts.chunkTimeout) this.timeout(opts.chunkTimeout * 1000);
+        U.wrap(fixtures, func)();
     });
 };
 
-/**
- * Resets report folder.
- *
- * @ignore
- */
-var resetReport = () => {
-    if (CONF.clearReport &amp;&amp; fs.existsSync(CONF.reportsDir)) {
-        fse.removeSync(CONF.reportsDir);
-    };
-    fse.mkdirsSync(CONF.reportsDir);
-};
-
-module.exports = run;
+module.exports = scope;
 </pre>
     </article>
 </section>

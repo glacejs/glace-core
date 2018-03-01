@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals_index.html">globals/index</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -68,7 +68,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#baseTest">baseTest</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sessNum">sessNum</a></li><li><a href="global.html#setLog">setLog</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -130,6 +130,16 @@ var U = require("glace-utils");
 require("./globals");
 var ConfigError = require("./error").ConfigError;
 
+/**
+ * Loads special `preloads` files before main conftests and test files.
+ *
+ * Preloads are specified in `CONF.preloads` array. It may be managed only
+ * programmatically and needs as extension point to load some custom files
+ * before tests.
+ *
+ * After preloads it loads root (the mainest) conftest file, which may be set
+ * via CLI.
+ */
 var preloads = () => {
     var pre = _.clone(CONF.preloads);
 
@@ -146,6 +156,13 @@ var preloads = () => {
     };
 };
 
+/**
+ * Main conftests are loaded before tests session creation and may used for
+ * objects management, for example to created custom instance of global `SS`.
+ *
+ * Main conftest is `conftest.js` file which is located on one hierarchy level
+ * with each specified tests folder or file.
+ */
 var mainConftests = () => {
     for (var testDir of CONF.testDirs) {
 
@@ -162,6 +179,11 @@ var mainConftests = () => {
     };
 };
 
+/**
+ * Callback to create tests session.
+ *
+ * It kills some processes before all if they are specified.
+ */
 var sessFunc = () => {
 
     if (CONF.killProcs) {
@@ -181,6 +203,13 @@ var sessFunc = () => {
     };
 };
 
+/**
+ * Loads test files recursively. Test file name should start with `test` and
+ * end with `.js`.
+ *
+ * @function
+ * @arg {string} dir - Folder with test files.
+ */
 var loadTests = dir => {
     for (var fileName of fs.readdirSync(dir)) {
 
@@ -250,7 +279,7 @@ session(sessFunc);
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-02-21T22:08:56+02:00
+		on 2018-03-01T11:43:04+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

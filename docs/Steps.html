@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals.html">globals</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
+					<li><a href="module-cli.html">cli</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals_index.html">globals/index</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li>
 				</ul>
 			</li>
 			
@@ -68,7 +68,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#baseTest">baseTest</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sessNum">sessNum</a></li><li><a href="global.html#setLog">setLog</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#SS">SS</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -289,6 +289,183 @@ its instance <a href="global.html#SS">SS</a>. It mixes steps from plugins too.</
             
 <hr>
 <dt>
+    <h4 class="name" id=".getInstance"><span class="type-signature">&lt;static> </span>getInstance( [cls])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Helper to get steps instance.</p>
+<p>It wraps steps class with proxy object. Proxy observes steps call and in
+debug mode if steps is failed it entered test to interactive debug mode.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Class with steps. By default original glace <code>Steps</code>
+ will be used.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="steps_index.js.html">steps/index.js</a>,
+				 <a href="steps_index.js.html#sunlight-1-line-94">line 94</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Wrapped steps instance.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Proxy</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id=".register"><span class="type-signature">&lt;static> </span>register(steps)</h4>
     
     
@@ -406,7 +583,7 @@ its instance <a href="global.html#SS">SS</a>. It mixes steps from plugins too.</
 		<ul class="dummy">
 			<li>
 				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-73">line 73</a>
+				 <a href="steps_index.js.html#sunlight-1-line-76">line 76</a>
 			</li>
 		</ul>
 	</dd>
@@ -435,10 +612,7 @@ its instance <a href="global.html#SS">SS</a>. It mixes steps from plugins too.</
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var MyStepsMixin = require(&quot;./my-steps-mixin&quot;);
-var AnotherStepsMixin = require(&quot;./another-steps-mixin&quot;);
-
-Steps.register(MyStepsMixin, AnotherStepsMixin);</pre>
+    <pre class="sunlight-highlight-javascript">var MyStepsMixin = require(&quot;./my-steps-mixin&quot;);var AnotherStepsMixin = require(&quot;./another-steps-mixin&quot;);Steps.register(MyStepsMixin, AnotherStepsMixin);</pre>
 
 
     
@@ -504,7 +678,7 @@ need to debug test in runtime.</p>
 		<ul class="dummy">
 			<li>
 				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-57">line 57</a>
+				 <a href="steps_index.js.html#sunlight-1-line-60">line 60</a>
 			</li>
 		</ul>
 	</dd>
@@ -553,11 +727,7 @@ need to debug test in runtime.</p>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">test(&quot;my test&quot;, () =&gt; {
-    chunk(async () =&gt; {
-        await SS.debug();
-    });
-});</pre>
+    <pre class="sunlight-highlight-javascript">test(&quot;my test&quot;, () =&gt; {    chunk(async () =&gt; {        await SS.debug();    });});</pre>
 
 
     
@@ -622,7 +792,7 @@ need to debug test in runtime.</p>
 		<ul class="dummy">
 			<li>
 				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-38">line 38</a>
+				 <a href="steps_index.js.html#sunlight-1-line-41">line 41</a>
 			</li>
 		</ul>
 	</dd>
@@ -738,7 +908,7 @@ need to debug test in runtime.</p>
 		<ul class="dummy">
 			<li>
 				<a href="steps_index.js.html">steps/index.js</a>,
-				 <a href="steps_index.js.html#sunlight-1-line-28">line 28</a>
+				 <a href="steps_index.js.html#sunlight-1-line-31">line 31</a>
 			</li>
 		</ul>
 	</dd>
@@ -821,7 +991,7 @@ need to debug test in runtime.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-02-21T22:08:56+02:00
+		on 2018-03-01T11:43:04+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

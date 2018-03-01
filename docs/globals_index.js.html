@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: run.js</title>
+	<title>GlaseJS Source: globals/index.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,77 +100,132 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: run.js</h1>
+		<h1 class="page-title">Source: globals/index.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
 /**
- * Runs tests.
+ * Contains global framework functions and helpers.
  *
- *  - executes `runner.js` file, which is entry point to load and execute
- *    files with tests
- *  - connects custom reporter to `mochajs`.
- *
- * @function
- * @name run
- * @arg {function} cb - Callback.
+ * @module
  */
 
 var fs = require("fs");
 var path = require("path");
 
-var fse = require("fs-extra");
-var Mocha = require("mocha");
+var _ = require("lodash");
+var chai = require("chai");
+var chai_as_promised = require("chai-as-promised");
+var sinon = require("sinon");
+var sinon_chai = require("sinon-chai");
+var U = require("glace-utils");
+var LOG = U.logger;
 
-var CONF = require("./config");
-var hacking = require("./hacking");
+chai.use(chai_as_promised);
+chai.use(sinon_chai);
 
-var run = cb => {
-    resetReport();
+require("../matcher");
+var CONF = require("../config");
+var plugins = require("../plugins");
+var Steps = require("../steps");
+var TestCase = require("../testing").TestCase;
+/**
+ * `chaijs` `expect` function.
+ *
+ * @global
+ * @function
+ * @arg {*} actualValue - Some actual value which should be checked.
+ * @see {@link http://chaijs.com/|chaijs} to get more details about
+ *  `expect` usage.
+ * @example
 
-    if (CONF.uncaught !== "mocha") hacking.suppressMochaUncaught();
+expect(1).to.be.equal(1);
+expect(2).to.be.gte(0);
 
-    var mocha = new Mocha({ grep: CONF.grep,
-                            timeout: CONF.timeouts.chunk,
-                            retries: CONF.chunkRetries,
-                            reporter: path.resolve(__dirname, "reporter") });
-    mocha.addFile(path.resolve(__dirname, "loader.js"));
+ */
+global.expect = chai.expect;
+/**
+ * `SinonJS` is pretty nice lib for mocking.
+ *
+ * @global
+ */
+global.sinon = sinon;
 
-    if (cb) {
-        _run(mocha, cb);
-    } else {
-        return new Promise(resolve => _run(mocha, resolve));
-    };
-};
+global.rewire = require("./rewire");
 
 /**
- * Runs mocha.
+ * `GlaceJS` config.
  *
- * @ignore
+ * @global
+ * @see {@link module:config|config} to get more details about its options.
  */
-var _run = (mocha, fin) => {
-    mocha.run(code => {
-        var clampedCode = Math.min(code, 255);
-        if (CONF.isRunPassed) clampedCode = 0;
-        fin(clampedCode);
+global.CONF = CONF;
+/**
+ * Atomic steps collection.
+ *
+ * @global
+ * @type {Steps}
+ * @see {@link module:steps/index|steps} to get more details about its methods.
+ */
+global.SS = Steps.getInstance();
+
+global.scope = require("./scope");
+global.session = require("./session");
+global.test = require("./test");
+global.chunk = require("./chunk");
+global.forEachLanguage = require("./forEachLanguage");
+
+/**
+ * Executes before each test chunk.
+ *
+ * @global
+ * @function
+ * @arg {string} name - Name of test case.
+ * @arg {function} func - Hook function.
+ * @example
+
+test("Some test", () => {
+    beforeChunk(() => {
+        someFunc();
     });
-};
+    chunk("Chunk #1", () => {
+        someFunc();
+    });
+    chunk("Chunk #2", () => {
+        someFunc();
+    });
+});
 
-/**
- * Resets report folder.
- *
- * @ignore
  */
-var resetReport = () => {
-    if (CONF.clearReport &amp;&amp; fs.existsSync(CONF.reportsDir)) {
-        fse.removeSync(CONF.reportsDir);
-    };
-    fse.mkdirsSync(CONF.reportsDir);
-};
+global.beforeChunk = beforeEach;
+/**
+ * Executes after each test chunk.
+ *
+ * @global
+ * @function
+ * @arg {string} name - Name of test case.
+ * @arg {function} func - Hook function.
+ * @example
 
-module.exports = run;
+test("Some test", () => {
+    afterChunk(() => {
+        someFunc();
+    });
+    chunk("Chunk #1", () => {
+        someFunc();
+    });
+    chunk("Chunk #2", () => {
+        someFunc();
+    });
+});
+
+ */
+global.afterChunk = afterEach;
+
+/* Load globals from plugins */
+plugins.getModules("globals");
 </pre>
     </article>
 </section>

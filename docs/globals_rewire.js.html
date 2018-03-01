@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: run.js</title>
+	<title>GlaseJS Source: globals/rewire.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,77 +100,57 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: run.js</h1>
+		<h1 class="page-title">Source: globals/rewire.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * Runs tests.
- *
- *  - executes `runner.js` file, which is entry point to load and execute
- *    files with tests
- *  - connects custom reporter to `mochajs`.
- *
- * @function
- * @name run
- * @arg {function} cb - Callback.
- */
 
-var fs = require("fs");
 var path = require("path");
-
-var fse = require("fs-extra");
-var Mocha = require("mocha");
-
-var CONF = require("./config");
-var hacking = require("./hacking");
-
-var run = cb => {
-    resetReport();
-
-    if (CONF.uncaught !== "mocha") hacking.suppressMochaUncaught();
-
-    var mocha = new Mocha({ grep: CONF.grep,
-                            timeout: CONF.timeouts.chunk,
-                            retries: CONF.chunkRetries,
-                            reporter: path.resolve(__dirname, "reporter") });
-    mocha.addFile(path.resolve(__dirname, "loader.js"));
-
-    if (cb) {
-        _run(mocha, cb);
-    } else {
-        return new Promise(resolve => _run(mocha, resolve));
-    };
-};
+var _rewire = require("rewire");
 
 /**
- * Runs mocha.
+ * `rewire` is great lib for monkey patching, but it should be a bit patched too :)
  *
- * @ignore
+ * @global
  */
-var _run = (mocha, fin) => {
-    mocha.run(code => {
-        var clampedCode = Math.min(code, 255);
-        if (CONF.isRunPassed) clampedCode = 0;
-        fin(clampedCode);
-    });
-};
+var rewire = filename => {
 
-/**
- * Resets report folder.
- *
- * @ignore
- */
-var resetReport = () => {
-    if (CONF.clearReport &amp;&amp; fs.existsSync(CONF.reportsDir)) {
-        fse.removeSync(CONF.reportsDir);
+    var _ = Error.prepareStackTrace;
+    Error.prepareStackTrace = (_, stack) => stack;
+    var stack = new Error().stack.slice(1);
+    Error.prepareStackTrace = _;
+    var callerPath = stack[0].getFileName();
+
+    var callerDir = path.dirname(callerPath);
+    filename = path.resolve(callerDir, filename);
+
+    var mod = _rewire(filename);
+
+    var cache = {};
+
+    var set = mod.__set__;
+    mod.__set__ = function (name, stub) {
+
+        if (!Object.keys(cache).includes(name)) {
+            cache[name] = this.__get__(name);
+        };
+
+        set.call(this, name, stub);
     };
-    fse.mkdirsSync(CONF.reportsDir);
+
+    mod.__reset__ = function () {
+        for (var [k, v] of Object.entries(cache)) {
+            this.__set__(k, v);
+        };
+        cache = {};
+    };
+
+    return mod;
 };
 
-module.exports = run;
+module.exports = rewire;
 </pre>
     </article>
 </section>
