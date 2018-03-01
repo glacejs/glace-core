@@ -1,3 +1,8 @@
+### v1.2.6
+
+- [Decomposed](https://github.com/glacejs/glace-core/commit/66f2fc420a41c8e0a0a2a3342f69b26b44770082) global functions.
+- [Added](https://github.com/glacejs/glace-core/commit/ae75ec65247fe64b74c6dec42d7220a31802d83a) option to enter to interactive debug mode on step failure.
+
 ### v1.2.5
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/c21f084aad0a893159ce83d64821ba6814695dfb) bug that option `--chunk-timeout no` leaded to default timeout `2000`.

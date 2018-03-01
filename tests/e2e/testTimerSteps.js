@@ -18,7 +18,7 @@ test("It should fail timer check", () => {
     chunk(async () => {
         SS.startTimer();
         await SS.pause(1, "sleep");
-        SS.checkTimer({ "to be below": 1 });
+        await SS.checkTimer({ "to be below": 1 });
     });
 });
 
