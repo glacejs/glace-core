@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: reporter/index.js</title>
+	<title>GlaseJS Source: tools.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,33 +100,119 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: reporter/index.js</h1>
+		<h1 class="page-title">Source: tools.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
+
 /**
- * GlaceJS reporter package.
+ * Glace tools.
  *
  * @module
  */
 
-var CONF = require("../config");
-var plugins = require("../plugins");
+var util = require("util");
 
-var base = require("./base");
+require("colors");
+var U = require("glace-utils");
 
-base.register(require("./stdout"));
+var d = U.switchColor();
 
-if (CONF.testrail.use) base.register(require("./testrail"));
-if (CONF.xunit.use) base.register(require("./xunit"));
+var self = module.exports;
 
-for (var reporter of plugins.getModules("reporter")) {
-    base.register(reporter);
-}
+self.listSteps = filter => {
+    filter = filter || "";
 
-module.exports = base;
+    var Steps = require("./steps");
+    var ss = new Steps();
+
+    var steps = [];
+    for (var key in ss) {
+        steps.push(key);
+    };
+
+    steps = steps.sort()
+        .filter(i => i.toLowerCase().includes(filter))
+        .filter(i => !i.startsWith("_"))
+        .filter(i => /^\w+$/.test(i))
+        .filter(i => /^\D/.test(i))
+        .filter(i => util.isFunction(ss[i]));
+
+    var i = 0;
+    for (var s of steps) {
+        console.log(d(`${++i}. ${s}:`));
+        console.log(d(`  ${ss[s].toString().split("{")[0]}{...}`));
+    };
+
+    if (steps.length === 0) {
+        console.log("No steps are found".yellow);
+    };
+};
+
+self.listTests = filter => {
+    filter = filter || "";
+
+    load();
+
+    var conf = require("./config"),
+        testCase, testCases = [];
+
+    for (testCase of conf.testCases) {
+        if (testCase.name.toLowerCase().includes(filter)) {
+            testCases.push(testCase);
+        }
+    }
+
+    var i = 0;
+    for (testCase of testCases) {
+        console.log(d(`${++i}. ${testCase.name}`));
+    };
+
+    if (testCases.length === 0) {
+        console.log("No tests are found".yellow);
+    };
+};
+
+self.listFixtures = filter => {
+    filter = filter || "";
+
+    load();
+
+    var fx, fixtures = [];
+    for (fx in global) {
+        if (fx.startsWith("fx") &amp;&amp; fx.includes(filter)) {
+            fixtures.push(fx);
+        }
+    }
+
+    var i = 0;
+    for (fx of fixtures) {
+        console.log(d(`${++i}. ${fx}`));
+    };
+
+    if (fixtures.length === 0) {
+        console.log("No fixtures are found".yellow);
+    };
+};
+
+var load = () => {
+    global.before = () => {};
+    global.after = () => {};
+    global.beforeEach = () => {};
+    global.afterEach = () => {};
+    global.it = () => {};
+    global.describe = (name, cb) => {
+        cb.call({
+            retries: () => {},
+            timeout: () => {},
+        });
+    };
+
+    require("./globals");
+    require("./loader");
+};
 </pre>
     </article>
 </section>
