@@ -1,3 +1,7 @@
+### v1.2.8
+
+- [Added](https://github.com/glacejs/glace-core/commit/cb0457158aa335e68d9a21f9d082c0fd1e19eb9b) ability to show steps documentation in `--list-steps`.
+
 ### v1.2.7
 
 - [Added](https://github.com/glacejs/glace-core/commit/40c8b64472262b0485b9ce9690b2e0e4e072620d) CLI options `--list-steps [filter]`, `--list-tests [filter]`, `--list-fixtures [filter]`.
