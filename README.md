@@ -113,6 +113,11 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--testrail-run-name <name>` - TestRail run name.
 - `--testrail-run-desc <description>` - TestRail run description.
 
+`Tools`
+- `--list-steps [filter]` - Only list available steps.
+- `--list-tests [filter]` - Only list collected tests.
+- `--list-fixtures [filter]` - Only list available fixtures.
+
 ## Quick start
 
 1. Make sure that you have installed `glace-core`

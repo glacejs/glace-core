@@ -1,3 +1,7 @@
+### v1.2.7
+
+- [Added](https://github.com/glacejs/glace-core/commit/40c8b64472262b0485b9ce9690b2e0e4e072620d) CLI options `--list-steps [filter]`, `--list-tests [filter]`, `--list-fixtures [filter]`.
+
 ### v1.2.6
 
 - [Decomposed](https://github.com/glacejs/glace-core/commit/66f2fc420a41c8e0a0a2a3342f69b26b44770082) global functions.
