@@ -1,3 +1,7 @@
+### v1.2.9
+
+- [Used](https://github.com/glacejs/glace-core/commit/10a9888d390da03a195f7f9a08e899ed58da92c3) `js` syntax highlight in steps documentation in CLI.
+
 ### v1.2.8
 
 - [Added](https://github.com/glacejs/glace-core/commit/cb0457158aa335e68d9a21f9d082c0fd1e19eb9b) ability to show steps documentation in `--list-steps`.
