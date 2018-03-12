@@ -3,6 +3,9 @@ module.exports = {
         "es6": true,
         "node": true
     },
+    "globals": {
+        "SS": true
+    },
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 2017,
