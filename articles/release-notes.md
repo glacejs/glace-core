@@ -1,3 +1,7 @@
+### v1.3.0
+
+- [Used](https://github.com/glacejs/glace-core/commit/ceebad4930babef3bbfbe07f9e54d67742d4380c) docstring style for fixtures.
+
 ### v1.2.9
 
 - [Used](https://github.com/glacejs/glace-core/commit/10a9888d390da03a195f7f9a08e899ed58da92c3) `js` syntax highlight in steps documentation in CLI.
