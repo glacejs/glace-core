@@ -1,3 +1,7 @@
+### v1.3.1
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/492da556d93e4a14a01450805b0a65c309a3ec1c) bug that custom steps class wasn't shown in CLI docs.
+
 ### v1.3.0
 
 - [Used](https://github.com/glacejs/glace-core/commit/ceebad4930babef3bbfbe07f9e54d67742d4380c) docstring style for fixtures.
