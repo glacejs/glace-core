@@ -1,3 +1,7 @@
+### v1.3.3
+
+- [Added](https://github.com/glacejs/glace-core/commit/530990e287f6a1ecd2748294565f18b6a61d11d3) multi-word search in docs of steps and fixtures.
+
 ### v1.3.2
 
 - [Added](https://github.com/glacejs/glace-core/commit/3689acb6420be5743e9e0d477a065c1235217e51) full-text search in docs of steps and fixtures.
