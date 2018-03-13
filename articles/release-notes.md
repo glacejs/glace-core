@@ -1,3 +1,7 @@
+### v1.3.2
+
+- [Added](https://github.com/glacejs/glace-core/commit/3689acb6420be5743e9e0d477a065c1235217e51) full-text search in docs of steps and fixtures.
+
 ### v1.3.1
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/492da556d93e4a14a01450805b0a65c309a3ec1c) bug that custom steps class wasn't shown in CLI docs.
