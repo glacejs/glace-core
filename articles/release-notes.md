@@ -1,3 +1,7 @@
+### v1.3.4
+
+- [Added](https://github.com/glacejs/glace-core/commit/24f00ce365139e9c314420aeeb1e270902b5ca05) interactive mode.
+
 ### v1.3.3
 
 - [Added](https://github.com/glacejs/glace-core/commit/530990e287f6a1ecd2748294565f18b6a61d11d3) multi-word search in docs of steps and fixtures.
