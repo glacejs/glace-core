@@ -1,3 +1,7 @@
+### v1.3.5
+
+- [Added](https://github.com/glacejs/glace-core/commit/0f49bbeea49466593d53dbd8538cf9eda7e07fb4) relevant step docs sorting with machine learning algorithms via [natural](https://github.com/NaturalNode/natural).
+
 ### v1.3.4
 
 - [Added](https://github.com/glacejs/glace-core/commit/24f00ce365139e9c314420aeeb1e270902b5ca05) interactive mode.
