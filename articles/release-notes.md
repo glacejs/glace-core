@@ -1,3 +1,7 @@
+### v1.3.6
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/f2560ceff37891d0e9c00ec10c71a12c6305bcbb) bug in testrail api.
+
 ### v1.3.5
 
 - [Added](https://github.com/glacejs/glace-core/commit/0f49bbeea49466593d53dbd8538cf9eda7e07fb4) relevant step docs sorting with machine learning algorithms via [natural](https://github.com/NaturalNode/natural).
