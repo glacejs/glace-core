@@ -1,3 +1,7 @@
+### v1.3.7
+
+- [Added](https://github.com/glacejs/glace-core/commit/c881b35b93a46b4734396431e3fbe6756a07f994) ability to restart only failed params even if in retry before all test was failed.
+
 ### v1.3.6
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/f2560ceff37891d0e9c00ec10c71a12c6305bcbb) bug in testrail api.
