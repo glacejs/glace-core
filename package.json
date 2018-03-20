@@ -9,9 +9,11 @@
     "test:unit": "nyc ./bin/glace tests/unit",
     "test:cover": "nyc --reporter=lcov ./bin/glace tests/unit",
     "test:commit": "./bin/glace tests/unit",
+    "test:retry-only-params": " ./bin/glace tests/e2e/testRetryOnlyParams.js --retry 3",
     "docs": "rm -rf docs && jsdoc -c jsdoc.json -d docs",
     "docs:publish": "npm run docs && git add -A && git commit -m \"update docs\" && git push origin master",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix"
   },
   "pre-commit": [
     "lint",
