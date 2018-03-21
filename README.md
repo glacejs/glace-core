@@ -105,7 +105,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--xunit-suite-name [name]` - Tests suite name in xUnit report. By default it's the same as session name.
 
 `TestRail`
-- `--testrail` - Activate testrail reporter.
+- `--testrail` - Activate TestRail reporter.
 - `--testrail-host <host>` - TestRail host.
 - `--testrail-user <user>` - TestRail username or email.
 - `--testrail-token <token>` - TestRail token.
@@ -115,6 +115,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--testrail-run-desc <description>` - TestRail run description.
 
 `Tools`
+- `--testrail-check` - Check TestRail cases consistency with implemented tests. 
 - `--list-steps [filter]` - Only list available steps.
 - `--list-tests [filter]` - Only list collected tests.
 - `--list-fixtures [filter]` - Only list available fixtures.
