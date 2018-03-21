@@ -1,3 +1,7 @@
+### v1.3.8
+
+- [Added](https://github.com/glacejs/glace-core/commit/369c3b45b36ef3c614c261cc4b2a82e1f7d178a9) CLI option to check TestRail cases consistency with implemented tests.
+
 ### v1.3.7
 
 - [Added](https://github.com/glacejs/glace-core/commit/c881b35b93a46b4734396431e3fbe6756a07f994) ability to restart only failed params even if in retry before all test was failed.
