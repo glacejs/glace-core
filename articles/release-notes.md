@@ -1,3 +1,7 @@
+### v1.3.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/f845a22bcbbfcfa9be28e0d6406600552cd64d61) stdout in testrail check command.
+
 ### v1.3.8
 
 - [Added](https://github.com/glacejs/glace-core/commit/369c3b45b36ef3c614c261cc4b2a82e1f7d178a9) CLI option to check TestRail cases consistency with implemented tests.
