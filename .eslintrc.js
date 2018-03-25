@@ -4,7 +4,19 @@ module.exports = {
         "node": true
     },
     "globals": {
-        "SS": true
+        "SS": true,
+        "before": true,
+        "after": true,
+        "beforeChunk": true,
+        "afterChunk": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "scope": true,
+        "test": true,
+        "describe": true,
+        "it": true,
+        "forEachLanguage": true,
+        "session": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
