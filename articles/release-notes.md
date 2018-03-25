@@ -1,3 +1,7 @@
+### v1.4.0
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/141cf47c1d454191356bad47b4974a982802a5cc) bug when glace returned incorrect exit code on test retry.
+
 ### v1.3.9
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/f845a22bcbbfcfa9be28e0d6406600552cd64d61) stdout in testrail check command.

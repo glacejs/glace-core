@@ -49,9 +49,6 @@ For development:
 git clone https://github.com/glacejs/glace-core
 cd glace-core
 npm i
-gulp test-unit  // launch unit tests
-gulp test-all  // launch all integration tests
-gulp --tasks  // show all tasks
 ```
 
 ## How to use
