@@ -12,6 +12,15 @@ test("It should be failed", () => {
     });
 });
 
+test("It should contain skipped chunk", () => {
+    chunk("failed", () => {
+        throw new Error("BOOM!");
+    });
+    chunk("skipped", () => {
+        if (SS.isTestFailed()) return false;
+    });
+});
+
 test("It shouldn't have chunk name", () => {
     chunk(() => {});
 });
