@@ -1,3 +1,9 @@
+### v1.4.1
+
+- [Added](https://github.com/glacejs/glace-core/commit/06fea5b70c1260d1e6cfe1d78f87e5368189c64d) ability to mark chunks as skipped.
+- [Added](https://github.com/glacejs/glace-core/commit/b64defeef9adf32f97e33c31ad236807e0acc0d8) feature to print tests time duration in human-readable format.
+- [Fixed](https://github.com/glacejs/glace-core/commit/a0563f0eeb51a9e242ef9e6b0396fdea9fc6bf38) bug with wrong exit code on non-test hook failure.
+
 ### v1.4.0
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/141cf47c1d454191356bad47b4974a982802a5cc) bug when glace returned incorrect exit code on test retry.
