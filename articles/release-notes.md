@@ -1,3 +1,7 @@
+### v1.4.2
+
+- [Added](https://github.com/glacejs/glace-core/commit/2f8260d309f8b92dc4dc9a147b18c10b2169d928) option to finish test run on first failure.
+
 ### v1.4.1
 
 - [Added](https://github.com/glacejs/glace-core/commit/06fea5b70c1260d1e6cfe1d78f87e5368189c64d) ability to mark chunks as skipped.
