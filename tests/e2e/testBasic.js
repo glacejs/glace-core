@@ -10,6 +10,7 @@ test("It should be failed", () => {
     chunk("My chunk", () => {
         throw new Error("BOOM!");
     });
+    chunk(() => {});
 });
 
 test("It should contain skipped chunk", () => {
