@@ -1,3 +1,7 @@
+### v1.4.4
+
+- Update dependencies.
+
 ### v1.4.3
 
 - Update `glace-utils` to not kill parent process.
