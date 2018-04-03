@@ -20,6 +20,7 @@
     "test:custom-reporter": "./bin/glace tests/e2e/testCustomReporter.js",
     "test:retry-only-params": "./bin/glace tests/e2e/testRetryOnlyParams.js --retry 3",
     "test:include": "./bin/glace tests/e2e/testInclude.js --include \"test 1 | test 2\"",
+    "test:exclude": "./bin/glace tests/e2e/testExclude.js --exclude \"test 1 | test 2\"",
     "test:e2e": "npm run test:basic; npm run test:retry; npm run test:chunk-retry; npm run test:own-app; npm run test:suppress-uncaught; npm run test:fail-uncaught; npm run test:mocha-uncaught; npm run test:timer-steps; npm run test:custom-reporter; npm run test:retry-only-params",
     "docs": "rm -rf docs && jsdoc -c jsdoc.json -d docs",
     "docs:publish": "npm run docs && git add -A && git commit -m \"update docs\" && git push origin master",
