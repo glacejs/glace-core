@@ -94,6 +94,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--kill-procs <sequence>` - List of process names separated with comma, which will be killed before tests run.
 - `--debug-on-fail` - Enter to interactive debug mode on step failure.
 - `--exit-on-fail` - Finish test run on first failure.
+- `--errors-now` - Print error message immediately when it happened.
 - `--interactive, -i` - Launch interactive mode to execute steps manually in terminal.
 
 `Plugins`
