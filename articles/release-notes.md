@@ -1,3 +1,7 @@
+### v1.4.6
+
+- [Added](https://github.com/glacejs/glace-core/commit/e714b34d4548e7f011aa5c411d47c22079eece42) feature to launch all retried tests in one session.
+
 ### v1.4.5
 
 - [Implemented](https://github.com/glacejs/glace-core/commit/8b30c6d82db32e77c42626fa97d2becb332277c5) tests include to run.
