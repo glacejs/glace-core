@@ -1,3 +1,11 @@
+### v1.4.5
+
+- [Implemented](https://github.com/glacejs/glace-core/commit/8b30c6d82db32e77c42626fa97d2becb332277c5) tests include to run.
+- [Implemented](https://github.com/glacejs/glace-core/commit/9936d1897bbd6d17046028aff97730e0cdb2edc1) tests exclude from run.
+- [Loaded](https://github.com/glacejs/glace-core/commit/b86ca1c929317dd63a6a5b55b52f56afca98e872) included and excluded tests from file.
+- [Saved](https://github.com/glacejs/glace-core/commit/4fec3d8bddc1d84e2696339724173ad3c9f914ed) failed tests in JSON format.
+- [Added](https://github.com/glacejs/glace-core/commit/0e05e77a502d20a6c682b615017a95dfea586b3f) CLI option to print errors immediately.
+
 ### v1.4.4
 
 - Update dependencies.
