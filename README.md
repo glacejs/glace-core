@@ -81,6 +81,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--grep <pattern>, -g` - Filter tests by name or name chunk.
 - `--include <sequence>` - Sequence of test name chunks separated by ` | ` in order to choose tests for run.
 - `--exclude <sequence>` - Sequence of test name chunks separated by ` | ` in order to exclude tests from run.
+- `--precise` - Precise tests inclusion or exclusion (not substring pattern).
 - `--report [path]` - Path to reports folder. Default is `cwd/reports`.
 - `--dont-clear-report` - Don't clear previous report on tests run.
 - `--root-conftest <path>` - Path to root `conftest.js` which will be loaded before all.
