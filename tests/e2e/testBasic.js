@@ -13,6 +13,15 @@ test("It should be failed", () => {
     chunk(() => {});
 });
 
+test("Failed parametrization", ctx => {
+    forEachLanguage(ctx, lang => {
+        chunk("proba", () => {
+            if (lang === "ru")
+                throw new Error("BOOM!");
+        });
+    });
+});
+
 test("It should contain skipped chunk", () => {
     chunk("failed", () => {
         throw new Error("BOOM!");
