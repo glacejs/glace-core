@@ -1,3 +1,7 @@
+### v1.4.7
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/bc421999402d8e70a8892cad23ee798d2c255730) failed retry mechanism.
+
 ### v1.4.6
 
 - [Added](https://github.com/glacejs/glace-core/commit/e714b34d4548e7f011aa5c411d47c22079eece42) feature to launch all retried tests in one session.
