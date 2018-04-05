@@ -1,3 +1,7 @@
+### v1.4.8
+
+- [Use](https://github.com/glacejs/glace-core/commit/d3d2ea037e3c8aea1067c4200066d0f16aa0f162) global session on retry ([#87](https://github.com/glacejs/glace-core/issues/87)).
+
 ### v1.4.7
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/bc421999402d8e70a8892cad23ee798d2c255730) failed retry mechanism.
