@@ -1,3 +1,7 @@
+### v1.4.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/ebbbcdda5ba1df3126ed40501a81cad0d63e6dae) incorrect help.
+
 ### v1.4.8
 
 - [Use](https://github.com/glacejs/glace-core/commit/d3d2ea037e3c8aea1067c4200066d0f16aa0f162) global session on retry ([#87](https://github.com/glacejs/glace-core/issues/87)).
