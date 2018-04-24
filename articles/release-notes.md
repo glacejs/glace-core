@@ -1,3 +1,7 @@
+### v1.5.1
+
+- Updated dependencies.
+
 ### v1.5.0
 
 - [Skipped](https://github.com/glacejs/glace-core/commit/d16d59cd8e8ea046638341f9885142d5978bfc39#diff-9254b9e79d2209a77d013bf4df7e4810R114) registration of already registered plugin.
