@@ -1,10 +1,11 @@
 {
   "name": "glace-core",
-  "version": "1.4.9",
+  "version": "1.5.0",
   "description": "GlaceJS minimal functional testing framework",
   "main": "lib/index.js",
   "scripts": {
     "ci": "npm run lint && npm run test:unit",
+    "release": "VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git add -u && git commit -m \"release $VERSION\" && git tag $VERSION && git push origin $VERSION && npm run docs:publish && npm publish",
     "test": "./bin/glace",
     "test:unit": "nyc ./bin/glace tests/unit",
     "test:cover": "nyc --reporter=lcov ./bin/glace tests/unit",

@@ -1,3 +1,8 @@
+### v1.5.0
+
+- [Skipped](https://github.com/glacejs/glace-core/commit/d16d59cd8e8ea046638341f9885142d5978bfc39#diff-9254b9e79d2209a77d013bf4df7e4810R114) registration of already registered plugin.
+- [Added](https://github.com/glacejs/glace-core/commit/d16d59cd8e8ea046638341f9885142d5978bfc39#diff-9254b9e79d2209a77d013bf4df7e4810R131) API to get registered plugin names.
+
 ### v1.4.9
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/ebbbcdda5ba1df3126ed40501a81cad0d63e6dae) incorrect help.
