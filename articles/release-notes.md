@@ -1,3 +1,9 @@
+### v1.5.2
+
+- [Moved](https://github.com/glacejs/glace-core/commit/58f5ab5ccf17ebcc24ad83458a23f1e78c5e5ffa) stdout log under reports folder.
+- [Changed](https://github.com/glacejs/glace-core/commit/7311eddd639acef1151cd5a0c7c650607d0ba143) project icon.
+- [Used](https://github.com/glacejs/glace-core/commit/ac5335753f345d9467723e80ddb70f8c7ad7804d) pure javascript bayes classifier.
+
 ### v1.5.1
 
 - Updated dependencies.

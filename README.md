@@ -73,7 +73,7 @@ glace [options] [sequence-of-test-files-or-folders]
 `Log`
 - `--stdout-log` - Print log messages to stdout.
 - `--log [path]` - Path to log file. Default is `cwd/glace.log`.
-- `--log-level [level]` - Log level. Default is `debug`.
+- `--log-level [level]` - Log level. Supported values are `error`, `warn`, `info`, `verbose`, `debug`, `silly`. Default is `debug`.
 
 `Core`
 - `--user-config [path]` - Path to JS file with configuration which will be merged with override default configuration. Default is `cwd/config.js` (if it exists).
