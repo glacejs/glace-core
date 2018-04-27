@@ -46,6 +46,7 @@
   },
   "homepage": "https://glacejs.github.io/glace-core",
   "dependencies": {
+    "bayes": "0.0.7",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "cli-highlight": "^1.2.3",
@@ -54,7 +55,6 @@
     "glace-utils": "^1.2.3",
     "lodash": "^4.17.10",
     "mocha": "^5.1.1",
-    "natural": "^0.5.6",
     "pretty-ms": "^3.1.0",
     "rewire": "^3.0.2",
     "sinon": "^4.5.0",
