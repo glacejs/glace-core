@@ -1,3 +1,7 @@
+### v1.5.3
+
+- [Added](https://github.com/glacejs/glace-core/commit/43c22414ee23b359a8af3b337bcbefc2627df63b) helper `stubObject`.
+
 ### v1.5.2
 
 - [Moved](https://github.com/glacejs/glace-core/commit/58f5ab5ccf17ebcc24ad83458a23f1e78c5e5ffa) stdout log under reports folder.
