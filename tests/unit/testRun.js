@@ -2,7 +2,7 @@
 
 var run = rewire("../../lib/run");
 
-scope("run", () => {
+suite("run", () => {
     var fake;
     var sandbox = sinon.createSandbox();
 
