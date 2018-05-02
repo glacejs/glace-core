@@ -1,3 +1,8 @@
+### v1.5.4
+
+- [Added](https://github.com/glacejs/glace-core/commit/f8d4b0c79fe76a6c61e4e523413dc0c359580d3f) steps aliases `$` and `$$`.
+- [Added](https://github.com/glacejs/glace-core/commit/d06344ca83224f72f8477439c8c5913bb59b4704) [allure](https://docs.qameta.io/allure/) reporter support.
+
 ### v1.5.3
 
 - [Added](https://github.com/glacejs/glace-core/commit/43c22414ee23b359a8af3b337bcbefc2627df63b) helper `stubObject`.
