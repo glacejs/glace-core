@@ -1,6 +1,6 @@
 "use strict";
 
-scope("globals", () => {
+suite("globals", () => {
     var sandbox = sinon.createSandbox();
 
     beforeChunk(() => {
