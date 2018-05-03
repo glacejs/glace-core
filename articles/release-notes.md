@@ -1,3 +1,7 @@
+### v1.5.6
+
+- [Allure](https://github.com/glacejs/glace-core/commit/82b6498301f2f86f36985cc4dd881291ce11103b) reporter fixes.
+
 ### v1.5.5
 
 - [Allure](https://github.com/glacejs/glace-core/commit/5199208789387ef0c2c8f1db0b705a75022d4f06) reporter fixes.
