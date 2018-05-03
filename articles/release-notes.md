@@ -1,3 +1,7 @@
+### v1.5.5
+
+- [Allure](https://github.com/glacejs/glace-core/commit/5199208789387ef0c2c8f1db0b705a75022d4f06) reporter fixes.
+
 ### v1.5.4
 
 - [Added](https://github.com/glacejs/glace-core/commit/f8d4b0c79fe76a6c61e4e523413dc0c359580d3f) steps aliases `$` and `$$`.
