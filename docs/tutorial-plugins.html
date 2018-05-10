@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: globals/session.js</title>
+	<title>GlaseJS Tutorial: How plugins work</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,114 +98,19 @@
 	<div class="col-md-12">
 	
 		<div id="main">
-			
+			<section class="tutorial-section">
 
-		<h1 class="page-title">Source: globals/session.js</h1>
+<header>
     
-<section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">"use strict";
 
-var U = require("glace-utils");
+    <h2>How plugins work</h2>
+</header>
 
-var CONF = require("../config");
-var hacking = require("../hacking");
+<article>
+    
+</article>
 
-/**
- * Executed sessions counter.
- * 
- * @type {Number}
- */
-var sessNum = 0;
-var retryTests = [];
-/**
- * Executes tests session.
- *
- * @global
- * @function
- * @arg {string} [name] - Session name. By default it includes start date time.
- * @arg {object} [ctx] - Session context. By default it's empty.
- * @arg {function} func - Function with test cases.
- * @example
-
-session(() => {
-    test("Test #1", () => {
-        chunk("Chunk #1", () => {
-            someFunc();
-        });
-        chunk("Chunk #2", () => {
-            someFunc();
-        });
-    });
-    test("Test #2", () => {
-        chunk("Chunk #1", () => {
-            someFunc();
-        });
-        chunk("Chunk #2", () => {
-            someFunc();
-        });
-    });
-});
-
- */
-var session = (name, ctx, fixtures, func) => {
-
-    if (name instanceof Function) {
-        func = name;
-        name = CONF.sessionName;
-        ctx = {};
-        fixtures = [];
-    }
-    if (ctx instanceof Function) {
-        func = ctx;
-        ctx = {};
-        fixtures = [];
-    }
-    if (fixtures instanceof Function) {
-        func = fixtures;
-        fixtures = [];
-    }
-    name = name || CONF.sessionName;
-    ctx = ctx || {};
-    fixtures = fixtures || [];
-
-    sessNum++;
-    ctx.sessionNumber = sessNum;
-
-    scope(name, () => {
-        U.wrap(fixtures, func)();
-
-        after(() => {
-            if (!retryTests.length) return;
-
-            var sessName = `Retry #${sessNum}`;
-            /* Hack to pass mocha grep */
-            var mochaRunner = hacking.getRunner();
-            if (mochaRunner._grep !== mochaRunner._defaultGrep) {
-                sessName += " - " + mochaRunner._grep.source;
-            }
-            var sessCtx = { retryNumber: sessNum };
-
-            global.session(sessName, sessCtx, null, () => {
-                while(retryTests.length) {
-                    var retry = retryTests.shift();
-                    retry.func(retry.args);
-                };
-            });
-        });
-    });
-};
-
-module.exports.session = session;
-module.exports.retryTests = retryTests;
-</pre>
-    </article>
 </section>
-
-
-
-
 
 		</div>
 	</div>

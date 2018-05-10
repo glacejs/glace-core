@@ -8,12 +8,42 @@
 
 ## Annotation
 
-`GlaceJS` is a quick-start functional testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs).
+`glace-core` is a quick-start functional & unit testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs/) _([how plugins work](tutorial-plugins.html))_.
 
 ## Why it is
 
 - Firstly it's **R&D** project for [me](https://www.linkedin.com/in/sergei-chipiga-05b29661) to dive deeply to programming and software architecture.
 - Current testing frameworks like [mocha](http://mochajs.org/) or [jasmine](https://jasmine.github.io/) look cool for unit testing but are **not flexible for complex** functional scenarios.
+
+## Quick start
+
+1. Make sure you have installed `node >= v8.9` & `npm >= v5.5`.
+
+1. Install `glace-core` globally `npm i -g glace-core` or locally `npm i glace-core`.
+
+1. Create file `tests.js` with next content:
+
+    ```javascript
+    "use strict";
+
+    test("My first test", () => {
+        chunk(() => {
+            console.log("hello world");
+        });
+    });
+
+    test("My second test", () => {
+        chunk(() => {
+            throw new Error("BOOM!");
+        });
+    });
+    ```
+
+    About `test`, `chunk` and other key words read [here](tutorial-concepts.html).
+
+1. Launch tests with command `glace tests.js` if you installed `glace-core` globally or with `./node_modules/glace-core/bin/glace tests.js` if locally and get the result.
+
+    <img src="quick-start-report.png" alt="glace-core report" />
 
 ## Features
 
@@ -36,20 +66,6 @@
 - May read `CLI` arguments from `JSON` file
 - May be extended with custom `JavaScript` config
 - May be used as platform for own testing frameworks development
-
-## How to install
-
-```
-npm i glace-core
-```
-
-For development:
-
-```
-git clone https://github.com/glacejs/glace-core
-cd glace-core
-npm i
-```
 
 ## How to use
 
@@ -126,63 +142,6 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--list-steps [filter]` - Only list available steps.
 - `--list-tests [filter]` - Only list collected tests.
 - `--list-fixtures [filter]` - Only list available fixtures.
-
-## Quick start
-
-1. Make sure that you have installed `glace-core`
-
-1. Create file `my-test.js` with next content:
-
-    ```javascript
-    "use strict";
-
-    test("#1", () => {
-        chunk(() => {
-            console.log("hello world");
-        });
-    });
-
-    test("#2", () => {
-        chunk(() => {
-            throw new Error("BOOM!");
-        });
-    });
-    ```
-
-1. Launch terminal, navigate to folder with file `my-test.js` and execute command:
-
-    ```
-    glace my-test.js
-    ```
-
-    After that tests will be executed.
-
-1. In current work directory create file `config.json` with next content:
-
-    ```javascript
-    {
-        "grep": "#1",
-        "xunit": true
-    }
-    ```
-
-1. Launch `glace` again:
-
-    ```
-    glace my-test.js
-    ```
-
-    `glace` CLI options will be read from `config.json`.
-
-1. It is a **good style** to use only [Steps](Steps.html) inside chunks via its global instance [SS](global.html#SS) and follow to [STEPS](tutorial-steps-architecture.html) methodology.
-
-    ```javascript
-    test("my test", () => {
-        chunk(async () => {
-            await SS.pause(1, "sleep a bit");
-        });
-    });
-    ```
 
 ## Test examples
 
