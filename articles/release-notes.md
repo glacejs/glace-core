@@ -1,3 +1,7 @@
+### v1.5.7
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/f2494af1b94e6bb365b2dd30bc60b71e7a124b41) bug that suite wasn't rendered in stdout report.
+
 ### v1.5.6
 
 - [Allure](https://github.com/glacejs/glace-core/commit/82b6498301f2f86f36985cc4dd881291ce11103b) reporter fixes.
