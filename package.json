@@ -1,6 +1,6 @@
 {
   "name": "glace-core",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "GlaceJS minimal functional testing framework",
   "main": "lib/index.js",
   "scripts": {
@@ -46,12 +46,12 @@
   },
   "homepage": "https://glacejs.github.io/glace-core",
   "dependencies": {
-    "allure-js-commons": "^1.3.1",
+    "allure-js-commons": "^1.3.2",
     "bayes": "0.0.7",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "cli-highlight": "^1.2.3",
-    "colors": "^1.2.3",
+    "colors": "^1.2.4",
     "fs-extra": "^4.0.3",
     "glace-utils": "^1.2.5",
     "lodash": "^4.17.10",
@@ -68,7 +68,7 @@
     "ink-docstrap": "^1.3.0",
     "jsdoc": "^3.5.5",
     "jsdoc-strip-async-await": "^0.1.0",
-    "nyc": "^11.7.1",
+    "nyc": "^11.7.3",
     "pre-commit": "^1.2.2"
   },
   "engines": {

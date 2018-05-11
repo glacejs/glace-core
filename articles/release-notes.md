@@ -1,3 +1,7 @@
+### v1.5.8
+
+- [Renamed](https://github.com/glacejs/glace-core/commit/d99c7a8c0119d68ab2eb327bf7fdfd2ba47aab04) reports folder.
+
 ### v1.5.7
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/f2494af1b94e6bb365b2dd30bc60b71e7a124b41) bug that suite wasn't rendered in stdout report.
