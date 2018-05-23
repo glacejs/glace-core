@@ -1,3 +1,7 @@
+### v1.5.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/7cebd1d53ec182432e86bb0bacf7a15be1ea7220) bug that steps with ES6 options weren't rendered correct with `--list-step` CLI option.
+
 ### v1.5.8
 
 - [Renamed](https://github.com/glacejs/glace-core/commit/d99c7a8c0119d68ab2eb327bf7fdfd2ba47aab04) reports folder.
