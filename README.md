@@ -100,6 +100,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--precise` - Precise tests inclusion or exclusion (not substring pattern).
 - `--report [path]` - Path to reports folder. Default is `cwd/report`.
 - `--dont-clear-report` - Don't clear previous report on tests run.
+- `--dont-check-names` - Don't check test names uniqueness (_usually useful in unit testing_).
 - `--failed-tests-path [path]` - Path to save failed tests in JSON format. Default is `cwd/report/failed-tests.json`.
 - `--root-conftest <path>` - Path to root `conftest.js` which will be loaded before all.
 - `--languages <sequence>` - List of tested languages separated with comma.
