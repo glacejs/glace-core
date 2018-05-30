@@ -1,3 +1,7 @@
+### v1.6.0
+
+- [Added](https://github.com/glacejs/glace-core/commit/3bb34580e5fbd935c067e7459593eff6f964df0a) CLI option `--dont-check-names`.
+
 ### v1.5.9
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/7cebd1d53ec182432e86bb0bacf7a15be1ea7220) bug that steps with ES6 options weren't rendered correct with `--list-step` CLI option.
