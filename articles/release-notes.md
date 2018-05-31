@@ -1,3 +1,7 @@
+### v1.6.1
+
+- [Included](https://github.com/glacejs/glace-core/commit/353cde2a704f465f6e23f2d3fa595a2c4d43ed07) chai plugins [`chai-string`](http://www.chaijs.com/plugins/chai-string/), [`chai-fs`](http://www.chaijs.com/plugins/chai-fs/), [`chai-datetime`](http://www.chaijs.com/plugins/chai-datetime/).
+
 ### v1.6.0
 
 - [Added](https://github.com/glacejs/glace-core/commit/3bb34580e5fbd935c067e7459593eff6f964df0a) CLI option `--dont-check-names`.
