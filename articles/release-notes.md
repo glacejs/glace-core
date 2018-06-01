@@ -1,3 +1,7 @@
+### v1.6.2
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/c34e1cd2ba9df671879ee0844f9d4b2acda3cad9) bug to ignore include and exclude options in interactive mode.
+
 ### v1.6.1
 
 - [Included](https://github.com/glacejs/glace-core/commit/353cde2a704f465f6e23f2d3fa595a2c4d43ed07) chai plugins [`chai-string`](http://www.chaijs.com/plugins/chai-string/), [`chai-fs`](http://www.chaijs.com/plugins/chai-fs/), [`chai-datetime`](http://www.chaijs.com/plugins/chai-datetime/).
