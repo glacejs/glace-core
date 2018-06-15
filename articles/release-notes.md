@@ -1,3 +1,7 @@
+### v1.6.3
+
+- [Create](https://github.com/glacejs/glace-core/commit/d37903c76fe4b59a2d796a29d5adc0c28240f772) logs folder before reporting.
+
 ### v1.6.2
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/c34e1cd2ba9df671879ee0844f9d4b2acda3cad9) bug to ignore include and exclude options in interactive mode.
