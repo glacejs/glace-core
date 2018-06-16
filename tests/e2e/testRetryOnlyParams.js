@@ -1,6 +1,6 @@
 "use strict";
 
-CONF.languages = ["en", "ru", "ee"];
+CONF.test.languages = ["en", "ru", "ee"];
 
 var i = 0;
 

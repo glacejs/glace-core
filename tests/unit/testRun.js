@@ -38,7 +38,7 @@ suite("run", () => {
         });
 
         chunk("without cb", async () => {
-            CONF.uncaught = "mocha";
+            CONF.session.uncaughtException = "mocha";
             await run();
             expect(fake.resetReport).to.be.calledOnce;
             expect(hacking.suppressMochaUncaught).to.not.be.called;
@@ -56,7 +56,7 @@ suite("run", () => {
         });
 
         chunk("returns passed code", () => {
-            CONF.isRunPassed = true;
+            CONF.session.isPassed = true;
             _run(mocha, fin);
             expect(code).to.be.equal(0);
             expect(mocha.run).to.be.calledOnce;
@@ -64,7 +64,7 @@ suite("run", () => {
         });
 
         chunk("returns failed code", () => {
-            CONF.isRunPassed = false;
+            CONF.session.isPassed = false;
             _run(mocha, fin);
             expect(code).to.be.equal(1);
             expect(mocha.run).to.be.calledOnce;

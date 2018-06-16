@@ -115,7 +115,7 @@ suite("globals", () => {
 
             chunk("without options", () => {
                 _chunkCb("my super chunk", {}, cb).call(ctx);
-                expect(CONF.curTestCase.chunks).to.include("my super chunk");
+                expect(CONF.test.curCase.chunks).to.include("my super chunk");
                 expect(cb).to.be.calledOnce;
                 expect(ctx.retries).to.not.be.called;
                 expect(ctx.timeout).to.not.be.called;
@@ -123,7 +123,7 @@ suite("globals", () => {
 
             chunk("with options", () => {
                 _chunkCb("my super chunk", { retry: 2, timeout: 1 }, cb).call(ctx);
-                expect(CONF.curTestCase.chunks).to.include("my super chunk");
+                expect(CONF.test.curCase.chunks).to.include("my super chunk");
                 expect(cb).to.be.calledOnce;
                 expect(ctx.retries).to.be.calledOnce;
                 expect(ctx.retries.args[0][0]).to.be.equal(2);
@@ -147,14 +147,14 @@ suite("globals", () => {
         test("forEachLanguage()", () => {
 
             chunk("with default params", () => {
-                var langs = CONF.languages;
-                CONF.languages = ["en", "ee"];
+                var langs = CONF.test.languages;
+                CONF.test.languages = ["en", "ee"];
                 _forEachLanguage(() => {});
                 expect(_langCb).to.be.calledOnce;
                 expect(_langIntCb).to.be.calledTwice;
                 expect(_langIntCb.args[0][0]).to.equal("en");
                 expect(_langIntCb.args[1][0]).to.equal("ee");
-                CONF.languages = langs;
+                CONF.test.languages = langs;
             });
 
             chunk("with ctx", () => {
