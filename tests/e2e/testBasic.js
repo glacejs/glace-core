@@ -50,7 +50,7 @@ test("It should have one failed & one passed chunk", () => {
 test("It should iterate tested languages", ctx => {
     forEachLanguage(ctx, { languages: [ "ru", "ee", "en" ] }, lang => {
         chunk(() => {
-            expect(CONF.curTestCase.testParams.language).to.be.equal(lang);
+            expect(CONF.test.curCase.testParams.language).to.be.equal(lang);
         });
     });
 });
