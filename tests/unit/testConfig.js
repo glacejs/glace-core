@@ -4,6 +4,8 @@ const U = require("glace-utils");
 
 const plugins = require("../../lib/plugins");
 
+const CONFIG_PATH = "../../lib/config";
+
 let sandbox = sinon.createSandbox();
 let log, exit;
 
@@ -40,7 +42,7 @@ suite("config", () => {
             sandbox.stub(plugins, "get").returns([]);
             sandbox.stub(plugins, "getModules");
 
-            rewire("../../lib/config");
+            rewire(CONFIG_PATH);
             expect(console.log).to.be.calledOnce;
             expect(console.log.args[0][0]).to.include("No plugins are detected");
             expect(process.exit).to.be.calledOnce;
@@ -57,7 +59,7 @@ suite("config", () => {
             sandbox.stub(plugins, "get").returns([{ name: "hello", path: "world"}]);
             sandbox.stub(plugins, "getModules");
 
-            rewire("../../lib/config");
+            rewire(CONFIG_PATH);
             expect(console.log).to.be.calledOnce;
             expect(console.log.args[0][0]).to.include("hello");
             expect(console.log.args[0][1]).to.include("world");
@@ -65,6 +67,34 @@ suite("config", () => {
 
             console.log = log;
             process.exit = exit;
+        });
+    });
+
+    test("testDirs", () => {
+        
+        beforeEach(() => {
+            delete U.config.args._;
+            delete U.config.args.targets;
+        });
+
+        chunk("has default value", () => {
+            const config = rewire(CONFIG_PATH);
+            expect(config.testDirs).to.have.length(1);
+            expect(config.testDirs[0]).to.endWith("tests");
+        });
+
+        chunk("set as cli argument", () => {
+            U.config.args._ = ["mytests"];
+            const config = rewire(CONFIG_PATH);
+            expect(config.testDirs).to.have.length(1);
+            expect(config.testDirs[0]).to.endWith("mytests");
+        });
+
+        chunk("set as cli option", () => {
+            U.config.args.targets = ["mytests"];
+            const config = rewire(CONFIG_PATH);
+            expect(config.testDirs).to.have.length(1);
+            expect(config.testDirs[0]).to.endWith("mytests");
         });
     });
 });
