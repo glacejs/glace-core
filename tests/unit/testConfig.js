@@ -30,14 +30,14 @@ suite("config", () => {
         delete U.config.args.chunkRetry;
         log = console.log;
         exit = process.exit;
-        U.config.__selftest = true;
+        U.config.__testmode = true;
         config = rewire(CONFIG_PATH);
     });
 
     afterChunk(() => {
         console.log = log;
         process.exit = exit;
-        U.config.__selftest = false;
+        U.config.__testmode = false;
         sandbox.restore();
     });
 
