@@ -313,7 +313,7 @@ suite("allure helper", () => {
             });
         });
 
-        test("attachText", () => {
+        test(".attachText()", () => {
             chunk(() => {
                 allure.attachText("my text", "hello world");
                 expect(allure.attach).to.be.calledOnce;
@@ -322,7 +322,7 @@ suite("allure helper", () => {
             });
         });
 
-        test("attachHtml", () => {
+        test(".attachHtml()", () => {
             chunk(() => {
                 allure.attachHtml("my html", "hello world")
                 expect(allure.attach).to.be.calledOnce;
