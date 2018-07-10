@@ -142,6 +142,56 @@
         
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>session</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Session namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
         <th>Default</th>
         
 
@@ -154,13 +204,13 @@
 
         <tr>
             
-                <td class="name"><code>curTestCase</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TestCase</span>
+<span class="param-type">string</span>
 
 
 
@@ -172,8 +222,6 @@
                 
 
                 
-                    &lt;nullable><br>
-                
                 </td>
             
 
@@ -183,20 +231,21 @@
                 </td>
             
 
-            <td class="description last"><p>Currently executed test.</p></td>
+            <td class="description last"><p>Session name. By default contains timestamp.
+ Can be overridden with CLI option <code>--session-name</code>.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>testCases</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;TestCase></span>
+<span class="param-type">string</span>
 
 
 
@@ -217,7 +266,46 @@
                 </td>
             
 
-            <td class="description last"><p>List of executed tests.</p></td>
+            <td class="description last"><p>Session ID. Default is timestamp.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isPassed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to define if tests session
+ run is passed or no.</p></td>
         </tr>
 
     
@@ -230,42 +318,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;string></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>List of module paths which will be loaded before
- test run.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>testDirs</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">array.&lt;string></span>
 
 
 
@@ -285,25 +338,26 @@
             
                 <td class="default">
                 
-                    cwd/tests
+                    []
                 
                 </td>
             
 
-            <td class="description last"><p>List of folder or file paths with tests.</p></td>
+            <td class="description last"><p>Array of paths to <code>js</code> modules
+ which will be loaded before tests session run.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>reportsDir</code></td>
+                <td class="name"><code>interactive</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -323,50 +377,13 @@
             
                 <td class="default">
                 
-                    cwd/report
+                    false
                 
                 </td>
             
 
-            <td class="description last"><p>Path to report folder.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>logsDir</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    reportsDir
-                
-                </td>
-            
-
-            <td class="description last"><p>Path to logs folder.</p></td>
+            <td class="description last"><p>Flag to launch interactive
+ session. Can be overridden with CLI option <code>-i / --interactive</code>.</p></td>
         </tr>
 
     
@@ -404,14 +421,15 @@
                 </td>
             
 
-            <td class="description last"><p>Flag to enter to debug mode on test failure.</p></td>
+            <td class="description last"><p>Flag to enter to interactive
+ mode on step failure. Can be overridden with CLI option <code>--debug-on-fail</code>.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>isRunPassed</code></td>
+                <td class="name"><code>exitOnFail</code></td>
             
 
             <td class="type">
@@ -437,95 +455,20 @@
             
                 <td class="default">
                 
-                    true
+                    false
                 
                 </td>
             
 
-            <td class="description last"><p>Whether test run is passed.</p></td>
+            <td class="description last"><p>Flag to break tests session on
+ first test failure. Can be overridden with CLI option <code>--exit-on-fail</code>.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>languages</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    []
-                
-                </td>
-            
-
-            <td class="description last"><p>List of tested languages.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>clearReport</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"><p>Clear report before test run.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>uncaught</code></td>
+                <td class="name"><code>uncaughtException</code></td>
             
 
             <td class="type">
@@ -556,7 +499,9 @@
                 </td>
             
 
-            <td class="description last"><p>Strategy to process uncaught exceptions.</p></td>
+            <td class="description last"><p>Strategy to process uncaught
+ exceptions. Available values are <code>log</code>, <code>fail</code>, <code>mocha</code>. Can be overridden
+ with CLI option <code>--uncaught</code>.</p></td>
         </tr>
 
     
@@ -579,8 +524,6 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
                 
                 </td>
@@ -592,223 +535,9 @@
                 </td>
             
 
-            <td class="description last"><p>Path to root conftest.js.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>testRetries</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last"><p>Number of test retries on test failure.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>chunkRetries</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last"><p>Number of chunk retries on chunk failure.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>grep</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Test name or name chunk to filter tests.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>pluginsDir</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Path to custom plugins folder.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sessionName</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Name of tests session.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sessionId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>ID of tests session.</p></td>
+            <td class="description last"><p>Path to <code>js</code> module which will be
+ loaded right after preloads. Can be overridden with CLI
+ option <code>--root-conftest</code>.</p></td>
         </tr>
 
     
@@ -821,7 +550,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">array.&lt;string></span>
 
 
 
@@ -831,11 +560,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -846,15 +571,23 @@
                 </td>
             
 
-            <td class="description last"><p>List of process names which will be killed
- before tests run.</p></td>
+            <td class="description last"><p>Array of process names which will
+ be killed before tests session run. Can be overridden with CLI
+ option <code>--kill-procs</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>testrail</code></td>
+                <td class="name"><code>test</code></td>
             
 
             <td class="type">
@@ -876,12 +609,711 @@
             
 
             
-                <td class="default">
+
+            <td class="description last"><p>Test namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>curCase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TestCase</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
                 
                 </td>
             
 
-            <td class="description last"><p>TestRail reporter configuration.</p>
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>Currently executed test case.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cases</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;TestCase></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Array of session test cases.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scopes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Array of scope names.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>suite</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Array of suite names.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>languages</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Array of language names. Can be
+ overridden with CLI option <code>--languages</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dirs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Array of test files or folders. Can
+ be overridden with CLI arguments or option <code>--targets</code> separated with comma.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>checkNames</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to check test names uniqueness.
+ Can be overridden with CLI option <code>--dont-check-names</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Number of test retries on failure. Can
+ be overridden with CLI option <code>--retry</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chunkRetries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Number of chunk retries on failure.
+ Can be overridden with CLI option <code>--chunk-retry</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chunkTimeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    180000
+                
+                </td>
+            
+
+            <td class="description last"><p>Timeout of chunk execution, ms.
+ Can be overridden with CLI option <code>--chunk-timeout</code>, sec.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>report</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Report namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dir</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    cwd/report
+                
+                </td>
+            
+
+            <td class="description last"><p>Folder to save tests session report.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>logsDir</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    report.dir
+                
+                </td>
+            
+
+            <td class="description last"><p>Folder to save test logs. Can
+ be overridden with CLI option <code>--report-dir</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to clear report before tests run.
+ Can be overridden with CLI option <code>--dont-clear-report</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorsNow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to print test error right
+ after its capture. Can be overridden with CLI option <code>--errors-now</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>failedTestsPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    cwd/failed-tests.json
+                
+                </td>
+            
+
+            <td class="description last"><p>Path to file
+ where info about failed tests will be saved to. Can be overridden with CLI
+ option <code>--failed-tests-path</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>xunit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>xUnit report namespace.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -941,7 +1373,362 @@
                 </td>
             
 
-            <td class="description last"><p>Activate TestRail reporter.</p></td>
+            <td class="description last"><p>Flag to activate xUnit report. Can be
+ overridden with CLI option <code>--xunit</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    report.dir/xunit.xml
+                
+                </td>
+            
+
+            <td class="description last"><p>Path to xUnit report. Can
+ be overridden with CLI option <code>--xunit-path</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>suiteName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    session.name
+                
+                </td>
+            
+
+            <td class="description last"><p>xUnit suite name. Can be
+ overridden with CLI option <code>--xunit-suite-name</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>allure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Allure report namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>use</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to activate allure report. Can be
+ overridden with CLI option <code>--allure</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dir</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    report.dir/allure
+                
+                </td>
+            
+
+            <td class="description last"><p>Folder to save allure report.
+ Can be overridden with CLI option <code>--allure-dir</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>suiteName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    session.name
+                
+                </td>
+            
+
+            <td class="description last"><p>Allure suite name. Can be
+ overridden with CLI option <code>--allure-suite-name</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>testrail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Testrail report namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>use</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to activate testrail report. Can
+ be overridden with CLI option <code>--testrail</code>.</p></td>
         </tr>
 
     
@@ -964,11 +1751,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -976,12 +1759,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail host.</p></td>
+            <td class="description last"><p>Testrail host. Can be overridden with CLI
+ option <code>--testrail-host</code>.</p></td>
         </tr>
 
     
@@ -1004,11 +1786,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1016,12 +1794,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail user.</p></td>
+            <td class="description last"><p>Testrail user name or email. Can be overridden
+ with CLI option <code>--testrail-user</code>.</p></td>
         </tr>
 
     
@@ -1044,11 +1821,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1056,12 +1829,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail token.</p></td>
+            <td class="description last"><p>Testrail auth token. Can be overridden with
+ CLI option <code>--testrail-token</code>.</p></td>
         </tr>
 
     
@@ -1074,7 +1846,7 @@
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 
@@ -1084,11 +1856,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1096,12 +1864,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail project ID.</p></td>
+            <td class="description last"><p>Testrail project ID. Can be overridden
+ with CLI option <code>--testrail-project-id</code>.</p></td>
         </tr>
 
     
@@ -1114,7 +1881,7 @@
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 
@@ -1124,11 +1891,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1136,12 +1899,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail suite ID.</p></td>
+            <td class="description last"><p>Testrail suite ID. Can be overridden with
+ CLI option <code>--testrail-suite-id</code>.</p></td>
         </tr>
 
     
@@ -1164,11 +1926,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1176,12 +1934,11 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last"><p>TestRail run name.</p></td>
+            <td class="description last"><p>Testrail run name. Can be overridden with
+ CLI option <code>--testrail-run-name</code>.</p></td>
         </tr>
 
     
@@ -1204,11 +1961,7 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                    &lt;nullable><br>
                 
                 </td>
             
@@ -1216,12 +1969,616 @@
             
                 <td class="default">
                 
-                    null
+                </td>
+            
+
+            <td class="description last"><p>Testrail run description. Can be
+ overridden with CLI option <code>--testrail-run-description</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>plugins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
                 
                 </td>
             
 
-            <td class="description last"><p>TestRail run description.</p></td>
+            
+
+            <td class="description last"><p>Plugins namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dir</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Folder with custom plugins. Can be overridden
+ with CLI option <code>--plugins-dir</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Tests filter namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>grep</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Mocha grep option to filter tests, scopes and
+ suites. Can be overridden with CLI option <code>-g / --grep</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>include</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>List of test names which should be
+ included to tests session. Can be overridden with CLI option <code>--include</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>exclude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>List of test names which should be
+ excluded from tests session. Can be overridden with CLI option <code>--exclude</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>precise</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag for precise tests inclusion or
+ exclusion (not substring pattern). Can be overridden with CLI option
+ <code>--precise</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tools</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Tools namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>stepsList</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to list available steps only.
+ Can be overridden with CLI option <code>--list-steps</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stepsFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>String to filter steps. Can be overridden
+ with CLI option <code>--list-steps</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>testsList</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to list implemented tests
+ only. Can be overridden with CLI option <code>--list-tests</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>testsFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>String to filter tests. Can be overridden
+ with CLI option <code>--list-tests</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fixturesList</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to list available fixtures
+ only. Can be overridden with CLI option <code>--list-fixtures</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fixturesFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>String to filter fixtures. Can be
+ overridden with CLI option <code>--list-fixtures</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>checkTestrail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Flag to check matching of
+ testrail cases with implemented tests only. Can be overridden with CLI
+ option <code>--testrail-check</code>.</p></td>
         </tr>
 
     
@@ -1353,7 +2710,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-06-15T19:09:47+03:00
+		on 2018-07-10T23:11:25+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
