@@ -23,6 +23,19 @@ test("TestCase class", () => {
         });
     });
 
+    scope(".hasFailedParams()", () => {
+        chunk("returns true", () => {
+            testCase.failedParams = [{ a: 1 }];
+            expect(testCase.hasFailedParams()).to.be.true;
+        });
+
+        chunk("returns false", () => {
+            expect(testCase.hasFailedParams()).to.be.false;
+            testCase.failedParams = [{}];
+            expect(testCase.hasFailedParams()).to.be.false;
+        });
+    });
+
     scope(".start()", () => {
 
         chunk("starts test case", () => {
