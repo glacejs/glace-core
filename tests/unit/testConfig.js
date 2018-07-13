@@ -115,8 +115,6 @@ suite("config", () => {
             expect(config.test).to.exist;
             expect(config.test.curCase).to.be.null;
             expect(config.test.cases).to.be.empty;
-            expect(config.test.suites).to.be.empty;
-            expect(config.test.scopes).to.be.empty;
             expect(config.test.languages).to.be.empty;
             expect(config.test.dirs).to.not.be.empty;
             expect(config.test.checkNames).to.be.true;
