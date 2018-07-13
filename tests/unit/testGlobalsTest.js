@@ -206,4 +206,184 @@ suite("globals/test", () => {
             expect(o.fixtures).to.be.eql(["fix1", "fix2"]);
         });
     });
+
+    test("beforeCb()", () => {
+        let beforeCb, o, setLog;
+
+        beforeChunk(() => {
+            beforeCb = test_.__get__("beforeCb");
+            setLog = sinon.spy();
+            test_.__set__("setLog", setLog);
+
+            o = {};
+            o.testCase = {
+                hasFailedParams: sinon.stub().returns(true),
+                reset: sinon.spy(),
+                start: sinon.spy(),
+                failedParams: "test failed params",
+            };
+        });
+
+        chunk("use test failed params", () => {
+            beforeCb(o)();
+
+            expect(o.failedParams).to.be.equal("test failed params");
+            expect(conf.test.curCase).to.be.equal(o.testCase);
+
+            expect(o.testCase.hasFailedParams).to.be.calledOnce;
+            expect(o.testCase.reset).to.be.calledOnce;
+            expect(o.testCase.start).to.be.calledOnce;
+            expect(setLog).to.be.calledOnce;
+        });
+
+        chunk("use ctx as failed params", () => {
+            o.testCase.hasFailedParams.returns(false);
+            o.ctxs = "context";
+            beforeCb(o)();
+            expect(o.failedParams).to.be.equal("context");
+        });
+    });
+
+    test("afterCb()", () => {
+        let afterCb, retryTests, setLog, o;
+
+        beforeChunk(() => {
+            afterCb = test_.__get__("afterCb");
+            retryTests = [];
+            test_.__set__("retryTests", retryTests);
+            setLog = sinon.spy();
+            test_.__set__("setLog", setLog);
+            o = {};
+            o.testCase = {
+                errors: ["err"],
+                end: sinon.spy(),
+                status: "failed",
+                hasFailedParams: sinon.stub().returns(true),
+                failedParams: "test failed params",
+            };
+            o.retries = 1;
+        });
+
+        chunk("ends as failed", () => {
+            afterCb(o)();
+
+            expect(o.testCase.end).to.be.calledOnce;
+            expect(o.testCase.end.args[0][0]).to.be.equal("failed");
+            expect(conf.test.curCase).to.not.exist;
+            expect(setLog).to.be.calledOnce;
+            expect(o.retries).to.be.equal(0);
+            expect(o.ctxs).to.be.equal("test failed params");
+            expect(retryTests).to.have.length(1);
+        });
+
+        chunk("ends as passed", () => {
+            o.testCase.errors = [];
+            o.testCase.status = "passed";
+            afterCb(o)();
+
+            expect(o.testCase.end).to.be.calledOnce;
+            expect(o.testCase.end.args[0][0]).to.be.equal("passed");
+            expect(o.retries).to.be.equal(1);
+            expect(retryTests).to.have.length(0);
+        });
+
+        chunk("doesn't retry if retry attemps are exhausted", () => {
+            o.retries = 0;
+            afterCb(o)();
+
+            expect(o.retries).to.be.equal(0);
+            expect(retryTests).to.have.length(0);
+        });
+
+        chunk("ends as failed", () => {
+            o.testCase.hasFailedParams.returns(false);
+            o.failedParams = "ctx params";
+            afterCb(o)();
+
+            expect(o.ctxs).to.be.equal("ctx params");
+            expect(retryTests).to.have.length(1);
+        });
+    });
+
+    test("wrapCb()", () => {
+        let wrapCb, o;
+
+        beforeChunk(() => {
+            wrapCb = test_.__get__("wrapCb");
+            o = {
+                func: sinon.spy(),
+                ctxs: ["ctx"],
+            };
+        });
+
+        chunk(() => {
+            wrapCb(o)();
+            expect(o.func).to.be.calledOnce;
+            expect(o.func.args[0][0]).to.be.equal("ctx");
+        });
+    });
+
+    test("test()", () => {
+        let test_func, baseTest, func;
+
+        beforeChunk(() => {
+            test_func = test_.__get__("test");
+            baseTest = sinon.spy();
+            test_.__set__("baseTest", baseTest);
+            func = () => {};
+        });
+
+        chunk(() => {
+            test_func("my test", func);
+            expect(baseTest).to.be.calledOnce;
+            expect(baseTest.args[0]).to.be.eql(["my test", {}, [], func]);
+        });
+
+        chunk(() => {
+            test_func("my test", { a: 1 }, func);
+            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, [], func]);
+        });
+
+        chunk(() => {
+            test_func("my test", { a: 1 }, ['b'], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, ['b'], func]);
+        });
+
+        chunk(() => {
+            test_func("my test", undefined, ['b'], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", {}, ['b'], func]);
+        });
+
+        chunk(() => {
+            test_func("my test", null, ['b'], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", {}, ['b'], func]);
+        });
+    });
+
+    test("isFilterMatched()", () => {
+        let isFilterMatched;
+
+        beforeChunk(() => {
+            isFilterMatched = test_.__get__("isFilterMatched");
+            conf.filter = { precise: false };
+        })
+
+        chunk("returns true if test names are equal", () => {
+            conf.filter.precise = true;
+            expect(isFilterMatched("my test", "MY TEST")).to.be.true;
+        });
+
+        chunk("returns false if test names aren't equal", () => {
+            conf.filter.precise = true;
+            expect(isFilterMatched("my tes", "MY TEST")).to.be.false;
+        });
+
+        chunk("returns true if filter includes test name", () => {
+            expect(isFilterMatched("my test", "MY TES")).to.be.true;
+        });
+
+        chunk("returns true if filter doesn't include test name", () => {
+            expect(isFilterMatched("my test", "MY TST")).to.be.false;
+        });
+    });
 });
