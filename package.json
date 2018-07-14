@@ -26,8 +26,8 @@
     "test:e2e": "npm run test:basic; npm run test:retry; npm run test:chunk-retry; npm run test:own-app; npm run test:suppress-uncaught; npm run test:fail-uncaught; npm run test:mocha-uncaught; npm run test:timer-steps; npm run test:custom-reporter; npm run test:retry-only-params; npm run test:retry-with-include; npm run test:include; npm run test:exclude",
     "docs": "rm -rf docs && jsdoc -c jsdoc.json -d docs",
     "docs:publish": "npm run docs && git add -A && git commit -m \"update docs\" && git push origin master",
-    "lint": "eslint lib",
-    "lint:fix": "eslint lib --fix"
+    "lint": "eslint lib tests",
+    "lint:fix": "npm run lint -- --fix"
   },
   "pre-commit": [
     "lint",

@@ -95,7 +95,7 @@ suite("globals", () => {
                 expect(it.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("my chunk");
-                expect(_chunkCb.args[0][1]).to.have.property("retry", 2)
+                expect(_chunkCb.args[0][1]).to.have.property("retry", 2);
                 expect(_chunkCb.args[0][1]).to.have.property("timeout", 1);
                 expect(_chunkCb.args[0][2]).to.be.equal(cb);
             });

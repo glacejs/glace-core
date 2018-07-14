@@ -157,7 +157,7 @@ suite("config", () => {
             U.config.args.retry = 1;
             config = rewire(CONFIG_PATH);
             expect(config.test.retries).to.be.equal(1);
-            U.config.args.retry = -1
+            U.config.args.retry = -1;
             expect(() => rewire(CONFIG_PATH)).to.throw("Invalid `--retry`");
         });
 
@@ -165,7 +165,7 @@ suite("config", () => {
             U.config.args.chunkRetry = 1;
             config = rewire(CONFIG_PATH);
             expect(config.test.chunkRetries).to.be.equal(1);
-            U.config.args.chunkRetry = -1
+            U.config.args.chunkRetry = -1;
             expect(() => rewire(CONFIG_PATH)).to.throw("Invalid `--chunk-retry`");
         });
 

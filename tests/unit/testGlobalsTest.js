@@ -339,24 +339,24 @@ suite("globals/test", () => {
             expect(baseTest.args[0]).to.be.eql(["my test", {}, [], func]);
         });
 
-        chunk(() => {
+        chunk("takes options", () => {
             test_func("my test", { a: 1 }, func);
             expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, [], func]);
         });
 
-        chunk(() => {
-            test_func("my test", { a: 1 }, ['b'], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, ['b'], func]);
+        chunk("takes options and fixtures", () => {
+            test_func("my test", { a: 1 }, ["fix"], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, ["fix"], func]);
         });
 
-        chunk(() => {
-            test_func("my test", undefined, ['b'], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", {}, ['b'], func]);
+        chunk("takes undefined options", () => {
+            test_func("my test", undefined, ["fix"], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", {}, ["fix"], func]);
         });
 
-        chunk(() => {
-            test_func("my test", null, ['b'], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", {}, ['b'], func]);
+        chunk("takes null options", () => {
+            test_func("my test", null, ["fix"], func);
+            expect(baseTest.args[0]).to.be.eql(["my test", {}, ["fix"], func]);
         });
     });
 
@@ -366,7 +366,7 @@ suite("globals/test", () => {
         beforeChunk(() => {
             isFilterMatched = test_.__get__("isFilterMatched");
             conf.filter = { precise: false };
-        })
+        });
 
         chunk("returns true if test names are equal", () => {
             conf.filter.precise = true;

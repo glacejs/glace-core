@@ -21,19 +21,19 @@ suite("allure helper", () => {
         test("proxy instance", () => {
             chunk(() => {
                 for (const m of ["hasSteps",
-                                 "step",
-                                 "pass",
-                                 "story",
-                                 "feature",
-                                 "attach",
-                                 "attachJson",
-                                 "attachImage",
-                                 "attachVideo",
-                                 "attachText",
-                                 "attachHtml",
-                                 "addEnvironment",
-                                 "addDescription",
-                                 "isTestStarted"]) {
+                    "step",
+                    "pass",
+                    "story",
+                    "feature",
+                    "attach",
+                    "attachJson",
+                    "attachImage",
+                    "attachVideo",
+                    "attachText",
+                    "attachHtml",
+                    "addEnvironment",
+                    "addDescription",
+                    "isTestStarted"]) {
                     expect(allure[m]()).to.be.undefined;
                 }
             });
@@ -324,7 +324,7 @@ suite("allure helper", () => {
 
         test(".attachHtml()", () => {
             chunk(() => {
-                allure.attachHtml("my html", "hello world")
+                allure.attachHtml("my html", "hello world");
                 expect(allure.attach).to.be.calledOnce;
                 expect(allure.attach.args[0])
                     .to.be.eql(["my html", "hello world", "application/html"]);

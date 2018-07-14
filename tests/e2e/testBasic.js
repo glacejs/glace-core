@@ -86,17 +86,17 @@ test("It should involve fixture in iterator", ctx => {
 });
 
 test("It should be skipped with reason",
-     { skip: true,
-       skipReason: "bug https://bug.tracker.io/BUG-1001" }, () => {
-    chunk(() => {});
-});
+    { skip: true,
+        skipReason: "bug https://bug.tracker.io/BUG-1001" }, () => {
+        chunk(() => {});
+    });
 
 test("It should be skipped without reason", { skip: true }, () => {
     chunk(() => {});
 });
 
 var ii = 0;
-test(`It should be retried 3 times`, { retry: 3 }, () => {
+test("It should be retried 3 times", { retry: 3 }, () => {
     chunk(() => {
         if (ii < 3) {
             ii++;
@@ -105,7 +105,7 @@ test(`It should be retried 3 times`, { retry: 3 }, () => {
     });
 });
 
-test(`Its chunks should be retried 3 times`, { chunkRetry: 3 }, () => {
+test("Its chunks should be retried 3 times", { chunkRetry: 3 }, () => {
     var i = 0;
     chunk(() => {
         if (i < 3) {
@@ -115,7 +115,7 @@ test(`Its chunks should be retried 3 times`, { chunkRetry: 3 }, () => {
     });
 });
 
-test(`Its chunk should be retried 3 times`, () => {
+test("Its chunk should be retried 3 times", () => {
     var i = 0;
     chunk({ retry: 3 }, () => {
         if (i < 3) {
