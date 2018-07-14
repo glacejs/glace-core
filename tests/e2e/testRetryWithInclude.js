@@ -13,7 +13,7 @@ test("retry only include params", ctx => {
         }
     });
 
-    forEachLanguage(ctx, lang => {
+    forEachLanguage(ctx, () => {
         chunk(() => {});
     });
 });

@@ -12,7 +12,7 @@ suite("run", () => {
     });
 
     test(".run()", () => {
-        var hacking, _run;
+        var hacking;
 
         beforeChunk(() => {
             fake = {

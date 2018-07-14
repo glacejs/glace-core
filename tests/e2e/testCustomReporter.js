@@ -44,5 +44,5 @@ var myReporter = {
 reporter.register(myReporter);
 
 test("Its result should be published with custom reporter", () => {
-    chunk(() => {})
+    chunk(() => {});
 });
