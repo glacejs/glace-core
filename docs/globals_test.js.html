@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="GlaceReporter.html">GlaceReporter</a></li><li><a href="module-error-ConfigError.html">error~ConfigError</a></li><li><a href="module-error-StepError.html">error~StepError</a></li><li><a href="module-testing-TestCase.html">testing~TestCase</a></li><li><a href="Steps.html">Steps</a></li>
+					<li><a href="GlaceReporter.html">GlaceReporter</a></li><li><a href="module-error-ConfigError.html">error~ConfigError</a></li><li><a href="module-error-StepError.html">error~StepError</a></li><li><a href="module-testing-ScopeType.html">testing~ScopeType</a></li><li><a href="module-testing-TestCase.html">testing~TestCase</a></li><li><a href="Steps.html">Steps</a></li>
 				</ul>
 			</li>
 			
@@ -107,28 +107,29 @@
         <pre
             class="sunlight-highlight-javascript linenums">"use strict";
 
-var path = require("path");
+const path = require("path");
 
-var _ = require("lodash");
-var U = require("glace-utils");
-var LOG = U.logger;
+const U = require("glace-utils");
+const LOG = U.logger;
 
-var CONF = require("../config");
-var TestCase = require("../testing").TestCase;
+const CONF = require("../config");
+const TestCase = require("../testing").TestCase;
+const ScopeType = require("../testing").ScopeType;
 
-var retryTests = require("./session").retryTests;
+const retryTests = require("./session").retryTests;
+const _scope = require("./scope");
 
 /**
  * Helper to set actual log file.
  *
  * @function
  */
-var setLog = () => {
-    var testName = CONF.test.curCase ? _.kebabCase(CONF.test.curCase.name) : "";
-    var logFile = path.resolve(CONF.report.logsDir, testName, "logs", "test.log");
+const setLog = () => {
+    const testName = CONF.test.curCase ? U.toKebab(CONF.test.curCase.name) : "";
+    const logFile = path.resolve(CONF.report.logsDir, testName, "logs", "test.log");
     LOG.setFile(logFile);
 };
-setLog(); // Set log immediatelly.
+setLog(); // Set log immediately.
 
 /**
  * Basis for any test case.
@@ -154,16 +155,16 @@ setLog(); // Set log immediatelly.
  * @arg {function[]} [fixtures] - Involved fixtures list.
  * @arg {function} func - Test function.
  */
-var baseTest = (names => {
+const baseTest = (names => {
     return (name, opts, fixtures, func) => {
-        var ctxs;
+        const o = {};
 
         if (CONF.filter.include) {
-            var isIncluded = false;
-            for (var include of CONF.filter.include) {
+            let isIncluded = false;
+            for (const include of CONF.filter.include) {
                 if (isFilterMatched(name, include.name)) {
                     isIncluded = true;
-                    ctxs = include.params;
+                    o.ctxs = include.params;
                     break;
                 }
             }
@@ -171,7 +172,7 @@ var baseTest = (names => {
         }
 
         if (CONF.filter.exclude) {
-            for (var exclude of CONF.filter.exclude) {
+            for (const exclude of CONF.filter.exclude) {
                 if (isFilterMatched(name, exclude.name)) return;
             }
         }
@@ -193,76 +194,78 @@ var baseTest = (names => {
             fixtures = [];
         }
         opts = opts || {};
-        fixtures = fixtures || [];
+        o.fixtures = fixtures || [];
+        o.func = func;
+        o.name = name;
 
-        opts.skip = U.defVal(opts.skip, false);
-        opts.skipReason = U.defVal(opts.skipReason);
-        opts.retry = U.defVal(opts.retry, CONF.test.retries, 0);
-        opts.chunkRetry = U.defVal(opts.chunkRetry, CONF.test.chunkRetries, 0);
-        opts.chunkTimeout = U.defVal(opts.chunkTimeout);
+        const skip = U.defVal(opts.skip, false);
+        const skipReason = U.defVal(opts.skipReason);
+        o.retries = U.defVal(opts.retry, CONF.test.retries, 0);
+        o.testOpts = {};
+        o.testOpts.chunkRetry = U.defVal(opts.chunkRetry, CONF.test.chunkRetries, 0);
+        o.testOpts.chunkTimeout = U.defVal(opts.chunkTimeout);
 
-        var testCase = new TestCase(name);
-        CONF.test.cases.push(testCase);
+        o.testCase = new TestCase(name);
+        CONF.test.cases.push(o.testCase);
 
-        if (opts.skip) {
-            testCase.status = TestCase.SKIPPED;
-            if (opts.skipReason) testCase.addDetails(opts.skipReason);
+        if (skip) {
+            o.testCase.status = TestCase.SKIPPED;
+            if (skipReason) o.testCase.addDetails(skipReason);
             return;
         }
 
-        var retries = opts.retry;
-
-        var testFunc = ctxs => {
-            ctxs = ctxs || [{}];
-
-            scope(name, opts, () => {
-                var failedParams;
-
-                before(() => {
-                    if (testCase.hasFailedParams()) {
-                        failedParams = testCase.failedParams;
-                    } else {
-                        failedParams = ctxs;
-                    }
-                    testCase.reset();
-                    testCase.start();
-                    CONF.test.curCase = testCase;
-                    setLog(); // Current test case is started, need to reinit log
-                });
-
-                U.wrap(fixtures, () => {
-                    for (var ctx of ctxs) func(ctx);
-                })();
-
-                after(() => {
-                    if (testCase.errors.length) {
-                        testCase.end(TestCase.FAILED);
-                    } else {
-                        testCase.end(TestCase.PASSED);
-                    }
-
-                    CONF.test.curCase = null;
-                    setLog(); // Current test case is finished, need to reinit log
-
-                    if (testCase.status !== TestCase.FAILED || retries &lt;= 0) {
-                        return;
-                    }
-                    retries--;
-
-                    if (!testCase.hasFailedParams()) {
-                        testCase.failedParams = failedParams;
-                    }
-
-                    retryTests.push({
-                        func: testFunc,
-                        args: testCase.failedParams,
-                    });
-                });
-            });
-        };
-        testFunc(ctxs);
+        testFunc(o);
     };
 })([]);
+
+const testFunc = o => {
+    o.ctxs = o.ctxs || [{}];
+    _scope(new ScopeType(o.name).setType("test"), o.testOpts, () => {
+        before(beforeCb(o));
+        U.wrap(o.fixtures, wrapCb(o))();
+        after(afterCb(o));
+    });
+};
+
+const beforeCb = o => () => {
+    if (o.testCase.hasFailedParams()) {
+        o.failedParams = o.testCase.failedParams;
+    } else {
+        o.failedParams = o.ctxs;
+    }
+    o.testCase.reset();
+    o.testCase.start();
+    CONF.test.curCase = o.testCase;
+    setLog(); // Current test case is started, need to reinit log
+};
+
+const afterCb = o => () => {
+    if (o.testCase.errors.length) {
+        o.testCase.end(TestCase.FAILED);
+    } else {
+        o.testCase.end(TestCase.PASSED);
+    }
+
+    CONF.test.curCase = null;
+    setLog(); // Current test case is finished, need to reinit log
+
+    if (o.testCase.status !== TestCase.FAILED || o.retries &lt;= 0) {
+        return;
+    }
+    o.retries--;
+
+    if (!o.testCase.hasFailedParams()) {
+        o.testCase.failedParams = o.failedParams;
+    }
+
+    o.ctxs = o.testCase.failedParams;
+    retryTests.push({ func: testFunc, args: o });
+};
+
+const wrapCb = o => () => {
+    for (const ctx of o.ctxs) o.func(ctx);
+};
+
 /**
  * Executes test case.
  *
@@ -280,15 +283,15 @@ var baseTest = (names => {
  * @arg {function[]} [fixtures] - Involved fixtures list.
  * @arg {function} func - Test function.
  * @example
-
-test("Some test", () => {
-    chunk("Some chunk", () => {
-        someFunc();
-    });
-});
-
+ *
+ * test("Some test", () => {
+ *     chunk("Some chunk", () => {
+ *         someFunc();
+ *     });
+ * });
+ *
  */
-var test = (name, opts, fixtures, func) => {
+const test = (name, opts, fixtures, func) => {
 
     if (opts instanceof Function) {
         func = opts;
@@ -302,19 +305,15 @@ var test = (name, opts, fixtures, func) => {
     opts = opts || {};
     fixtures = fixtures || [];
 
-    baseTest(name, opts, fixtures, ctx => {
-        func(ctx);
-    });
+    baseTest(name, opts, fixtures, func);
 };
 
-var isFilterMatched = (testName, filterName) => {
-    var result;
+const isFilterMatched = (testName, filterName) => {
     if (CONF.filter.precise) {
-        result = testName.toLowerCase() === filterName.toLowerCase();
+        return testName.toLowerCase() === filterName.toLowerCase();
     } else {
-        result = testName.toLowerCase().includes(filterName.toLowerCase());
+        return testName.toLowerCase().includes(filterName.toLowerCase());
     }
-    return result;
 };
 
 module.exports = test;
@@ -363,7 +362,7 @@ module.exports = test;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-07-10T23:11:25+03:00
+		on 2018-07-14T17:41:54+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

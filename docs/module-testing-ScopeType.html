@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaseJS Source: reporter/testrail.js</title>
+	<title>GlaseJS Class: ScopeType</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -95,184 +95,279 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: reporter/testrail.js</h1>
-    
+	<h1 class="page-title">Class: ScopeType</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">"use strict";
-/**
- * TestRail reporter.
- *
- * @module
- */
 
-var expect = require("chai").expect;
-var Testrail = require("testrail-api");
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-testing.html">testing</a>~</span>
+        
+        ScopeType
+        </h2>
+        
+            <div class="class-description"><p>Class defining mochajs scope name and type.</p></div>
+        
+    
+</header>
 
-var CONF = require("../config");
-var TestCase = require("../testing").TestCase;
 
-for (var opt in CONF.testrail) {
-    expect(CONF.testrail[opt],
-        `TestRail option '${opt}' isn't specified in config`)
-        .to.exist;
-}
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="ScopeType"><span class="type-signature"></span>new ScopeType()</h4>
+    
+    
+</dt>
+<dd>
 
-var testrail = new Testrail({ host: CONF.testrail.host,
-    user: CONF.testrail.user,
-    password: CONF.testrail.token });
-var testrailFailed = false;
+    
 
-var Results = {
-    PASSED:   1,
-    BLOCKED:  2,
-    UNTESTED: 3,
-    RETEST:   4,
-    FAILED:   5
-};
+    
 
-var cases = {};
-var report = Promise.resolve();
+    
 
-module.exports = {
-    /**
-     * Called on tests start.
-     *
-     * @method
-     * @instance
-     */
-    start: () => {
+    
+    
 
-        report = report.then(() => {
-            return new Promise((resolve, reject) => {
-                testrail.getCases(
-                    CONF.testrail.projectId,
-                    { suite_id: CONF.testrail.suiteId },
-                    (err, response, _cases) => {
-                        if (err) return reject(err);
-                        for (var _case of _cases) {
-                            if (cases[_case.title]) {
-                                return reject(new Error(
-                                    "Detect duplicated cases with name " +
-                                    `'${_case.title}'. Only unique names ` +
-                                    "should be."));
-                            }
-                            cases[_case.title] = { id: _case.id };
-                        }
-                        resolve();
-                    }); 
-            });
-        }).then(() => {
-            return new Promise((resolve, reject) => {
-                testrail.addRun(
-                    CONF.testrail.projectId,
-                    { suite_id: CONF.testrail.suiteId,
-                        name: CONF.testrail.runName,
-                        description: CONF.testrail.runDescription },
-                    (err, response, run) => {
-                        if (err) return reject(err);
-                        CONF.testrail.runId = run.id;
-                        resolve();
-                    });
-            });
-        })
-            .catch(e => {
-                testrailFailed = true;
-                console.log("Error to init TestRail report:", e);
-            });
-    },
-    /**
-     * Called before tests end.
-     *
-     * @method
-     * @instance
-     */
-    end: () => {
-        if (testrailFailed) return;
-        console.log();
-        var reportMsg = "TestRail report is " + CONF.testrail.host +
-            "/index.php?/runs/view/" + CONF.testrail.runId;
-        console.log(Array(reportMsg.length + 1).join("-").yellow);
-        console.log(reportMsg.yellow);
-    },
-    /**
-     * Called on test end.
-     *
-     * @method
-     * @instance
-     * @arg {object} test - `MochaJS` suite.
-     */
-    testEnd: test => {
-        if (testrailFailed) return;
-        var testCase = CONF.test.cases.filter(t => t.name === test.title)[0];
-        var testrailCase = cases[test.title];
-        if (!testrailCase) return;
+    
+<dl class="details">
+    
 
-        var testResult = { status_id: Results.PASSED, comment: "" };
+	
 
-        if (testCase.screenshots.length) {
-            testResult.comment += "Screenshots:";
-            for (var screen of testCase.screenshots) {
-                testResult.comment += "\n" + screen;
-            }
-        }
-        if (testCase.videos.length) {
-            testResult.comment += "\n\nVideos:";
-            for (var video of testCase.videos) {
-                testResult.comment += "\n" + video;
-            }
-        }
-        if (testCase.rawInfo.length) {
-            testResult.comment += "\n\nExtra details:";
-            for (var info of testCase.rawInfo) {
-                testResult.comment += "\n" + info;
-            }
-        }
-        if (testCase.status === TestCase.SKIPPED) {
-            testResult.status_id = Results.BLOCKED;
-        }
-        if (testCase.status === TestCase.FAILED) {
-            testResult.status_id = Results.FAILED;
-            testResult.comment += "\n\nErrors:";
-            for (var error of testCase.errors) {
-                testResult.comment += "\n" + error;
-            }
-        }
+	
 
-        report = report.then(() => {
-            return new Promise((resolve, reject) => {
-                testrail.addResultForCase(
-                    CONF.testrail.runId,
-                    testrailCase.id,
-                    testResult,
-                    (err, res) => {
-                        if (err) return reject(err);
-                        resolve(res);
-                    });
-            });
-        }).catch(e => {
-            console.log(
-                `Error to publish test '${test.title}' report to TestRail:`, e);
-        });
-    },
-    /**
-     * Called on report finalizing.
-     *
-     * @method
-     * @instance
-     */
-    done: () => report,
-};
-</pre>
-    </article>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="testing.js.html">testing.js</a>,
+				 <a href="testing.js.html#sunlight-1-line-150">line 150</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="setType"><span class="type-signature"></span>setType(type)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Set mochajs scope type.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Supported values are <code>scope</code>, <code>suite</code>, <code>test</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="testing.js.html">testing.js</a>,
+				 <a href="testing.js.html#sunlight-1-line-155">line 155</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -282,6 +377,10 @@ module.exports = {
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
@@ -314,7 +413,7 @@ module.exports = {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-07-14T17:41:54+03:00
+		on 2018-07-14T17:41:55+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
