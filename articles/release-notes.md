@@ -1,3 +1,8 @@
+### v1.6.5
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/017ae40354d1f14b6ed7bc0566b1aaf6d2a660d0) bug that test, scope and suite names weren't defined precisely.
+- Code improvements and tests expansion.
+
 ### v1.6.4
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/4cee8ef2a454df1dac72a95b261318d5b57b3694) bug that params from `include` file were ignored on retry after `before all` hook failure.
