@@ -1,15 +1,15 @@
 "use strict";
 
-var TestCase = require("../../lib/testing").TestCase;
+const TestCase = rewire("../../lib/testing").TestCase;
 
-test("TestCase class", () => {
-    var testCase;
+suite("TestCase class", () => {
+    let testCase;
 
-    beforeEach(() => {
+    beforeChunk(() => {
         testCase = new TestCase("test case");
     });
 
-    scope("instance", () => {
+    test("instance", () => {
         chunk("duration is zero", () => {
             expect(testCase.duration).to.be.equal(0);
         });
@@ -23,7 +23,7 @@ test("TestCase class", () => {
         });
     });
 
-    scope(".hasFailedParams()", () => {
+    test(".hasFailedParams()", () => {
         chunk("returns true", () => {
             testCase.failedParams = [{ a: 1 }];
             expect(testCase.hasFailedParams()).to.be.true;
@@ -36,7 +36,7 @@ test("TestCase class", () => {
         });
     });
 
-    scope(".start()", () => {
+    test(".start()", () => {
 
         chunk("starts test case", () => {
             expect(testCase._startTime).to.not.exist;
@@ -51,7 +51,7 @@ test("TestCase class", () => {
         });
     });
 
-    scope(".end()", () => {
+    test(".end()", () => {
 
         chunk("ends test case", () => {
             testCase.start();
@@ -66,7 +66,7 @@ test("TestCase class", () => {
         });
     });
 
-    scope(".reset()", () => {
+    test(".reset()", () => {
 
         chunk("resets test case", () => {
             testCase.reset();
@@ -80,9 +80,9 @@ test("TestCase class", () => {
         });
     });
 
-    scope(".addFailedParams()", () => {
+    test(".addFailedParams()", () => {
 
-        beforeEach(() => {
+        beforeChunk(() => {
             testCase.addFailedParams({ lang: "ru" });
         });
 
