@@ -165,6 +165,10 @@ require("glace-core").run().then(errCode => {
 });
 ```
 
+## Tests coverage
+
+Please see <a href="tests-cover/lcov-report/index.html" target="_blank">here</a>
+
 ## Guidelines
 
 ### How to retry tests or chunks
