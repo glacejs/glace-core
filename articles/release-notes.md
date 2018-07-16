@@ -1,3 +1,7 @@
+### v1.6.6
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/61d2f4c73326977882c1140f13dab3c717ce861a) bug to create logs folder synchronously.
+
 ### v1.6.5
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/017ae40354d1f14b6ed7bc0566b1aaf6d2a660d0) bug that test, scope and suite names weren't defined precisely.
