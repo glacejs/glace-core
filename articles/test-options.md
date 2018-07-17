@@ -13,7 +13,7 @@ test("My test", { skip: true }, () => {
 ```
 
 ```javascript
-test("My test", { skip: true, skipReason: "Opened bug http://tracker.com/bugs/121" }, () => {
+test("My test", { skip: "Opened bug http://tracker.com/bugs/121" }, () => {
     chunk(() => {
         // payload
     });

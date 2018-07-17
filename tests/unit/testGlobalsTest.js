@@ -158,7 +158,7 @@ suite("globals/test", () => {
         });
 
         chunk("skips with reason", () => {
-            baseTest("my test", { skip: true, skipReason: "some bug" }, () => {});
+            baseTest("my test", { skip: "some bug" }, () => {});
             expect(conf.test.cases[0].rawInfo[0]).to.be.equal("some bug");
         });
 
