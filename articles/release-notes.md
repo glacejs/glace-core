@@ -1,3 +1,8 @@
+### v1.6.8
+
+- [Work](https://github.com/glacejs/glace-core/commit/627fed6c13bf644b44fc1fb696c2d4aefbf48875#diff-2acae7e31165eb694193d65d70cbd7b5R88) around windows console gray ascii color problem.
+- [Fixed](https://github.com/glacejs/glace-core/commit/627fed6c13bf644b44fc1fb696c2d4aefbf48875#diff-8a9b00c5521f6548b48bfcb39bcf961bR95) bug with `undefined` skip reason.
+
 ### v1.6.7
 
 - [Removed](https://github.com/glacejs/glace-core/commit/468f1fdd42ce6529ccda7eb74037ff0eba052402) redundant test option `skipReason`.
