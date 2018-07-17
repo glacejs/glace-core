@@ -1,3 +1,7 @@
+### v1.6.7
+
+- [Removed](https://github.com/glacejs/glace-core/commit/468f1fdd42ce6529ccda7eb74037ff0eba052402) redundant test option `skipReason`.
+
 ### v1.6.6
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/61d2f4c73326977882c1140f13dab3c717ce861a) bug to create logs folder synchronously.
