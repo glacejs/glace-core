@@ -2,7 +2,7 @@
 
 const TestCase = rewire("../../lib/testing").TestCase;
 
-suite("TestCase class", () => {
+suite("TestCase", () => {
     let testCase;
 
     beforeChunk(() => {
@@ -10,6 +10,7 @@ suite("TestCase class", () => {
     });
 
     test("instance", () => {
+
         chunk("duration is zero", () => {
             expect(testCase.duration).to.be.equal(0);
         });
@@ -24,6 +25,7 @@ suite("TestCase class", () => {
     });
 
     test(".hasFailedParams()", () => {
+
         chunk("returns true", () => {
             testCase.failedParams = [{ a: 1 }];
             expect(testCase.hasFailedParams()).to.be.true;
@@ -101,6 +103,51 @@ suite("TestCase class", () => {
             testCase.addFailedParams({ lang: "en" });
             expect(testCase.failedParams).has.length(2);
             expect(testCase.failedParams[1].lang).to.be.equal("en");
+        });
+    });
+
+    test(".addError()", () => {
+
+        chunk(() => {
+            testCase.addError("my error");
+            expect(testCase.errors).to.have.length(1);
+            expect(testCase.errors[0]).to.be.equal("my error");
+        });
+    });
+
+    test(".addScreenshot()", () => {
+
+        chunk(() => {
+            testCase.addScreenshot("/path/to/my/screen");
+            expect(testCase.screenshots).to.have.length(1);
+            expect(testCase.screenshots[0]).to.be.equal("/path/to/my/screen");
+        });
+    });
+
+    test(".addVideo()", () => {
+
+        chunk(() => {
+            testCase.addVideo("/path/to/my/video");
+            expect(testCase.videos).to.have.length(1);
+            expect(testCase.videos[0]).to.be.equal("/path/to/my/video");
+        });
+    });
+
+    test(".addChunk()", () => {
+
+        chunk(() => {
+            testCase.addChunk("my chunk");
+            expect(testCase.chunks).to.have.length(1);
+            expect(testCase.chunks[0]).to.be.equal("my chunk");
+        });
+    });
+
+    test(".addDetails()", () => {
+
+        chunk(() => {
+            testCase.addDetails("my details");
+            expect(testCase.rawInfo).to.have.length(1);
+            expect(testCase.rawInfo[0]).to.be.equal("my details");
         });
     });
 });
