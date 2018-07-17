@@ -113,55 +113,55 @@
  * @module
  */
 
-var util = require("util");
+const util = require("util");
 
 require("colors");
-var _ = require("lodash");
-var expect = require("chai").expect;
-var highlight = require("cli-highlight").highlight;
-var Testrail = require("testrail-api");
-var U = require("glace-utils");
+const _ = require("lodash");
+const expect = require("chai").expect;
+const highlight = require("cli-highlight").highlight;
+const Testrail = require("testrail-api");
+const U = require("glace-utils");
 
-var classifier = require("./classifier")();
-var plugins = require("./plugins");
+const classifier = require("./classifier")();
+const plugins = require("./plugins");
 
-var d = U.switchColor();
-var self = module.exports;
+const d = U.switchColor();
+const self = module.exports;
 
-var all_steps = [];
+const all_steps = [];
 all_steps.isFilled = false;
 
 self.listSteps = (filter, namesOnly) => {
     namesOnly = namesOnly || false;
 
-    global.SS || load();
+    global.$ || global.$$ || global.SS || load();
 
-    var steps = [];
-    for (var key in SS) {
+    let steps = [];
+    for (const key in $) {
         steps.push(key);
     };
 
     steps = _.union(
         steps,
-        Object.getOwnPropertyNames(SS),
-        Object.getOwnPropertyNames(Object.getPrototypeOf(SS))
+        Object.getOwnPropertyNames($),
+        Object.getOwnPropertyNames(Object.getPrototypeOf($))
     ).sort()
         .filter(i => !i.startsWith("_"))
         .filter(i => /^\w+$/.test(i))
         .filter(i => /^\D/.test(i));
 
-    var filtered_steps = [];
+    let filtered_steps = [];
 
-    for (var s of steps) {
+    for (const s of steps) {
         if (all_steps.isFilled &amp;&amp; !filter) break;
 
-        var func = SS[s];
+        const func = $[s];
 
         if (!util.isFunction(func)) continue;
 
-        var doc = getDoc(func);
+        const doc = getDoc(func);
 
-        var tmp = {
+        const tmp = {
             name: s,
             description: `  ${func_desc(func)}`,
             doc: doc,
@@ -193,8 +193,8 @@ self.listSteps = (filter, namesOnly) => {
             classifier.getClassifications(filter));
     }
 
-    var i = 0;
-    for (s of (filter ? filtered_steps : all_steps)) {
+    let i = 0;
+    for (const s of (filter ? filtered_steps : all_steps)) {
         console.log(d(`${++i}. ${s.name}:`));
         console.log(d(s.description));
         if (s.doc) console.log(highlight(s.doc, { language: "js" }));
@@ -205,13 +205,23 @@ self.listSteps = (filter, namesOnly) => {
     };
 };
 
+/**
+ * Print list of implemented test cases.
+ *
+ * &lt;img src="./list_tests.gif" title="listTests example" />
+ *
+ * @memberOf module:tools
+ * @name listTests
+ * @function
+ * @arg {string} filter - String chunk to filter test cases.
+ */
 self.listTests = filter => {
     load();
 
-    var conf = require("./config");
+    const conf = require("./config");
 
-    var i = 0;
-    for (var testCase of conf.test.cases) {
+    let i = 0;
+    for (const testCase of conf.test.cases) {
         if (!U.textContains(testCase.name, filter)) continue;
         console.log(d(`${++i}. ${testCase.name}`));
     };
@@ -233,10 +243,10 @@ self.listPlugins = () => {
 };
 
 self.checkTestrail = cb => {
-    var noErrors = true;
-    var conf = require("./config");
+    let noErrors = true;
+    const conf = require("./config");
 
-    for (var opt in conf.testrail) {
+    for (const opt in conf.testrail) {
         expect(conf.testrail[opt],
             `TestRail option '${opt}' isn't specified in config`)
             .to.exist;
@@ -245,7 +255,7 @@ self.checkTestrail = cb => {
     load();
 
     console.log("TestRail connecting...".yellow);
-    var testrail = new Testrail({
+    const testrail = new Testrail({
         host: conf.testrail.host,
         user: conf.testrail.user,
         password: conf.testrail.token });
@@ -261,8 +271,8 @@ self.checkTestrail = cb => {
                 return;
             }
 
-            var t;
-            var testrailNames = [], testrailDups = [];
+            let t;
+            let testrailNames = [], testrailDups = [];
 
             cases.forEach(t => {
                 if (testrailNames.includes(t.title)) {
@@ -282,9 +292,9 @@ self.checkTestrail = cb => {
                 }
             }
 
-            var testNames = conf.test.cases.map(t => t.name);
-            var absentTests = _.difference(testrailNames, testNames);
-            var absentCases = _.difference(testNames, testrailNames);
+            const testNames = conf.test.cases.map(t => t.name);
+            const absentTests = _.difference(testrailNames, testNames);
+            const absentCases = _.difference(testNames, testrailNames);
 
             if (absentTests.length) {
                 noErrors = false;
@@ -317,11 +327,11 @@ self.listFixtures = (filter, namesOnly) => {
 
     load();
 
-    var i = 0;
-    for (var fx in global) {
+    let i = 0;
+    for (const fx in global) {
         if (!fx.startsWith("fx")) continue;
 
-        var doc = getDoc(global[fx]);
+        const doc = getDoc(global[fx]);
 
         if (namesOnly) {
             if (!U.textContains(fx, filter)) continue;
@@ -341,20 +351,20 @@ self.listFixtures = (filter, namesOnly) => {
     };
 };
 
-var getRelevant = (all, filtered, classified) => {
+const getRelevant = (all, filtered, classified) => {
     if (classified.map(i => i.value).reduce((j, i) => j === i ? j : NaN)) {
         return filtered;
     }
 
     classified = classified.slice(0, 3);
 
-    var result = [];
+    const result = [];
 
-    for (var cls of classified) {
+    for (const cls of classified) {
         result.push(getStep(all, cls.label));
     };
 
-    for (var f of filtered) {
+    for (const f of filtered) {
         if (getStep(result, f.name)) continue;
         result.push(f);
     };
@@ -362,15 +372,15 @@ var getRelevant = (all, filtered, classified) => {
     return result.reverse();
 };
 
-var getStep = (bucket, name) => {
-    for (var b of bucket) {
+const getStep = (bucket, name) => {
+    for (const b of bucket) {
         if (b.name === name) return b;
     }
     return null;
 };
 
-var getDoc = func => {
-    var doc = func
+const getDoc = func => {
+    const doc = func
         .__doc__
         .split("\n")
         .map(i => i.trim())
@@ -381,7 +391,7 @@ var getDoc = func => {
     return `  /**\n${doc}\n   */`;
 };
 
-var load = () => {
+const load = () => {
     global.before = () => {};
     global.after = () => {};
     global.beforeEach = () => {};
@@ -398,7 +408,7 @@ var load = () => {
     require("./loader");
 };
 
-var func_desc = func => {
+const func_desc = func => {
     return func.toString().replace("\n", " ").split(/\) *\{/)[0] + ") {...}";
 };
 </pre>
@@ -446,7 +456,7 @@ var func_desc = func => {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-07-16T21:03:13+03:00
+		on 2018-07-17T07:21:14+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

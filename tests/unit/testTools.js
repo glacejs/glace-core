@@ -3,6 +3,16 @@
 const tools = rewire("../../lib/tools");
 
 suite("tools", () => {
+    let load;
+
+    beforeChunk(() => {
+        load = sinon.spy();
+        tools.__set__("load", load);
+    });
+
+    afterChunk(() => {
+        tools.__reset__();
+    });
 
     test("listTests()", () => {
 
@@ -14,6 +24,7 @@ suite("tools", () => {
             CONF.test.cases = [];
 
             tools.listTests();
+            expect(load).to.be.calledOnce;
             expect(console.log).to.be.calledOnce;
             expect(console.log.args[0][0]).to.include("No tests are found");
 
