@@ -155,6 +155,7 @@ suite("globals/test", () => {
             baseTest("my test", { skip: true }, () => {});
             expect(testFunc).to.not.be.called;
             expect(conf.test.cases[0].status).to.be.equal("skipped");
+            expect(conf.test.cases[0].rawInfo).to.be.empty;
         });
 
         chunk("skips with reason", () => {
