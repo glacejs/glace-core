@@ -1,3 +1,7 @@
+### v1.6.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/48dd4ca3a8ec5e2e8a713b71eeef521f69343035) bug with broken allure and testrail reporter after mocha suite title patching.
+
 ### v1.6.8
 
 - [Work](https://github.com/glacejs/glace-core/commit/627fed6c13bf644b44fc1fb696c2d4aefbf48875#diff-2acae7e31165eb694193d65d70cbd7b5R88) around windows console gray ascii color problem.
