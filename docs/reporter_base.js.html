@@ -114,29 +114,29 @@
  * @arg {object} runner - `MochaJS` runner.
  */
 
-var _ = require("lodash");
-var fs = require("fs");
-var util = require("util");
+const fs = require("fs");
+const util = require("util");
 
-var MochaReporter = require("mocha").reporters.base;
-var U = require("glace-utils");
-var LOG = U.logger;
+const _ = require("lodash");
+const MochaReporter = require("mocha").reporters.base;
+const U = require("glace-utils");
+const LOG = U.logger;
 
-var CONF = require("../config");
-var TestCase = require("../testing").TestCase;
+const CONF = require("../config");
+const TestCase = require("../testing").TestCase;
 /**
  * Registered reporters.
  *
  * @type {object[]}
  */
-var reporters = [];
-var sessErrsNum = 0;
+let reporters = [];
+let sessErrsNum = 0; // number of errors happened outside of test cases
 
-var GlaceReporter = function (runner) {
+const GlaceReporter = function (runner) {
     MochaReporter.call(this, runner);
 
     runner.on("start", () => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.start) reporter.start();
         }
     });
@@ -151,7 +151,7 @@ var GlaceReporter = function (runner) {
             U.clearEmptyFolders(CONF.report.dir);
         }
 
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.end) reporter.end();
         }
     });
@@ -163,7 +163,7 @@ var GlaceReporter = function (runner) {
             test: "test",
         }[mochaSuite.title.type];
 
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter[methodName]) reporter[methodName](mochaSuite);
         }
     });
@@ -175,31 +175,31 @@ var GlaceReporter = function (runner) {
             test: "testEnd",
         }[mochaSuite.title.type];
 
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter[methodName]) reporter[methodName](mochaSuite);
         }
     });
 
     runner.on("test", mochaTest => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.chunk) reporter.chunk(mochaTest);
         }
     });
 
     runner.on("test end", mochaTest => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.chunkEnd) reporter.chunkEnd(mochaTest);
         }
     });
 
     runner.on("hook", mochaHook => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.hook) reporter.hook(mochaHook);
         }
     });
 
     runner.on("hook end", mochaHook => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.hookEnd) reporter.hookEnd(mochaHook);
         }
     });
@@ -210,15 +210,15 @@ var GlaceReporter = function (runner) {
             CONF.test.curCase.skipChunk = null;
         }
 
-        var method = mochaTest.state === "skipped" ? "skip" : "pass";
-        for (var reporter of reporters) {
+        const method = mochaTest.state === "skipped" ? "skip" : "pass";
+        for (const reporter of reporters) {
             if (reporter[method]) reporter[method](mochaTest);
         }
     });
 
     runner.on("fail", (mochaTest, err) => {
         if (CONF.test.curCase) {
-            var errMsg = mochaTest.title;
+            let errMsg = mochaTest.title;
 
             if (!_.isEmpty(CONF.test.curCase.testParams)) {
                 errMsg += "\n" + util.format(CONF.test.curCase.testParams);
@@ -241,7 +241,7 @@ var GlaceReporter = function (runner) {
             sessErrsNum++;
         }
 
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.fail) reporter.fail(mochaTest, err);
         }
 
@@ -252,11 +252,12 @@ var GlaceReporter = function (runner) {
     });
 
     runner.on("pending", mochaTest => {
-        for (var reporter of reporters) {
+        for (const reporter of reporters) {
             if (reporter.pending) reporter.pending(mochaTest);
         }
     });
 };
+
 util.inherits(GlaceReporter, MochaReporter);
 module.exports = GlaceReporter;
 /**
@@ -268,7 +269,7 @@ module.exports = GlaceReporter;
  * @arg {function} fn - Finalizator.
  */
 GlaceReporter.prototype.done = function (failures, fn) {
-    var prms = Promise.resolve();
+    let prms = Promise.resolve();
     reporters.forEach(reporter => {
         if (reporter.done) {
             prms = prms
@@ -286,7 +287,7 @@ GlaceReporter.prototype.done = function (failures, fn) {
  * @arg {...object} reporters - Sequence of reporters to register.
  */
 GlaceReporter.register = function () {
-    for (var reporter of arguments) {
+    for (const reporter of arguments) {
         if (!reporters.includes(reporter)) {
             reporters.push(reporter);
         }
@@ -347,7 +348,7 @@ GlaceReporter.remove = function () {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-07-19T08:21:25+03:00
+		on 2018-07-20T08:08:29+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
