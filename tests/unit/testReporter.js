@@ -1,57 +1,65 @@
 "use strict";
 
-test("reporting system", () => {
-    var reporters;
-    var testrail = CONF.testrail;
-    var xunit = CONF.xunit;
+let reporter;
 
-    var cleaner = () => {
-        var modules = [
-            "../../lib/plugins",
-            "../../lib/reporter",
-            "../../lib/reporter/base",
-        ];
-        for (var mod of modules) {
-            delete require.cache[require.resolve(mod)];
-        };
-        CONF.testrail = testrail;
-        CONF.xunit = xunit;
-    };
+suite("reporter", () => {
 
-    beforeChunk(() => {
-        CONF.testrail = { use: false };
-        CONF.xunit = { use: false };
-        reporters = [];
-        require("../../lib/reporter/base").register = r => reporters.push(r);
+    before(() => {
+        CONF.__testmode = true;
+        reporter = rewire("../../lib/reporter");
     });
 
-    before(cleaner);
-    afterChunk(cleaner);
-
-    chunk("loads stdout reporter by default", () => {
-        require("../../lib/reporter");
-        expect(reporters).to.have.lengthOf(1);
+    after(() => {
+        CONF.__testmode = false;
     });
 
-    chunk("loads testrail reporter if option is set", () => {
-        CONF.testrail = { use: true };
-
-        require("../../lib/reporter");
-        expect(reporters).to.have.lengthOf(2);
+    afterChunk(() => {
+        reporter.__reset__();
     });
 
-    chunk("loads xunit reporter if option is set", () => {
-        CONF.xunit = { use: true };
+    test("import", () => {
+        let base, plugins, require_;
 
-        require("../../lib/reporter");
-        expect(reporters).to.have.lengthOf(2);
-    });
+        beforeChunk(() => {
+            base = { register: sinon.spy() };
+            reporter.__set__("base", base);
 
-    chunk("loads plugin reporters if there are", () => {
-        require("../../lib/plugins").getModules = sinon.stub().returns(["dummy-reporter"]);
-        require("../../lib/reporter");
+            require_ = o => o;
+            reporter.__set__("require", require_);
 
-        expect(reporters).to.have.lengthOf(2);
-        expect(reporters[1]).to.be.equal("dummy-reporter");
+            plugins = { getModules: sinon.stub().returns([]) };
+            reporter.__set__("plugins", plugins);
+        });
+
+        chunk("activates default reporter", () => {
+            CONF.testrail.use = false;
+            CONF.xunit.use = false;
+            CONF.allure.use = false;
+
+            reporter();
+            expect(base.register).to.be.calledOnce;
+            expect(base.register.args[0][0]).to.be.equal("./stdout");
+        });
+
+        chunk("activates optional reporters", () => {
+            CONF.testrail.use = true;
+            CONF.xunit.use = true;
+            CONF.allure.use = true;
+
+            reporter();
+            expect(base.register.args[1][0]).to.be.equal("./testrail");
+            expect(base.register.args[2][0]).to.be.equal("./xunit");
+            expect(base.register.args[3][0]).to.be.equal("./allure");
+        });
+
+        chunk("activates plugin reporters", () => {
+            CONF.testrail.use = false;
+            CONF.xunit.use = false;
+            CONF.allure.use = false;
+            plugins.getModules.returns(["my-reporter"]);
+
+            reporter();
+            expect(base.register.args[1][0]).to.be.equal("my-reporter");
+        });
     });
 });
