@@ -1,3 +1,7 @@
+### v1.7.0
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/8ee3f7c332f1c393ab8580926d8ef81ecad5efa6) typos in help file.
+
 ### v1.6.9
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/48dd4ca3a8ec5e2e8a713b71eeef521f69343035) bug with broken allure and testrail reporter after mocha suite title patching.
