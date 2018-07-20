@@ -210,4 +210,108 @@ suite("reporter/base", () => {
             expect(reporters[0].testEnd).to.not.be.called;
         });
     });
+
+    test("on test", () => {
+        let onTest;
+
+        beforeChunk(() => {
+            onTest = methods["test"];
+        });
+
+        chunk("does nothing if no reporters are registered", () => {
+            GlaceReporter.__set__("reporters", []);
+            onTest();
+        });
+
+        chunk("does nothing if reporters don't have chunk method", () => {
+            GlaceReporter.__set__("reporters", [{}]);
+            onTest();
+        });
+
+        chunk("calls reporters' chunk method if it exists", () => {
+            const reporters = [{ chunk: sinon.spy() }];
+            GlaceReporter.__set__("reporters", reporters);
+            onTest("mochaTest");
+            expect(reporters[0].chunk).to.be.calledOnce;
+            expect(reporters[0].chunk.args[0][0]).to.be.equal("mochaTest");
+        });
+    });
+
+    test("on test end", () => {
+        let onTestEnd;
+
+        beforeChunk(() => {
+            onTestEnd = methods["test end"];
+        });
+
+        chunk("does nothing if no reporters are registered", () => {
+            GlaceReporter.__set__("reporters", []);
+            onTestEnd();
+        });
+
+        chunk("does nothing if reporters don't have chunkEnd method", () => {
+            GlaceReporter.__set__("reporters", [{}]);
+            onTestEnd();
+        });
+
+        chunk("calls reporters' chunkEnd method if it exists", () => {
+            const reporters = [{ chunkEnd: sinon.spy() }];
+            GlaceReporter.__set__("reporters", reporters);
+            onTestEnd("mochaTest");
+            expect(reporters[0].chunkEnd).to.be.calledOnce;
+            expect(reporters[0].chunkEnd.args[0][0]).to.be.equal("mochaTest");
+        });
+    });
+
+    test("on hook", () => {
+        let onHook;
+
+        beforeChunk(() => {
+            onHook = methods["hook"];
+        });
+
+        chunk("does nothing if no reporters are registered", () => {
+            GlaceReporter.__set__("reporters", []);
+            onHook();
+        });
+
+        chunk("does nothing if reporters don't have hook method", () => {
+            GlaceReporter.__set__("reporters", [{}]);
+            onHook();
+        });
+
+        chunk("calls reporters' hook method if it exists", () => {
+            const reporters = [{ hook: sinon.spy() }];
+            GlaceReporter.__set__("reporters", reporters);
+            onHook("mochaHook");
+            expect(reporters[0].hook).to.be.calledOnce;
+            expect(reporters[0].hook.args[0][0]).to.be.equal("mochaHook");
+        });
+    });
+
+    test("on hook end", () => {
+        let onHookEnd;
+
+        beforeChunk(() => {
+            onHookEnd = methods["hook end"];
+        });
+
+        chunk("does nothing if no reporters are registered", () => {
+            GlaceReporter.__set__("reporters", []);
+            onHookEnd();
+        });
+
+        chunk("does nothing if reporters don't have hookEnd method", () => {
+            GlaceReporter.__set__("reporters", [{}]);
+            onHookEnd();
+        });
+
+        chunk("calls reporters' hookEnd method if it exists", () => {
+            const reporters = [{ hookEnd: sinon.spy() }];
+            GlaceReporter.__set__("reporters", reporters);
+            onHookEnd("mochaHook");
+            expect(reporters[0].hookEnd).to.be.calledOnce;
+            expect(reporters[0].hookEnd.args[0][0]).to.be.equal("mochaHook");
+        });
+    });
 });
