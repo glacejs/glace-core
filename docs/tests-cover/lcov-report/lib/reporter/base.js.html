@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">59% </span>
+        <span class="strong">63.73% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>59/100</span>
+        <span class='fraction'>65/102</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42% </span>
+        <span class="strong">46% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>21/50</span>
+        <span class='fraction'>23/50</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/20</span>
+        <span class='fraction'>12/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.47% </span>
+        <span class="strong">62.92% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>50/87</span>
+        <span class='fraction'>56/89</span>
       </div>
     </div>
     <p class="quiet">
@@ -244,7 +244,9 @@
 <a name='L196'></a><a href='#L196'>196</a>
 <a name='L197'></a><a href='#L197'>197</a>
 <a name='L198'></a><a href='#L198'>198</a>
-<a name='L199'></a><a href='#L199'>199</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -426,9 +428,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -440,7 +442,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 /**
@@ -614,7 +618,7 @@ GlaceReporter.prototype.done = <span class="fstat-no" title="function not covere
                 .c<span class="fstat-no" title="function not covered" >at</span>ch(<span class="cstat-no" title="statement not covered" >e =&gt; LOG.erro</span>r(e));
         }
     });
-<span class="cstat-no" title="statement not covered" >    prms.then(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >fn(failures))</span>;</span>
+<span class="cstat-no" title="statement not covered" >    return prms.then(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >fn(failures))</span>;</span>
 };
 /**
  * Registers reporters if they are not.
@@ -623,10 +627,10 @@ GlaceReporter.prototype.done = <span class="fstat-no" title="function not covere
  * @static
  * @arg {...object} reporters - Sequence of reporters to register.
  */
-GlaceReporter.register = <span class="fstat-no" title="function not covered" >fu</span>nction () {
-<span class="cstat-no" title="statement not covered" >    for (const reporter of arguments) {</span>
-<span class="cstat-no" title="statement not covered" >        if (!reporters.includes(reporter)) {</span>
-<span class="cstat-no" title="statement not covered" >            reporters.push(reporter);</span>
+GlaceReporter.register = function () {
+    for (const reporter of arguments) {
+        if (!reporters.includes(reporter)) {
+            reporters.push(reporter);
         }
     }
 };
@@ -637,8 +641,10 @@ GlaceReporter.register = <span class="fstat-no" title="function not covered" >fu
  * @static
  * @arg {...object} reporters - Sequence of reporters to remove.
  */
-GlaceReporter.remove = <span class="fstat-no" title="function not covered" >fu</span>nction () {
-<span class="cstat-no" title="statement not covered" >    reporters = _.without.apply(_, reporters, arguments);</span>
+GlaceReporter.remove = function () {
+    const args = Array.from(arguments);
+    args.unshift(reporters);
+    reporters = _.without.apply(_, args);
 };
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -646,7 +652,7 @@ GlaceReporter.remove = <span class="fstat-no" title="function not covered" >fu</
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 21 2018 08:49:42 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 21 2018 21:53:45 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

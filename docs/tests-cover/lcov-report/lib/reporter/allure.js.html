@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/63</span>
+        <span class='fraction'>18/63</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">22.22% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>4/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.26% </span>
+        <span class="strong">31.58% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/19</span>
+        <span class='fraction'>6/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.98% </span>
+        <span class="strong">30.19% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/53</span>
+        <span class='fraction'>16/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -213,25 +213,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,26 +337,26 @@ module.exports = {
 <span class="cstat-no" title="statement not covered" >        console.log(reportMsg.yellow);</span>
     },
 &nbsp;
-    suite: <span class="fstat-no" title="function not covered" >su</span>ite =&gt; {
-<span class="cstat-no" title="statement not covered" >        allure.startSuite(suite.title);</span>
+    suite: suite =&gt; {
+        allure.startSuite(suite.title);
     },
 &nbsp;
-    suiteEnd: <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        allure.endSuite();</span>
+    suiteEnd: () =&gt; {
+        allure.endSuite();
     },
 &nbsp;
-    scope: <span class="fstat-no" title="function not covered" >sc</span>ope =&gt; {
-<span class="cstat-no" title="statement not covered" >        if (!allure.isTestStarted()) <span class="cstat-no" title="statement not covered" >return;</span></span>
-<span class="cstat-no" title="statement not covered" >        allure.startStep(scope.title);</span>
-<span class="cstat-no" title="statement not covered" >        allure.getCurrentSuite().currentStep.isScope = true; </span>// small hack
+    scope: scope =&gt; {
+        if (!allure.isTestStarted()) return;
+        allure.startStep(scope.title);
+        allure.getCurrentSuite().currentStep.isScope = true; // small hack
     },
 &nbsp;
-    scopeEnd: <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        if (allure.isTestStarted()) <span class="cstat-no" title="statement not covered" >allure.endStep();</span></span>
+    scopeEnd: () =&gt; {
+        if (allure.isTestStarted()) allure.endStep();
     },
 &nbsp;
-    test: <span class="fstat-no" title="function not covered" >te</span>st =&gt; {
-<span class="cstat-no" title="statement not covered" >        allure.startCase(test.title);</span>
+    test: test =&gt; {
+        allure.startCase(test.title);
     },
 &nbsp;
     testEnd: <span class="fstat-no" title="function not covered" >te</span>st =&gt; {
@@ -427,7 +427,7 @@ const getErrMsgs <span class="fstat-no" title="function not covered" >= </span>e
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 21 2018 08:49:42 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 21 2018 21:53:45 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
