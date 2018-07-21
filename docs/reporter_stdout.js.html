@@ -112,43 +112,43 @@
  * @module
  */
 
-var fs = require("fs");
-var path = require("path");
-var util = require("util");
+const fs = require("fs");
+const path = require("path");
+const util = require("util");
 
-var _ = require("lodash");
-var colors = require("colors");
-var fse = require("fs-extra");
-var LOG = require("glace-utils").logger;
-var MochaReporter = require("mocha").reporters.base;
-var prettyms = require("pretty-ms");
+const _ = require("lodash");
+const colors = require("colors");
+const fse = require("fs-extra");
+const LOG = require("glace-utils").logger;
+const MochaReporter = require("mocha").reporters.base;
+const prettyms = require("pretty-ms");
 
-var CONF = require("../config");
-var TestCase = require("../testing").TestCase;
+const CONF = require("../config");
+const TestCase = require("../testing").TestCase;
 
-var sessionErrors = [];
+const sessionErrors = [];
 
-var indents = 0;
-var indent = () => Array(indents).join("  ");
+let indents = 0;
+const indent = () => Array(indents).join("  ");
 
 fse.mkdirsSync(CONF.report.logsDir);
-var report = fs.createWriteStream(
+
+const report = fs.createWriteStream(
     path.resolve(CONF.report.logsDir, "stdout.log"), { flags : "w" });
 
-var stdout = function() {
+const stdout = function() {
     report.write(colors.strip(util.format.apply(util, arguments)) + "\n");
     console.log.apply(console, arguments);
 };
 
-var epilogue = () => {
-    var msg,
-        testCase,
-        indent = "  ",
+const epilogue = () => {
+    let msg;
+    const indent = "  ",
         passedTests = [],
         failedTests = [],
         skippedTests = [];
 
-    for (testCase of CONF.test.cases) {
+    for (const testCase of CONF.test.cases) {
         if (testCase.status === TestCase.FAILED) {
             failedTests.push(testCase);
         }
@@ -172,13 +172,13 @@ var epilogue = () => {
                 String(failedTests.length).bold + " " + msg).red);
     }
 
-    var execChunks = CONF.test.cases.reduce((a, b) => a + b.chunks.length, 0);
+    const execChunks = CONF.test.cases.reduce((a, b) => a + b.chunks.length, 0);
     if (execChunks !== 0) {
         msg = "executed chunk" + (execChunks === 1 ? "" : "s");
         stdout((indent + execChunks + " " + msg).white);
     }
 
-    var execTime = CONF.test.cases
+    let execTime = CONF.test.cases
         .map(t => t.duration)
         .reduce((a, b) => a + b, 0);
 
@@ -194,7 +194,7 @@ var epilogue = () => {
         // HACK https://github.com/glacejs/glace-core/issues/136
         stdout(indent + "# ".gray + String(skippedTests.length).gray.bold + " " + msg.gray);
 
-        for (var skip of skippedTests) {
+        for (const skip of skippedTests) {
             msg = `* '${skip.name}'`;
             if (skip.rawInfo[0]) {
                 msg += " - " + skip.rawInfo[0].bold;
@@ -212,17 +212,17 @@ var epilogue = () => {
     };
 
     if (failedTests.length) {
-        var failedTestsJson = [];
+        const failedTestsJson = [];
         stdout();
         stdout("TEST FAILURES:".bold);
-        for (testCase of failedTests) {
+        for (const testCase of failedTests) {
             stdout();
             stdout(("test: " + testCase.name).cyan.bold);
-            for(var err of testCase.errors) {
+            for(const err of testCase.errors) {
                 stdout();
                 stdout(err.red.bold);
             }
-            var data = { name: testCase.name };
+            const data = { name: testCase.name };
             if (!_.isEmpty(testCase.failedParams[0])) {
                 data.params = testCase.failedParams;
             }
@@ -240,7 +240,7 @@ var epilogue = () => {
     if (sessionErrors.length) {
         stdout();
         stdout("OUTTEST FAILURES:".bold);
-        for (var error of sessionErrors) {
+        for (const error of sessionErrors) {
             stdout();
             stdout(error.red.bold);
         }
@@ -257,7 +257,7 @@ module.exports = {
     end: () => {
         epilogue();
         stdout();
-        var reportMsg = "Local report is " + CONF.report.dir;
+        const reportMsg = "Local report is " + CONF.report.dir;
         stdout(Array(reportMsg.length + 1).join("-").yellow);
         stdout(reportMsg.yellow);
     },
@@ -341,7 +341,7 @@ module.exports = {
      * @arg {object} chunk - `MochaJS` test.
      */
     pass: chunk => {
-        var msg = indent() + "  " + MochaReporter.symbols.ok + " chunk";
+        let msg = indent() + "  " + MochaReporter.symbols.ok + " chunk";
         if (chunk.title) msg += ": " + chunk.title;
         stdout(msg.green);
     },
@@ -353,7 +353,7 @@ module.exports = {
      * @arg {object} chunk - `MochaJS` test.
      */
     skip: chunk => {
-        var msg = indent() + "  # chunk";
+        let msg = indent() + "  # chunk";
         if (chunk.title) msg += ": " + chunk.title;
         stdout(msg.gray);
     },
@@ -365,7 +365,7 @@ module.exports = {
      * @arg {object} chunk - `MochaJS` test.
      */
     fail: (chunk, err) => {
-        var errMsg;
+        let errMsg;
         if (!CONF.test.curCase) {
             errMsg = chunk.title;
 
@@ -383,7 +383,7 @@ module.exports = {
         } else {
             errMsg = _.last(CONF.test.curCase.errors);
         };
-        var msg = indent() + "  " + MochaReporter.symbols.err + " chunk";
+        let msg = indent() + "  " + MochaReporter.symbols.err + " chunk";
         if (chunk.title) msg += ": " + chunk.title;
         stdout(msg.red);
         if (CONF.report.errorsNow) {
@@ -443,7 +443,7 @@ module.exports = {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-07-20T22:01:01+03:00
+		on 2018-07-21T08:49:32+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
