@@ -314,4 +314,53 @@ suite("reporter/base", () => {
             expect(reporters[0].hookEnd.args[0][0]).to.be.equal("mochaHook");
         });
     });
+
+    test("register()", () => {
+        let reporters;
+
+        beforeChunk(() => {
+            reporters = [];
+            GlaceReporter.__set__("reporters", reporters);
+        });
+
+        chunk("registers reporters if they aren't registered", () => {
+            const reporter1 = new Object();
+            const reporter2 = new Object();
+
+            GlaceReporter.register(reporter1, reporter2);
+            expect(reporters).to.be.eql([reporter1, reporter2]);
+        });
+
+        chunk("doesn't register reporter if it's already registered", () => {
+            const reporter1 = new Object();
+            const reporter2 = new Object();
+            const reporter3 = new Object();
+
+            GlaceReporter.register(reporter1, reporter2);
+            GlaceReporter.register(reporter3, reporter2);
+            expect(reporters).to.be.eql([reporter1, reporter2, reporter3]);
+        });
+    });
+
+    test("remove()", () => {
+        let reporters;
+
+        beforeChunk(() => {
+            reporters = [new Object(), new Object()];
+            GlaceReporter.__set__("reporters", reporters);
+        });
+
+        chunk("removes reporter from reporters", () => {
+            const reporter1 = reporters[0];
+            GlaceReporter.remove(reporter1);
+            reporters = GlaceReporter.__get__("reporters");
+            expect(reporters).to.have.length(1);
+            expect(reporters).to.not.include(reporter1);
+        });
+
+        chunk("does nothing if reporter isn't registered", () => {
+            GlaceReporter.remove(new Object());
+            expect(reporters).to.have.length(2);
+        });
+    });
 });
