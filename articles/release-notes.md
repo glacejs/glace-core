@@ -1,3 +1,7 @@
+### v1.7.2
+
+- [Disable](https://github.com/glacejs/glace-core/commit/e406de3f114f4f6f943b6a2bbb2ee0769f635667) chunk timeout and optional reports on `--debug-on-fail`.
+
 ### v1.7.1
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/b4c318c52af5e6505c589c702d803c6b1a91f464) bug that all reporters are removed if try to remove some one.
