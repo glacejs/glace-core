@@ -77,6 +77,7 @@ suite("config", () => {
             U.config.args.debugOnFail = true;
             config = rewire(CONFIG_PATH);
             expect(config.session.debugOnFail).to.be.true;
+            delete U.config.args.debugOnFail;
         });
 
         chunk("enabled exitOnFail", () => {
