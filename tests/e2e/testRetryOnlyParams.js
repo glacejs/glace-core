@@ -4,7 +4,7 @@ CONF.test.languages = ["en", "ru", "ee"];
 
 var i = 0;
 
-test("retry only failed params", ctx => {
+test("retry only failed params", () => {
 
     before(() => {
         i++;
@@ -13,7 +13,7 @@ test("retry only failed params", ctx => {
         }
     });
 
-    forEachLanguage(ctx, lang => {
+    forEachLanguage(lang => {
         chunk(() => {
             if (lang === "ru" && i < 4) {
                 throw new Error("Boom!");

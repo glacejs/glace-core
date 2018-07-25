@@ -3,24 +3,29 @@
 var i = 0,
     j = 0;
 
-test("It should be passed one time", () => {
-    chunk(() => {});
-});
+suite("retry", () => {
 
-test("It should be passed after one retry", () => {
-    chunk(() => {
-        if (i < 1) {
-            i++;
-            throw new Error("BOOM!");
-        };
+    test("It should be passed one time", () => {
+        chunk(() => {});
     });
-});
 
-test ("it should be passed after two retries", () => {
-    chunk(() => {
-        if (j < 2) {
-            j++;
-            throw new Error("BOOM!");
-        };
+    test("It should be passed after one retry", () => {
+        chunk(() => {});
+        chunk(() => {
+            if (i < 1) {
+                i++;
+                throw new Error("BOOM!");
+            };
+        });
+    });
+
+    test ("it should be passed after two retries", () => {
+        chunk(() => {});
+        chunk(() => {
+            if (j < 2) {
+                j++;
+                throw new Error("BOOM!");
+            };
+        });
     });
 });
