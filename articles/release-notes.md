@@ -1,3 +1,7 @@
+### v1.7.4
+
+- [Retry](https://github.com/glacejs/glace-core/commit/0fbb5261e027279a980db14517ce5f734bd4fa0e) only failed chunks.
+
 ### v1.7.3
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/aff28dc279d00dc18ee7f9e4ce898ba52522ffb8) wrong error message in debug mode.
