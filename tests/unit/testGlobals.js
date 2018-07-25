@@ -4,6 +4,7 @@ suite("globals", () => {
     var sandbox = sinon.createSandbox();
 
     beforeChunk(() => {
+        CONF.session.__passedChunkIds = [];
         sandbox.restore();
     });
 
@@ -67,29 +68,29 @@ suite("globals", () => {
             });
 
             chunk("anonymous", () => {
-                var cb = () => {};
+                var cb = () => 1;
                 _chunk(cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("");
                 expect(_chunkCb.args[0][1]).to.be.empty;
-                expect(_chunkCb.args[0][2]).to.be.equal(cb);
+                expect(_chunkCb.args[0][2]()).to.be.equal(1);
             });
 
             chunk("named", () => {
-                var cb = () => {};
+                var cb = () => 1;
                 _chunk("my chunk", cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb.args[0][1]).to.be.empty;
-                expect(_chunkCb.args[0][2]).to.be.equal(cb);
+                expect(_chunkCb.args[0][2]()).to.be.equal(1);
             });
 
             chunk("with options", () => {
-                var cb = () => {};
+                var cb = () => 1;
                 _chunk("my chunk", { retry: 2, timeout: 1}, cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("my chunk");
@@ -97,7 +98,7 @@ suite("globals", () => {
                 expect(_chunkCb.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb.args[0][1]).to.have.property("retry", 2);
                 expect(_chunkCb.args[0][1]).to.have.property("timeout", 1);
-                expect(_chunkCb.args[0][2]).to.be.equal(cb);
+                expect(_chunkCb.args[0][2]()).to.be.equal(1);
             });
         });
 
