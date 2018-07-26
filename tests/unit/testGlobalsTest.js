@@ -86,7 +86,6 @@ suite("globals/test", () => {
             baseTest("my test", test_cb);
             expect(testFunc).to.be.calledOnce;
             const o = testFunc.args[0][0];
-            expect(o.ctxs).to.be.eql([{ lang: "ru" }]);
             expect(o.func).to.be.equal(test_cb);
             expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
@@ -225,23 +224,12 @@ suite("globals/test", () => {
             };
         });
 
-        chunk("use test failed params", () => {
+        chunk(() => {
             beforeCb(o)();
-
-            expect(o.failedParams).to.be.equal("test failed params");
             expect(conf.test.curCase).to.be.equal(o.testCase);
-
-            expect(o.testCase.hasFailedParams).to.be.calledOnce;
             expect(o.testCase.reset).to.be.calledOnce;
             expect(o.testCase.start).to.be.calledOnce;
             expect(setLog).to.be.calledOnce;
-        });
-
-        chunk("use ctx as failed params", () => {
-            o.testCase.hasFailedParams.returns(false);
-            o.ctxs = "context";
-            beforeCb(o)();
-            expect(o.failedParams).to.be.equal("context");
         });
     });
 
@@ -273,7 +261,6 @@ suite("globals/test", () => {
             expect(conf.test.curCase).to.not.exist;
             expect(setLog).to.be.calledOnce;
             expect(o.retries).to.be.equal(0);
-            expect(o.ctxs).to.be.equal("test failed params");
             expect(retryTests).to.have.length(1);
         });
 
@@ -297,30 +284,8 @@ suite("globals/test", () => {
         });
 
         chunk("ends as failed", () => {
-            o.testCase.hasFailedParams.returns(false);
-            o.failedParams = "ctx params";
             afterCb(o)();
-
-            expect(o.ctxs).to.be.equal("ctx params");
             expect(retryTests).to.have.length(1);
-        });
-    });
-
-    test("wrapCb()", () => {
-        let wrapCb, o;
-
-        beforeChunk(() => {
-            wrapCb = test_.__get__("wrapCb");
-            o = {
-                func: sinon.spy(),
-                ctxs: ["ctx"],
-            };
-        });
-
-        chunk(() => {
-            wrapCb(o)();
-            expect(o.func).to.be.calledOnce;
-            expect(o.func.args[0][0]).to.be.equal("ctx");
         });
     });
 

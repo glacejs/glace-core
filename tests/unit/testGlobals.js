@@ -63,42 +63,42 @@ suite("globals", () => {
             beforeChunk(() => {
                 it = sinon.spy();
                 _chunk.__set__("it", it);
-                _chunkCb = sinon.spy((_0, _1, o) => o());
+                _chunkCb = sinon.spy((_0, _1, _2, o) => o());
                 _chunk.__set__("_chunkCb", _chunkCb);
             });
 
             chunk("anonymous", () => {
-                var cb = () => 1;
+                var cb = () => {};
                 _chunk(cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("");
-                expect(_chunkCb.args[0][1]).to.be.empty;
-                expect(_chunkCb.args[0][2]()).to.be.equal(1);
+                expect(_chunkCb.args[0][2]).to.be.empty;
+                expect(_chunkCb.args[0][3]).to.be.equal(cb);
             });
 
             chunk("named", () => {
-                var cb = () => 1;
+                var cb = () => {};
                 _chunk("my chunk", cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("my chunk");
-                expect(_chunkCb.args[0][1]).to.be.empty;
-                expect(_chunkCb.args[0][2]()).to.be.equal(1);
+                expect(_chunkCb.args[0][2]).to.be.empty;
+                expect(_chunkCb.args[0][3]).to.be.equal(cb);
             });
 
             chunk("with options", () => {
-                var cb = () => 1;
+                var cb = () => {};
                 _chunk("my chunk", { retry: 2, timeout: 1}, cb);
                 expect(it).to.be.calledOnce;
                 expect(it.args[0][0]).to.be.equal("my chunk");
                 expect(_chunkCb).to.be.calledOnce;
                 expect(_chunkCb.args[0][0]).to.be.equal("my chunk");
-                expect(_chunkCb.args[0][1]).to.have.property("retry", 2);
-                expect(_chunkCb.args[0][1]).to.have.property("timeout", 1);
-                expect(_chunkCb.args[0][2]()).to.be.equal(1);
+                expect(_chunkCb.args[0][2]).to.have.property("retry", 2);
+                expect(_chunkCb.args[0][2]).to.have.property("timeout", 1);
+                expect(_chunkCb.args[0][3]).to.be.equal(cb);
             });
         });
 
@@ -115,7 +115,7 @@ suite("globals", () => {
             });
 
             chunk("without options", () => {
-                _chunkCb("my super chunk", {}, cb).call(ctx);
+                _chunkCb("my super chunk", 1, {}, cb).call(ctx);
                 expect(CONF.test.curCase.chunks).to.include("my super chunk");
                 expect(cb).to.be.calledOnce;
                 expect(ctx.retries).to.not.be.called;
@@ -123,7 +123,7 @@ suite("globals", () => {
             });
 
             chunk("with options", () => {
-                _chunkCb("my super chunk", { retry: 2, timeout: 1 }, cb).call(ctx);
+                _chunkCb("my super chunk", 1, { retry: 2, timeout: 1 }, cb).call(ctx);
                 expect(CONF.test.curCase.chunks).to.include("my super chunk");
                 expect(cb).to.be.calledOnce;
                 expect(ctx.retries).to.be.calledOnce;
@@ -158,11 +158,10 @@ suite("globals", () => {
                 CONF.test.languages = langs;
             });
 
-            chunk("with ctx", () => {
-                _forEachLanguage({ language: "ru" }, () => {});
+            chunk("with custom name", () => {
+                _forEachLanguage("my name", { language: "ru" }, () => {});
                 expect(_langCb).to.be.calledOnce;
-                expect(_langIntCb).to.be.calledOnce;
-                expect(_langIntCb.args[0][0]).to.equal("ru");
+                expect(_langCb.args[0][0]).to.equal("my name");
             });
 
             chunk("with options", () => {
@@ -175,9 +174,9 @@ suite("globals", () => {
 
             chunk("with fixtures", () => {
                 var fixtures = ["a", "b"];
-                _forEachLanguage({ language: "en" }, null, fixtures, () => {});
+                _forEachLanguage(null, null, fixtures, () => {});
                 expect(_langCb).to.be.calledOnce;
-                expect(_langCb.args[0][0]).to.be.equal(fixtures);
+                expect(_langCb.args[0][1]).to.be.equal(fixtures);
             });
         });
     });
