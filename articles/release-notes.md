@@ -1,3 +1,7 @@
+### v1.7.5
+
+- [Rid](https://github.com/glacejs/glace-core/commit/7bc36a1c12fb1b87330bfd20ccf246224501df0b) of context in failed tests relaunch.
+
 ### v1.7.4
 
 - [Retry](https://github.com/glacejs/glace-core/commit/0fbb5261e027279a980db14517ce5f734bd4fa0e) only failed chunks.
