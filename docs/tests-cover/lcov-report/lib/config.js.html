@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">99.28% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>129/129</span>
+        <span class='fraction'>137/138</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.31% </span>
+        <span class="strong">96.83% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>58/59</span>
+        <span class='fraction'>61/63</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">99.21% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>118/118</span>
+        <span class='fraction'>125/126</span>
       </div>
     </div>
     <p class="quiet">
@@ -310,7 +310,18 @@
 <a name='L262'></a><a href='#L262'>262</a>
 <a name='L263'></a><a href='#L263'>263</a>
 <a name='L264'></a><a href='#L264'>264</a>
-<a name='L265'></a><a href='#L265'>265</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -448,6 +459,12 @@
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
@@ -455,7 +472,6 @@
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-yes">118x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">117x</span>
 <span class="cline-any cline-yes">117x</span>
 <span class="cline-any cline-yes">117x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -509,6 +525,12 @@
 <span class="cline-any cline-yes">115x</span>
 <span class="cline-any cline-yes">115x</span>
 <span class="cline-any cline-yes">115x</span>
+<span class="cline-any cline-yes">115x</span>
+<span class="cline-any cline-yes">65x</span>
+<span class="cline-any cline-yes">127x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">115x</span>
 <span class="cline-any cline-yes">115x</span>
@@ -707,6 +729,12 @@ const args = config.args;
 &nbsp;
 <span class="missing-if-branch" title="else path not taken" >E</span>if (U.config.__testmode) config = {}; // not affect global config in test mode
 &nbsp;
+config.counters = U.defVal(config.counters, {});
+config.counters.testId = 0;
+config.counters.chunkId = 0;
+config.counters.curChunkId = null;
+config.counters.passedChunkIds = [];
+&nbsp;
 config.session = U.defVal(config.session, {});
 const date = new Date();
 config.session.name = U.defVal(args.sessionName, `Session ${date.toLocaleString()}`);
@@ -721,7 +749,6 @@ expect([ "log", "fail", "mocha" ],
     "Invalid `--uncaught` option").include(config.session.uncaughtException);
 if (args.rootConftest) config.session.rootConftest = path.resolve(U.cwd, args.rootConftest);
 if (args.killProcs) config.session.killProcs = U.splitBy(args.killProcs, ",");
-config.session.__passedChunkIds = [];
 &nbsp;
 const get_targets = () =&gt; {
     let tt;
@@ -773,6 +800,12 @@ config.filter.grep = args.g || args.grep;
 config.filter.precise = args.precise || false;
 if (args.include) config.filter.include = tests_filter(args.include);
 if (args.exclude) config.filter.exclude = tests_filter(args.exclude);
+if (config.filter.include) {
+    for (const include of config.filter.include) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!include.passed_chunk_ids) continue;
+<span class="cstat-no" title="statement not covered" >        config.counters.passedChunkIds = config.counters.passedChunkIds.concat(include.passed_chunk_ids);</span>
+    }
+}
 &nbsp;
 config.xunit = U.defVal(config.xunit, {});
 config.xunit.use = U.defVal(args.xunit, false);
@@ -844,7 +877,7 @@ module.exports = config;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 25 2018 19:22:13 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 27 2018 01:00:26 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../prettify.js"></script>

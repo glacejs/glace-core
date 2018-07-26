@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75.86% </span>
+        <span class="strong">62.07% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>22/29</span>
+        <span class='fraction'>18/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.78% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>14/18</span>
+        <span class='fraction'>12/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">16.67% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.48% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>22/27</span>
+        <span class='fraction'>18/27</span>
       </div>
     </div>
     <p class="quiet">
@@ -115,13 +115,11 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,7 +144,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -156,27 +154,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -187,7 +183,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 &nbsp;
 var U = require("glace-utils");
@@ -217,19 +213,19 @@ var CONF = require("../config");
  *     });
  * });
  */
-var forEachLanguage = (ctx, opts, fixtures, func) =&gt; {
+var forEachLanguage = (name, opts, fixtures, func) =&gt; {
 &nbsp;
-    if (ctx instanceof Function) {
-        func = ctx;
-        ctx = {};
+    if (name instanceof Function) {
+        func = name;
+        name = null;
         opts = {};
         fixtures = [];
     }
 &nbsp;
-    if (opts instanceof Function) {
-        func = opts;
-        opts = {};
-        fixtures = [];
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (opts instanceof Function) {
+<span class="cstat-no" title="statement not covered" >        func = opts;</span>
+<span class="cstat-no" title="statement not covered" >        opts = {};</span>
+<span class="cstat-no" title="statement not covered" >        fixtures = [];</span>
     }
 &nbsp;
     if (fixtures instanceof Function) {
@@ -237,18 +233,16 @@ var forEachLanguage = (ctx, opts, fixtures, func) =&gt; {
         fixtures = [];
     }
 &nbsp;
-    ctx = ctx || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    name = name || null;
     opts = opts || {};
     fixtures = fixtures || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
 &nbsp;
-    var languages = ctx.language ? [ctx.language]
-        : (opts.languages || CONF.test.languages);
-&nbsp;
-    languages.forEach(_langCb(fixtures, func));
+    (opts.languages || CONF.test.languages).forEach(_langCb(name, fixtures, func));
 };
 &nbsp;
-var _langCb = <span class="fstat-no" title="function not covered" >(f</span>ixtures, func) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>ng =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    scope(`for language "${lang}"`, <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+var _langCb = <span class="fstat-no" title="function not covered" >(n</span>ame, fixtures, func) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >la</span>ng =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    name = name || "for language";</span>
+<span class="cstat-no" title="statement not covered" >    scope(`${name} "${lang}"`, <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        before(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            if (CONF.test.curCase) {</span>
 <span class="cstat-no" title="statement not covered" >                CONF.test.curCase.testParams.language = lang;</span>
@@ -265,7 +259,7 @@ module.exports = forEachLanguage;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 25 2018 19:22:13 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 27 2018 01:00:26 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
