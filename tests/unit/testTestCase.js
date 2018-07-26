@@ -24,20 +24,6 @@ suite("TestCase", () => {
         });
     });
 
-    test(".hasFailedParams()", () => {
-
-        chunk("returns true", () => {
-            testCase.failedParams = [{ a: 1 }];
-            expect(testCase.hasFailedParams()).to.be.true;
-        });
-
-        chunk("returns false", () => {
-            expect(testCase.hasFailedParams()).to.be.false;
-            testCase.failedParams = [{}];
-            expect(testCase.hasFailedParams()).to.be.false;
-        });
-    });
-
     test(".start()", () => {
 
         chunk("starts test case", () => {
@@ -77,32 +63,7 @@ suite("TestCase", () => {
             expect(testCase.videos).to.be.empty;
             expect(testCase.errors).to.be.empty;
             expect(testCase.rawInfo).to.be.empty;
-            expect(testCase.failedParams).to.be.empty;
             expect(testCase.testParams).to.be.empty;
-        });
-    });
-
-    test(".addFailedParams()", () => {
-
-        beforeChunk(() => {
-            testCase.addFailedParams({ lang: "ru" });
-        });
-
-        chunk("adds failed params if no failed params before", () => {
-            expect(testCase.failedParams).has.length(1);
-            expect(testCase.failedParams[0].lang).to.be.equal("ru");
-        });
-
-        chunk("doesn't add failed params if they are present already", () => {
-            testCase.addFailedParams({ lang: "ru" });
-            expect(testCase.failedParams).has.length(1);
-            expect(testCase.failedParams[0].lang).to.be.equal("ru");
-        });
-
-        chunk("adds failed params if it doesn't match any of already added", () => {
-            testCase.addFailedParams({ lang: "en" });
-            expect(testCase.failedParams).has.length(2);
-            expect(testCase.failedParams[1].lang).to.be.equal("en");
         });
     });
 

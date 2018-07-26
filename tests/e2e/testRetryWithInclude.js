@@ -4,7 +4,7 @@ CONF.test.languages = ["en", "ru", "ee"];
 
 var i = 0;
 
-test("retry only include params", ctx => {
+test("retry only include params", () => {
 
     before(() => {
         i++;
@@ -13,7 +13,7 @@ test("retry only include params", ctx => {
         }
     });
 
-    forEachLanguage(ctx, () => {
+    forEachLanguage(() => {
         chunk(() => {});
     });
 });
