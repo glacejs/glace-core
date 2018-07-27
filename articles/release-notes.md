@@ -1,3 +1,7 @@
+### v1.7.6
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/82ce56c423a4e612c9b83c4b60cd51f302d27e70) that after relaunch only failed tests `glace` didn't save previously passed chunk ids.
+
 ### v1.7.5
 
 - [Rid](https://github.com/glacejs/glace-core/commit/7bc36a1c12fb1b87330bfd20ccf246224501df0b) of context in failed tests relaunch.
