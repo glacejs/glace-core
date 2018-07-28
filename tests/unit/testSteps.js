@@ -60,6 +60,8 @@ suite("Steps", () => {
 
         chunk("has non-modified properties", () => {
             expect(Steps.getInstance(cls).prop).to.be.equal(new cls().prop);
+            Steps.__set__("Steps", function () { this.prop = 1; });
+            expect(Steps.getInstance().prop).to.be.equal(1);
         });
 
         chunk("has non-modified 'debug' method", () => {
@@ -120,6 +122,25 @@ suite("Steps", () => {
         });
     });
 
+    test(".listSteps()", () => {
+        let tools;
+
+        beforeChunk(() => {
+            tools = {
+                listSteps: sinon.spy(),
+            };
+
+            Steps.__set__("tools", tools);
+        });
+
+        chunk(() => {
+            steps.listSteps("hello", "world");
+            expect(tools.listSteps).to.be.calledOnce;
+            expect(tools.listSteps.args[0][0]).to.be.equal("hello");
+            expect(tools.listSteps.args[0][1]).to.be.equal("world");
+        });
+    });
+
     test(".debug()", () => {
         let U, setupDebug, conf;
 
@@ -173,6 +194,7 @@ suite("Steps", () => {
     
         chunk("matches condition", () => {
             steps.startTimer();
+            steps.checkTimer("to exist");
             steps.checkTimer({ lte: 1 });
         });
     

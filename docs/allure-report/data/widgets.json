@@ -6,17 +6,17 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 94,
+      "passed" : 95,
       "unknown" : 0,
-      "total" : 94
+      "total" : 95
     },
     "time" : {
-      "start" : 1532773607140,
-      "stop" : 1532773615023,
-      "duration" : 7883,
+      "start" : 1532774242562,
+      "stop" : 1532774250205,
+      "duration" : 7643,
       "minDuration" : 1,
-      "maxDuration" : 2026,
-      "sumDuration" : 7602
+      "maxDuration" : 2035,
+      "sumDuration" : 7389
     }
   },
   "environment" : [ ],
@@ -45,19 +45,19 @@
         "total" : 12
       }
     }, {
-      "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
-      "name" : "reporter/base",
+      "uid" : "bc1de0a6a92f2257a8469242147b4770",
+      "name" : "Steps",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
         "skipped" : 0,
-        "passed" : 10,
+        "passed" : 11,
         "unknown" : 0,
-        "total" : 10
+        "total" : 11
       }
     }, {
-      "uid" : "bc1de0a6a92f2257a8469242147b4770",
-      "name" : "Steps",
+      "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
+      "name" : "reporter/base",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -111,8 +111,8 @@
         "total" : 6
       }
     }, {
-      "uid" : "cbf75062cc2a6b97d01468fe62a6945b",
-      "name" : "Session 2018-7-28 13:26:45",
+      "uid" : "a0965b584718eb2016dd6c8ab3d60c5d",
+      "name" : "Session 2018-7-28 13:37:21",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 94,
+      "passed" : 95,
       "unknown" : 0,
-      "total" : 94
+      "total" : 95
     }
   } ],
   "behaviors" : {
-    "total" : 94,
+    "total" : 95,
     "items" : [ ]
   },
   "executors" : [ ],

@@ -1,0 +1,92 @@
+{
+  "uid" : "5ec678741aa2003b",
+  "name" : "ScopeType",
+  "fullName" : "Session 2018-7-28 13:37:21.ScopeType",
+  "historyId" : "bc293b83511df1307b1efe5b3db2e145",
+  "time" : {
+    "start" : 1532774250013,
+    "stop" : 1532774250015,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "instance",
+      "time" : {
+        "start" : 1532774250013,
+        "stop" : 1532774250014,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : ".setType()",
+      "time" : {
+        "start" : 1532774250014,
+        "stop" : 1532774250014,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Session 2018-7-28 13:37:21"
+  }, {
+    "name" : "testClass",
+    "value" : "Session 2018-7-28 13:37:21"
+  }, {
+    "name" : "testMethod",
+    "value" : "ScopeType"
+  }, {
+    "name" : "package",
+    "value" : "Session 2018-7-28 13:37:21"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5ec678741aa2003b.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
