@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">47.83% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/42</span>
+        <span class='fraction'>22/46</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">20% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>2/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">30% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/9</span>
+        <span class='fraction'>3/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.5% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/40</span>
+        <span class='fraction'>22/44</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -199,7 +199,22 @@
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -352,13 +367,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 /**
  * Creates new instance of `Steps` class.
  *
  * @class
  * @classdesc Contains collection of steps which may be called inside tests via
- * its instance [SS](global.html#SS). It mixes steps from plugins too.
+ * its instance [$](global.html#$). It mixes steps from plugins too.
  * @name Steps
  * @mixes TimerSteps
  * @prop {object} ctx - Storage to share some data between steps.
@@ -420,14 +450,14 @@ Steps.prototype.debug = <span class="fstat-no" title="function not covered" >as<
      *
      * test("my test", () =&gt; {
      *     chunk(async () =&gt; {
-     *         await SS.debug();
+     *         await $.debug();
      *     });
      * });
      */
 &nbsp;
     var onFail = <span class="cstat-no" title="statement not covered" >CONF.session.debugOnFail;</span>
 <span class="cstat-no" title="statement not covered" >    CONF.session.debugOnFail = false;</span>
-<span class="cstat-no" title="statement not covered" >    await U.debug();</span>
+<span class="cstat-no" title="statement not covered" >    await U.debug(setupDebug());</span>
 <span class="cstat-no" title="statement not covered" >    CONF.session.debugOnFail = onFail;</span>
 };
 &nbsp;
@@ -505,13 +535,28 @@ Steps.getInstance = function (cls) {
 Steps.register(require("./timer"));
 /* Load plugins steps */
 Steps.register.apply(Steps, plugins.getModules("Steps"));
+&nbsp;
+/**
+ * Set up debug mode for glace.
+ * @ignore
+ */
+const setupDebug = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    global.search = $.listSteps.bind($);</span>
+&nbsp;
+    const helpMsg = <span class="cstat-no" title="statement not covered" >"In interactive mode you can execute any nodejs code or glace step.\n" +</span>
+        "Available commands:\n" +
+        "- search([query string]) - Search a glace step according to query. " +
+        "For ex: &gt; search('step to start timer')\n";
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return helpMsg;</span>
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 27 2018 17:33:14 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 28 2018 08:04:40 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
