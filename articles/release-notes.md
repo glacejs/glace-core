@@ -1,3 +1,8 @@
+### v1.7.7
+
+- [Provided](https://github.com/glacejs/glace-core/commit/2a4858d70a8ef4deec8ccf9ad250bf3788fb6325) custom help message in debug mode.
+- [Provided](https://github.com/glacejs/glace-core/commit/2a4858d70a8ef4deec8ccf9ad250bf3788fb6325#diff-4027a28cfc51393cf34c9349cf776056R160) global function `search` in debug mode.
+
 ### v1.7.6
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/82ce56c423a4e612c9b83c4b60cd51f302d27e70) that after relaunch only failed tests `glace` didn't save previously passed chunk ids.
