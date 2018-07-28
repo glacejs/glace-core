@@ -9,11 +9,12 @@ const runner = {
 };
 
 suite("reporter/base", () => {
+    let glaceReporter;
     const sandbox = sinon.createSandbox();
 
     before(() => {
         GlaceReporter.__set__("MochaReporter", function () {});
-        new GlaceReporter(runner);
+        glaceReporter = new GlaceReporter(runner);
     });
 
     afterChunk(() => {
@@ -361,6 +362,48 @@ suite("reporter/base", () => {
         chunk("does nothing if reporter isn't registered", () => {
             GlaceReporter.remove(new Object());
             expect(reporters).to.have.length(2);
+        });
+    });
+
+    test(".done()", () => {
+        let reporters, failures, fn, log;
+
+        beforeChunk(() => {
+            failures = "dummy";
+            fn = sinon.spy();
+
+            reporters = [{
+                done: sinon.stub(),
+            }];
+            GlaceReporter.__set__("reporters", reporters);
+
+            log = {
+                error: sinon.stub(),
+            };
+            GlaceReporter.__set__("LOG", log);
+        });
+
+        chunk("finalizes reporters", async () => {
+            await glaceReporter.done(failures, fn);
+
+            expect(fn).to.be.calledOnce;
+            expect(fn.args[0][0]).to.be.equal(failures);
+
+            expect(reporters[0].done).to.be.calledOnce;
+            expect(log.error).to.not.be.called;
+        });
+
+        chunk("captures reporter errors", async () => {
+            reporters[0].done.throws(Error("BOOM!"));
+
+            await glaceReporter.done(failures, fn);
+
+            expect(fn).to.be.calledOnce;
+            expect(fn.args[0][0]).to.be.equal(failures);
+
+            expect(reporters[0].done).to.be.calledOnce;
+            expect(log.error).to.be.calledOnce;
+            expect(log.error.args[0][0].toString()).to.include("BOOM!");
         });
     });
 });
