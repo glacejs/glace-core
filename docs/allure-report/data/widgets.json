@@ -1,0 +1,157 @@
+{
+  "summary" : {
+    "reportName" : "Allure Report",
+    "testRuns" : [ ],
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 85,
+      "unknown" : 0,
+      "total" : 85
+    },
+    "time" : {
+      "start" : 1532759292191,
+      "stop" : 1532759299712,
+      "duration" : 7521,
+      "minDuration" : 1,
+      "maxDuration" : 2025,
+      "sumDuration" : 7322
+    }
+  },
+  "environment" : [ ],
+  "suites" : {
+    "total" : 14,
+    "items" : [ {
+      "uid" : "43f5c0bda0a902d5fdd62ab3c7529300",
+      "name" : "allure helper",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 16,
+        "unknown" : 0,
+        "total" : 16
+      }
+    }, {
+      "uid" : "ae12b400ed840cca16a213285cb24487",
+      "name" : "config",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 12,
+        "unknown" : 0,
+        "total" : 12
+      }
+    }, {
+      "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
+      "name" : "reporter/base",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 10
+      }
+    }, {
+      "uid" : "3998b72ebb42be9d20bfc9d55decfadb",
+      "name" : "globals",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 9,
+        "unknown" : 0,
+        "total" : 9
+      }
+    }, {
+      "uid" : "ee79ae265a842e48c4df30f006daaf4e",
+      "name" : "TestCase",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 9,
+        "unknown" : 0,
+        "total" : 9
+      }
+    }, {
+      "uid" : "eb0fc28022ab37abe7dae76ba9184937",
+      "name" : "globals/test",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 6
+      }
+    }, {
+      "uid" : "d41777bf7a04f4698599191c57d68c1d",
+      "name" : "reporter/allure",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 6
+      }
+    }, {
+      "uid" : "4338457763b6857fa21b2c7bbc1c8174",
+      "name" : "Session 2018-7-28 09:28:11",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      }
+    }, {
+      "uid" : "1f869be91ac80e8365ec44496a4f98ed",
+      "name" : "loader",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      }
+    }, {
+      "uid" : "c18d7a523b62be7460958f9788817bd8",
+      "name" : "run",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      }
+    } ]
+  },
+  "history-trend" : [ {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 85,
+      "unknown" : 0,
+      "total" : 85
+    }
+  } ],
+  "behaviors" : {
+    "total" : 85,
+    "items" : [ ]
+  },
+  "executors" : [ ],
+  "categories" : {
+    "total" : 0,
+    "items" : [ ]
+  },
+  "launches" : [ ]
+}
