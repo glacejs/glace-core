@@ -6,22 +6,22 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 85,
+      "passed" : 94,
       "unknown" : 0,
-      "total" : 85
+      "total" : 94
     },
     "time" : {
-      "start" : 1532759292191,
-      "stop" : 1532759299712,
-      "duration" : 7521,
+      "start" : 1532773607140,
+      "stop" : 1532773615023,
+      "duration" : 7883,
       "minDuration" : 1,
-      "maxDuration" : 2025,
-      "sumDuration" : 7322
+      "maxDuration" : 2026,
+      "sumDuration" : 7602
     }
   },
   "environment" : [ ],
   "suites" : {
-    "total" : 14,
+    "total" : 15,
     "items" : [ {
       "uid" : "43f5c0bda0a902d5fdd62ab3c7529300",
       "name" : "allure helper",
@@ -47,6 +47,17 @@
     }, {
       "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
       "name" : "reporter/base",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 10
+      }
+    }, {
+      "uid" : "bc1de0a6a92f2257a8469242147b4770",
+      "name" : "Steps",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -100,15 +111,15 @@
         "total" : 6
       }
     }, {
-      "uid" : "4338457763b6857fa21b2c7bbc1c8174",
-      "name" : "Session 2018-7-28 09:28:11",
+      "uid" : "cbf75062cc2a6b97d01468fe62a6945b",
+      "name" : "Session 2018-7-28 13:26:45",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
         "skipped" : 0,
-        "passed" : 5,
+        "passed" : 4,
         "unknown" : 0,
-        "total" : 5
+        "total" : 4
       }
     }, {
       "uid" : "1f869be91ac80e8365ec44496a4f98ed",
@@ -121,17 +132,6 @@
         "unknown" : 0,
         "total" : 4
       }
-    }, {
-      "uid" : "c18d7a523b62be7460958f9788817bd8",
-      "name" : "run",
-      "statistic" : {
-        "failed" : 0,
-        "broken" : 0,
-        "skipped" : 0,
-        "passed" : 3,
-        "unknown" : 0,
-        "total" : 3
-      }
     } ]
   },
   "history-trend" : [ {
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 85,
+      "passed" : 94,
       "unknown" : 0,
-      "total" : 85
+      "total" : 94
     }
   } ],
   "behaviors" : {
-    "total" : 85,
+    "total" : 94,
     "items" : [ ]
   },
   "executors" : [ ],
