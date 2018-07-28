@@ -264,6 +264,32 @@ suite("reporter/base", () => {
         });
     });
 
+    test("on pending", () => {
+        let onPending;
+
+        beforeChunk(() => {
+            onPending = methods["pending"];
+        });
+
+        chunk("does nothing if no reporters are registered", () => {
+            GlaceReporter.__set__("reporters", []);
+            onPending();
+        });
+
+        chunk("does nothing if reporters don't have 'pending' method", () => {
+            GlaceReporter.__set__("reporters", [{}]);
+            onPending();
+        });
+
+        chunk("calls reporters' 'pending' method if it exists", () => {
+            const reporters = [{ pending: sinon.spy() }];
+            GlaceReporter.__set__("reporters", reporters);
+            onPending("mochaTest");
+            expect(reporters[0].pending).to.be.calledOnce;
+            expect(reporters[0].pending.args[0][0]).to.be.equal("mochaTest");
+        });
+    });
+
     test("on hook", () => {
         let onHook;
 
