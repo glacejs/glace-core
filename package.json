@@ -8,7 +8,7 @@
     "release": "VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git add -u && git commit -m \"release $VERSION\" && git tag $VERSION && git push origin $VERSION && npm run docs:publish && npm publish",
     "test": "node ./bin/glace",
     "test:unit": "nyc ./bin/glace tests/unit --dont-check-names",
-    "test:cover": "nyc --reporter=lcov --report-dir ./docs/tests-cover ./bin/glace tests/unit --dont-check-names",
+    "test:cover": "nyc --reporter=lcov --report-dir ./docs/tests-cover ./bin/glace tests/unit --dont-check-names --allure",
     "test:commit": "node ./bin/glace tests/unit --dont-check-names",
     "test:basic": "node ./bin/glace tests/e2e/testBasic.js",
     "test:retry": "node ./bin/glace tests/e2e/testRetry.js --retry 2",
@@ -24,7 +24,8 @@
     "test:include": "node ./bin/glace tests/e2e/testInclude.js --include \"test 1 | test 2\"",
     "test:exclude": "node ./bin/glace tests/e2e/testExclude.js --exclude \"test 1 | test 2\"",
     "test:e2e": "npm run test:basic; npm run test:retry; npm run test:chunk-retry; npm run test:own-app; npm run test:suppress-uncaught; npm run test:fail-uncaught; npm run test:mocha-uncaught; npm run test:timer-steps; npm run test:custom-reporter; npm run test:retry-only-params; npm run test:retry-with-include; npm run test:include; npm run test:exclude",
-    "docs": "rm -rf docs && jsdoc -c jsdoc.json -d docs && npm run test:cover",
+    "allure:report": "npm run test:cover && allure generate report/allure --report-dir ./docs/allure-report",
+    "docs": "rm -rf docs && jsdoc -c jsdoc.json -d docs && npm run allure:report",
     "docs:publish": "npm run docs && git add docs && git commit -m \"update docs\" && git push origin master",
     "lint": "eslint lib tests",
     "lint:fix": "npm run lint -- --fix"

@@ -165,9 +165,10 @@ require("glace-core").run().then(errCode => {
 });
 ```
 
-## Tests coverage
+## Tests and quality
 
-Please see <a href="tests-cover/lcov-report/index.html" target="_blank">here</a>
+- Project tests report is <a href="allure-report/index.html" target="_blank">here</a>
+- Code coverage report is <a href="tests-cover/lcov-report/index.html" target="_blank">here</a>
 
 ## Guidelines
 
