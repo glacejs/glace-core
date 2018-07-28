@@ -1,990 +1,1000 @@
 [ {
-  "uid" : "d69b9e41ba47d961",
-  "name" : "instance",
+  "uid" : "9c41f8f2ca62fd60",
+  "name" : "scope()",
   "time" : {
-    "start" : 1532800168016,
-    "stop" : 1532800168023,
+    "start" : 1532800478308,
+    "stop" : 1532800478315,
     "duration" : 7
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "f506aece3c12076a",
-  "name" : "test",
+  "uid" : "ac29b67d5665346c",
+  "name" : "on hook",
   "time" : {
-    "start" : 1532800168937,
-    "stop" : 1532800169775,
-    "duration" : 838
+    "start" : 1532800478369,
+    "stop" : 1532800478371,
+    "duration" : 2
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "52819f5a1f03b944",
+  "uid" : "e6fdab85c375ef85",
+  "name" : "activate plugin configs",
+  "time" : {
+    "start" : 1532800475693,
+    "stop" : 1532800475768,
+    "duration" : 75
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "85ea0bafa7cc4f52",
+  "name" : "import",
+  "time" : {
+    "start" : 1532800478280,
+    "stop" : 1532800478291,
+    "duration" : 11
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c2d7155435c73981",
+  "name" : "preloads()",
+  "time" : {
+    "start" : 1532800476208,
+    "stop" : 1532800476215,
+    "duration" : 7
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3c259a2785eccbd1",
   "name" : "start()",
   "time" : {
-    "start" : 1532800176115,
-    "stop" : 1532800176117,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "35cadb4a8fcb1b8",
-  "name" : ".register()",
-  "time" : {
-    "start" : 1532800176146,
-    "stop" : 1532800176148,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "b35de9f961ed821a",
-  "name" : ".resetReport()",
-  "time" : {
-    "start" : 1532800176132,
-    "stop" : 1532800176137,
+    "start" : 1532800478295,
+    "stop" : 1532800478300,
     "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "fe1f3bf3dd83c542",
-  "name" : ".stopTimer()",
+  "uid" : "c8048995c0436657",
+  "name" : ".addScreenshot()",
   "time" : {
-    "start" : 1532800176182,
-    "stop" : 1532800176184,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "76c38f7edf8665b6",
-  "name" : "baseTest()",
-  "time" : {
-    "start" : 1532800173189,
-    "stop" : 1532800173203,
-    "duration" : 14
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "c2b8896d1eae74f0",
-  "name" : ".checkTimer()",
-  "time" : {
-    "start" : 1532800176185,
-    "stop" : 1532800176191,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "604c8af774773cf5",
-  "name" : "testEnd()",
-  "time" : {
-    "start" : 1532800175898,
-    "stop" : 1532800176074,
-    "duration" : 176
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4edcac98e51cb819",
-  "name" : "listPlugins()",
-  "time" : {
-    "start" : 1532800176364,
-    "stop" : 1532800176369,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "c8e9d08d39b6d875",
-  "name" : "proxy instance",
-  "time" : {
-    "start" : 1532800167995,
-    "stop" : 1532800168002,
-    "duration" : 7
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "534124f23e83d14b",
-  "name" : ".hasSteps()",
-  "time" : {
-    "start" : 1532800168023,
-    "stop" : 1532800168029,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "ae92337f29ad60e6",
-  "name" : "chai as promised",
-  "time" : {
-    "start" : 1532800173074,
-    "stop" : 1532800173080,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "101eb1a0081726a0",
-  "name" : "isFilterMatched()",
-  "time" : {
-    "start" : 1532800173215,
-    "stop" : 1532800173219,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "15822ac7bef20b07",
-  "name" : ".story()",
-  "time" : {
-    "start" : 1532800168043,
-    "stop" : 1532800168047,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1edad1547b343fcb",
-  "name" : ".stubObject()",
-  "time" : {
-    "start" : 1532800173105,
-    "stop" : 1532800173110,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "925132ceab304eb0",
-  "name" : ".end()",
-  "time" : {
-    "start" : 1532800176332,
-    "stop" : 1532800176342,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "629205f9cd4305e4",
-  "name" : ".step()",
-  "time" : {
-    "start" : 1532800168036,
-    "stop" : 1532800168040,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "cc115f4fa0abb1a6",
-  "name" : "on start",
-  "time" : {
-    "start" : 1532800175405,
-    "stop" : 1532800175410,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "ec613830f09a9f26",
-  "name" : ".isTestFailed()",
-  "time" : {
-    "start" : 1532800176168,
-    "stop" : 1532800176172,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2184667ddb8a789b",
-  "name" : ".attachHtml()",
-  "time" : {
-    "start" : 1532800168076,
-    "stop" : 1532800168078,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2d55b700031f4022",
-  "name" : "global rewire",
-  "time" : {
-    "start" : 1532800173082,
-    "stop" : 1532800173083,
+    "start" : 1532800479101,
+    "stop" : 1532800479102,
     "duration" : 1
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "39ee728b07f56a3f",
-  "name" : "import",
-  "time" : {
-    "start" : 1532800175355,
-    "stop" : 1532800175365,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4305bb44020e9b3b",
-  "name" : "report",
-  "time" : {
-    "start" : 1532800169776,
-    "stop" : 1532800170155,
-    "duration" : 379
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d4853e254f9d165b",
-  "name" : "Glace core lazy import",
-  "time" : {
-    "start" : 1532800173235,
-    "stop" : 1532800173241,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "b08650f9e0bdba66",
-  "name" : "chunk()",
-  "time" : {
-    "start" : 1532800173087,
-    "stop" : 1532800173095,
-    "duration" : 8
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "12f2ddc44a886fa0",
-  "name" : "afterCb()",
-  "time" : {
-    "start" : 1532800173205,
-    "stop" : 1532800173210,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8306a0bd14f0aceb",
-  "name" : "end()",
-  "time" : {
-    "start" : 1532800176074,
-    "stop" : 1532800176110,
-    "duration" : 36
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "baaf89a1a0eb73d",
-  "name" : "suite()",
-  "time" : {
-    "start" : 1532800175372,
-    "stop" : 1532800175375,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "7de7a9d58167c675",
-  "name" : ".start()",
-  "time" : {
-    "start" : 1532800176329,
-    "stop" : 1532800176332,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "dc331d2c443a2a02",
-  "name" : "on test",
-  "time" : {
-    "start" : 1532800175439,
-    "stop" : 1532800175443,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "34990997e925f500",
-  "name" : "start()",
-  "time" : {
-    "start" : 1532800175855,
-    "stop" : 1532800175897,
-    "duration" : 42
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "667b0366a4120c09",
-  "name" : "session",
-  "time" : {
-    "start" : 1532800168099,
-    "stop" : 1532800168937,
-    "duration" : 838
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "272c786367423fed",
-  "name" : "testrail",
-  "time" : {
-    "start" : 1532800171250,
-    "stop" : 1532800171895,
-    "duration" : 645
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "902b7813440605b5",
-  "name" : "listTests()",
-  "time" : {
-    "start" : 1532800176358,
-    "stop" : 1532800176364,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "45eeecd79d4c5662",
-  "name" : ".addDetails()",
-  "time" : {
-    "start" : 1532800176353,
-    "stop" : 1532800176355,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "cac0da95a3a4d48a",
-  "name" : ".addChunk()",
-  "time" : {
-    "start" : 1532800176351,
-    "stop" : 1532800176353,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "da5a2fb3f12266e1",
-  "name" : "mainConftests()",
-  "time" : {
-    "start" : 1532800173281,
-    "stop" : 1532800173289,
-    "duration" : 8
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "9d5bbc78ca9d065e",
-  "name" : "xunit",
-  "time" : {
-    "start" : 1532800170627,
-    "stop" : 1532800170922,
-    "duration" : 295
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "db28f44ef1f0f3fa",
-  "name" : "on suite end",
-  "time" : {
-    "start" : 1532800175429,
-    "stop" : 1532800175439,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "6a1161970464ad0a",
-  "name" : ".attachImage()",
-  "time" : {
-    "start" : 1532800168067,
-    "stop" : 1532800168070,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "810447115b468753",
-  "name" : "scopeEnd()",
-  "time" : {
-    "start" : 1532800175387,
-    "stop" : 1532800175391,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "312a6849459fc6c1",
-  "name" : ".addVideo()",
-  "time" : {
-    "start" : 1532800176349,
-    "stop" : 1532800176351,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "61fbb70f525cae75",
-  "name" : "global sinon",
-  "time" : {
-    "start" : 1532800173080,
-    "stop" : 1532800173082,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "7b67b60faa4e2b30",
-  "name" : ".reset()",
-  "time" : {
-    "start" : 1532800176342,
-    "stop" : 1532800176344,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "79e008746f29770a",
-  "name" : "on test end",
-  "time" : {
-    "start" : 1532800175443,
-    "stop" : 1532800175447,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "f90c75816eb52f01",
-  "name" : "on end",
-  "time" : {
-    "start" : 1532800175410,
-    "stop" : 1532800175420,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "99637f5498ebdcc8",
-  "name" : "steps aliases",
-  "time" : {
-    "start" : 1532800173072,
-    "stop" : 1532800173074,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2ebf0facd3674326",
-  "name" : "test()",
-  "time" : {
-    "start" : 1532800173211,
-    "stop" : 1532800173215,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8ccda81d7b361cbb",
-  "name" : ".attachJson()",
-  "time" : {
-    "start" : 1532800168064,
-    "stop" : 1532800168067,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5badffc861561c82",
-  "name" : ".attach()",
-  "time" : {
-    "start" : 1532800168059,
-    "stop" : 1532800168064,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2912a1fdb3b8185f",
-  "name" : ".attachVideo()",
-  "time" : {
-    "start" : 1532800168070,
-    "stop" : 1532800168074,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "25571577fa76b6d4",
-  "name" : "on suite",
-  "time" : {
-    "start" : 1532800175420,
-    "stop" : 1532800175429,
-    "duration" : 9
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "863274a088d0e07b",
-  "name" : "allure",
-  "time" : {
-    "start" : 1532800170922,
-    "stop" : 1532800171250,
-    "duration" : 328
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1f1543cb91b3c3f",
-  "name" : "import",
-  "time" : {
-    "start" : 1532800175489,
-    "stop" : 1532800175855,
-    "duration" : 366
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "c13d65e69f9b458d",
-  "name" : ".startTimer()",
-  "time" : {
-    "start" : 1532800176179,
-    "stop" : 1532800176182,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "c6d3b1348eaf7b60",
-  "name" : "merge user config",
-  "time" : {
-    "start" : 1532800172894,
-    "stop" : 1532800172961,
-    "duration" : 67
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "9d25ab1569f000a6",
-  "name" : ".listSteps()",
-  "time" : {
-    "start" : 1532800176172,
-    "stop" : 1532800176175,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4c6a00b37815fb3b",
-  "name" : "scope()",
-  "time" : {
-    "start" : 1532800175382,
-    "stop" : 1532800175387,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "e54d5aed8808a065",
-  "name" : "filter",
-  "time" : {
-    "start" : 1532800170155,
-    "stop" : 1532800170627,
-    "duration" : 472
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "821dad3eff1e6fb7",
-  "name" : ".resetCtx()",
-  "time" : {
-    "start" : 1532800176164,
-    "stop" : 1532800176167,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "35afef8b231d6b90",
-  "name" : "test()",
-  "time" : {
-    "start" : 1532800175392,
-    "stop" : 1532800175395,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a78a34ca5d6978d4",
-  "name" : ".isTestStarted()",
-  "time" : {
-    "start" : 1532800168029,
-    "stop" : 1532800168036,
-    "duration" : 7
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "fff3e8968e3c026c",
-  "name" : "instance",
-  "time" : {
-    "start" : 1532800176325,
-    "stop" : 1532800176328,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "537bffb2fe8cf62e",
-  "name" : "preloads()",
-  "time" : {
-    "start" : 1532800173270,
-    "stop" : 1532800173280,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "585cedf3886034f0",
-  "name" : ".addEnvironment()",
-  "time" : {
-    "start" : 1532800168052,
-    "stop" : 1532800168055,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a46dad612a64df66",
-  "name" : "setLog()",
-  "time" : {
-    "start" : 1532800173185,
-    "stop" : 1532800173189,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "485fdb8800ef5c8c",
+  "uid" : "53f25bcd4061c6ab",
   "name" : ".addDescription()",
   "time" : {
-    "start" : 1532800168055,
-    "stop" : 1532800168059,
+    "start" : 1532800470587,
+    "stop" : 1532800470591,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "e5d3d5d66d56860c",
-  "name" : "chai matcher .waitFor() is",
+  "uid" : "ea6d926bb28f7a1e",
+  "name" : "sessFunc()",
   "time" : {
-    "start" : 1532800173314,
-    "stop" : 1532800175332,
-    "duration" : 2018
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "bc53e83200c5011c",
-  "name" : ".debug()",
-  "time" : {
-    "start" : 1532800176175,
-    "stop" : 1532800176179,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4333a659a5bde558",
-  "name" : "remove()",
-  "time" : {
-    "start" : 1532800175458,
-    "stop" : 1532800175461,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5aba5355bcdad68a",
-  "name" : "interactive mode changes config",
-  "time" : {
-    "start" : 1532800172961,
-    "stop" : 1532800173051,
-    "duration" : 90
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d3e9eee354307bf0",
-  "name" : "loadTests()",
-  "time" : {
-    "start" : 1532800173298,
-    "stop" : 1532800173305,
-    "duration" : 7
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d34b7a476120fe1c",
-  "name" : ".pass()",
-  "time" : {
-    "start" : 1532800168040,
-    "stop" : 1532800168043,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "9d1d4c2d2577d8ad",
-  "name" : "register()",
-  "time" : {
-    "start" : 1532800175455,
-    "stop" : 1532800175458,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a11ea905e5105ada",
-  "name" : "suiteEnd()",
-  "time" : {
-    "start" : 1532800175375,
-    "stop" : 1532800175381,
+    "start" : 1532800476220,
+    "stop" : 1532800476226,
     "duration" : 6
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "ccaf3f36596ecb58",
-  "name" : ".done()",
+  "uid" : "afe7e299f7d3137f",
+  "name" : "on test end",
   "time" : {
-    "start" : 1532800175462,
-    "stop" : 1532800175472,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "866c3ed0a41f769a",
-  "name" : ".getInstance() returns object which",
-  "time" : {
-    "start" : 1532800176149,
-    "stop" : 1532800176164,
-    "duration" : 15
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "6eb43cd73deafa7e",
-  "name" : ".attachText()",
-  "time" : {
-    "start" : 1532800168074,
-    "stop" : 1532800168076,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d3186c8628f40640",
-  "name" : "tools",
-  "time" : {
-    "start" : 1532800172139,
-    "stop" : 1532800172827,
-    "duration" : 688
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "7077990f0ac6b6e8",
-  "name" : "ScopeType",
-  "time" : {
-    "start" : 1532800176141,
-    "stop" : 1532800176144,
+    "start" : 1532800478360,
+    "stop" : 1532800478363,
     "duration" : 3
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "a5b9399357cac8c5",
-  "name" : "activate plugin configs",
+  "uid" : "d6bf302489a4fc77",
+  "name" : "on start",
   "time" : {
-    "start" : 1532800172828,
-    "stop" : 1532800172894,
-    "duration" : 66
+    "start" : 1532800478333,
+    "stop" : 1532800478338,
+    "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "2a1a34b8cde44f0b",
-  "name" : "._run()",
+  "uid" : "261412fda2b21d6d",
+  "name" : ".attachVideo()",
   "time" : {
-    "start" : 1532800176127,
-    "stop" : 1532800176131,
-    "duration" : 4
+    "start" : 1532800470602,
+    "stop" : 1532800470607,
+    "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "bb570861fda04bb2",
-  "name" : "beforeCb()",
+  "uid" : "6f10f59e7693758",
+  "name" : "steps aliases",
   "time" : {
-    "start" : 1532800173203,
-    "stop" : 1532800173205,
+    "start" : 1532800475951,
+    "stop" : 1532800475953,
     "duration" : 2
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "66a534cd2fb4c69f",
-  "name" : "on hook end",
+  "uid" : "de667951cf9512d4",
+  "name" : "register()",
   "time" : {
-    "start" : 1532800175451,
-    "stop" : 1532800175455,
-    "duration" : 4
+    "start" : 1532800478374,
+    "stop" : 1532800478376,
+    "duration" : 2
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "583bbe55002525f1",
-  "name" : "start()",
+  "uid" : "e2760199e8ff6f24",
+  "name" : "forEachLanguage()",
   "time" : {
-    "start" : 1532800175368,
-    "stop" : 1532800175372,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5c08c735083673db",
-  "name" : "_chunkCb()",
-  "time" : {
-    "start" : 1532800173096,
-    "stop" : 1532800173100,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "9b685a3b8d181d7b",
-  "name" : "sessFunc()",
-  "time" : {
-    "start" : 1532800173289,
-    "stop" : 1532800173297,
+    "start" : 1532800475979,
+    "stop" : 1532800475987,
     "duration" : 8
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "e61ca376403df3d5",
-  "name" : "plugins module",
+  "uid" : "7fa3969a1bb84229",
+  "name" : "merge user config",
   "time" : {
-    "start" : 1532800175332,
-    "stop" : 1532800175341,
-    "duration" : 9
+    "start" : 1532800475769,
+    "stop" : 1532800475846,
+    "duration" : 77
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "f7152489959ba7b9",
-  "name" : "plugins",
+  "uid" : "e8cf47299853377c",
+  "name" : "start()",
   "time" : {
-    "start" : 1532800171895,
-    "stop" : 1532800172139,
-    "duration" : 244
+    "start" : 1532800478640,
+    "stop" : 1532800478668,
+    "duration" : 28
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "6e98faff2b712f14",
+  "uid" : "937ecbce015fd53d",
+  "name" : ".checkTimer()",
+  "time" : {
+    "start" : 1532800478964,
+    "stop" : 1532800478970,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6e3f30271ad283f2",
+  "name" : "remove()",
+  "time" : {
+    "start" : 1532800478376,
+    "stop" : 1532800478378,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fc25816da7867243",
+  "name" : "chai as promised",
+  "time" : {
+    "start" : 1532800475953,
+    "stop" : 1532800475958,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "261a9f0c8132ed25",
+  "name" : ".addDetails()",
+  "time" : {
+    "start" : 1532800479105,
+    "stop" : 1532800479106,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f5609702c53a7980",
+  "name" : ".attachText()",
+  "time" : {
+    "start" : 1532800470607,
+    "stop" : 1532800470609,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "da4660d126e2d7d1",
+  "name" : "._run()",
+  "time" : {
+    "start" : 1532800478917,
+    "stop" : 1532800478921,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6fe61a3ab3ca0c54",
+  "name" : ".listSteps()",
+  "time" : {
+    "start" : 1532800478953,
+    "stop" : 1532800478956,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b69926865aad6bce",
+  "name" : ".reset()",
+  "time" : {
+    "start" : 1532800479098,
+    "stop" : 1532800479100,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "bf717f114460bddb",
+  "name" : ".done()",
+  "time" : {
+    "start" : 1532800478379,
+    "stop" : 1532800478382,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f171b96d322d9739",
+  "name" : "setLog()",
+  "time" : {
+    "start" : 1532800476047,
+    "stop" : 1532800476128,
+    "duration" : 81
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "bfce9f0859b4f418",
+  "name" : "chunk()",
+  "time" : {
+    "start" : 1532800475965,
+    "stop" : 1532800475973,
+    "duration" : 8
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cba73b289f6367a2",
+  "name" : "filter",
+  "time" : {
+    "start" : 1532800472789,
+    "stop" : 1532800473319,
+    "duration" : 530
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b0f9c35aa5e30edb",
+  "name" : "report",
+  "time" : {
+    "start" : 1532800472281,
+    "stop" : 1532800472789,
+    "duration" : 508
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f54778ecfb4384e2",
+  "name" : "instance",
+  "time" : {
+    "start" : 1532800470551,
+    "stop" : 1532800470557,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2d446e1dba2ea62c",
+  "name" : ".startTimer()",
+  "time" : {
+    "start" : 1532800478959,
+    "stop" : 1532800478961,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d79e17223be2013d",
+  "name" : ".debug()",
+  "time" : {
+    "start" : 1532800478956,
+    "stop" : 1532800478959,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "961ca7d83562aa54",
+  "name" : ".getInstance() returns object which",
+  "time" : {
+    "start" : 1532800478935,
+    "stop" : 1532800478948,
+    "duration" : 13
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c3327fcdc340b637",
+  "name" : "on test",
+  "time" : {
+    "start" : 1532800478358,
+    "stop" : 1532800478360,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5545e5d948ea94ad",
+  "name" : ".stopTimer()",
+  "time" : {
+    "start" : 1532800478962,
+    "stop" : 1532800478963,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "55d9b8c548804da6",
+  "name" : ".pass()",
+  "time" : {
+    "start" : 1532800470572,
+    "stop" : 1532800470575,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5631a193f5a23cf7",
+  "name" : ".feature()",
+  "time" : {
+    "start" : 1532800470581,
+    "stop" : 1532800470584,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "83b24d7d79301b56",
+  "name" : ".addError()",
+  "time" : {
+    "start" : 1532800479100,
+    "stop" : 1532800479101,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "94775fd13468cacf",
+  "name" : "Glace core lazy import",
+  "time" : {
+    "start" : 1532800476186,
+    "stop" : 1532800476193,
+    "duration" : 7
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "36f853fa5b4e1950",
+  "name" : "beforeCb()",
+  "time" : {
+    "start" : 1532800476153,
+    "stop" : 1532800476155,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "796cbc0d89843bdd",
+  "name" : "on suite",
+  "time" : {
+    "start" : 1532800478347,
+    "stop" : 1532800478351,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "910c024eba80701f",
+  "name" : "global sinon",
+  "time" : {
+    "start" : 1532800475958,
+    "stop" : 1532800475960,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2c29dc393da76ed3",
+  "name" : "listPlugins()",
+  "time" : {
+    "start" : 1532800479114,
+    "stop" : 1532800479117,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4c80c8b680a9a721",
+  "name" : "on hook end",
+  "time" : {
+    "start" : 1532800478371,
+    "stop" : 1532800478374,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "75e5f3cecab05b31",
+  "name" : "test()",
+  "time" : {
+    "start" : 1532800478320,
+    "stop" : 1532800478323,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c2a18e02c1133eca",
+  "name" : ".end()",
+  "time" : {
+    "start" : 1532800479097,
+    "stop" : 1532800479098,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "388a35590fd142de",
+  "name" : "listTests()",
+  "time" : {
+    "start" : 1532800479109,
+    "stop" : 1532800479113,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "673ff764dd58d49e",
+  "name" : "baseTest()",
+  "time" : {
+    "start" : 1532800476128,
+    "stop" : 1532800476152,
+    "duration" : 24
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "db88e4bfecacc9d2",
+  "name" : ".run()",
+  "time" : {
+    "start" : 1532800478911,
+    "stop" : 1532800478917,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "741e6f9e08a77387",
+  "name" : "import",
+  "time" : {
+    "start" : 1532800478397,
+    "stop" : 1532800478640,
+    "duration" : 243
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dc5a3f1b88a307d0",
+  "name" : ".isTestFailed()",
+  "time" : {
+    "start" : 1532800478950,
+    "stop" : 1532800478953,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ec198bc20e2b9899",
   "name" : ".pause()",
   "time" : {
-    "start" : 1532800176191,
-    "stop" : 1532800176300,
+    "start" : 1532800478970,
+    "stop" : 1532800479079,
     "duration" : 109
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "21e9929588883ae4",
-  "name" : ".addScreenshot()",
+  "uid" : "6cfd5a0ac3f9f8f7",
+  "name" : "scopeEnd()",
   "time" : {
-    "start" : 1532800176347,
-    "stop" : 1532800176349,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d4098ca6d42fa0e4",
-  "name" : "sinon-chai",
-  "time" : {
-    "start" : 1532800173084,
-    "stop" : 1532800173086,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "de615a3b7244968f",
-  "name" : ".feature()",
-  "time" : {
-    "start" : 1532800168047,
-    "stop" : 1532800168051,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8b460a92928c33fa",
-  "name" : "forEachLanguage()",
-  "time" : {
-    "start" : 1532800173100,
-    "stop" : 1532800173105,
+    "start" : 1532800478315,
+    "stop" : 1532800478320,
     "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "c9e421f9a8f302ea",
-  "name" : ".addError()",
+  "uid" : "f94ef3a75c4c7d5b",
+  "name" : ".attach()",
   "time" : {
-    "start" : 1532800176344,
-    "stop" : 1532800176346,
+    "start" : 1532800470592,
+    "stop" : 1532800470595,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c6c699f8dcc65495",
+  "name" : ".resetReport()",
+  "time" : {
+    "start" : 1532800478921,
+    "stop" : 1532800478926,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "80ccb57509d5d7e1",
+  "name" : "tools",
+  "time" : {
+    "start" : 1532800474944,
+    "stop" : 1532800475693,
+    "duration" : 749
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1cb4e6e12bd8e9da",
+  "name" : "end()",
+  "time" : {
+    "start" : 1532800478860,
+    "stop" : 1532800478899,
+    "duration" : 39
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1ac6a7a80ea233ee",
+  "name" : "plugins module",
+  "time" : {
+    "start" : 1532800478256,
+    "stop" : 1532800478267,
+    "duration" : 11
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d3b5900ece4d42c2",
+  "name" : "proxy instance",
+  "time" : {
+    "start" : 1532800470531,
+    "stop" : 1532800470537,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7c5f7894aa0b71de",
+  "name" : "suite()",
+  "time" : {
+    "start" : 1532800478300,
+    "stop" : 1532800478303,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4372f9a7e97c3d21",
+  "name" : "on pending",
+  "time" : {
+    "start" : 1532800478363,
+    "stop" : 1532800478368,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "77616d728e2bb486",
+  "name" : "test()",
+  "time" : {
+    "start" : 1532800476164,
+    "stop" : 1532800476170,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ee16c721f93b0e5f",
+  "name" : "ScopeType",
+  "time" : {
+    "start" : 1532800478929,
+    "stop" : 1532800478932,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a4eafe91ab542876",
+  "name" : ".attachJson()",
+  "time" : {
+    "start" : 1532800470596,
+    "stop" : 1532800470598,
     "duration" : 2
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "aae72601ce800fea",
+  "uid" : "324634bc2caefc3",
+  "name" : "isFilterMatched()",
+  "time" : {
+    "start" : 1532800476170,
+    "stop" : 1532800476174,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fe67a4cbda3d7703",
+  "name" : "_chunkCb()",
+  "time" : {
+    "start" : 1532800475974,
+    "stop" : 1532800475978,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "71dccd6e84e3c3ae",
+  "name" : ".stubObject()",
+  "time" : {
+    "start" : 1532800475987,
+    "stop" : 1532800475994,
+    "duration" : 7
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d627d0104ce04311",
+  "name" : "chai matcher .waitFor() is",
+  "time" : {
+    "start" : 1532800476235,
+    "stop" : 1532800478255,
+    "duration" : 2020
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a8e4e86c3c2b87dc",
+  "name" : ".attachHtml()",
+  "time" : {
+    "start" : 1532800470609,
+    "stop" : 1532800470612,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "365218b4fe01174e",
+  "name" : "on suite end",
+  "time" : {
+    "start" : 1532800478352,
+    "stop" : 1532800478357,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "62600822c5e83132",
+  "name" : ".register()",
+  "time" : {
+    "start" : 1532800478932,
+    "stop" : 1532800478934,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "50ccb7854b461f87",
+  "name" : "plugins",
+  "time" : {
+    "start" : 1532800474705,
+    "stop" : 1532800474944,
+    "duration" : 239
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2612e8e2a527fb26",
+  "name" : "allure",
+  "time" : {
+    "start" : 1532800473661,
+    "stop" : 1532800474028,
+    "duration" : 367
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f11cfcab6086587e",
   "name" : "setupDebug()",
   "time" : {
-    "start" : 1532800176300,
-    "stop" : 1532800176304,
+    "start" : 1532800479079,
+    "stop" : 1532800479081,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "57075dee1d63eef",
+  "name" : ".hasSteps()",
+  "time" : {
+    "start" : 1532800470557,
+    "stop" : 1532800470562,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6aedc02c5f7fa371",
+  "name" : ".story()",
+  "time" : {
+    "start" : 1532800470576,
+    "stop" : 1532800470580,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "494f1e9c8844d975",
-  "name" : "on hook",
+  "uid" : "b6c4f8586eff3b83",
+  "name" : ".attachImage()",
   "time" : {
-    "start" : 1532800175447,
-    "stop" : 1532800175451,
+    "start" : 1532800470599,
+    "stop" : 1532800470602,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3b40d5d968989d66",
+  "name" : "interactive mode changes config",
+  "time" : {
+    "start" : 1532800475846,
+    "stop" : 1532800475928,
+    "duration" : 82
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f5cf46f551166e41",
+  "name" : "loadTests()",
+  "time" : {
+    "start" : 1532800476226,
+    "stop" : 1532800476231,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fa9faf0277cc2414",
+  "name" : "global rewire",
+  "time" : {
+    "start" : 1532800475960,
+    "stop" : 1532800475962,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5764f25aea58c60b",
+  "name" : ".start()",
+  "time" : {
+    "start" : 1532800479095,
+    "stop" : 1532800479096,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "570d2c4abb356fd2",
+  "name" : "suiteEnd()",
+  "time" : {
+    "start" : 1532800478304,
+    "stop" : 1532800478308,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "71f8fed628c4e035",
-  "name" : ".run()",
+  "uid" : "19185a853ed6d97b",
+  "name" : "sinon-chai",
   "time" : {
-    "start" : 1532800176119,
-    "stop" : 1532800176126,
-    "duration" : 7
+    "start" : 1532800475962,
+    "stop" : 1532800475964,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9307f8a0c318aa2d",
+  "name" : ".step()",
+  "time" : {
+    "start" : 1532800470569,
+    "stop" : 1532800470572,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d4af513c39d8841a",
+  "name" : "on end",
+  "time" : {
+    "start" : 1532800478339,
+    "stop" : 1532800478347,
+    "duration" : 8
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ef8224858e592d24",
+  "name" : "afterCb()",
+  "time" : {
+    "start" : 1532800476155,
+    "stop" : 1532800476164,
+    "duration" : 9
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "27502dbab226c46",
+  "name" : ".isTestStarted()",
+  "time" : {
+    "start" : 1532800470563,
+    "stop" : 1532800470569,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ef625c70cfb58966",
+  "name" : ".addVideo()",
+  "time" : {
+    "start" : 1532800479102,
+    "stop" : 1532800479103,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "919e185ddb29c44d",
+  "name" : "start()",
+  "time" : {
+    "start" : 1532800478906,
+    "stop" : 1532800478909,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4694f3e83fc111cb",
+  "name" : ".addChunk()",
+  "time" : {
+    "start" : 1532800479103,
+    "stop" : 1532800479104,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ce7e7e7dd9c5fb4c",
+  "name" : "testEnd()",
+  "time" : {
+    "start" : 1532800478669,
+    "stop" : 1532800478859,
+    "duration" : 190
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d0b77f9816299e86",
+  "name" : "test",
+  "time" : {
+    "start" : 1532800471442,
+    "stop" : 1532800472280,
+    "duration" : 838
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e9137d885eae47e5",
+  "name" : "instance",
+  "time" : {
+    "start" : 1532800479092,
+    "stop" : 1532800479095,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "31b07d90ac563303",
+  "name" : "testrail",
+  "time" : {
+    "start" : 1532800474028,
+    "stop" : 1532800474705,
+    "duration" : 677
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "117c377ded965856",
+  "name" : "mainConftests()",
+  "time" : {
+    "start" : 1532800476215,
+    "stop" : 1532800476220,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "90d8e9e7d612494a",
+  "name" : "xunit",
+  "time" : {
+    "start" : 1532800473320,
+    "stop" : 1532800473661,
+    "duration" : 341
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "14af5aa12bc3cdc0",
+  "name" : ".addEnvironment()",
+  "time" : {
+    "start" : 1532800470584,
+    "stop" : 1532800470587,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cc020fa31c516db4",
+  "name" : ".resetCtx()",
+  "time" : {
+    "start" : 1532800478948,
+    "stop" : 1532800478950,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5060855e8192319c",
+  "name" : "session",
+  "time" : {
+    "start" : 1532800470629,
+    "stop" : 1532800471441,
+    "duration" : 812
   },
   "status" : "passed",
   "severity" : "normal"
