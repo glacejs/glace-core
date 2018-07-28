@@ -30,6 +30,11 @@
     "lint": "eslint lib tests",
     "lint:fix": "npm run lint -- --fix"
   },
+  "nyc": {
+    "exclude": [
+      "tests"
+    ]
+  },
   "pre-commit": [
     "lint",
     "test:commit"
