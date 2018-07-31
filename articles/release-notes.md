@@ -1,3 +1,8 @@
+### v1.7.8
+
+- [Switched](https://github.com/glacejs/glace-core/commit/ab1d5a3d26d7eecbde616fc85e03fc329f43e2c6) to promises in `testrail` reporter.
+- [Fixed](https://github.com/glacejs/glace-core/commit/6a20d58ae00d0974038fe85dd60693321dabcb56) bug that test retry is stopped if session `before` hook is failed on retry.
+
 ### v1.7.7
 
 - [Provided](https://github.com/glacejs/glace-core/commit/2a4858d70a8ef4deec8ccf9ad250bf3788fb6325) custom help message in debug mode.
