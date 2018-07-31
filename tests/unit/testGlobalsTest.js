@@ -207,13 +207,44 @@ suite("globals/test", () => {
         });
     });
 
+    test("removeTestFromRetryQueue()", () => {
+        let removeTestFromRetryQueue, retryTests;
+
+        beforeChunk(() => {
+            removeTestFromRetryQueue = test_.__get__("removeTestFromRetryQueue");
+
+            retryTests = [];
+            test_.__set__("retryTests", retryTests);
+        });
+
+        chunk("does nothing if no tests for retry", () => {
+            removeTestFromRetryQueue();
+            expect(retryTests).to.be.empty;
+        });
+
+        chunk("removes test from retry queue", () => {
+            retryTests[0] = { args: { testCase: { name: "my test" }}};
+            removeTestFromRetryQueue(retryTests[0].args.testCase);
+            expect(retryTests).to.be.empty;
+        });
+
+        chunk("throws error if test is not found in retry queue", () => {
+            retryTests[0] = { args: { testCase: { name: "my test" }}};
+            removeTestFromRetryQueue({ name: "another test" });
+            expect(retryTests).to.have.length(1);
+        });
+    });
+
     test("beforeCb()", () => {
-        let beforeCb, o, setLog;
+        let beforeCb, o, setLog, removeTestFromRetryQueue;
 
         beforeChunk(() => {
             beforeCb = test_.__get__("beforeCb");
             setLog = sinon.spy();
             test_.__set__("setLog", setLog);
+
+            removeTestFromRetryQueue = sinon.spy();
+            test_.__set__("removeTestFromRetryQueue", removeTestFromRetryQueue);
 
             o = {};
             o.testCase = {
@@ -230,6 +261,8 @@ suite("globals/test", () => {
             expect(o.testCase.reset).to.be.calledOnce;
             expect(o.testCase.start).to.be.calledOnce;
             expect(setLog).to.be.calledOnce;
+            expect(removeTestFromRetryQueue).to.be.calledOnce;
+            expect(removeTestFromRetryQueue.args[0][0]).to.be.equal(o.testCase);
         });
     });
 
