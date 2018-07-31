@@ -1,0 +1,92 @@
+{
+  "uid" : "ea414a8150dffe06",
+  "name" : "register()",
+  "fullName" : "reporter/base.register()",
+  "historyId" : "5e7e3a1e1a42ff891d70ac37347093d2",
+  "time" : {
+    "start" : 1533063962589,
+    "stop" : 1533063962591,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "registers reporters if they aren't registered",
+      "time" : {
+        "start" : 1533063962589,
+        "stop" : 1533063962590,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "doesn't register reporter if it's already registered",
+      "time" : {
+        "start" : 1533063962590,
+        "stop" : 1533063962590,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testMethod",
+    "value" : "register()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/base"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "ea414a8150dffe06.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
