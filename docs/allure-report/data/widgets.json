@@ -6,23 +6,34 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 101,
+      "passed" : 106,
       "unknown" : 0,
-      "total" : 101
+      "total" : 106
     },
     "time" : {
-      "start" : 1533063955222,
-      "stop" : 1533063963363,
-      "duration" : 8141,
+      "start" : 1533233234424,
+      "stop" : 1533233242411,
+      "duration" : 7987,
       "minDuration" : 1,
-      "maxDuration" : 2030,
-      "sumDuration" : 7894
+      "maxDuration" : 2029,
+      "sumDuration" : 7660
     }
   },
   "environment" : [ ],
   "suites" : {
     "total" : 15,
     "items" : [ {
+      "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
+      "name" : "reporter/base",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 17,
+        "unknown" : 0,
+        "total" : 17
+      }
+    }, {
       "uid" : "43f5c0bda0a902d5fdd62ab3c7529300",
       "name" : "allure helper",
       "statistic" : {
@@ -36,17 +47,6 @@
     }, {
       "uid" : "ae12b400ed840cca16a213285cb24487",
       "name" : "config",
-      "statistic" : {
-        "failed" : 0,
-        "broken" : 0,
-        "skipped" : 0,
-        "passed" : 12,
-        "unknown" : 0,
-        "total" : 12
-      }
-    }, {
-      "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
-      "name" : "reporter/base",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -111,8 +111,8 @@
         "total" : 6
       }
     }, {
-      "uid" : "df871c3b3fd724d1c12af10732075143",
-      "name" : "Session 2018-7-31 22:05:54",
+      "uid" : "18d750ddc0d36ff63f0378d69d38397b",
+      "name" : "Session 2018-8-2 21:07:13",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 101,
+      "passed" : 106,
       "unknown" : 0,
-      "total" : 101
+      "total" : 106
     }
   } ],
   "behaviors" : {
-    "total" : 101,
+    "total" : 106,
     "items" : [ ]
   },
   "executors" : [ ],
