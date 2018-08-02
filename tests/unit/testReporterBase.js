@@ -66,7 +66,7 @@ suite("reporter/base", () => {
                     cases: [],
                 },
                 session: {
-                    isPassed: false,
+                    isPassed: true,
                 },
                 report: {
                     dir: "/path/to/report",
@@ -81,15 +81,8 @@ suite("reporter/base", () => {
             expect(conf.session.isPassed).to.be.false;
         });
 
-        chunk("tests session is failed if there are session errors", () => {
-            GlaceReporter.__set__("sessErrsNum", 1);
-            onEnd();
-            expect(conf.session.isPassed).to.be.false;
-        });
-
-        chunk("test session is passed if not failed tests and session errors", () => {
+        chunk("test session is passed if not failed tests", () => {
             conf.test.cases.push({ status: testing.TestCase.PASSED });
-            GlaceReporter.__set__("sessErrsNum", 0);
             onEnd();
             expect(conf.session.isPassed).to.be.true;
         });
