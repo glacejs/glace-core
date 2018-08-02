@@ -257,6 +257,47 @@ suite("reporter/base", () => {
         });
     });
 
+    test("on pass", () => {
+        let onPass, reporters, passChunkId, handleSkipState;
+
+        beforeChunk(() => {
+            onPass = methods["pass"];
+
+            reporters = [];
+            GlaceReporter.__set__("reporters", reporters);
+
+            passChunkId = sinon.spy();
+            GlaceReporter.__set__("passChunkId", passChunkId);
+
+            handleSkipState = sinon.spy();
+            GlaceReporter.__set__("handleSkipState", handleSkipState);
+        });
+
+        chunk("calls reporters 'pass' method if it exists", () => {
+            reporters.push({ pass: sinon.spy() });
+            onPass({ state: "passed" });
+
+            expect(passChunkId).to.be.calledOnce;
+            expect(handleSkipState).to.be.calledOnce;
+            expect(handleSkipState.args[0][0]).to.be.eql({ state: "passed" });
+
+            expect(reporters[0].pass).to.be.calledOnce;
+            expect(reporters[0].pass.args[0][0]).to.be.eql({ state: "passed" });
+        });
+
+        chunk("calls reporters 'skip' method if it exists", () => {
+            reporters.push({ skip: sinon.spy() });
+            onPass({ state: "skipped" });
+
+            expect(passChunkId).to.be.calledOnce;
+            expect(handleSkipState).to.be.calledOnce;
+            expect(handleSkipState.args[0][0]).to.be.eql({ state: "skipped" });
+
+            expect(reporters[0].skip).to.be.calledOnce;
+            expect(reporters[0].skip.args[0][0]).to.be.eql({ state: "skipped" });
+        });
+    });
+
     test("on pending", () => {
         let onPending;
 
@@ -423,6 +464,83 @@ suite("reporter/base", () => {
             expect(reporters[0].done).to.be.calledOnce;
             expect(log.error).to.be.calledOnce;
             expect(log.error.args[0][0].toString()).to.include("BOOM!");
+        });
+    });
+
+    test("passChunkId()", () => {
+        let passChunkId, conf;
+
+        beforeChunk(() => {
+            passChunkId = GlaceReporter.__get__("passChunkId");
+
+            conf = {
+                counters: {
+                    passedChunkIds: [],
+                },
+            };
+            GlaceReporter.__set__("CONF", conf);
+        });
+
+        chunk("does nothing if no chunk id", () => {
+            passChunkId();
+            expect(conf.counters.passedChunkIds).to.be.empty;
+        });
+
+        chunk("does nothing if chunk id is marked as passed already", () => {
+            conf.counters.curChunkId = 1;
+            conf.counters.passedChunkIds.push(1);
+            passChunkId();
+            expect(conf.counters.passedChunkIds).to.have.length(1);
+        });
+
+        chunk("marks chunk id as passed if it is not yet before", () => {
+            conf.counters.curChunkId = 1;
+            conf.test = {
+                curCase: {
+                    addPassedChunkId: sinon.spy(),
+                },
+            };
+
+            passChunkId();
+
+            expect(conf.counters.passedChunkIds).to.be.eql([1]);
+            expect(conf.counters.curChunkId).to.be.null;
+            expect(conf.test.curCase.addPassedChunkId).to.be.calledOnce;
+            expect(conf.test.curCase.addPassedChunkId.args[0][0]).to.be.equal(1);
+        });
+    });
+
+    test("handleSkipState()", () => {
+        let handleSkipState, mochaTest, conf;
+
+        beforeChunk(() => {
+            mochaTest = { title: "My chunk" };
+
+            handleSkipState = GlaceReporter.__get__("handleSkipState");
+
+            conf = {
+                test: {
+                },
+            };
+            GlaceReporter.__set__("CONF", conf);
+        });
+
+        chunk("does nothing if no test case", () => {
+            handleSkipState(mochaTest);
+            expect(mochaTest.state).to.be.undefined;
+        });
+
+        chunk("does nothing if chunk should not be skipped", () => {
+            conf.test.curCase = {};
+            handleSkipState(mochaTest);
+            expect(mochaTest.state).to.be.undefined;
+        });
+
+        chunk("marks mocha test as skipped if chunk should be skipped", () => {
+            conf.test.curCase = { skipChunk: "My chunk" };
+            handleSkipState(mochaTest);
+            expect(mochaTest.state).to.be.equal("skipped");
+            expect(conf.test.curCase.skipChunk).to.be.null;
         });
     });
 });
