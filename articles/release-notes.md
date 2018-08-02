@@ -1,3 +1,11 @@
+### v1.7.9
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/8ba9984d6bac14813caee68c286e89cffbbbf545) bug that session wasn't marked as passed after each retry.
+- [Fixed](https://github.com/glacejs/glace-core/commit/a688c7fd43bd67f2f469ed8ebad65944f591c1c1) bug that tests weren't retried on session fail.
+- [Fixed](https://github.com/glacejs/glace-core/commit/42513721db37b980688ea06bdb49c7b3f408ddcf) bug that exit code was successful on uncaught errors.
+- [Refactored](https://github.com/glacejs/glace-core/commit/c553f26b07570cb212fb2e09f28e9d292ebfce2f) `pass` reporter.
+- [Refactored](https://github.com/glacejs/glace-core/commit/e9620a4dfe1bbdac5a4f207624362fb8da841c9d) `fail` reporter.
+
 ### v1.7.8
 
 - [Switched](https://github.com/glacejs/glace-core/commit/ab1d5a3d26d7eecbde616fc85e03fc329f43e2c6) to promises in `testrail` reporter.

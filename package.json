@@ -1,6 +1,6 @@
 {
   "name": "glace-core",
-  "version": "1.7.8",
+  "version": "1.7.9",
   "description": "GlaceJS minimal functional testing framework",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test:unit": "nyc ./bin/glace tests/unit --dont-check-names",
     "test:cover": "nyc --reporter=lcov --report-dir ./docs/tests-cover ./bin/glace tests/unit --dont-check-names --allure",
     "test:commit": "node ./bin/glace tests/unit --dont-check-names",
-    "test:basic": "node ./bin/glace tests/e2e/testBasic.js",
+    "test:basic": "node ./bin/glace tests/e2e/testBasic.js --languages \"en, ru\"",
     "test:retry": "node ./bin/glace tests/e2e/testRetry.js --retry 2",
     "test:chunk-retry": "node ./bin/glace tests/e2e/testRetry.js --chunk-retry 2",
     "test:own-app": "node ./tests/e2e/ownApp tests/e2e/testBasic.js",
