@@ -298,6 +298,62 @@ suite("reporter/base", () => {
         });
     });
 
+    test("on fail", () => {
+        let onFail, reporters, accountError, conf;
+
+        beforeChunk(() => {
+            onFail = methods["fail"];
+
+            reporters = [];
+            GlaceReporter.__set__("reporters", reporters);
+
+            conf = {
+                session: {
+                },
+            };
+            GlaceReporter.__set__("CONF", conf);
+
+            accountError = sinon.spy();
+            GlaceReporter.__set__("accountError", accountError);
+        });
+
+        afterChunk(() => {
+            delete runner.emit;
+        });
+
+        chunk("calls reporters 'fail' method if it exists", () => {
+            reporters.push({ fail: sinon.spy() });
+            onFail({ title: "my chunk" }, "error");
+
+            expect(accountError).to.be.calledOnce;
+            expect(accountError.args[0][0]).to.be.equal("my chunk");
+            expect(accountError.args[0][1]).to.be.equal("error");
+
+            expect(reporters[0].fail).to.be.calledOnce;
+            expect(reporters[0].fail.args[0][0]).to.be.eql({ title: "my chunk" });
+            expect(reporters[0].fail.args[0][1]).to.be.equal("error");
+        });
+
+        chunk("fails session immediately if flag is set", () => {
+            conf.session.exitOnFail = true;
+            conf.test = {
+                curCase: {
+                    end: sinon.spy(),
+                },
+            };
+
+            runner.emit = sinon.spy();
+
+            onFail({ title: "my chunk" }, "error");
+
+            expect(conf.test.curCase.end).to.be.calledOnce;
+            expect(conf.test.curCase.end.args[0][0]).to.be.equal("failed");
+
+            expect(runner.emit).to.be.calledOnce;
+            expect(runner.emit.args[0][0]).to.be.equal("end");
+        });
+    });
+
     test("on pending", () => {
         let onPending;
 
@@ -541,6 +597,46 @@ suite("reporter/base", () => {
             handleSkipState(mochaTest);
             expect(mochaTest.state).to.be.equal("skipped");
             expect(conf.test.curCase.skipChunk).to.be.null;
+        });
+    });
+
+    test("accountError()", () => {
+        let accountError, conf;
+
+        beforeChunk(() => {
+            accountError = GlaceReporter.__get__("accountError");
+
+            conf = {
+                test: {},
+                session: {},
+            };
+            GlaceReporter.__set__("CONF", conf);
+        });
+
+        chunk("marks session as failed if no tests", () => {
+            accountError("my chunk", "error");
+            expect(conf.session.isPassed).to.be.false;
+        });
+
+        chunk("logs test error if tests are present", () => {
+            conf.test.curCase = {
+                addError: sinon.spy(),
+                testParams: { lang: "ru" },
+            };
+
+            accountError("my chunk", {
+                message: "error message",
+                stack: "error stack",
+                seleniumStack: { "selenium": "error" },
+            });
+
+            expect(conf.test.curCase.addError).to.be.calledOnce;
+
+            const errMsg = conf.test.curCase.addError.args[0][0];
+            expect(errMsg).to.startWith("my chunk");
+            expect(errMsg).to.include("lang");
+            expect(errMsg).to.include("error stack");
+            expect(errMsg).to.include("selenium");
         });
     });
 });
