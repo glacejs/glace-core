@@ -6,22 +6,22 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 106,
+      "passed" : 109,
       "unknown" : 0,
-      "total" : 106
+      "total" : 109
     },
     "time" : {
-      "start" : 1533233234424,
-      "stop" : 1533233242411,
-      "duration" : 7987,
+      "start" : 1533367456689,
+      "stop" : 1533367464829,
+      "duration" : 8140,
       "minDuration" : 1,
-      "maxDuration" : 2029,
-      "sumDuration" : 7660
+      "maxDuration" : 2026,
+      "sumDuration" : 7804
     }
   },
   "environment" : [ ],
   "suites" : {
-    "total" : 15,
+    "total" : 16,
     "items" : [ {
       "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
       "name" : "reporter/base",
@@ -78,6 +78,17 @@
         "total" : 9
       }
     }, {
+      "uid" : "d41777bf7a04f4698599191c57d68c1d",
+      "name" : "reporter/allure",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 9,
+        "unknown" : 0,
+        "total" : 9
+      }
+    }, {
       "uid" : "ee79ae265a842e48c4df30f006daaf4e",
       "name" : "TestCase",
       "statistic" : {
@@ -95,24 +106,13 @@
         "failed" : 0,
         "broken" : 0,
         "skipped" : 0,
-        "passed" : 7,
-        "unknown" : 0,
-        "total" : 7
-      }
-    }, {
-      "uid" : "d41777bf7a04f4698599191c57d68c1d",
-      "name" : "reporter/allure",
-      "statistic" : {
-        "failed" : 0,
-        "broken" : 0,
-        "skipped" : 0,
         "passed" : 6,
         "unknown" : 0,
         "total" : 6
       }
     }, {
-      "uid" : "18d750ddc0d36ff63f0378d69d38397b",
-      "name" : "Session 2018-8-2 21:07:13",
+      "uid" : "8ab8dc6e8f9aed61b27cd8521764bb7a",
+      "name" : "Session 2018-8-4 10:24:15",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 106,
+      "passed" : 109,
       "unknown" : 0,
-      "total" : 106
+      "total" : 109
     }
   } ],
   "behaviors" : {
-    "total" : 106,
+    "total" : 109,
     "items" : [ ]
   },
   "executors" : [ ],

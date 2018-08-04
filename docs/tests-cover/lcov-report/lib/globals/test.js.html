@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.55% </span>
+        <span class="strong">94.17% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>104/110</span>
+        <span class='fraction'>97/103</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96% </span>
+        <span class="strong">95.83% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>48/50</span>
+        <span class='fraction'>46/48</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/12</span>
+        <span class='fraction'>9/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.29% </span>
+        <span class="strong">93.88% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>99/105</span>
+        <span class='fraction'>92/98</span>
       </div>
     </div>
     <p class="quiet">
@@ -246,29 +246,12 @@
 <a name='L198'></a><a href='#L198'>198</a>
 <a name='L199'></a><a href='#L199'>199</a>
 <a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L201'></a><a href='#L201'>201</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -277,16 +260,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -417,9 +390,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -478,31 +448,19 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 &nbsp;
-const path = require("path");
-&nbsp;
 const _ = require("lodash");
 const U = require("glace-utils");
-const LOG = U.logger;
 &nbsp;
 const CONF = require("../config");
 const TestCase = require("../testing").TestCase;
 const ScopeType = require("../testing").ScopeType;
+const setLog = require("../utils").setLog;
 &nbsp;
 const retryTests = require("./session").retryTests;
-const _scope = require("./scope");
+const scope_ = require("./scope");
 &nbsp;
 let GID = 0;
 &nbsp;
-/**
- * Helper to set actual log file.
- *
- * @function
- */
-const setLog = () =&gt; {
-    const testName = CONF.test.curCase ? U.toKebab(CONF.test.curCase.name) : "";
-    const logFile = path.resolve(CONF.report.logsDir, testName, "logs", "test.log");
-    LOG.setFile(logFile);
-};
 setLog(); // Set log immediately.
 &nbsp;
 /**
@@ -600,7 +558,7 @@ const testFunc <span class="fstat-no" title="function not covered" >= </span>o =
 <span class="cstat-no" title="statement not covered" >    CONF.counters.testId = o.testCase.id;</span>
 <span class="cstat-no" title="statement not covered" >    CONF.counters.chunkId = 0;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    _scope(new ScopeType(o.name).setType("test"), o.testOpts, <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    scope_(new ScopeType(o.name).setType("test"), o.testOpts, <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        before(beforeCb(o));</span>
 <span class="cstat-no" title="statement not covered" >        U.wrap(o.fixtures, o.func)();</span>
 <span class="cstat-no" title="statement not covered" >        after(afterCb(o));</span>
@@ -630,9 +588,6 @@ const afterCb = o =&gt; () =&gt; {
     } else {
         o.testCase.end(TestCase.PASSED);
     }
-&nbsp;
-    CONF.test.curCase = null;
-    setLog(); // Current test case is finished, need to reinit log
 &nbsp;
     if (o.testCase.status !== TestCase.FAILED || o.retries &lt;= 0) {
         return;
@@ -697,7 +652,7 @@ module.exports = test;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Aug 02 2018 21:07:22 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 04 2018 10:24:25 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
