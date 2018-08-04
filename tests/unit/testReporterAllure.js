@@ -27,6 +27,38 @@ suite("reporter/allure", () => {
         });
     });
 
+    test("end()", () => {
+        let reportSkippedTests, console_, conf;
+
+        beforeChunk(() => {
+            allure.endSuite = sinon.stub();
+
+            reportSkippedTests = sinon.stub();
+            allureReporter.__set__("reportSkippedTests", reportSkippedTests);
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            allureReporter.__set__("console", console_);
+
+            conf = {
+                allure: {
+                    dir: "/path/to/allure",
+                },
+            };
+            allureReporter.__set__("CONF", conf);
+        });
+
+        chunk(() => {
+            allureReporter.end();
+
+            expect(reportSkippedTests).to.be.calledOnce;
+            expect(allure.endSuite).to.be.calledOnce;
+            expect(console_.log).to.be.calledThrice;
+            expect(console_.log.args[2][0]).to.include(`Allure report is ${conf.allure.dir}`);
+        });
+    });
+
     test("suite()", () => {
 
         beforeChunk(() => {
@@ -105,6 +137,54 @@ suite("reporter/allure", () => {
             allureReporter.test({ title: "my test" });
             expect(allure.startCase).to.be.calledOnce;
             expect(allure.startCase.args[0][0]).to.be.equal("my test");
+        });
+    });
+
+    test("reportSkippedTests()", () => {
+        let conf, reportSkippedTests;
+
+        beforeChunk(() => {
+            reportSkippedTests = allureReporter.__get__("reportSkippedTests");
+
+            allure.startCase = sinon.stub();
+            allure.endCase = sinon.stub();
+            allure.SKIPPED = "skipped";
+
+            conf = {
+                test: {
+                    cases: [
+                        {
+                            name: "my test",
+                            status: "skipped",
+                            rawInfo: ["due to bug"],
+                        },
+                    ],
+                },
+            };
+            allureReporter.__set__("CONF", conf);
+        });
+
+        chunk("skip with message", () => {
+            reportSkippedTests();
+
+            expect(allure.startCase).to.be.calledOnce;
+            expect(allure.startCase.args[0][0]).to.be.equal(conf.test.cases[0].name);
+
+            expect(allure.endCase).to.be.calledOnce;
+            expect(allure.endCase.args[0][0]).to.be.equal("skipped");
+            expect(allure.endCase.args[0][1]).to.be.eql({ message: conf.test.cases[0].rawInfo[0] });
+        });
+
+        chunk("skip without message", () => {
+            conf.test.cases[0].rawInfo = [];
+            reportSkippedTests();
+
+            expect(allure.startCase).to.be.calledOnce;
+            expect(allure.startCase.args[0][0]).to.be.equal(conf.test.cases[0].name);
+
+            expect(allure.endCase).to.be.calledOnce;
+            expect(allure.endCase.args[0][0]).to.be.equal("skipped");
+            expect(allure.endCase.args[0]).to.have.length(1);
         });
     });
 });
