@@ -1,0 +1,77 @@
+{
+  "uid" : "7a094ac3e775dbb",
+  "name" : "global rewire",
+  "fullName" : "globals.global rewire",
+  "historyId" : "87dbaea551620b674a50af5bacb16930",
+  "time" : {
+    "start" : 1533417032155,
+    "stop" : 1533417032156,
+    "duration" : 1
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "exists",
+      "time" : {
+        "start" : 1533417032155,
+        "stop" : 1533417032156,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals"
+  }, {
+    "name" : "testClass",
+    "value" : "globals"
+  }, {
+    "name" : "testMethod",
+    "value" : "global rewire"
+  }, {
+    "name" : "package",
+    "value" : "globals"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7a094ac3e775dbb.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

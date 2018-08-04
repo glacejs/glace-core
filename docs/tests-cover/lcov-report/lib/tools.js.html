@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.51% </span>
+        <span class="strong">26.16% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>37/172</span>
+        <span class='fraction'>45/172</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">7.14% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>6/84</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.9% </span>
+        <span class="strong">10.34% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/29</span>
+        <span class='fraction'>3/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">23.23% </span>
+        <span class="strong">28.39% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>36/155</span>
+        <span class='fraction'>44/155</span>
       </div>
     </div>
     <p class="quiet">
@@ -361,7 +361,8 @@
 <a name='L313'></a><a href='#L313'>313</a>
 <a name='L314'></a><a href='#L314'>314</a>
 <a name='L315'></a><a href='#L315'>315</a>
-<a name='L316'></a><a href='#L316'>316</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -657,20 +658,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -971,21 +973,22 @@ const getDoc <span class="fstat-no" title="function not covered" >= </span>func 
 <span class="cstat-no" title="statement not covered" >    return `  /**\n${doc}\n   */`;</span>
 };
 &nbsp;
-const load <span class="fstat-no" title="function not covered" >= </span>() =&gt; {
-<span class="cstat-no" title="statement not covered" >    global.before = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};</span>
-<span class="cstat-no" title="statement not covered" >    global.after = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};</span>
-<span class="cstat-no" title="statement not covered" >    global.beforeEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};</span>
-<span class="cstat-no" title="statement not covered" >    global.afterEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};</span>
-<span class="cstat-no" title="statement not covered" >    global.it = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};</span>
-<span class="cstat-no" title="statement not covered" >    global.describe = <span class="fstat-no" title="function not covered" >(n</span>ame, cb) =&gt; {</span>
+const load = () =&gt; {
+&nbsp;
+    global.before = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.after = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.beforeEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.afterEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.it = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.describe = <span class="fstat-no" title="function not covered" >(n</span>ame, cb) =&gt; {
 <span class="cstat-no" title="statement not covered" >        cb.call({</span>
             retries: <span class="fstat-no" title="function not covered" >()</span> =&gt; {},
             timeout: <span class="fstat-no" title="function not covered" >()</span> =&gt; {},
         });
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    require("./globals");</span>
-<span class="cstat-no" title="statement not covered" >    require("./loader");</span>
+    require("./globals");
+    require("./loader");
 };
 &nbsp;
 const func_desc <span class="fstat-no" title="function not covered" >= </span>func =&gt; {
@@ -997,7 +1000,7 @@ const func_desc <span class="fstat-no" title="function not covered" >= </span>fu
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 04 2018 23:44:06 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 05 2018 00:10:35 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../prettify.js"></script>
