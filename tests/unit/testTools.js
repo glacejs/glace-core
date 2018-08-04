@@ -95,4 +95,34 @@ suite("tools", () => {
             console.log.restore();
         });
     });
+
+    test("load()", () => {
+        let global_, require_;
+
+        beforeChunk(() => {
+            tools.__reset__();
+            load = tools.__get__("load");
+
+            global_ = {};
+            tools.__set__("global", global_);
+
+            require_ = sinon.stub();
+            tools.__set__("require", require_);
+        });
+
+        chunk(() => {
+            load();
+
+            expect(global_.before).to.be.a("function");
+            expect(global_.after).to.be.a("function");
+            expect(global_.beforeEach).to.be.a("function");
+            expect(global_.afterEach).to.be.a("function");
+            expect(global_.it).to.be.a("function");
+            expect(global_.describe).to.be.a("function");
+
+            expect(require_).to.be.calledTwice;
+            expect(require_.args[0][0]).to.be.equal("./globals");
+            expect(require_.args[1][0]).to.be.equal("./loader");
+        });
+    });
 });
