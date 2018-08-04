@@ -110,13 +110,13 @@ suite("reporter/testrail", () => {
             conf = {
                 testrail: { runId: 123 },
                 test: {
-                    cases: [{
+                    curCase: {
                         name: "my test",
                         screenshots: [],
                         videos: [],
                         rawInfo: [],
                         errors: [],
-                    }],
+                    },
                 },
             };
             testrailReporter.__set__("CONF", conf);
@@ -164,7 +164,7 @@ suite("reporter/testrail", () => {
 
         chunk("sends screenshot paths if there are", async () => {
             cases["my test"] = { id: 1 };
-            conf.test.cases[0].screenshots = ["/path/to/my/screen"];
+            conf.test.curCase.screenshots = ["/path/to/my/screen"];
 
             testrailReporter.testEnd({ title: "my test" });
             await testrailReporter.done();
@@ -174,7 +174,7 @@ suite("reporter/testrail", () => {
 
         chunk("sends video paths if there are", async () => {
             cases["my test"] = { id: 1 };
-            conf.test.cases[0].videos = ["/path/to/my/video"];
+            conf.test.curCase.videos = ["/path/to/my/video"];
 
             testrailReporter.testEnd({ title: "my test" });
             await testrailReporter.done();
@@ -184,7 +184,7 @@ suite("reporter/testrail", () => {
 
         chunk("sends raw info if there are", async () => {
             cases["my test"] = { id: 1 };
-            conf.test.cases[0].rawInfo = ["extra data"];
+            conf.test.curCase.rawInfo = ["extra data"];
 
             testrailReporter.testEnd({ title: "my test" });
             await testrailReporter.done();
@@ -194,7 +194,7 @@ suite("reporter/testrail", () => {
 
         chunk("marks test as blocked if it is skipped", async () => {
             cases["my test"] = { id: 1 };
-            conf.test.cases[0].status = "skipped";
+            conf.test.curCase.status = "skipped";
 
             testrailReporter.testEnd({ title: "my test" });
             await testrailReporter.done();
@@ -204,8 +204,8 @@ suite("reporter/testrail", () => {
 
         chunk("marks test as failed and attach errors", async () => {
             cases["my test"] = { id: 1 };
-            conf.test.cases[0].status = "failed";
-            conf.test.cases[0].errors = ["BOOM!"];
+            conf.test.curCase.status = "failed";
+            conf.test.curCase.errors = ["BOOM!"];
 
             testrailReporter.testEnd({ title: "my test" });
             await testrailReporter.done();

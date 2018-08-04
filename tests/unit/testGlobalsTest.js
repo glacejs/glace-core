@@ -23,32 +23,6 @@ suite("globals/test", () => {
         test_.__reset__();
     });
 
-    test("setLog()", () => {
-        let log,
-            setLog;
-
-        beforeChunk(() => {
-            log = test_.__get__("LOG");
-            sandbox.stub(log, "setFile");
-            setLog = test_.__get__("setLog");
-            conf.report = { logsDir: "/path/to/report" };
-        });
-
-        chunk("record logs to test dir", () => {
-            conf.test = { curCase: { name: "my-test" }};
-            setLog();
-            expect(log.setFile).to.be.calledOnce;
-            expect(log.setFile.args[0][0]).to.be.equal("/path/to/report/my-test/logs/test.log");
-        });
-
-        chunk("record logs to common dir", () => {
-            conf.test = {};
-            setLog();
-            expect(log.setFile).to.be.calledOnce;
-            expect(log.setFile.args[0][0]).to.be.equal("/path/to/report/logs/test.log");
-        });
-    });
-
     test("baseTest()", () => {
         let baseTest,
             testFunc;
@@ -267,14 +241,12 @@ suite("globals/test", () => {
     });
 
     test("afterCb()", () => {
-        let afterCb, retryTests, setLog, o;
+        let afterCb, retryTests, o;
 
         beforeChunk(() => {
             afterCb = test_.__get__("afterCb");
             retryTests = [];
             test_.__set__("retryTests", retryTests);
-            setLog = sinon.spy();
-            test_.__set__("setLog", setLog);
             o = {};
             o.testCase = {
                 errors: ["err"],
@@ -291,8 +263,6 @@ suite("globals/test", () => {
 
             expect(o.testCase.end).to.be.calledOnce;
             expect(o.testCase.end.args[0][0]).to.be.equal("failed");
-            expect(conf.test.curCase).to.not.exist;
-            expect(setLog).to.be.calledOnce;
             expect(o.retries).to.be.equal(0);
             expect(retryTests).to.have.length(1);
         });
