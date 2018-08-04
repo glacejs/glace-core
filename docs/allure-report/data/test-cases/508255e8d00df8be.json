@@ -1,0 +1,92 @@
+{
+  "uid" : "508255e8d00df8be",
+  "name" : ".setLog()",
+  "fullName" : "utils..setLog()",
+  "historyId" : "b7c9476252a8e525c2f7170605d6f4d3",
+  "time" : {
+    "start" : 1533391775596,
+    "stop" : 1533391775601,
+    "duration" : 5
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "record logs to test dir",
+      "time" : {
+        "start" : 1533391775596,
+        "stop" : 1533391775599,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "record logs to common dir",
+      "time" : {
+        "start" : 1533391775599,
+        "stop" : 1533391775601,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "utils"
+  }, {
+    "name" : "testClass",
+    "value" : "utils"
+  }, {
+    "name" : "testMethod",
+    "value" : ".setLog()"
+  }, {
+    "name" : "package",
+    "value" : "utils"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "508255e8d00df8be.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

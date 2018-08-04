@@ -6,17 +6,17 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 109,
+      "passed" : 115,
       "unknown" : 0,
-      "total" : 109
+      "total" : 115
     },
     "time" : {
-      "start" : 1533367456689,
-      "stop" : 1533367464829,
-      "duration" : 8140,
+      "start" : 1533391767267,
+      "stop" : 1533391775601,
+      "duration" : 8334,
       "minDuration" : 1,
-      "maxDuration" : 2026,
-      "sumDuration" : 7804
+      "maxDuration" : 2028,
+      "sumDuration" : 7964
     }
   },
   "environment" : [ ],
@@ -43,6 +43,17 @@
         "passed" : 16,
         "unknown" : 0,
         "total" : 16
+      }
+    }, {
+      "uid" : "d41777bf7a04f4698599191c57d68c1d",
+      "name" : "reporter/allure",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 15,
+        "unknown" : 0,
+        "total" : 15
       }
     }, {
       "uid" : "ae12b400ed840cca16a213285cb24487",
@@ -78,17 +89,6 @@
         "total" : 9
       }
     }, {
-      "uid" : "d41777bf7a04f4698599191c57d68c1d",
-      "name" : "reporter/allure",
-      "statistic" : {
-        "failed" : 0,
-        "broken" : 0,
-        "skipped" : 0,
-        "passed" : 9,
-        "unknown" : 0,
-        "total" : 9
-      }
-    }, {
       "uid" : "ee79ae265a842e48c4df30f006daaf4e",
       "name" : "TestCase",
       "statistic" : {
@@ -111,8 +111,8 @@
         "total" : 6
       }
     }, {
-      "uid" : "8ab8dc6e8f9aed61b27cd8521764bb7a",
-      "name" : "Session 2018-8-4 10:24:15",
+      "uid" : "5b5a30cb8a6a64020a5dc23f564d7c81",
+      "name" : "Session 2018-8-4 17:09:26",
       "statistic" : {
         "failed" : 0,
         "broken" : 0,
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 109,
+      "passed" : 115,
       "unknown" : 0,
-      "total" : 109
+      "total" : 115
     }
   } ],
   "behaviors" : {
-    "total" : 109,
+    "total" : 115,
     "items" : [ ]
   },
   "executors" : [ ],

@@ -1,0 +1,107 @@
+{
+  "uid" : "3b3aafe5a6749607",
+  "name" : "plugins module",
+  "fullName" : "Session 2018-8-4 17:09:26.plugins module",
+  "historyId" : "e8d129a4724213ecbb923feb06a88a14",
+  "time" : {
+    "start" : 1533391774295,
+    "stop" : 1533391774311,
+    "duration" : 16
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : ".get() should be empty",
+      "time" : {
+        "start" : 1533391774297,
+        "stop" : 1533391774298,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : ".clearCache() should work",
+      "time" : {
+        "start" : 1533391774299,
+        "stop" : 1533391774300,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : ".get() should be empty after .clearCache()",
+      "time" : {
+        "start" : 1533391774301,
+        "stop" : 1533391774310,
+        "duration" : 9
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Session 2018-8-4 17:09:26"
+  }, {
+    "name" : "testClass",
+    "value" : "Session 2018-8-4 17:09:26"
+  }, {
+    "name" : "testMethod",
+    "value" : "plugins module"
+  }, {
+    "name" : "package",
+    "value" : "Session 2018-8-4 17:09:26"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "3b3aafe5a6749607.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
