@@ -178,6 +178,142 @@ suite("reporter/allure", () => {
         });
     });
 
+    test("chunk()", () => {
+
+        beforeChunk(() => {
+            allure.startStep = sinon.stub();
+        });
+
+        chunk(() => {
+            allureReporter.chunk({ title: "my chunk" });
+            expect(allure.startStep).to.be.calledOnce;
+            expect(allure.startStep.args[0][0]).to.be.equal("my chunk");
+        });
+    });
+
+    test("skip()", () => {
+
+        beforeChunk(() => {
+            allure.endStep = sinon.stub();
+            allure.SKIPPED = "skipped";
+
+            const allureNotScope = sinon.stub().returns(true);
+            allureNotScope.onCall(1).returns(false);
+            allureReporter.__set__("allureNotScope", allureNotScope);
+        });
+
+        chunk(() => {
+            allureReporter.skip();
+            expect(allure.endStep).to.be.calledOnce;
+            expect(allure.endStep.args[0][0]).to.be.equal(allure.SKIPPED);
+        });
+    });
+
+    test("pass()", () => {
+
+        beforeChunk(() => {
+            allure.endStep = sinon.stub();
+            allure.PASSED = "passed";
+
+            const allureNotScope = sinon.stub().returns(true);
+            allureNotScope.onCall(1).returns(false);
+            allureReporter.__set__("allureNotScope", allureNotScope);
+        });
+
+        chunk(() => {
+            allureReporter.pass();
+            expect(allure.endStep).to.be.calledOnce;
+            expect(allure.endStep.args[0][0]).to.be.equal(allure.PASSED);
+        });
+    });
+
+    test("fail()", () => {
+
+        beforeChunk(() => {
+            allure.endStep = sinon.stub();
+            allure.FAILED = "failed";
+
+            const allureNotScope = sinon.stub().returns(true);
+            allureNotScope.onCall(1).returns(false);
+            allureReporter.__set__("allureNotScope", allureNotScope);
+        });
+
+        chunk(() => {
+            allureReporter.fail();
+            expect(allure.endStep).to.be.calledOnce;
+            expect(allure.endStep.args[0][0]).to.be.equal(allure.FAILED);
+        });
+    });
+
+    test("allureNotScope()", () => {
+        let allureNotScope;
+
+        beforeChunk(() => {
+            allureNotScope = allureReporter.__get__("allureNotScope");
+
+            allure.hasSteps = sinon.stub().returns(true);
+            allure.getCurrentSuite = sinon.stub().returns({ currentStep: { isScope: false }});
+        });
+
+        chunk("returns true if allure has steps and is not scope level", () => {
+            expect(allureNotScope()).to.be.true;
+        });
+
+        chunk("returns false if allure has no steps", () => {
+            allure.hasSteps.returns(false);
+            expect(allureNotScope()).to.be.false;
+        });
+
+        chunk("return false if allure is on scope level", () => {
+            allure.getCurrentSuite.returns({ currentStep: { isScope: true }});
+            expect(allureNotScope()).to.be.false;
+        });
+    });
+
+    test("getErrors()", () => {
+        let getErrors;
+
+        beforeChunk(() => {
+            getErrors = allureReporter.__get__("getErrors");
+        });
+        
+        chunk("processes errors without message", () => {
+            const testCase = {
+                errors: [
+                    "My error stack",
+                ],
+            };
+            const result = getErrors(testCase);
+            expect(result.message).to.include("Show details");
+            expect(result.stack).to.include("My error stack");
+        });
+
+        chunk("processes one named error", () => {
+            const testCase = {
+                errors: [
+                    "message: My fail\nMy error stack",
+                ],
+            };
+            const result = getErrors(testCase);
+            expect(result.message).to.include("My fail");
+            expect(result.stack).to.include("My error stack");
+        });
+
+        chunk("processes names errors", () => {
+            const testCase = {
+                errors: [
+                    "message: My fail\nMy error stack",
+                    "message: Another fail\nAnother error stack",
+                ],
+            };
+            const result = getErrors(testCase);
+            expect(result.message).to.include("1. My fail");
+            expect(result.message).to.include("2. Another fail");
+            expect(result.stack).to.include("My error stack");
+            expect(result.stack).to.include("Another error stack");
+        });
+    });
+
     test("reportSkippedTests()", () => {
         let conf, reportSkippedTests;
 
