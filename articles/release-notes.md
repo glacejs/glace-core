@@ -1,3 +1,7 @@
+### v1.8.0
+
+- [Refactored](https://github.com/glacejs/glace-core/commit/709fe45cc00c8b57da796a76c4c57e0cf742147d) reporting subsystem in order to clear reference to current test after `testEnd()` in all reporters.
+
 ### v1.7.9
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/8ba9984d6bac14813caee68c286e89cffbbbf545) bug that session wasn't marked as passed after each retry.
