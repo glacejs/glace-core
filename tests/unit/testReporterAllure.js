@@ -140,6 +140,44 @@ suite("reporter/allure", () => {
         });
     });
 
+    test("testEnd()", () => {
+        let conf;
+
+        beforeChunk(() => {
+            allure.endCase = sinon.stub();
+            allure.PASSED = "passed";
+            allure.FAILED = "failed";
+
+            allureReporter.__set__("getErrors", sinon.stub().returns("errors"));
+
+            conf = {
+                test: {
+                    curCase: {
+                        name: "my test",
+                        status: "passed",
+                    },
+                },
+            };
+            allureReporter.__set__("CONF", conf);
+        });
+
+        chunk("ends passed test", () => {
+            allureReporter.testEnd();
+
+            expect(allure.endCase).to.be.calledOnce;
+            expect(allure.endCase.args[0][0]).to.be.equal("passed");
+        });
+
+        chunk("ends failed test", () => {
+            conf.test.curCase.status = "failed";
+            allureReporter.testEnd();
+
+            expect(allure.endCase).to.be.calledOnce;
+            expect(allure.endCase.args[0][0]).to.be.equal("failed");
+            expect(allure.endCase.args[0][1]).to.be.equal("errors");
+        });
+    });
+
     test("reportSkippedTests()", () => {
         let conf, reportSkippedTests;
 

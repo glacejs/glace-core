@@ -155,12 +155,22 @@ suite("reporter/base", () => {
     });
 
     test("on suite end", () => {
-        let onSuiteEnd, reporters;
+        let onSuiteEnd, reporters, conf, setLog;
 
         beforeChunk(() => {
             onSuiteEnd = methods["suite end"];
             reporters = [];
             GlaceReporter.__set__("reporters", reporters);
+
+            conf = {
+                test: {
+                    curCase: { name: "my test" },
+                },
+            };
+            GlaceReporter.__set__("CONF", conf);
+
+            setLog = sinon.stub();
+            GlaceReporter.__set__("setLog", setLog);
         });
 
         ["suite", "scope", "test"].forEach(type => {
