@@ -166,6 +166,9 @@ suite("reporter/base", () => {
                 test: {
                     curCase: { name: "my test" },
                 },
+                report: {
+                    testDir: null,
+                }
             };
             GlaceReporter.__set__("CONF", conf);
 

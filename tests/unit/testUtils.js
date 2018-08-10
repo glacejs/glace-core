@@ -19,21 +19,21 @@ suite("utils", () => {
 
             conf = {
                 report: {
-                    logsDir: "/path/to/report",
+                    dir: "/path/to/report",
+                    testDir: "/path/to/report/tests/my-test",
                 },
             };
             utils.__set__("CONF", conf);
         });
 
         chunk("record logs to test dir", () => {
-            conf.test = { curCase: { name: "my-test" }};
             utils.setLog();
             expect(log.setFile).to.be.calledOnce;
-            expect(log.setFile.args[0][0]).to.be.equal("/path/to/report/my-test/logs/test.log");
+            expect(log.setFile.args[0][0]).to.be.equal("/path/to/report/tests/my-test/logs/test.log");
         });
 
         chunk("record logs to common dir", () => {
-            conf.test = {};
+            delete conf.report.testDir;
             utils.setLog();
             expect(log.setFile).to.be.calledOnce;
             expect(log.setFile.args[0][0]).to.be.equal("/path/to/report/logs/test.log");

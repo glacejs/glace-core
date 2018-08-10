@@ -53,6 +53,7 @@
 - Oriented to complex functional [scenarios](tutorial-concepts.html)
 - Indepentently executed [chunks](tutorial-concepts.html) inside a test
 - [Parameterization](tutorial-parameterization.html) inside and outside of test
+- Mechanism to launch tests in parallel workers.
 - Mechanism to [retry](tutorial-retry.html) failed tests
 - Mechanism to [retry](tutorial-retry.html) failed chunks
 - Mechanism to process uncaught exceptions (`mocha` mechanism is [unreliable](tutorial-mocha-uncaught.html) but supported)
@@ -109,10 +110,11 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--chunk-timeout [sec]` - Time to execute chunk or hook, sec. Default is `180`.
 - `--uncaught [type]` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism ([unreliable](tutorial-mocha-uncaught.html)).
 - `--kill-procs <sequence>` - List of process names separated with comma, which will be killed before tests run.
-- `--debug-on-fail` - Enter to interactive debug mode on step failure.
+- `--debug-on-fail` - Enter to interactive debug mode on step failure. **Incompatible with `--slaves` option**.
 - `--exit-on-fail` - Finish test run on first failure.
 - `--errors-now` - Print error message immediately when it happened.
-- `--interactive, -i` - Launch interactive mode to execute steps manually in terminal.
+- `--interactive, -i` - Launch interactive mode to execute steps manually in terminal. **Incompatible with `--slaves` option**.
+- `--slaves <number|auto>` - Split tests by slaves and execute them in separated processes in parallel. If it is `auto`, slaves amount will be equal to process cores amount.
 
 `Plugins`
 - `--list-plugins` - Show plugins only.

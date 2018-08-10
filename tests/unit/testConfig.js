@@ -188,7 +188,6 @@ suite("config", () => {
         chunk("default values", () => {
             expect(config.report).to.exist;
             expect(config.report.dir).to.endWith("report");
-            expect(config.report.logsDir).to.be.equal(config.report.dir);
             expect(config.report.clear).to.be.true;
             expect(config.report.errorsNow).to.be.false;
             expect(config.report.failedTestsPath).to.endWith("failed-tests.json");
