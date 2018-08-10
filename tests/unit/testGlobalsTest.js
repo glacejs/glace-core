@@ -226,6 +226,7 @@ suite("globals/test", () => {
                 reset: sinon.spy(),
                 start: sinon.spy(),
                 failedParams: "test failed params",
+                name: "my test",
             };
         });
 
