@@ -1,3 +1,7 @@
+### v1.8.1
+
+- [Added](https://github.com/glacejs/glace-core/commit/31acf299484d3be51febade025f2754d2bf14c73) mechanism to launch tests in separated processes in parallel via CLI option `--slaves`.
+
 ### v1.8.0
 
 - [Refactored](https://github.com/glacejs/glace-core/commit/709fe45cc00c8b57da796a76c4c57e0cf742147d) reporting subsystem in order to clear reference to current test after `testEnd()` in all reporters.
