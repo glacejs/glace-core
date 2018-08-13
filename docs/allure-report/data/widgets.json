@@ -6,22 +6,22 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 120,
+      "passed" : 128,
       "unknown" : 0,
-      "total" : 120
+      "total" : 128
     },
     "time" : {
-      "start" : 1533417027381,
-      "stop" : 1533417035406,
-      "duration" : 8025,
+      "start" : 1534181382997,
+      "stop" : 1534181391902,
+      "duration" : 8905,
       "minDuration" : 1,
-      "maxDuration" : 2024,
-      "sumDuration" : 7726
+      "maxDuration" : 2028,
+      "sumDuration" : 8610
     }
   },
   "environment" : [ ],
   "suites" : {
-    "total" : 16,
+    "total" : 17,
     "items" : [ {
       "uid" : "ff8ebbcd2ea7f547668f51133dced5dd",
       "name" : "reporter/base",
@@ -100,6 +100,17 @@
         "total" : 9
       }
     }, {
+      "uid" : "0553611017f1aac338ed85b23061f5c9",
+      "name" : "cluster",
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 8
+      }
+    }, {
       "uid" : "eb0fc28022ab37abe7dae76ba9184937",
       "name" : "globals/test",
       "statistic" : {
@@ -121,17 +132,6 @@
         "unknown" : 0,
         "total" : 5
       }
-    }, {
-      "uid" : "ea22d2d76dbe5c02d7806d97e28dd189",
-      "name" : "Session 2018-8-5 00:10:26",
-      "statistic" : {
-        "failed" : 0,
-        "broken" : 0,
-        "skipped" : 0,
-        "passed" : 4,
-        "unknown" : 0,
-        "total" : 4
-      }
     } ]
   },
   "history-trend" : [ {
@@ -139,13 +139,13 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 120,
+      "passed" : 128,
       "unknown" : 0,
-      "total" : 120
+      "total" : 128
     }
   } ],
   "behaviors" : {
-    "total" : 120,
+    "total" : 128,
     "items" : [ ]
   },
   "executors" : [ ],
