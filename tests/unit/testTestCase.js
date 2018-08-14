@@ -24,6 +24,33 @@ suite("TestCase", () => {
         });
     });
 
+    test(".addPassedChunkId()", () => {
+
+        chunk("does nothing if no chunk id", () => {
+            testCase.addPassedChunkId();
+            expect(testCase.passedChunkIds).to.be.empty;
+        });
+
+        chunk("does nothing if passed chunk ids list includes chunk id", () => {
+            testCase.passedChunkIds = [1];
+            testCase.addPassedChunkId(1);
+            expect(testCase.passedChunkIds).to.be.eql([1]);
+        });
+
+        chunk("adds chunk id", () => {
+            testCase.addPassedChunkId(1);
+            expect(testCase.passedChunkIds).to.be.eql([1]);
+        });
+    });
+
+    test(".addPassedChunkdIds()", () => {
+
+        chunk(() => {
+            testCase.addPassedChunkIds([1, 2]);
+            expect(testCase.passedChunkIds).to.be.eql([1, 2]);
+        });
+    });
+
     test(".start()", () => {
 
         chunk("starts test case", () => {
