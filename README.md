@@ -114,7 +114,7 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--exit-on-fail` - Finish test run on first failure.
 - `--errors-now` - Print error message immediately when it happened.
 - `--interactive, -i` - Launch interactive mode to execute steps manually in terminal. **Incompatible with `--slaves` option**.
-- `--slaves <number|auto>` - Split tests by slaves and execute them in separated processes in parallel. If it is `auto`, slaves amount will be equal to process cores amount.
+- `--slaves <number|auto>` - Split tests by slaves and execute them in separated processes in parallel. If it is `auto`, slaves amount will be equal to processor cores amount.
 
 `Plugins`
 - `--list-plugins` - Show plugins only.
