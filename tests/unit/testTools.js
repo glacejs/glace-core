@@ -112,6 +112,50 @@ suite("tools", () => {
         });
     });
 
+    test(".printTests()", () => {
+        let fakeLoad, conf, console_;
+
+        beforeChunk(() => {
+            fakeLoad = sinon.stub();
+            tools.__set__("fakeLoad", fakeLoad);
+
+            conf = {
+                test: { cases: [] },
+            };
+            tools.__set__("CONF", conf);
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+        });
+
+        chunk("prints no tests message if no tests", () => {
+            tools.printTests();
+
+            expect(fakeLoad).to.be.calledOnce;
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("No tests are found");
+        });
+
+        chunk("prints no tests message if no filtered tests", () => {
+            conf.test.cases = [{ name: "my test" }];
+            tools.printTests("another test");
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("No tests are found");
+
+        });
+
+        chunk("prints tests", () => {
+            conf.test.cases = [{ name: "my test" }, { name: "another test" }];
+            tools.printTests("my test");
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("1. my test");
+        });
+    });
+
     test(".fakeLoad()", () => {
         let global_, require_;
 
