@@ -8,12 +8,6 @@ suite("globals", () => {
         sandbox.restore();
     });
 
-    test("steps aliases", () => {
-        chunk(() => {
-            expect(SS).to.be.eql($).and.to.be.eql($$);
-        });
-    });
-
     test("chai as promised", () => {
 
         chunk("checks fulfilled promise", async () => {
