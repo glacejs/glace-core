@@ -34,6 +34,17 @@
       "total" : 15
     }
   }, {
+    "uid" : "d5403d07b38654d7748aa6cfc6675d06",
+    "name" : "tools",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 13,
+      "unknown" : 0,
+      "total" : 13
+    }
+  }, {
     "uid" : "ae12b400ed840cca16a213285cb24487",
     "name" : "config",
     "statistic" : {
@@ -78,17 +89,6 @@
       "total" : 10
     }
   }, {
-    "uid" : "3998b72ebb42be9d20bfc9d55decfadb",
-    "name" : "globals",
-    "statistic" : {
-      "failed" : 0,
-      "broken" : 0,
-      "skipped" : 0,
-      "passed" : 9,
-      "unknown" : 0,
-      "total" : 9
-    }
-  }, {
     "uid" : "0553611017f1aac338ed85b23061f5c9",
     "name" : "cluster",
     "statistic" : {
@@ -100,15 +100,15 @@
       "total" : 8
     }
   }, {
-    "uid" : "eb0fc28022ab37abe7dae76ba9184937",
-    "name" : "globals/test",
+    "uid" : "3998b72ebb42be9d20bfc9d55decfadb",
+    "name" : "globals",
     "statistic" : {
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 6,
+      "passed" : 8,
       "unknown" : 0,
-      "total" : 6
+      "total" : 8
     }
   } ]
 }
