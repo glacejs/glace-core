@@ -156,6 +156,39 @@ suite("tools", () => {
         });
     });
 
+    test(".printPlugins()", () => {
+        let plugins, console_;
+
+        beforeChunk(() => {
+            plugins = {
+                get: sinon.stub(),
+            };
+            tools.__set__("plugins", plugins);
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+        });
+
+        chunk("prints no plugins message", () => {
+            plugins.get.returns([]);
+            tools.printPlugins();
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("No plugins are detected");
+        });
+
+        chunk("prints plugins list", () => {
+            plugins.get.returns([{ name: "my plugin", path: "/path/to/my/plugin" }]);
+            tools.printPlugins();
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("1. my plugin");
+            expect(console_.log.args[0][1]).to.include("/path/to/my/plugin");
+        });
+    });
+
     test(".fakeLoad()", () => {
         let global_, require_;
 
