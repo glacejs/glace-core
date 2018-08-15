@@ -389,4 +389,36 @@ suite("tools", () => {
             expect(console_.log.args[1][0]).to.include("1. my case");
         });
     });
+
+    test("checkTestrailNotImplemented()", () => {
+        let checkTestrailNotImplemented, console_, conf;
+
+        beforeChunk(() => {
+            checkTestrailNotImplemented = tools.__get__("checkTestrailNotImplemented");
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+
+            conf = {
+                test: {
+                    cases: [{ name: "my case" }],
+                },
+            };
+            tools.__set__("CONF", conf);
+        });
+
+        chunk("returns 0 if all cases are implemented", () => {
+            expect(checkTestrailNotImplemented([{ title: "my case" }])).to.be.equal(0);
+            expect(console_.log).to.not.be.called;
+        });
+
+        chunk("returns 1 if there are not implemented cases", () => {
+            expect(checkTestrailNotImplemented([{ title: "another case" }])).to.be.equal(1);
+            expect(console_.log).to.be.calledTwice;
+            expect(console_.log.args[0][0]).to.include("Not implemented TestRail cases");
+            expect(console_.log.args[1][0]).to.include("1. another case");
+        });
+    });
 });
