@@ -223,7 +223,7 @@ suite("cluster", () => {
             getTestIds = cluster.__get__("getTestIds");
 
             tools = {
-                load: sinon.stub(),
+                fakeLoad: sinon.stub(),
             };
             cluster.__set__("tools", tools);
 
@@ -236,6 +236,7 @@ suite("cluster", () => {
 
         chunk(() => {
             expect(getTestIds()).to.be.eql([[1, 1], [1]]);
+            expect(tools.fakeLoad).to.be.calledOnce;
         });
     });
 

@@ -127,7 +127,7 @@ suite("Steps", () => {
 
         beforeChunk(() => {
             tools = {
-                listSteps: sinon.spy(),
+                printSteps: sinon.spy(),
             };
 
             Steps.__set__("tools", tools);
@@ -135,9 +135,9 @@ suite("Steps", () => {
 
         chunk(() => {
             steps.listSteps("hello", "world");
-            expect(tools.listSteps).to.be.calledOnce;
-            expect(tools.listSteps.args[0][0]).to.be.equal("hello");
-            expect(tools.listSteps.args[0][1]).to.be.equal("world");
+            expect(tools.printSteps).to.be.calledOnce;
+            expect(tools.printSteps.args[0][0]).to.be.equal("hello");
+            expect(tools.printSteps.args[0][1]).to.be.equal("world");
         });
     });
 
