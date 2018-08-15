@@ -1,5 +1,7 @@
 "use config";
 
+const Testrail = require("testrail-api");
+
 const tools = rewire("../../lib/tools");
 
 suite("tools", () => {
@@ -288,6 +290,46 @@ suite("tools", () => {
             expect(require_).to.be.calledTwice;
             expect(require_.args[0][0]).to.be.equal("./globals");
             expect(require_.args[1][0]).to.be.equal("./loader");
+        });
+    });
+
+    test(".checkTestrail()", () => {
+        let checkTestrailOpts, fakeLoad, conf, checkTestrailCases;
+
+        beforeChunk(() => {
+            checkTestrailOpts = sinon.stub();
+            tools.__set__("checkTestrailOpts", checkTestrailOpts);
+
+            fakeLoad = sinon.stub();
+            tools.__set__("fakeLoad", fakeLoad);
+
+            conf = {
+                testrail: {
+                    host: "http://testrail",
+                    user: "user@example.com",
+                    token: "1234asdf",
+                },
+            };
+            tools.__set__("CONF", conf);
+
+            checkTestrailCases = sinon.stub();
+            tools.__set__("checkTestrailCases", checkTestrailCases);
+        });
+
+        chunk(() => {
+            const cb = () => {};
+            tools.checkTestrail(cb);
+
+            expect(checkTestrailOpts).to.be.calledOnce;
+            expect(fakeLoad).to.be.calledOnce;
+            expect(checkTestrailCases).to.be.calledOnce;
+            expect(checkTestrailCases.args[0][1]).to.be.equal(cb);
+
+            const client = checkTestrailCases.args[0][0];
+            expect(client).to.be.an.instanceof(Testrail);
+            expect(client.host).to.be.equal("http://testrail");
+            expect(client.user).to.be.equal("user@example.com");
+            expect(client.password).to.be.equal("1234asdf");
         });
     });
 });
