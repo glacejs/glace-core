@@ -189,6 +189,32 @@ suite("tools", () => {
         });
     });
 
+    test(".listFixtures()", () => {
+        let fakeLoad, getFixtures, filterFixtures;
+
+        beforeChunk(() => {
+            fakeLoad = sinon.stub();
+            tools.__set__("fakeLoad", fakeLoad);
+
+            getFixtures = sinon.stub().returns(["my fixture"]);
+            tools.__set__("getFixtures", getFixtures);
+
+            filterFixtures = sinon.stub().returns(["another fixture"]);
+            tools.__set__("filterFixtures", filterFixtures);
+        });
+
+        chunk("gets list of all fixtures", () => {
+            expect(tools.listFixtures()).to.be.eql(["my fixture"]);
+            expect(fakeLoad).to.be.calledOnce;
+            expect(filterFixtures).to.not.be.called;
+        });
+
+        chunk("gets list of filtered fixtures", () => {
+            expect(tools.listFixtures("another")).to.be.eql(["another fixture"]);
+            expect(filterFixtures.args[0]).to.be.eql([["my fixture"], "another", false]);
+        });
+    });
+
     test(".fakeLoad()", () => {
         let global_, require_;
 
