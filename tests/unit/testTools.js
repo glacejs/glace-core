@@ -215,6 +215,55 @@ suite("tools", () => {
         });
     });
 
+    test(".printFixtures()", () => {
+        let listFixtures, console_, d, highlight;
+
+        beforeChunk(() => {
+            listFixtures = sinon.stub();
+            tools.__set__("listFixtures", listFixtures);
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+
+            d = sinon.stub();
+            tools.__set__("d", d);
+
+            highlight = sinon.stub();
+            tools.__set__("highlight", highlight);
+        });
+
+        chunk("prints no fixtures message", () => {
+            listFixtures.returns([]);
+            tools.printFixtures();
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("No fixtures are found");
+        });
+
+        chunk("prints list of fixtures", () => {
+            listFixtures.returns([{ name: "my fixture" }]);
+            tools.printFixtures();
+            
+            expect(console_.log).to.be.calledOnce;
+            expect(d).to.be.calledOnce;
+            expect(d.args[0][0]).to.include("1. my fixture");
+        });
+
+        chunk("prints list of fixtures with docs", () => {
+            listFixtures.returns([{ name: "my fixture", doc: "/* fixture doc */" }]);
+            tools.printFixtures();
+            
+            expect(console_.log).to.be.calledTwice;
+            expect(d).to.be.calledOnce;
+            expect(d.args[0][0]).to.include("1. my fixture");
+            expect(highlight).to.be.calledOnce;
+            expect(highlight.args[0][0]).to.be.equal("/* fixture doc */");
+            expect(highlight.args[0][1]).to.be.eql({ language: "js" });
+        });
+    });
+
     test(".fakeLoad()", () => {
         let global_, require_;
 
