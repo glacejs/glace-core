@@ -421,4 +421,29 @@ suite("tools", () => {
             expect(console_.log.args[1][0]).to.include("1. another case");
         });
     });
+
+    test("checkTestrailDuplicates()", () => {
+        let checkTestrailDuplicates, console_;
+
+        beforeChunk(() => {
+            checkTestrailDuplicates = tools.__get__("checkTestrailDuplicates");
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+        });
+
+        chunk("returns 0 if no missed cases", () => {
+            expect(checkTestrailDuplicates([{ title: "my case" }, { title: "another case" }])).to.be.equal(0);
+            expect(console_.log).to.not.be.called;
+        });
+
+        chunk("returns 1 if there are missed cases", () => {
+            expect(checkTestrailDuplicates([{ title: "my case" }, { title: "my case" }])).to.be.equal(1);
+            expect(console_.log).to.be.calledTwice;
+            expect(console_.log.args[0][0]).to.include("TestRail duplicated cases");
+            expect(console_.log.args[1][0]).to.include("1. my case");
+        });
+    });
 });
