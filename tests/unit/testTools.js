@@ -446,4 +446,97 @@ suite("tools", () => {
             expect(console_.log.args[1][0]).to.include("1. my case");
         });
     });
+
+    test("checkTestrailCases()", () => {
+        let checkTestrailCases, conf, client, console_;
+
+        beforeChunk(() => {
+            checkTestrailCases = tools.__get__("checkTestrailCases");
+
+            conf = {
+                testrail: {
+                    projectId: 1,
+                    suiteId: 2,
+                    host: "http://testrail",
+                },
+            };
+            tools.__set__("CONF", conf);
+
+            client = {
+                getCases: sinon.stub(),
+            };
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+        });
+
+        chunk("calls testrail client", () => {
+
+            checkTestrailCases(client);
+            expect(client.getCases).to.be.calledOnce;
+            expect(client.getCases.args[0][0]).to.be.equal(1);
+            expect(client.getCases.args[0][1]).to.be.eql({ suite_id: 2 });
+        });
+
+        scope("callback", () => {
+            let cb, callback, checkTestrailDuplicates,
+                checkTestrailNotImplemented, checkTestrailMissed;
+
+            beforeChunk(() => {
+                cb = sinon.stub();
+                checkTestrailCases(client, cb);
+                callback = client.getCases.args[0][2];
+
+                checkTestrailDuplicates = sinon.stub();
+                tools.__set__("checkTestrailDuplicates", checkTestrailDuplicates);
+
+                checkTestrailNotImplemented = sinon.stub();
+                tools.__set__("checkTestrailNotImplemented", checkTestrailNotImplemented);
+
+                checkTestrailMissed = sinon.stub();
+                tools.__set__("checkTestrailMissed", checkTestrailMissed);
+            });
+
+            chunk("fails if error response", () => {
+                callback("response error");
+
+                expect(cb).to.be.calledOnce;
+                expect(cb.args[0][0]).to.be.equal(1);
+
+                expect(console_.log).to.be.calledOnce;
+                expect(console_.log.args[0][0]).to.be.equal("response error");
+            });
+
+            chunk("fails if cases check is failed", () => {
+                checkTestrailDuplicates.returns(1);
+                checkTestrailNotImplemented.returns(1);
+                checkTestrailMissed.returns(1);
+
+                callback();
+
+                expect(cb).to.be.calledOnce;
+                expect(cb.args[0][0]).to.be.equal(3);
+
+                expect(console_.log).to.be.calledOnce;
+                expect(console_.log.args[0][0]).to.include("TestRail suite is");
+            });
+
+            chunk("passes if cases check is passed", () => {
+                checkTestrailDuplicates.returns(0);
+                checkTestrailNotImplemented.returns(0);
+                checkTestrailMissed.returns(0);
+
+                callback();
+
+                expect(cb).to.be.calledOnce;
+                expect(cb.args[0][0]).to.be.equal(0);
+
+                expect(console_.log).to.be.calledTwice;
+                expect(console_.log.args[0][0]).to.include("cases correspond");
+                expect(console_.log.args[1][0]).to.include("TestRail suite is");
+            });
+        });
+    });
 });
