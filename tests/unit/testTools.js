@@ -58,6 +58,60 @@ suite("tools", () => {
         });
     });
 
+    test(".printSteps()", () => {
+        let listSteps, console_, d, highlight;
+
+        beforeChunk(() => {
+            listSteps = sinon.stub();
+            tools.__set__("listSteps", listSteps);
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+
+            d = sinon.stub();
+            tools.__set__("d", d);
+
+            highlight = sinon.stub();
+            tools.__set__("highlight", highlight);
+        });
+
+        chunk("print no steps message", () => {
+            listSteps.returns([]);
+            tools.printSteps();
+
+            expect(listSteps).to.be.calledOnce;
+            expect(listSteps.args[0]).to.be.eql([undefined, false]);
+
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.include("No steps are found");
+
+            expect(d).to.not.be.called;
+        });
+
+        chunk("print steps", () => {
+            listSteps.returns([{ name: "my step", description: "my description" }]);
+            tools.printSteps();
+
+            expect(console_.log).to.be.calledTwice;
+            expect(d).to.be.calledTwice;
+            expect(d.args[0][0]).to.include("1. my step:");
+            expect(d.args[1][0]).to.include("my description");
+            expect(highlight).to.not.be.called;
+        });
+
+        chunk("print steps with docs", () => {
+            listSteps.returns([{ name: "my step", description: "my description", doc: "/* step docs */" }]);
+            tools.printSteps();
+
+            expect(console_.log).to.be.calledThrice;
+            expect(highlight).to.be.calledOnce;
+            expect(highlight.args[0][0]).to.be.equal("/* step docs */");
+            expect(highlight.args[0][1]).to.be.eql({ language: "js" });
+        });
+    });
+
     test(".fakeLoad()", () => {
         let global_, require_;
 
