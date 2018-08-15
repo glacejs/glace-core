@@ -357,4 +357,36 @@ suite("tools", () => {
                 "TestRail option 'host' isn't specified in config");
         });
     });
+
+    test("checkTestrailMissed()", () => {
+        let checkTestrailMissed, console_, conf;
+
+        beforeChunk(() => {
+            checkTestrailMissed = tools.__get__("checkTestrailMissed");
+
+            console_ = {
+                log: sinon.stub(),
+            };
+            tools.__set__("console", console_);
+
+            conf = {
+                test: {
+                    cases: [{ name: "my case" }],
+                },
+            };
+            tools.__set__("CONF", conf);
+        });
+
+        chunk("returns 0 if no missed cases", () => {
+            expect(checkTestrailMissed([{ title: "my case" }])).to.be.equal(0);
+            expect(console_.log).to.not.be.called;
+        });
+
+        chunk("returns 1 if there are missed cases", () => {
+            expect(checkTestrailMissed([{ title: "another case" }])).to.be.equal(1);
+            expect(console_.log).to.be.calledTwice;
+            expect(console_.log.args[0][0]).to.include("Missed TestRail cases");
+            expect(console_.log.args[1][0]).to.include("1. my case");
+        });
+    });
 });
