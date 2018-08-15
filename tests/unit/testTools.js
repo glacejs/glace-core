@@ -332,4 +332,29 @@ suite("tools", () => {
             expect(client.password).to.be.equal("1234asdf");
         });
     });
+
+    test("checkTestrailOpts()", () => {
+        let checkTestrailOpts, conf;
+
+        before(() => {
+            checkTestrailOpts = tools.__get__("checkTestrailOpts");
+
+            conf = {
+                testrail: {
+                    host: "http://testrail",
+                },
+            };
+            tools.__set__("CONF", conf);
+        });
+
+        chunk("passes if options exist", () => {
+            checkTestrailOpts();
+        });
+
+        chunk("throws if options don't exist", () => {
+            conf.testrail.host = null;
+            expect(checkTestrailOpts).to.throw(
+                "TestRail option 'host' isn't specified in config");
+        });
+    });
 });
