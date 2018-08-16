@@ -788,4 +788,37 @@ suite("tools", () => {
             }]);
         });
     });
+
+    test("getDoc()", () => {
+        let getDoc;
+
+        beforeChunk(() => {
+            getDoc = tools.__get__("getDoc");
+        });
+
+        chunk(() => {
+            const func = function () {
+                /**
+                 * Hello world!
+                 */
+                return;
+            };
+            expect(getDoc(func)).to.be.equal("  /**\n   * Hello world!\n   */");
+        });
+    });
+
+    test("funcDescription()", () => {
+        let funcDescription;
+
+        beforeChunk(() => {
+            funcDescription = tools.__get__("funcDescription");
+        });
+
+        chunk(() => {
+            const func = function (a, b = false, c = {}) {
+                return a + b + c;
+            };
+            expect(funcDescription(func)).to.be.equal("  function (a, b = false, c = {}) {...}");
+        });
+    });
 });
