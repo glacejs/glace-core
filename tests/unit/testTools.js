@@ -651,18 +651,16 @@ suite("tools", () => {
     });
 
     test("filterSteps()", () => {
-        let filterSteps, steps, classifier, getRelevantSteps;
+        let filterSteps, steps, classifySteps, mergeSteps;
 
         beforeChunk(() => {
             filterSteps = tools.__get__("filterSteps");
 
-            classifier = {
-                getClassifications: sinon.stub(),
-            };
-            tools.__set__("classifier", classifier);
+            classifySteps = sinon.stub();
+            tools.__set__("classifySteps", classifySteps);
 
-            getRelevantSteps = sinon.stub();
-            tools.__set__("getRelevantSteps", getRelevantSteps);
+            mergeSteps = sinon.stub();
+            tools.__set__("mergeSteps", mergeSteps);
 
             steps = [{
                 name: "step1",
@@ -688,7 +686,7 @@ suite("tools", () => {
         });
 
         chunk("returns steps filtered by doc", () => {
-            getRelevantSteps.returns([{
+            mergeSteps.returns([{
                 name: "classified step",
                 doc: "doc of classified step",
                 description: "function () {...}",
@@ -728,6 +726,66 @@ suite("tools", () => {
             expect(classifier.learn).to.be.calledTwice;
             expect(classifier.learn.args[0]).to.be.eql(["doc 1", "step 1"]);
             expect(classifier.learn.args[1]).to.be.eql(["doc 2", "step 2"]);
+        });
+    });
+
+    test("classifySteps()", () => {
+        let classifySteps, classifier;
+
+        beforeChunk(() => {
+            classifySteps = tools.__get__("classifySteps");
+
+            classifier = {
+                classify: sinon.stub(),
+            };
+            tools.__set__("classifier", classifier);
+        });
+
+        chunk(() => {
+            const steps = [{
+                name: "step 1",
+            }, {
+                name: "step 2",
+            }, {
+                name: "step 3",
+            }];
+
+            classifier.classify.returns([{ label: "step 2" }]);
+            expect(classifySteps(steps, "step 2")).to.be.eql([{
+                name: "step 2",
+            }]);
+        });
+    });
+
+    test("mergeSteps()", () => {
+        let mergeSteps;
+
+        beforeChunk(() => {
+            mergeSteps = tools.__get__("mergeSteps");
+        });
+
+        chunk(() => {
+            const base = [{
+                name: "step 1",
+            }, {
+                name: "step 2",
+            }, {
+                name: "step 3",
+            }];
+            const merging = [{
+                name: "step 2",
+            }, {
+                name: "step 4",
+            }];
+            expect(mergeSteps(base, merging)).to.be.eql([{
+                name: "step 1",
+            }, {
+                name: "step 2",
+            }, {
+                name: "step 3",
+            }, {
+                name: "step 4",
+            }]);
         });
     });
 });
