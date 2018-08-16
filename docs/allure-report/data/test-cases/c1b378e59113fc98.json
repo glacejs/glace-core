@@ -1,0 +1,115 @@
+{
+  "uid" : "c1b378e59113fc98",
+  "name" : "preloads()",
+  "fullName" : "loader.preloads()",
+  "historyId" : "b9e6fbb3b4262afd3054d0f702541efc",
+  "time" : {
+    "start" : 1534422729568,
+    "stop" : 1534422729578,
+    "duration" : 10
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "loads preloads",
+      "time" : {
+        "start" : 1534422729568,
+        "stop" : 1534422729569,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "loads root conftest after preloads",
+      "time" : {
+        "start" : 1534422729570,
+        "stop" : 1534422729570,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws error if preload doesn't exist",
+      "time" : {
+        "start" : 1534422729571,
+        "stop" : 1534422729577,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws error if preload isn't a file",
+      "time" : {
+        "start" : 1534422729577,
+        "stop" : 1534422729578,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "loader"
+  }, {
+    "name" : "testClass",
+    "value" : "loader"
+  }, {
+    "name" : "testMethod",
+    "value" : "preloads()"
+  }, {
+    "name" : "package",
+    "value" : "loader"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c1b378e59113fc98.json",
+  "parameterValues" : [ ]
+}

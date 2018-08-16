@@ -1,0 +1,85 @@
+{
+  "uid" : "7161d4f212751f2c",
+  "name" : "checkTestrailNotImplemented()",
+  "fullName" : "tools.checkTestrailNotImplemented()",
+  "historyId" : "b0c9f404e0187dc5f8221f4fd20eb477",
+  "time" : {
+    "start" : 1534422732379,
+    "stop" : 1534422732381,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "returns 0 if all cases are implemented",
+      "time" : {
+        "start" : 1534422732380,
+        "stop" : 1534422732380,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "returns 1 if there are not implemented cases",
+      "time" : {
+        "start" : 1534422732381,
+        "stop" : 1534422732381,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "tools"
+  }, {
+    "name" : "testClass",
+    "value" : "tools"
+  }, {
+    "name" : "testMethod",
+    "value" : "checkTestrailNotImplemented()"
+  }, {
+    "name" : "package",
+    "value" : "tools"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7161d4f212751f2c.json",
+  "parameterValues" : [ ]
+}

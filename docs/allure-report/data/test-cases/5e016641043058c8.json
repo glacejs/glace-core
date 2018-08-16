@@ -1,0 +1,115 @@
+{
+  "uid" : "5e016641043058c8",
+  "name" : "xunit",
+  "fullName" : "config.xunit",
+  "historyId" : "f1cc6963a4491a478b75f2364af6b039",
+  "time" : {
+    "start" : 1534422727877,
+    "stop" : 1534422728076,
+    "duration" : 199
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "default values",
+      "time" : {
+        "start" : 1534422727877,
+        "stop" : 1534422727912,
+        "duration" : 35
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "enabled use",
+      "time" : {
+        "start" : 1534422727912,
+        "stop" : 1534422727969,
+        "duration" : 57
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom path",
+      "time" : {
+        "start" : 1534422727970,
+        "stop" : 1534422728024,
+        "duration" : 54
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom suite name",
+      "time" : {
+        "start" : 1534422728024,
+        "stop" : 1534422728075,
+        "duration" : 51
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "config"
+  }, {
+    "name" : "testClass",
+    "value" : "config"
+  }, {
+    "name" : "testMethod",
+    "value" : "xunit"
+  }, {
+    "name" : "package",
+    "value" : "config"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5e016641043058c8.json",
+  "parameterValues" : [ ]
+}

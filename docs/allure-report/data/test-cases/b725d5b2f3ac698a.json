@@ -1,0 +1,130 @@
+{
+  "uid" : "b725d5b2f3ac698a",
+  "name" : "filter",
+  "fullName" : "config.filter",
+  "historyId" : "14667dedec5aa3317cb2b6650909be7c",
+  "time" : {
+    "start" : 1534422727520,
+    "stop" : 1534422727876,
+    "duration" : 356
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "default values",
+      "time" : {
+        "start" : 1534422727521,
+        "stop" : 1534422727549,
+        "duration" : 28
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom grep",
+      "time" : {
+        "start" : 1534422727549,
+        "stop" : 1534422727625,
+        "duration" : 76
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom precise",
+      "time" : {
+        "start" : 1534422727625,
+        "stop" : 1534422727676,
+        "duration" : 51
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom include",
+      "time" : {
+        "start" : 1534422727676,
+        "stop" : 1534422727764,
+        "duration" : 88
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "custom exclude",
+      "time" : {
+        "start" : 1534422727764,
+        "stop" : 1534422727843,
+        "duration" : 79
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "config"
+  }, {
+    "name" : "testClass",
+    "value" : "config"
+  }, {
+    "name" : "testMethod",
+    "value" : "filter"
+  }, {
+    "name" : "package",
+    "value" : "config"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "b725d5b2f3ac698a.json",
+  "parameterValues" : [ ]
+}
