@@ -597,4 +597,31 @@ suite("tools", () => {
             }]);
         });
     });
+
+    test("getStepNames()", () => {
+        let getStepNames, global_, fakeLoad;
+
+        beforeChunk(() => {
+            getStepNames = tools.__get__("getStepNames");
+
+            global_ = {};
+            tools.__set__("global", global_);
+
+            tools.__set__("$", {
+                launchBrowser: null,
+                closeBrowser: null,
+                constructor: null,
+                _start: null,
+                0: null
+            });
+
+            fakeLoad = sinon.stub();
+            tools.__set__("fakeLoad", fakeLoad);
+        });
+
+        chunk(() => {
+            expect(getStepNames()).to.be.eql(["closeBrowser", "launchBrowser"]);
+            expect(fakeLoad).to.be.calledOnce;
+        });
+    });
 });
