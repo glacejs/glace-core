@@ -1,3 +1,8 @@
+### v1.8.2
+
+- Extended tests coverage. Achieved green result bigger than 80%.
+- Ridden of `SS` and `$$`. Started to use `$` only.
+
 ### v1.8.1
 
 - [Added](https://github.com/glacejs/glace-core/commit/31acf299484d3be51febade025f2754d2bf14c73) mechanism to launch tests in separated processes in parallel via CLI option `--slaves`.
