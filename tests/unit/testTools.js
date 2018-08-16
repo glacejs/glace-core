@@ -624,4 +624,29 @@ suite("tools", () => {
             expect(fakeLoad).to.be.calledOnce;
         });
     });
+
+    test("getStepsData()", () => {
+        let getStepsData;
+
+        beforeChunk(() => {
+            getStepsData = tools.__get__("getStepsData");
+
+            tools.__set__("$", {
+                "my step": () => {},
+                "some step": 5,
+                "some func": () => {},
+            });
+
+            tools.__set__("funcDescription", () => "my step description");
+            tools.__set__("getDoc", () => "my step doc");
+        });
+
+        chunk(() => {
+            expect(getStepsData(["my step", "some step"])).to.be.eql([{
+                name: "my step",
+                description: "my step description",
+                doc: "my step doc",
+            }]);
+        });
+    });
 });
