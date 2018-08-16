@@ -539,4 +539,28 @@ suite("tools", () => {
             });
         });
     });
+
+    test("getFixtures()", () => {
+        let getFixtures;
+
+        beforeChunk(() => {
+            getFixtures = tools.__get__("getFixtures");
+
+            const global_ = {
+                fxMyFixture: () => {},
+                myFixture: () => {},
+                fxSomeVar: 5,
+            };
+            tools.__set__("global", global_);
+
+            tools.__set__("getDoc", () => "/** fixture docs */");
+        });
+
+        chunk(() => {
+            expect(getFixtures()).to.be.eql([{
+                name: "fxMyFixture",
+                doc: "/** fixture docs */",
+            }]);
+        });
+    });
 });
