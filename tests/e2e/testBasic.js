@@ -27,7 +27,7 @@ test("It should contain skipped chunk", () => {
         throw new Error("BOOM!");
     });
     chunk("skipped", () => {
-        if (SS.isTestFailed()) return false;
+        if ($.isTestFailed()) return false;
     });
 });
 
