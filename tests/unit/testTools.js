@@ -563,4 +563,38 @@ suite("tools", () => {
             }]);
         });
     });
+
+    test("filterFixtures()", () => {
+        let filterFixtures, fixtures;
+
+        beforeChunk(() => {
+            filterFixtures = tools.__get__("filterFixtures");
+
+            fixtures = [{
+                name: "fx1",
+                doc: "doc of fixture 1",
+            }, {
+                name: "fx2",
+                doc: "doc of fixture 2",
+            }];
+        });
+
+        chunk("returns nothing if filter is mismatched", () => {
+            expect(filterFixtures(fixtures, "fixture 1", true)).to.be.eql([]);
+        });
+
+        chunk("returns fixtures filtered by name", () => {
+            expect(filterFixtures(fixtures, "fx1", true)).to.be.eql([{
+                name: "fx1",
+                doc: "doc of fixture 1",
+            }]);
+        });
+
+        chunk("returns fixtures filtered by doc", () => {
+            expect(filterFixtures(fixtures, "fixture 1")).to.be.eql([{
+                name: "fx1",
+                doc: "doc of fixture 1",
+            }]);
+        });
+    });
 });
