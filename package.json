@@ -9,7 +9,6 @@
     "test": "node ./bin/glace",
     "test:unit": "nyc ./bin/glace tests/unit --dont-check-names",
     "test:cover": "nyc --reporter=lcov --report-dir ./docs/tests-cover ./bin/glace tests/unit --dont-check-names --allure",
-    "test:commit": "node ./bin/glace tests/unit --dont-check-names",
     "test:basic": "node ./bin/glace tests/e2e/testBasic.js --languages \"en, ru\"",
     "test:retry": "node ./bin/glace tests/e2e/testRetry.js --retry 2",
     "test:chunk-retry": "node ./bin/glace tests/e2e/testRetry.js --chunk-retry 2",
@@ -34,11 +33,16 @@
     "exclude": [
       "lib/hacking.js",
       "tests"
-    ]
+    ],
+    "check-coverage": true,
+    "branches": 80,
+    "functions": 80,
+    "lines": 80,
+    "statements": 80
   },
   "pre-commit": [
     "lint",
-    "test:commit"
+    "test:unit"
   ],
   "repository": {
     "type": "git",
