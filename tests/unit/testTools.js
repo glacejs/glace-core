@@ -701,4 +701,33 @@ suite("tools", () => {
             }]);
         });
     });
+
+    test("learnClassifier()", () => {
+        let learnClassifier, classifier;
+
+        beforeChunk(() => {
+            learnClassifier = tools.__get__("learnClassifier");
+
+            classifier = {
+                learn: sinon.stub(),
+            };
+            tools.__set__("classifier", classifier);
+        });
+
+        chunk(() => {
+            const steps = [{
+                name: "step 1",
+                doc: "doc 1",
+            }, {
+                name: "step 2",
+                doc: "doc 2",
+            }];
+
+            learnClassifier(steps);
+
+            expect(classifier.learn).to.be.calledTwice;
+            expect(classifier.learn.args[0]).to.be.eql(["doc 1", "step 1"]);
+            expect(classifier.learn.args[1]).to.be.eql(["doc 2", "step 2"]);
+        });
+    });
 });
