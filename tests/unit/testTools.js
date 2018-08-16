@@ -649,4 +649,56 @@ suite("tools", () => {
             }]);
         });
     });
+
+    test("filterSteps()", () => {
+        let filterSteps, steps, classifier, getRelevantSteps;
+
+        beforeChunk(() => {
+            filterSteps = tools.__get__("filterSteps");
+
+            classifier = {
+                getClassifications: sinon.stub(),
+            };
+            tools.__set__("classifier", classifier);
+
+            getRelevantSteps = sinon.stub();
+            tools.__set__("getRelevantSteps", getRelevantSteps);
+
+            steps = [{
+                name: "step1",
+                doc: "doc of step 1",
+                description: "function () {...}",
+            }, {
+                name: "step2",
+                doc: "doc of step 2",
+                description: "function () {...}",
+            }];
+        });
+
+        chunk("returns nothing if filter is mismatched", () => {
+            expect(filterSteps(steps, "doc of step 1", true)).to.be.eql([]);
+        });
+
+        chunk("returns steps filtered by name", () => {
+            expect(filterSteps(steps, "step1", true)).to.be.eql([{
+                name: "step1",
+                doc: "doc of step 1",
+                description: "function () {...}",
+            }]);
+        });
+
+        chunk("returns steps filtered by doc", () => {
+            getRelevantSteps.returns([{
+                name: "classified step",
+                doc: "doc of classified step",
+                description: "function () {...}",
+            }]);
+
+            expect(filterSteps(steps, "step 1")).to.be.eql([{
+                name: "classified step",
+                doc: "doc of classified step",
+                description: "function () {...}",
+            }]);
+        });
+    });
 });
