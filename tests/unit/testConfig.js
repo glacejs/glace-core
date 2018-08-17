@@ -138,15 +138,15 @@ suite("config", () => {
             expect(config.test.dirs).to.have.length(1);
             expect(config.test.dirs[0]).to.endWith("tests");
             delete U.config.args.targets;
-            U.config.args._ = ["mytests"];
+            U.config.args._ = ["tests/unit"];
             config = rewire(CONFIG_PATH);
             expect(config.test.dirs).to.have.length(1);
-            expect(config.test.dirs[0]).to.endWith("mytests");
+            expect(config.test.dirs[0]).to.endWith("tests/unit");
             delete U.config.args._;
-            U.config.args.targets = "mytests";
+            U.config.args.targets = "tests/unit";
             config = rewire(CONFIG_PATH);
             expect(config.test.dirs).to.have.length(1);
-            expect(config.test.dirs[0]).to.endWith("mytests");
+            expect(config.test.dirs[0]).to.endWith("tests/unit");
         });
 
         chunk("disabled checkNames", () => {
