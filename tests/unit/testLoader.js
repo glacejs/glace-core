@@ -172,4 +172,33 @@ suite("loader", () => {
             expect(_require.args[0][0]).to.be.equal("/path/to/dir/conftest.js");
         });
     });
+
+    test("isTestsSource()", () => {
+        let isTestsSource;
+
+        beforeChunk(() => {
+            isTestsSource = loader.__get__("isTestsSource");
+        });
+
+        [
+            "my.test.js",
+            "my.spec.js",
+            "my-test.js",
+            "my-spec.js",
+            "my-test.js",
+            "my-spec.js",
+            "mytest.js",
+            "myspec.js",
+            "testMy.js"].forEach(name => {
+            chunk(`returns true for ${name}`, () => {
+                expect(isTestsSource(name)).to.be.true;
+            });
+        });
+
+        ["my.tests.js", "my.specs.js"].forEach(name => {
+            chunk(`returns true for ${name}`, () => {
+                expect(isTestsSource(name)).to.be.false;
+            });
+        });
+    });
 });
