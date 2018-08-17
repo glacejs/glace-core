@@ -66,7 +66,7 @@ suite("reporter/base", () => {
                     cases: [],
                 },
                 session: {
-                    isPassed: true,
+                    isPassed: false,
                 },
                 report: {
                     dir: "/path/to/report",
@@ -77,12 +77,21 @@ suite("reporter/base", () => {
 
         chunk("tests session is failed if there are failed tests", () => {
             conf.test.cases.push({ status: testing.TestCase.FAILED });
+            conf.session.noErrors = true;
             onEnd();
             expect(conf.session.isPassed).to.be.false;
         });
 
-        chunk("test session is passed if not failed tests", () => {
+        chunk("tests session is failed if there are session errors", () => {
             conf.test.cases.push({ status: testing.TestCase.PASSED });
+            conf.session.noErrors = false;
+            onEnd();
+            expect(conf.session.isPassed).to.be.false;
+        });
+
+        chunk("test session is passed if no failed tests and no session errors", () => {
+            conf.test.cases.push({ status: testing.TestCase.PASSED });
+            conf.session.noErrors = true;
             onEnd();
             expect(conf.session.isPassed).to.be.true;
         });
@@ -628,7 +637,7 @@ suite("reporter/base", () => {
 
         chunk("marks session as failed if no tests", () => {
             accountError("my chunk", "error");
-            expect(conf.session.isPassed).to.be.false;
+            expect(conf.session.noErrors).to.be.false;
         });
 
         chunk("logs test error if tests are present", () => {
