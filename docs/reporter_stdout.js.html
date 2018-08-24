@@ -126,27 +126,30 @@ const prettyms = require("pretty-ms");
 const CONF = require("../config");
 const TestCase = require("../testing").TestCase;
 
-const sessionErrors = [];
-
+let report;
 let indents = 0;
+
+/**
+ * Calculate message indentation.
+ * @ignore
+ */
 const indent = () => Array(indents).join("  ");
 
-fse.mkdirsSync(CONF.report.dir);
-
-const report = fs.createWriteStream(
-    path.resolve(CONF.report.dir, "stdout.log"), { flags : "w" });
-
+/**
+ * Write report to stdout.
+ * @ignore
+ */
 const stdout = function() {
     report.write(colors.strip(util.format.apply(util, arguments)) + "\n");
     console.log.apply(console, arguments);
 };
 
+/**
+ * Print epilogue results.
+ * @ignore
+ */
 const epilogue = () => {
-    let msg;
-    const indent = "  ",
-        passedTests = [],
-        failedTests = [],
-        skippedTests = [];
+    const passedTests = [], failedTests = [], skippedTests = [];
 
     for (const testCase of CONF.test.cases) {
         if (testCase.status === TestCase.FAILED) {
@@ -160,22 +163,44 @@ const epilogue = () => {
         }
     }
 
-    if (passedTests.length !== 0) {
-        msg = "passed test" + (passedTests.length === 1 ? "" : "s");
+    printStatistics(passedTests.length, failedTests.length);
+
+    if (skippedTests.length) {
+        printSkippedTests(skippedTests);
+    }
+
+    if (failedTests.length) {
+        printTestErrors(failedTests);
+        saveFailedTests(failedTests);
+    }
+
+    printSessionErrors();
+};
+
+/**
+ * Prints tests statistics.
+ * @ignore
+ */
+const printStatistics = (passedNum, failedNum) => {
+    let msg;
+    const indent = "  ";
+
+    if (passedNum) {
+        msg = "passed test" + (passedNum === 1 ? "" : "s");
         stdout((indent + MochaReporter.symbols.ok + " " +
-                String(passedTests.length).bold + " " + msg).green);
+                String(passedNum).bold + " " + msg).green);
     }
 
-    if (failedTests.length !== 0) {
-        msg = "failed test" + (failedTests.length === 1 ? "" : "s");
+    if (failedNum) {
+        msg = "failed test" + (failedNum === 1 ? "" : "s");
         stdout((indent + MochaReporter.symbols.err + " " +
-                String(failedTests.length).bold + " " + msg).red);
+                String(failedNum).bold + " " + msg).red);
     }
 
-    const execChunks = CONF.test.cases.reduce((a, b) => a + b.chunks.length, 0);
-    if (execChunks !== 0) {
-        msg = "executed chunk" + (execChunks === 1 ? "" : "s");
-        stdout((indent + execChunks + " " + msg).white);
+    const chunksNum = CONF.test.cases.reduce((a, b) => a + b.chunks.length, 0);
+    if (chunksNum) {
+        msg = "executed chunk" + (chunksNum === 1 ? "" : "s");
+        stdout(indent + chunksNum + " " + msg);
     }
 
     let execTime = CONF.test.cases
@@ -183,71 +208,100 @@ const epilogue = () => {
         .reduce((a, b) => a + b, 0);
 
     if (execTime > 0) {
-        execTime = (execTime &lt; 60000 ? `${execTime / 1000} sec` : prettyms(execTime)).white.bold;
+        execTime = (execTime &lt; 60000 ? `${execTime / 1000} sec` : prettyms(execTime)).bold;
         stdout();
-        stdout(indent + "Summary tests time is".white, execTime);
+        stdout(indent + "Summary tests time is", execTime);
     }
+};
 
-    if (skippedTests.length !== 0) {
-        msg = "skipped test" + (skippedTests.length === 1 ? "" : "s");
+/**
+ * Prints skipped tests.
+ * @ignore
+ */
+const printSkippedTests = skippedTests => {
+    let msg;
+    const indent = "  ";
+    msg = "skipped test" + (skippedTests.length === 1 ? "" : "s");
+    stdout();
+    // HACK https://github.com/glacejs/glace-core/issues/136
+    stdout(indent + "# ".gray + String(skippedTests.length).gray.bold + " " + msg.gray);
+
+    for (const skip of skippedTests) {
+        msg = `* '${skip.name}'`;
+        if (skip.rawInfo[0]) {
+            msg += " - " + skip.rawInfo[0].bold;
+        }
+        stdout(indent + indent + msg.gray);
+    }
+};
+
+/**
+ * Print session errors if there are.
+ * @ignore
+ */
+const printSessionErrors = () => {
+    if (!CONF.session.errors.length) return;
+    stdout();
+    stdout("OUTTEST FAILURES:".bold);
+    for (const error of CONF.session.errors) {
         stdout();
-        // HACK https://github.com/glacejs/glace-core/issues/136
-        stdout(indent + "# ".gray + String(skippedTests.length).gray.bold + " " + msg.gray);
+        stdout(error.red.bold);
+    }
+};
 
-        for (const skip of skippedTests) {
-            msg = `* '${skip.name}'`;
-            if (skip.rawInfo[0]) {
-                msg += " - " + skip.rawInfo[0].bold;
-            }
-            stdout(indent + indent + msg.gray);
+/**
+ * Print test errors.
+ * @ignore
+ */
+const printTestErrors = failedTests => {
+    stdout();
+    stdout("TEST FAILURES:".bold);
+    for (const testCase of failedTests) {
+        stdout();
+        stdout(("test: " + testCase.name).cyan.bold);
+        for(const err of testCase.errors) {
+            stdout();
+            stdout(err.red.bold);
         }
     }
+};
+
+const saveFailedTests = failedTests => {
 
     if (fs.existsSync(CONF.report.failedTestsPath)) {
         try {
             fs.unlinkSync(CONF.report.failedTestsPath);
         } catch (e) {
             LOG.error(`Can't remove file '${CONF.report.failedTestsPath}'`, e);
-        }
-    };
-
-    if (failedTests.length) {
-        const failedTestsJson = [];
-        stdout();
-        stdout("TEST FAILURES:".bold);
-        for (const testCase of failedTests) {
-            stdout();
-            stdout(("test: " + testCase.name).cyan.bold);
-            for(const err of testCase.errors) {
-                stdout();
-                stdout(err.red.bold);
-            }
-            const data = { name: testCase.name };
-            if (!_.isEmpty(testCase.passedChunkIds)) {
-                data.passed_chunk_ids = testCase.passedChunkIds;
-            }
-            failedTestsJson.push(data);
-        }
-
-        try {
-            fs.writeFileSync(
-                CONF.report.failedTestsPath,
-                JSON.stringify(failedTestsJson, null, "  "));
-        } catch (e) {
-            LOG.error(`Can't write file '${CONF.report.failedTestsPath}'`, e);
+            return;
         }
     }
-    if (sessionErrors.length) {
-        stdout();
-        stdout("OUTTEST FAILURES:".bold);
-        for (const error of sessionErrors) {
-            stdout();
-            stdout(error.red.bold);
-        }
+
+    const data = [];
+    for (const failedTest of failedTests) {
+        data.push({ name: failedTest.name, passed_chunk_ids: failedTest.passedChunkIds });
+    }
+
+    try {
+        fs.writeFileSync(
+            CONF.report.failedTestsPath, JSON.stringify(data, null, "  "));
+    } catch (e) {
+        LOG.error(`Can't write file '${CONF.report.failedTestsPath}'`, e);
     }
 };
 
 module.exports = {
+    /**
+     * Called before tests start.
+     *
+     * @method
+     * @instance
+     */
+    start: () => {
+        fse.mkdirsSync(CONF.report.dir);
+        report = fs.createWriteStream(
+            path.resolve(CONF.report.dir, "stdout.log"), { flags : "w" });
+    },
     /**
      * Called before tests end.
      *
@@ -364,29 +418,19 @@ module.exports = {
      * @instance
      * @arg {object} chunk - `MochaJS` test.
      */
-    fail: (chunk, err) => {
-        let errMsg;
-        if (!CONF.test.curCase) {
-            errMsg = chunk.title;
-
-            if (err.message) {
-                errMsg += "\nmessage: " + err.message;
-            }
-            if (err.stack) {
-                errMsg += "\nstack: " + err.stack;
-            }
-            if (err.seleniumStack) {
-                errMsg += "\nselenium: " + JSON.stringify(err.seleniumStack,
-                    null, "\t");
-            }
-            sessionErrors.push(errMsg);
-        } else {
-            errMsg = _.last(CONF.test.curCase.errors);
-        };
-        let msg = indent() + "  " + MochaReporter.symbols.err + " chunk";
+    fail: chunk => {
+        let suffix = chunk.type === "hook" ? " hook" : " chunk";
+        let msg = indent() + "  " + MochaReporter.symbols.err + suffix;
         if (chunk.title) msg += ": " + chunk.title;
         stdout(msg.red);
+
         if (CONF.report.errorsNow) {
+            let errMsg;
+            if (CONF.test.curCase) {
+                errMsg = _.last(CONF.test.curCase.errors);
+            } else {
+                errMsg = _.last(CONF.session.errors);
+            }
             stdout(errMsg.red.bold);
         }
     },
@@ -443,7 +487,7 @@ module.exports = {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-08-16T20:26:36+03:00
+		on 2018-08-24T14:00:54+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
