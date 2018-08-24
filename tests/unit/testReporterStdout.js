@@ -232,4 +232,48 @@ suite("reporter/stdout", () => {
             expect(report.end).to.be.calledOnce;
         });
     });
+
+    test("indent()", () => {
+        let indent;
+
+        beforeChunk(() => {
+            indent = stdoutReporter.__get__("indent");
+        });
+
+        [[0, ""], [1, ""], [2, "  "], [3, "    "]].forEach(([indents, result]) => {
+            chunk(`for ${indents} indent(s) it should be '${result}'`, () => {
+                stdoutReporter.__set__("indents", indents);
+                expect(indent()).to.be.equal(result);
+            });
+        });
+    });
+
+    test("stdout()", () => {
+        let console_, report;
+
+        beforeChunk(() => {
+            console_ = {
+                log: sinon.stub(),
+            };
+            stdoutReporter.__set__("console", console_);
+
+            report = {
+                write: sinon.stub(),
+            };
+            stdoutReporter.__set__("report", report);
+        });
+
+        beforeChunk(() => {
+            stdout = stdoutReporter.__get__("stdout");
+        });
+
+        chunk(() => {
+            stdout("hello", "world");
+            expect(report.write).to.be.calledOnce;
+            expect(report.write.args[0][0]).to.be.equal("hello world\n");
+            expect(console_.log).to.be.calledOnce;
+            expect(console_.log.args[0][0]).to.be.equal("hello");
+            expect(console_.log.args[0][1]).to.be.equal("world");
+        });
+    });
 });
