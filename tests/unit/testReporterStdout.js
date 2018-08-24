@@ -437,4 +437,62 @@ suite("reporter/stdout", () => {
             expect(stdout).to.not.be.called;
         });
     });
+
+    test("saveFailedTests()", () => {
+        let saveFailedTests, fs, log;
+
+        beforeChunk(() => {
+            saveFailedTests = stdoutReporter.__get__("saveFailedTests");
+
+            fs = {
+                unlinkSync: sinon.stub(),
+                existsSync: sinon.stub(),
+                writeFileSync: sinon.stub(),
+            };
+            stdoutReporter.__set__("fs", fs);
+
+            log = {
+                error: sinon.stub(),
+            };
+            stdoutReporter.__set__("LOG", log);
+
+            conf.report = { failedTestsPath: "/path/to/failed/tests" };
+        });
+
+        chunk("saves failed tests info to file", () => {
+            fs.existsSync.returns(false);
+            saveFailedTests([{ name: "my test", passedChunkIds: [1] }]);
+            expect(fs.unlinkSync).to.not.be.called;
+            expect(log.error).to.not.be.called;
+            expect(fs.writeFileSync).to.be.calledOnce;
+            expect(fs.writeFileSync.args[0][0]).to.be.equal("/path/to/failed/tests");
+            expect(fs.writeFileSync.args[0][1])
+                .to.be.equal(JSON.stringify([{ name: "my test", passed_chunk_ids: [1] }], null, "  "));
+        });
+
+        chunk("removes previous file with failed tests", () => {
+            fs.existsSync.returns(true);
+            saveFailedTests([]);
+            expect(fs.unlinkSync).to.be.calledOnce;
+            expect(fs.unlinkSync.args[0][0]).to.be.equal("/path/to/failed/tests");
+        });
+
+        chunk("logs & exits if can't remove previous file with failed tests", () => {
+            fs.existsSync.returns(true);
+            fs.unlinkSync.throws(Error("BOOM!"));
+            saveFailedTests([]);
+            expect(log.error).to.be.calledOnce;
+            expect(log.error.args[0][0]).to.be.equal("Can't remove file '/path/to/failed/tests'");
+            expect(log.error.args[0][1].toString()).to.include("BOOM!");
+        });
+
+        chunk("logs if can't save failed tests to file", () => {
+            fs.existsSync.returns(false);
+            fs.writeFileSync.throws(Error("BOOM!"));
+            saveFailedTests([]);
+            expect(log.error).to.be.calledOnce;
+            expect(log.error.args[0][0]).to.be.equal("Can't write file '/path/to/failed/tests'");
+            expect(log.error.args[0][1].toString()).to.include("BOOM!");
+        });
+    });
 });
