@@ -47,7 +47,7 @@ suite("config", () => {
             expect(config.session).to.exist;
             expect(config.session.name).to.include("Session");
             expect(config.session.id).to.exist;
-            expect(config.session.noErrors).to.be.false;
+            expect(config.session.errors).to.be.empty;
             expect(config.session.isPassed).to.be.false;
             expect(config.session.preloads).to.be.empty;
             expect(config.session.interactive).to.be.false;

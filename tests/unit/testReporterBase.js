@@ -66,6 +66,7 @@ suite("reporter/base", () => {
                     cases: [],
                 },
                 session: {
+                    errors: [],
                     isPassed: false,
                 },
                 report: {
@@ -77,21 +78,19 @@ suite("reporter/base", () => {
 
         chunk("tests session is failed if there are failed tests", () => {
             conf.test.cases.push({ status: testing.TestCase.FAILED });
-            conf.session.noErrors = true;
             onEnd();
             expect(conf.session.isPassed).to.be.false;
         });
 
         chunk("tests session is failed if there are session errors", () => {
             conf.test.cases.push({ status: testing.TestCase.PASSED });
-            conf.session.noErrors = false;
+            conf.session.errors = ["session error"];
             onEnd();
             expect(conf.session.isPassed).to.be.false;
         });
 
         chunk("test session is passed if no failed tests and no session errors", () => {
             conf.test.cases.push({ status: testing.TestCase.PASSED });
-            conf.session.noErrors = true;
             onEnd();
             expect(conf.session.isPassed).to.be.true;
         });
@@ -630,14 +629,26 @@ suite("reporter/base", () => {
 
             conf = {
                 test: {},
-                session: {},
+                session: {
+                    errors: [],
+                },
             };
             GlaceReporter.__set__("CONF", conf);
         });
 
-        chunk("marks session as failed if no tests", () => {
-            accountError("my chunk", "error");
-            expect(conf.session.noErrors).to.be.false;
+        chunk("logs session error if no tests are run", () => {
+            accountError(null, {
+                message: "error message",
+                stack: "error stack",
+                seleniumStack: { "selenium": "error" },
+            });
+
+            expect(conf.session.errors).to.have.length(1);
+
+            const errMsg = conf.session.errors[0];
+            expect(errMsg).to.startWith("message: error message");
+            expect(errMsg).to.include("error stack");
+            expect(errMsg).to.include("selenium");
         });
 
         chunk("logs test error if tests are present", () => {
@@ -657,6 +668,7 @@ suite("reporter/base", () => {
             const errMsg = conf.test.curCase.addError.args[0][0];
             expect(errMsg).to.startWith("my chunk");
             expect(errMsg).to.include("lang");
+            expect(errMsg).to.include("message: error message");
             expect(errMsg).to.include("error stack");
             expect(errMsg).to.include("selenium");
         });
