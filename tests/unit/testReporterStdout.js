@@ -139,4 +139,44 @@ suite("reporter/stdout", () => {
             expect(stdout).to.be.calledOnce;
         });
     });
+
+    test(".pass()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk("prints chunk with name", () => {
+            stdoutReporter.pass({ title: "my chunk" });
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("✓ chunk: my chunk");
+        });
+
+        chunk("prints chunk without name", () => {
+            stdoutReporter.pass({});
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("✓ chunk");
+            expect(stdout.args[0][0]).to.not.include("✓ chunk:");
+        });
+    });
+
+    test(".skip()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk("prints chunk with name", () => {
+            stdoutReporter.skip({ title: "my chunk" });
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("# chunk: my chunk");
+        });
+
+        chunk("prints chunk without name", () => {
+            stdoutReporter.skip({});
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("# chunk");
+            expect(stdout.args[0][0]).to.not.include("# chunk:");
+        });
+    });
 });
