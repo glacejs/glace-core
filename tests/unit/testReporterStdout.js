@@ -369,4 +369,32 @@ suite("reporter/stdout", () => {
             expect(stdout).to.not.be.called;
         });
     });
+
+    test("printSkippedTests()", () => {
+        let printSkippedTests;
+
+        beforeChunk(() => {
+            printSkippedTests = stdoutReporter.__get__("printSkippedTests");
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk("prints info with details", () => {
+            const skippedTests = [{ name: "my test", rawInfo: ["due to bug"] }];
+            printSkippedTests(skippedTests);
+
+            expect(stdout).to.be.calledThrice;
+            expect(stdout.args[1][0]).to.include("skipped test");
+            expect(stdout.args[2][0]).to.include("my test").and.include("due to bug");
+        });
+
+        chunk("prints info without details", () => {
+            const skippedTests = [{ name: "my test", rawInfo: [] }, { name: "other test", rawInfo: [] }];
+            printSkippedTests(skippedTests);
+
+            expect(stdout).to.have.callCount(4);
+            expect(stdout.args[1][0]).to.include("skipped tests");
+            expect(stdout.args[2][0]).to.include("my test");
+            expect(stdout.args[3][0]).to.include("other test");
+        });
+    });
 });
