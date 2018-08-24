@@ -397,4 +397,44 @@ suite("reporter/stdout", () => {
             expect(stdout.args[3][0]).to.include("other test");
         });
     });
+
+    test("printTestErrors()", () => {
+        let printTestErrors;
+
+        beforeChunk(() => {
+            printTestErrors = stdoutReporter.__get__("printTestErrors");
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk(() => {
+            printTestErrors([{ name: "my test" , errors: ["my error"] }]);
+            expect(stdout).to.have.callCount(6);
+            expect(stdout.args[1][0]).to.be.equal("\u001b[1mTEST FAILURES:\u001b[22m");
+            expect(stdout.args[3][0]).to.be.equal("\u001b[1m\u001b[36mtest: my test\u001b[39m\u001b[22m");
+            expect(stdout.args[5][0]).to.be.equal("\u001b[1m\u001b[31mmy error\u001b[39m\u001b[22m");
+        });
+    });
+
+    test("printSessionErrors()", () => {
+        let printSessionErrors;
+
+        beforeChunk(() => {
+            printSessionErrors = stdoutReporter.__get__("printSessionErrors");
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk(() => {
+            conf.session = { errors: ["my error"] };
+            printSessionErrors();
+            expect(stdout).to.have.callCount(4);
+            expect(stdout.args[1][0]).to.be.equal("\u001b[1mOUTTEST FAILURES:\u001b[22m");
+            expect(stdout.args[3][0]).to.be.equal("\u001b[1m\u001b[31mmy error\u001b[39m\u001b[22m");
+        });
+
+        chunk(() => {
+            conf.session = { errors: [] };
+            printSessionErrors();
+            expect(stdout).to.not.be.called;
+        });
+    });
 });
