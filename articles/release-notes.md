@@ -1,3 +1,7 @@
+### v1.8.4
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/00e91bce4ffbd8631215af14d50c51201a5655c7) bug that session errors were cleaned after retry.
+
 ### v1.8.3
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/273200fbd486fef55e6995af99f10963454964f1) critical bug that on session failure `glace` run eternal retry.
