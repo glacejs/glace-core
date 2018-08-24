@@ -1,0 +1,92 @@
+{
+  "uid" : "5dad6ed2fc92b1ba",
+  "name" : "scopeEnd()",
+  "fullName" : "reporter/allure.scopeEnd()",
+  "historyId" : "3bff2921f6183a6d719acc5e420e6e1f",
+  "time" : {
+    "start" : 1535132871486,
+    "stop" : 1535132871490,
+    "duration" : 4
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "does nothing if test isn't started",
+      "time" : {
+        "start" : 1535132871487,
+        "stop" : 1535132871488,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ends allure step inside a test",
+      "time" : {
+        "start" : 1535132871488,
+        "stop" : 1535132871489,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "testMethod",
+    "value" : "scopeEnd()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5dad6ed2fc92b1ba.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

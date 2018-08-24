@@ -1,0 +1,107 @@
+{
+  "uid" : "528e1b756c07ec42",
+  "name" : "chai matcher .waitFor() is",
+  "fullName" : "Session 2018-8-24 20:47:40.chai matcher .waitFor() is",
+  "historyId" : "9f541762e10baa75aace4066dbc9efdf",
+  "time" : {
+    "start" : 1535132869364,
+    "stop" : 1535132871381,
+    "duration" : 2017
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "passed",
+      "time" : {
+        "start" : 1535132869364,
+        "stop" : 1535132869871,
+        "duration" : 507
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "passed for async predicate",
+      "time" : {
+        "start" : 1535132869871,
+        "stop" : 1535132870372,
+        "duration" : 501
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "failed",
+      "time" : {
+        "start" : 1535132870372,
+        "stop" : 1535132871381,
+        "duration" : 1009
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Session 2018-8-24 20:47:40"
+  }, {
+    "name" : "testClass",
+    "value" : "Session 2018-8-24 20:47:40"
+  }, {
+    "name" : "testMethod",
+    "value" : "chai matcher .waitFor() is"
+  }, {
+    "name" : "package",
+    "value" : "Session 2018-8-24 20:47:40"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "528e1b756c07ec42.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

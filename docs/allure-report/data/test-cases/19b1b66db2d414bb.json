@@ -1,0 +1,77 @@
+{
+  "uid" : "19b1b66db2d414bb",
+  "name" : "sinon-chai",
+  "fullName" : "globals.sinon-chai",
+  "historyId" : "b4960445006d93f3a94a792dff466f78",
+  "time" : {
+    "start" : 1535132869185,
+    "stop" : 1535132869186,
+    "duration" : 1
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "is active",
+      "time" : {
+        "start" : 1535132869185,
+        "stop" : 1535132869186,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals"
+  }, {
+    "name" : "testClass",
+    "value" : "globals"
+  }, {
+    "name" : "testMethod",
+    "value" : "sinon-chai"
+  }, {
+    "name" : "package",
+    "value" : "globals"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "19b1b66db2d414bb.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
