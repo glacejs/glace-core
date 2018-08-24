@@ -1,3 +1,9 @@
+### v1.8.3
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/273200fbd486fef55e6995af99f10963454964f1) critical bug that on session failure `glace` run eternal retry.
+- [Capture](https://github.com/glacejs/glace-core/commit/1edc1e9419d84ebf80b64759250b9819cf12d0e1) session errors.
+- Extended tests coverage.
+
 ### v1.8.2
 
 - Extended tests coverage. Achieved green result bigger than 80%.
