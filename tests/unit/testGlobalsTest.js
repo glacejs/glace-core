@@ -264,7 +264,7 @@ suite("globals/test", () => {
 
             expect(o.testCase.end).to.be.calledOnce;
             expect(o.testCase.end.args[0][0]).to.be.equal("failed");
-            expect(o.retries).to.be.equal(0);
+            expect(o.retries).to.be.equal(1);
             expect(retryTests).to.have.length(1);
         });
 
