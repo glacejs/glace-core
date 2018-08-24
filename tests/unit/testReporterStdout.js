@@ -338,4 +338,35 @@ suite("reporter/stdout", () => {
             expect(printSessionErrors).to.be.calledOnce;
         });
     });
+
+    test("printStatistics()", () => {
+        let printStatistics;
+
+        beforeChunk(() => {
+            printStatistics = stdoutReporter.__get__("printStatistics");
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk("prints full statistics", () => {
+            conf.test = {
+                cases: [
+                    { duration: 60000, chunks: ["my chunk"] },
+                    { duration: 30000, chunks: ["my chunk"] },
+                ],
+            };
+            printStatistics(1, 1);
+            expect(stdout).to.have.callCount(5);
+            expect(stdout.args[0][0]).to.include("1").and.include("passed test");
+            expect(stdout.args[1][0]).to.include("1").and.include("failed test");
+            expect(stdout.args[2][0]).to.include("2 executed chunks");
+            expect(stdout.args[4][0]).to.include("Summary tests time is");
+            expect(stdout.args[4][1]).to.include("1m 30s");
+        });
+
+        chunk("prints nothing", () => {
+            conf.test = { cases: [] };
+            printStatistics(0, 0);
+            expect(stdout).to.not.be.called;
+        });
+    });
 });
