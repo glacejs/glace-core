@@ -58,4 +58,85 @@ suite("reporter/stdout", () => {
             expect(stdout.args[2][0]).to.include("Local report is /path/to/report");
         });
     });
+
+    test(".scope()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 0);
+        });
+
+        chunk(() => {
+            stdoutReporter.scope({ title: "my scope" });
+            expect(stdout).to.be.calledTwice;
+            expect(stdout.args[1][0]).to.be.include("scope: my scope");
+        });
+    });
+
+    test(".scopeEnd()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 1);
+        });
+
+        chunk(() => {
+            stdoutReporter.scopeEnd();
+            expect(stdout).to.be.calledOnce;
+        });
+    });
+
+    test(".suite()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 0);
+        });
+
+        chunk(() => {
+            stdoutReporter.suite({ title: "my suite" });
+            expect(stdout).to.be.calledTwice;
+            expect(stdout.args[1][0]).to.be.include("suite: my suite");
+        });
+    });
+
+    test(".suiteEnd()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 1);
+        });
+
+        chunk(() => {
+            stdoutReporter.suiteEnd();
+            expect(stdout).to.be.calledOnce;
+        });
+    });
+
+    test(".test()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 0);
+        });
+
+        chunk(() => {
+            stdoutReporter.test({ title: "my test" });
+            expect(stdout).to.be.calledTwice;
+            expect(stdout.args[1][0]).to.be.include("test: my test");
+        });
+    });
+
+    test(".testEnd()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+            stdoutReporter.__set__("indents", 1);
+        });
+
+        chunk(() => {
+            stdoutReporter.testEnd();
+            expect(stdout).to.be.calledOnce;
+        });
+    });
 });
