@@ -276,4 +276,66 @@ suite("reporter/stdout", () => {
             expect(console_.log.args[0][1]).to.be.equal("world");
         });
     });
+
+    test("epilogue()", () => {
+        let epilogue,
+            printStatistics,
+            printSkippedTests,
+            printTestErrors,
+            saveFailedTests,
+            printSessionErrors;
+
+        beforeChunk(() => {
+            epilogue = stdoutReporter.__get__("epilogue");
+
+            printStatistics = sinon.stub();
+            stdoutReporter.__set__("printStatistics", printStatistics);
+
+            printSkippedTests = sinon.stub();
+            stdoutReporter.__set__("printSkippedTests", printSkippedTests);
+
+            printTestErrors = sinon.stub();
+            stdoutReporter.__set__("printTestErrors", printTestErrors);
+
+            saveFailedTests = sinon.stub();
+            stdoutReporter.__set__("saveFailedTests", saveFailedTests);
+
+            printSessionErrors = sinon.stub();
+            stdoutReporter.__set__("printSessionErrors", printSessionErrors);
+        });
+
+        chunk("prints all test results", () => {
+            conf.test = {
+                cases: [
+                    { status: "passed" },
+                    { status: "skipped" },
+                    { status: "failed" },
+                ],
+            };
+
+            epilogue();
+            expect(printStatistics).to.be.calledOnce;
+            expect(printStatistics.args[0]).to.be.eql([1, 1]);
+            expect(printSkippedTests).to.be.calledOnce;
+            expect(printSkippedTests.args[0][0]).to.be.eql([{ status: "skipped" }]);
+            expect(printTestErrors).to.be.calledOnce;
+            expect(printTestErrors.args[0][0]).to.be.eql([{ status: "failed" }]);
+            expect(saveFailedTests).to.be.calledOnce;
+            expect(saveFailedTests.args[0][0]).to.be.eql([{ status: "failed" }]);
+            expect(printSessionErrors).to.be.calledOnce;
+        });
+
+        chunk("print no results", () => {
+            conf.test = {
+                cases: [],
+            };
+            epilogue();
+            expect(printStatistics).to.be.calledOnce;
+            expect(printStatistics.args[0]).to.be.eql([0, 0]);
+            expect(printSkippedTests).to.not.be.called;
+            expect(printTestErrors).to.not.be.called;
+            expect(saveFailedTests).to.not.be.called;
+            expect(printSessionErrors).to.be.calledOnce;
+        });
+    });
 });
