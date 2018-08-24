@@ -179,4 +179,57 @@ suite("reporter/stdout", () => {
             expect(stdout.args[0][0]).to.not.include("# chunk:");
         });
     });
+
+    test(".fail()", () => {
+
+        beforeChunk(() => {
+            stdoutReporter.__set__("stdout", stdout);
+        });
+
+        chunk("prints chunk with name", () => {
+            stdoutReporter.fail({ title: "my chunk" });
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("✖ chunk: my chunk");
+        });
+
+        chunk("prints chunk without name", () => {
+            stdoutReporter.fail({});
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("✖ chunk");
+            expect(stdout.args[0][0]).to.not.include("✖ chunk:");
+        });
+
+        chunk("prints test error", () => {
+            conf.report.errorsNow = true;
+            conf.test = { curCase: { errors: ["test error"] }};
+            stdoutReporter.fail({});
+            expect(stdout).to.be.calledTwice;
+            expect(stdout.args[1][0]).to.include("test error");
+        });
+
+        chunk("prints session error", () => {
+            conf.report.errorsNow = true;
+            conf.test = {};
+            conf.session = { errors: ["session error"] };
+            stdoutReporter.fail({});
+            expect(stdout).to.be.calledTwice;
+            expect(stdout.args[1][0]).to.include("session error");
+        });
+    });
+
+    test(".done()", () => {
+        let report;
+
+        beforeChunk(() => {
+            report = {
+                end: sinon.spy(o => o()),
+            };
+            stdoutReporter.__set__("report", report);
+        });
+
+        chunk(async () => {
+            await stdoutReporter.done();
+            expect(report.end).to.be.calledOnce;
+        });
+    });
 });
