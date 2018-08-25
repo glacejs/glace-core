@@ -68,7 +68,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#$">$</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#baseTest">baseTest</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sessNum">sessNum</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#baseTest">baseTest</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -475,87 +475,6 @@
 			<li>
 				<a href="reporter_base.js.html">reporter/base.js</a>,
 				 <a href="reporter_base.js.html#sunlight-1-line-27">line 27</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="sessNum">
-    <h4 id="sessNum"><span class="type-signature"></span>sessNum<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Executed sessions counter.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="globals_session.js.html">globals/session.js</a>,
-				 <a href="globals_session.js.html#sunlight-1-line-13">line 13</a>
 			</li>
 		</ul>
 	</dd>
@@ -3248,7 +3167,7 @@ files with tests</li>
             
 <hr>
 <dt>
-    <h4 class="name" id="session"><span class="type-signature"></span>session( [name] [, ctx], func)</h4>
+    <h4 class="name" id="session"><span class="type-signature"></span>session( [name] [, fixtures], func)</h4>
     
     
 </dt>
@@ -3282,6 +3201,8 @@ files with tests</li>
         <th>Argument</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -3319,6 +3240,10 @@ files with tests</li>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Session name. By default it includes start date time.</p></td>
         </tr>
@@ -3327,7 +3252,7 @@ files with tests</li>
 
         <tr>
             
-                <td class="name"><code>ctx</code></td>
+                <td class="name"><code>fixtures</code></td>
             
 
             <td class="type">
@@ -3353,8 +3278,14 @@ files with tests</li>
             
 
             
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
 
-            <td class="description last"><p>Session context. By default it's empty.</p></td>
+            <td class="description last"><p>Session fixtures.</p></td>
         </tr>
 
     
@@ -3384,6 +3315,10 @@ files with tests</li>
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Function with test cases.</p></td>
@@ -3431,7 +3366,7 @@ files with tests</li>
 		<ul class="dummy">
 			<li>
 				<a href="globals_session.js.html">globals/session.js</a>,
-				 <a href="globals_session.js.html#sunlight-1-line-45">line 45</a>
+				 <a href="globals_session.js.html#sunlight-1-line-41">line 41</a>
 			</li>
 		</ul>
 	</dd>
@@ -3992,7 +3927,7 @@ files with tests</li>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-08-25T10:12:18+03:00
+		on 2018-08-25T11:48:40+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
