@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/18</span>
+        <span class='fraction'>20/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">91.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>11/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>17/17</span>
       </div>
     </div>
     <p class="quiet">
@@ -100,7 +100,13 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,23 +140,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">186x</span>
-<span class="cline-any cline-yes">186x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">216x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">216x</span>
-<span class="cline-any cline-yes">216x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -186,7 +198,7 @@ scope("Some test scope", () =&gt; {
 });
 &nbsp;
  */
-var scope = (name, opts, fixtures, func) =&gt; {
+const scope = (name, opts, fixtures, func) =&gt; {
 &nbsp;
     if (opts instanceof Function) {
         func = opts;
@@ -197,14 +209,20 @@ var scope = (name, opts, fixtures, func) =&gt; {
         func = fixtures;
         fixtures = [];
     }
-    opts = opts || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    opts = opts || {};
     fixtures = fixtures || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
 &nbsp;
-    describe(name, function () {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (opts.chunkRetry) <span class="cstat-no" title="statement not covered" >this.retries(opts.chunkRetry);</span>
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (opts.chunkTimeout) <span class="cstat-no" title="statement not covered" >this.timeout(opts.chunkTimeout * 1000);</span>
-        U.wrap(fixtures, func)();
-    });
+    describe(name, scopeCb(opts, fixtures, func));
+};
+&nbsp;
+/**
+ * Scope callback.
+ * @ignore
+ */
+const scopeCb = (opts, fixtures, func) =&gt; function () {
+    if (opts.chunkRetry) this.retries(opts.chunkRetry);
+    if (opts.chunkTimeout) this.timeout(opts.chunkTimeout * 1000);
+    U.wrap(fixtures, func)();
 };
 &nbsp;
 module.exports = scope;
@@ -214,7 +232,7 @@ module.exports = scope;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 25 2018 09:28:32 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 25 2018 10:12:26 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
