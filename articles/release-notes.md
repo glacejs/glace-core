@@ -1,3 +1,8 @@
+### v1.8.5
+
+- Extended tests coverage > 90%.
+- Refactoring.
+
 ### v1.8.4
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/00e91bce4ffbd8631215af14d50c51201a5655c7) bug that session errors were cleaned after retry.
