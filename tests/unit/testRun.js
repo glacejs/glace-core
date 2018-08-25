@@ -1,10 +1,10 @@
 "use strict";
 
-var run = rewire("../../lib/run");
+const run = rewire("../../lib/run");
 
 suite("run", () => {
-    var fake;
-    var sandbox = sinon.createSandbox();
+    let fake;
+    const sandbox = sinon.createSandbox();
 
     afterChunk(() => {
         sandbox.restore();
@@ -12,13 +12,41 @@ suite("run", () => {
     });
 
     test(".run()", () => {
-        var hacking;
+        let hacking, utils, conf, tools, cluster;
 
         beforeChunk(() => {
             fake = {
                 resetReport: sinon.spy(),
                 _run: sinon.spy((_, cb) => cb()),
             };
+
+            utils = {
+                setLog: sinon.stub(),
+            };
+            run.__set__("utils", utils);
+
+            conf = {
+                session: {},
+                test: {},
+                tools: {},
+                cluster: {},
+                filter: {},
+            };
+            run.__set__("CONF", conf);
+
+            tools = {
+                printSteps: sinon.stub(),
+                printFixtures: sinon.stub(),
+                printTests: sinon.stub(),
+                printPlugins: sinon.stub(),
+                checkTestrail: sinon.stub(),
+            };
+            run.__set__("tools", tools);
+
+            cluster = {
+                launch: sinon.stub(),
+            };
+            run.__set__("cluster", cluster);
         });
 
         beforeChunk(() => {
@@ -29,7 +57,7 @@ suite("run", () => {
         });
 
         chunk("with cb", done => {
-            var cb = sinon.spy(done);
+            const cb = sinon.spy(done);
             run(cb);
             expect(fake.resetReport).to.be.calledOnce;
             expect(hacking.suppressMochaUncaught).to.be.calledOnce;
@@ -38,16 +66,61 @@ suite("run", () => {
         });
 
         chunk("without cb", async () => {
-            CONF.session.uncaughtException = "mocha";
+            conf.session = { uncaughtException: "mocha" };
             await run();
             expect(fake.resetReport).to.be.calledOnce;
             expect(hacking.suppressMochaUncaught).to.not.be.called;
             expect(fake._run).to.be.calledOnce;
         });
+
+        chunk("prints steps", () => {
+            conf.tools = { stepsList: true, stepsFilter: "my steps" };
+            run(() => {});
+            expect(tools.printSteps).to.be.calledOnce;
+            expect(tools.printSteps.args[0][0]).to.be.equal("my steps");
+        });
+
+        chunk("prints fixtures", () => {
+            conf.tools = { fixturesList: true, fixturesFilter: "my fixtures" };
+            run(() => {});
+            expect(tools.printFixtures).to.be.calledOnce;
+            expect(tools.printFixtures.args[0][0]).to.be.equal("my fixtures");
+        });
+
+        chunk("prints tests", () => {
+            conf.tools = { testsList: true, testsFilter: "my tests" };
+            run(() => {});
+            expect(tools.printTests).to.be.calledOnce;
+            expect(tools.printTests.args[0][0]).to.be.equal("my tests");
+        });
+
+        chunk("checks testrail consistency", () => {
+            conf.tools = { checkTestrail: true };
+            const cb = () => {};
+            run(cb);
+            expect(tools.checkTestrail).to.be.calledOnce;
+            expect(tools.checkTestrail.args[0][0]).to.be.equal(cb);
+        });
+
+        chunk("prints plugins", () => {
+            conf.tools = { pluginsList: true };
+            const cb = () => {};
+            run(cb);
+            expect(tools.printPlugins).to.be.calledOnce;
+            expect(tools.printPlugins.args[0][0]).to.be.equal(cb);
+        });
+
+        chunk("launches cluster", () => {
+            conf.cluster = { isMaster: true };
+            const cb = () => {};
+            run(cb);
+            expect(cluster.launch).to.be.calledOnce;
+            expect(cluster.launch.args[0][0]).to.be.equal(cb);
+        });
     });
 
     test("._run()", () => {
-        var _run, mocha, fin, code;
+        let _run, mocha, fin, code;
 
         beforeChunk(() => {
             _run = run.__get__("_run");
@@ -73,7 +146,7 @@ suite("run", () => {
     });
 
     test(".resetReport()", () => {
-        var fs, fse, resetReport;
+        let fs, fse, resetReport;
 
         beforeChunk(() => {
             resetReport = run.__get__("resetReport");
