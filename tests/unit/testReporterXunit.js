@@ -26,6 +26,14 @@ suite("reporter/xunit", () => {
             expect(fs.unlinkSync).to.be.calledOnce;
             expect(fs.unlinkSync.args[0][0]).to.be.equal(CONF.xunit.path);
         });
+
+        chunk("does nothing if no previous report", () => {
+            fs.existsSync.returns(false);
+            xunitReporter.start();
+            expect(fs.existsSync).to.be.calledOnce;
+            expect(fs.existsSync.args[0][0]).to.be.equal(CONF.xunit.path);
+            expect(fs.unlinkSync).to.not.be.called;
+        });
     });
 
     test("done()", () => {
