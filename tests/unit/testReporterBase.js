@@ -181,7 +181,7 @@ suite("reporter/base", () => {
             GlaceReporter.__set__("CONF", conf);
 
             setLog = sinon.stub();
-            GlaceReporter.__set__("setLog", setLog);
+            GlaceReporter.__set__("utils", { setLog });
         });
 
         ["suite", "scope", "test"].forEach(type => {
@@ -335,7 +335,7 @@ suite("reporter/base", () => {
             GlaceReporter.__set__("CONF", conf);
 
             accountError = sinon.spy();
-            GlaceReporter.__set__("accountError", accountError);
+            GlaceReporter.__set__("utils", { accountError });
         });
 
         afterChunk(() => {
@@ -618,59 +618,6 @@ suite("reporter/base", () => {
             handleSkipState(mochaTest);
             expect(mochaTest.state).to.be.equal("skipped");
             expect(conf.test.curCase.skipChunk).to.be.null;
-        });
-    });
-
-    test("accountError()", () => {
-        let accountError, conf;
-
-        beforeChunk(() => {
-            accountError = GlaceReporter.__get__("accountError");
-
-            conf = {
-                test: {},
-                session: {
-                    errors: [],
-                },
-            };
-            GlaceReporter.__set__("CONF", conf);
-        });
-
-        chunk("logs session error if no tests are run", () => {
-            accountError(null, {
-                message: "error message",
-                stack: "error stack",
-                seleniumStack: { "selenium": "error" },
-            });
-
-            expect(conf.session.errors).to.have.length(1);
-
-            const errMsg = conf.session.errors[0];
-            expect(errMsg).to.startWith("message: error message");
-            expect(errMsg).to.include("error stack");
-            expect(errMsg).to.include("selenium");
-        });
-
-        chunk("logs test error if tests are present", () => {
-            conf.test.curCase = {
-                addError: sinon.spy(),
-                testParams: { lang: "ru" },
-            };
-
-            accountError("my chunk", {
-                message: "error message",
-                stack: "error stack",
-                seleniumStack: { "selenium": "error" },
-            });
-
-            expect(conf.test.curCase.addError).to.be.calledOnce;
-
-            const errMsg = conf.test.curCase.addError.args[0][0];
-            expect(errMsg).to.startWith("my chunk");
-            expect(errMsg).to.include("lang");
-            expect(errMsg).to.include("message: error message");
-            expect(errMsg).to.include("error stack");
-            expect(errMsg).to.include("selenium");
         });
     });
 });
