@@ -125,7 +125,7 @@ suite("globals/session", () => {
     });
 
     test("afterCb()", () => {
-        let afterCb, retryTests, session_, hacking;
+        let afterCb, retryTests, session_;
 
         beforeChunk(() => {
             afterCb = sess.__get__("afterCb");
@@ -135,13 +135,6 @@ suite("globals/session", () => {
 
             session_ = sinon.stub();
             sess.__set__("global", { session: session_ });
-
-            hacking = {
-                getRunner: sinon.stub().returns({
-                    _grep: "", _defaultGrep: "",
-                }),
-            };
-            sess.__set__("hacking", hacking);
         });
 
         chunk("does nothing if no tests to retry", () => {
@@ -156,19 +149,7 @@ suite("globals/session", () => {
             afterCb();
 
             expect(session_).to.be.calledOnce;
-            expect(session_.args[0][0]).to.be.equal("Retry #0");
-            expect(session_.args[0][1]).to.be.equal(sess.__get__("retryCb"));
-        });
-
-        chunk("retries tests with custom name", () => {
-            hacking.getRunner.returns({
-                _grep: { source: "my test" }, _defaultGrep: "",
-            });
-            retryTests.push({ args: { retries: 1 }});
-            afterCb();
-
-            expect(session_).to.be.calledOnce;
-            expect(session_.args[0][0]).to.be.equal("Retry #0 - my test");
+            expect(session_.args[0][0]).to.be.equal("my session - Retry #0");
             expect(session_.args[0][1]).to.be.equal(sess.__get__("retryCb"));
         });
     });
