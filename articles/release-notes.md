@@ -1,3 +1,8 @@
+### v1.8.6
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/97ad29ba1eb38f878b17d300e6926a0cd0b2bd1a) bug that in scope default fixtures were initialized as empty object instead of empty array.
+- [Fixed](https://github.com/glacejs/glace-core/commit/62c2eff46dba2e926d3ed86596bc3abbba68cba5) bug that mocha grep passed all tests on retry.
+
 ### v1.8.5
 
 - Extended tests coverage > 90%.
