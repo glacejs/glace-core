@@ -39,6 +39,13 @@ suite("globals/scope", () => {
             expect(scopeCb.args[0][0]).to.be.eql({ chunkRetry: 1 });
         });
 
+        chunk("with null fixtures - https://github.com/glacejs/glace-core/issues/241", () => {
+            scope_("my scope", { chunkRetry: 1 }, /* fixtures */ null, () => {});
+
+            expect(scopeCb).to.be.calledOnce;
+            expect(scopeCb.args[0][1]).to.be.eql([]);
+        });
+
         chunk("with name, fixtures & callback", () => {
             scope_("my scope", null, ["my fixture func"], () => {});
 
