@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>124/124</span>
+        <span class='fraction'>110/110</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.1% </span>
+        <span class="strong">89.58% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>54/62</span>
+        <span class='fraction'>43/48</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>23/23</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>105/105</span>
+        <span class='fraction'>91/91</span>
       </div>
     </div>
     <p class="quiet">
@@ -255,35 +255,7 @@
 <a name='L207'></a><a href='#L207'>207</a>
 <a name='L208'></a><a href='#L208'>208</a>
 <a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a>
-<a name='L225'></a><a href='#L225'>225</a>
-<a name='L226'></a><a href='#L226'>226</a>
-<a name='L227'></a><a href='#L227'>227</a>
-<a name='L228'></a><a href='#L228'>228</a>
-<a name='L229'></a><a href='#L229'>229</a>
-<a name='L230'></a><a href='#L230'>230</a>
-<a name='L231'></a><a href='#L231'>231</a>
-<a name='L232'></a><a href='#L232'>232</a>
-<a name='L233'></a><a href='#L233'>233</a>
-<a name='L234'></a><a href='#L234'>234</a>
-<a name='L235'></a><a href='#L235'>235</a>
-<a name='L236'></a><a href='#L236'>236</a>
-<a name='L237'></a><a href='#L237'>237</a>
-<a name='L238'></a><a href='#L238'>238</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L210'></a><a href='#L210'>210</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -492,34 +464,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 /**
  * `GlaceJS` common reporter.
@@ -539,7 +483,7 @@ const LOG = U.logger;
 &nbsp;
 const CONF = require("../config");
 const TestCase = require("../testing").TestCase;
-const setLog = require("../utils").setLog;
+const utils = require("../utils");
 &nbsp;
 /**
  * Registered reporters.
@@ -598,7 +542,7 @@ const GlaceReporter = function (runner) {
         if (methodName === "testEnd") {
             CONF.test.curCase = null;
             CONF.report.testDir = null;
-            setLog(); // Current test case is finished, need to reinit log
+            utils.setLog(); // Current test case is finished, need to reinit log
         }
     });
 &nbsp;
@@ -638,7 +582,7 @@ const GlaceReporter = function (runner) {
     });
 &nbsp;
     runner.on("fail", (mochaTest, err) =&gt; {
-        accountError(mochaTest.title, err);
+        utils.accountError(mochaTest.title, err);
 &nbsp;
         for (const reporter of reporters) {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (reporter.fail) reporter.fail(mochaTest, err);
@@ -729,41 +673,13 @@ const handleSkipState = mochaTest =&gt; {
     mochaTest.state = "skipped";
     CONF.test.curCase.skipChunk = null;
 };
-&nbsp;
-/**
- * Account test error and add it to test or session errors.
- * @ignore
- */
-const accountError = (errMsg, err) =&gt; {
-    errMsg = errMsg || "";
-&nbsp;
-    if (CONF.test.curCase &amp;&amp; !_.isEmpty(CONF.test.curCase.testParams)) {
-        errMsg += "\n" + util.format(CONF.test.curCase.testParams);
-    }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (err.message) {
-        errMsg += "\nmessage: " + err.message;
-    }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (err.stack) {
-        errMsg += "\nstack: " + err.stack;
-    }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (err.seleniumStack) {
-        errMsg += "\nselenium: " + JSON.stringify(err.seleniumStack, null, "\t");
-    }
-    errMsg = errMsg.trim();
-&nbsp;
-    if (CONF.test.curCase) {
-        CONF.test.curCase.addError(errMsg);
-    } else {
-        CONF.session.errors.push(errMsg);
-    }
-};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 25 2018 15:13:13 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 06 2018 07:17:29 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
