@@ -12,8 +12,6 @@ suite("globals/session", () => {
             },
         };
         sess.__set__("CONF", conf);
-
-        sess.__set__("sessNum", 0);
     });
 
     afterChunk(() => {
@@ -35,7 +33,6 @@ suite("globals/session", () => {
             const cb = () => {};
             sess.session(cb);
 
-            expect(sess.__get__("sessNum")).to.be.equal(1);
             expect(conf.session.errors).to.be.empty;
 
             expect(suite_).to.be.calledOnce;
@@ -51,7 +48,6 @@ suite("globals/session", () => {
             const cb = () => {};
             sess.session("custom session", cb);
 
-            expect(sess.__get__("sessNum")).to.be.equal(1);
             expect(conf.session.errors).to.be.empty;
 
             expect(suite_).to.be.calledOnce;
@@ -67,7 +63,6 @@ suite("globals/session", () => {
             const cb = () => {};
             sess.session(null, ["my fixture"], cb);
 
-            expect(sess.__get__("sessNum")).to.be.equal(1);
             expect(conf.session.errors).to.be.empty;
 
             expect(suite_).to.be.calledOnce;
@@ -83,7 +78,6 @@ suite("globals/session", () => {
             const cb = () => {};
             sess.session("custom session", ["my fixture"], cb);
 
-            expect(sess.__get__("sessNum")).to.be.equal(1);
             expect(conf.session.errors).to.be.empty;
 
             expect(suite_).to.be.calledOnce;
@@ -149,7 +143,7 @@ suite("globals/session", () => {
             afterCb();
 
             expect(session_).to.be.calledOnce;
-            expect(session_.args[0][0]).to.be.equal("my session - Retry #0");
+            expect(session_.args[0][0]).to.be.equal("my session");
             expect(session_.args[0][1]).to.be.equal(sess.__get__("retryCb"));
         });
     });
