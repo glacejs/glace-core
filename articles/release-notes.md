@@ -1,3 +1,7 @@
+### v1.8.7
+
+- [Match](https://github.com/glacejs/glace-core/commit/1efd04a12f1192eca738b5f47e80851c538a1248) retries with allure report.
+
 ### v1.8.6
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/97ad29ba1eb38f878b17d300e6926a0cd0b2bd1a) bug that in scope default fixtures were initialized as empty object instead of empty array.
