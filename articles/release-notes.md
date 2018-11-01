@@ -1,3 +1,7 @@
+### v1.8.8
+
+- Updated dependencies to latest versions.
+
 ### v1.8.7
 
 - [Match](https://github.com/glacejs/glace-core/commit/1efd04a12f1192eca738b5f47e80851c538a1248) retries with allure report.
