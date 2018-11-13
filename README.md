@@ -6,14 +6,12 @@
 
 <img src="glace.png" alt="GlaceJS logo" style="width: 250px; height: 250px;"/>
 
-## Annotation
-
-`glace-core` is a quick-start functional & unit testing framework based on [mocha](http://mochajs.org/) and extensible with [plugins](https://github.com/glacejs/) _([how plugins work](tutorial-plugins.html))_.
+`glace-core` is a quick-start functional & unit testing framework based on [mochajs](http://mochajs.org/) and can be extented with its [plugins](https://github.com/glacejs/).
 
 ## Why it is
 
 - Firstly it's **R&D** project for [me](https://www.linkedin.com/in/sergei-chipiga-05b29661) to dive deeply to programming and software architecture.
-- Current testing frameworks like [mocha](http://mochajs.org/) or [jasmine](https://jasmine.github.io/) look cool for unit testing but are **not flexible for complex** functional scenarios.
+- Current testing frameworks like [mochajs](http://mochajs.org/) or [jasminejs](https://jasmine.github.io/) look cool for unit testing but are **not flexible for complex** functional scenarios.
 
 ## Quick start
 
@@ -47,9 +45,9 @@
 
 ## Features
 
-- Cross-platform
-- Based on [STEPS-architecture](tutorial-steps-architecture.html) and [STEPS-protocol](tutorial-steps-protocol.html)
-- May be extended with plugins implemented STEPS-protocol
+- Cross-platform: can be launched easily in **linux**, **macos**, **windows**.
+- Concept is based on [STEPS-architecture](tutorial-steps-architecture.html)
+- Plugins system based on [STEPS-protocol](tutorial-steps-protocol.html).
 - Oriented to complex functional [scenarios](tutorial-concepts.html)
 - Indepentently executed [chunks](tutorial-concepts.html) inside a test
 - [Parameterization](tutorial-parameterization.html) inside and outside of test
