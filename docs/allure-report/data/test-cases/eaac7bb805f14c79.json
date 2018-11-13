@@ -1,0 +1,107 @@
+{
+  "uid" : "eaac7bb805f14c79",
+  "name" : "allureNotScope()",
+  "fullName" : "reporter/allure.allureNotScope()",
+  "historyId" : "ab98e7b31b4af663190d067434a29db0",
+  "time" : {
+    "start" : 1542137351557,
+    "stop" : 1542137351563,
+    "duration" : 6
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "returns true if allure has steps and is not scope level",
+      "time" : {
+        "start" : 1542137351559,
+        "stop" : 1542137351561,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "returns false if allure has no steps",
+      "time" : {
+        "start" : 1542137351561,
+        "stop" : 1542137351562,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "return false if allure is on scope level",
+      "time" : {
+        "start" : 1542137351562,
+        "stop" : 1542137351563,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "testMethod",
+    "value" : "allureNotScope()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/allure"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "eaac7bb805f14c79.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
