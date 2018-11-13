@@ -1,3 +1,7 @@
+### v1.8.9
+
+- [Updated](https://github.com/glacejs/glace-core/commit/5b2a1105e009461eb3cabbddec0b1aeec76435d3) log message format.
+
 ### v1.8.8
 
 - Updated dependencies to latest versions.

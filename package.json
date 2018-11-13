@@ -1,6 +1,6 @@
 {
   "name": "glace-core",
-  "version": "1.8.8",
+  "version": "1.8.9",
   "description": "GlaceJS minimal functional testing framework",
   "main": "lib/index.js",
   "scripts": {
@@ -68,8 +68,8 @@
     "cli-highlight": "2.0.0",
     "colors": "1.3.2",
     "cross-spawn": "6.0.5",
-    "fs-extra": "7.0.0",
-    "glace-utils": "1.3.0",
+    "fs-extra": "7.0.1",
+    "glace-utils": "1.3.1",
     "is-promise": "2.1.0",
     "lodash": "4.17.11",
     "mocha": "5.2.0",
@@ -81,7 +81,7 @@
     "testrail-api": "1.3.5"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
+    "eslint": "^5.9.0",
     "ink-docstrap": "^1.3.0",
     "jsdoc": "^3.5.5",
     "jsdoc-strip-async-await": "^0.1.0",
