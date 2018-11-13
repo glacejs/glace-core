@@ -85,7 +85,7 @@ suite("reporter/testrail", () => {
             expect(testrailClient.isFailed).to.true;
             expect(testrailClient.addRun).to.not.be.called;
             expect(log.error).to.be.calledOnce;
-            expect(log.error.args[0][1].toString()).to.include("Detect duplicated cases");
+            expect(log.error.args[0][0]).to.include("Detect duplicated cases");
         });
     });
 

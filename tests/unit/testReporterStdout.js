@@ -482,8 +482,8 @@ suite("reporter/stdout", () => {
             fs.unlinkSync.throws(Error("BOOM!"));
             saveFailedTests([]);
             expect(log.error).to.be.calledOnce;
-            expect(log.error.args[0][0]).to.be.equal("Can't remove file '/path/to/failed/tests'");
-            expect(log.error.args[0][1].toString()).to.include("BOOM!");
+            expect(log.error.args[0][0]).to.be.startWith("Can't remove file '/path/to/failed/tests'");
+            expect(log.error.args[0][0]).to.include("BOOM!");
         });
 
         chunk("logs if can't save failed tests to file", () => {
@@ -491,8 +491,8 @@ suite("reporter/stdout", () => {
             fs.writeFileSync.throws(Error("BOOM!"));
             saveFailedTests([]);
             expect(log.error).to.be.calledOnce;
-            expect(log.error.args[0][0]).to.be.equal("Can't write file '/path/to/failed/tests'");
-            expect(log.error.args[0][1].toString()).to.include("BOOM!");
+            expect(log.error.args[0][0]).to.be.startWith("Can't write file '/path/to/failed/tests'");
+            expect(log.error.args[0][0]).to.include("BOOM!");
         });
     });
 });
