@@ -1,0 +1,70 @@
+{
+  "uid" : "9068e116dad4ec06",
+  "name" : "sessCb()",
+  "fullName" : "globals/session.sessCb()",
+  "historyId" : "618c49c7430c2e4742614ae91ce68f1c",
+  "time" : {
+    "start" : 1542186483054,
+    "stop" : 1542186483056,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "calls callback with fixtures",
+      "time" : {
+        "start" : 1542186483054,
+        "stop" : 1542186483055,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/session"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/session"
+  }, {
+    "name" : "testMethod",
+    "value" : "sessCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/session"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "9068e116dad4ec06.json",
+  "parameterValues" : [ ]
+}

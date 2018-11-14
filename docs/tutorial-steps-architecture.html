@@ -107,18 +107,83 @@
 </header>
 
 <article>
-    <p>Approach for functional autotests development based on next principles:</p>
+    <p><code>glace</code> approach of functional autotests development is based on next principles:</p>
 <ul>
-<li>Any complex test may be divided to atomic steps.</li>
-<li>Almost all tests contain steps which are (or may be) used in other tests.</li>
-<li>Each step should be finished with verification that its result is correct.</li>
-<li>Verification of step may be disabled if it needs for negative scenarios.</li>
-<li>Steps are separated to <strong>change</strong>-steps, <strong>get</strong>-steps, <strong>check</strong>-steps.</li>
-<li><strong>change</strong>-step should return <code>true</code> if it was executed and doesn't return another step-specific value.</li>
-<li><strong>change</strong>-step should return <code>false</code> if it wasn't executed.</li>
-<li><strong>change</strong>-steps may be connected to opposite pair: <code>start</code> &amp; <code>finish</code>.</li>
-<li>if <code>start</code> <strong>change</strong>-step wasn't executed, <code>finish</code> <strong>change</strong>-step shouldn't be executed.</li>
+<li><strong>Any complex test can be divided to atomic steps.</strong> For example, <a href="https://github.com/glacejs/glace-js/blob/2.5.0/tests/e2e/testProxy.js#L3">glace-js/tests/e2e/testProxy.js#L3</a>:</li>
 </ul>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;Proxy subsystem&quot;, () => {
+
+    chunk(&quot;It should use URL via global proxy&quot;, async () => {
+        await $.restartBrowser();
+        await $.openUrl(&quot;https://opennet.ru&quot;);
+    });
+
+    chunk(&quot;It should manage global proxy inside test&quot;, async () => {
+        await $.restartBrowser();
+        await $.openUrl(&quot;https://opennet.ru&quot;);
+        await $.stopGlobalProxy();
+        await $.restartBrowser();
+        await $.openUrl(&quot;https://opennet.ru&quot;);
+        await $.startGlobalProxy();
+    });
+});</code></pre><ul>
+<li><strong>Almost all tests contain steps which are (or can be) used in other tests.</strong></li>
+<li><strong>Each step should be finished with verification that its result is correct.</strong> For example, <a href="https://github.com/glacejs/glace-web/blob/1.3.8/lib/steps/browser.js#L508">glace-web/lib/steps/browser.js#L508</a>:</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>openUrl: async function (webUrl, opts) {
+    opts = U.defVal(opts, {});
+    var check = U.defVal(opts.check, true);
+    var timeout = U.defVal(opts.timeout, CONF.web.pageTimeout) * 1000;
+    allure.step(`Open URL &quot;${webUrl}&quot; in browser`);
+    LOG.info(`Openning URL &quot;${webUrl}&quot; in browser...`);
+    await this.webdriver.url(webUrl);
+    if (check) {
+        var errMsg = `Browser did not navigate to &quot;${webUrl}&quot; ` +
+                        `during ${timeout} ms`;
+
+        await this.webdriver.waitUntil(async () => {
+            var curUrl = await this.webdriver.getUrl();
+            LOG.debug(`Compare current URL &quot;${curUrl}&quot; with expected &quot;${webUrl}&quot;`);
+            return curUrl.startsWith(webUrl);
+        }, timeout, errMsg);
+    };
+    LOG.info(&quot;URL is opened&quot;);
+    allure.pass();
+},</code></pre><ul>
+<li><strong>Verification of step can be disabled if it needs for negative scenarios.</strong></li>
+<li><strong>Steps are separated to <code>change</code>-steps, <code>get</code>-steps, <code>check</code>-steps.</strong></li>
+<li><strong><code>change</code>-step changes state of system.</strong> For example, it creates / updates / removes resource (object / value): <code>createUser</code>, <code>launchBrowser</code>.</li>
+<li><strong><code>get</code>-step returns resource.</strong> For example: <code>getBrowser</code>, <code>getWindows</code>.</li>
+<li><strong><code>check</code>-step checks state of resource.</strong> For example, <code>checkBrowserPresence</code>, <code>checkUserExistence</code>.</li>
+<li><strong><code>change</code>-step should return <code>true</code> if it was executed and doesn't return another step-specific value.</strong> For example, <a href="https://github.com/glacejs/glace-web/blob/1.3.8/lib/steps/browser.js#L440">glace-web/lib/steps/browser.js#L440</a>:</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>    LOG.info(&quot;Browser is closed&quot;);
+    allure.pass();
+    return true; // HERE
+},</code></pre><ul>
+<li><strong><code>change</code>-step should return <code>false</code> if it wasn't executed.</strong> For example, <a href="https://github.com/glacejs/glace-web/blob/1.3.8/lib/steps/browser.js#L411">glace-web/lib/steps/browser.js#L411</a>:</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>if (!this._webdrivers().top()) {
+    LOG.debug(&quot;No one browser is launched yet&quot;);
+    return false; // HERE
+};</code></pre><ul>
+<li><strong><code>change</code>-steps can be connected to opposite pair: <code>start</code> &amp; <code>finish</code>.</strong> For example: <code>launchBrowser</code> &amp; <code>closeBrowser</code>.</li>
+<li><strong>if <code>start</code>-step wasn't executed, <code>finish</code>-step shouldn't be executed.</strong> For example, <a href="https://github.com/glacejs/glace-web/blob/1.3.8/lib/fixtures.js#L41">glace-web/lib/fixtures.js#L41</a>:</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>global.fxBrowser = func => {
+    var isStarted;
+
+    before(async () => {
+        isStarted = await $.launchBrowser();
+    });
+
+    func();
+
+    after(async () => {
+        if (!isStarted) return; // HERE
+        await $.closeBrowser();
+    });
+};</code></pre>
 </article>
 
 </section>
@@ -160,7 +225,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-14T08:20:41+02:00
+		on 2018-11-14T11:07:59+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

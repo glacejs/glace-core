@@ -1,0 +1,160 @@
+{
+  "uid" : "1ae3fa40448eeebf",
+  "name" : "import",
+  "fullName" : "reporter/testrail.import",
+  "historyId" : "84ecb9aea7dd3940d918a8394768f66c",
+  "time" : {
+    "start" : 1542186485442,
+    "stop" : 1542186485532,
+    "duration" : 90
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "throws exception if no testrail host",
+      "time" : {
+        "start" : 1542186485443,
+        "stop" : 1542186485457,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail user",
+      "time" : {
+        "start" : 1542186485457,
+        "stop" : 1542186485469,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail token",
+      "time" : {
+        "start" : 1542186485469,
+        "stop" : 1542186485483,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail projectId",
+      "time" : {
+        "start" : 1542186485483,
+        "stop" : 1542186485495,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail suiteId",
+      "time" : {
+        "start" : 1542186485495,
+        "stop" : 1542186485507,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail runName",
+      "time" : {
+        "start" : 1542186485507,
+        "stop" : 1542186485519,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws exception if no testrail runDescription",
+      "time" : {
+        "start" : 1542186485519,
+        "stop" : 1542186485532,
+        "duration" : 13
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/testrail"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/testrail"
+  }, {
+    "name" : "testMethod",
+    "value" : "import"
+  }, {
+    "name" : "package",
+    "value" : "reporter/testrail"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "1ae3fa40448eeebf.json",
+  "parameterValues" : [ ]
+}

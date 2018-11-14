@@ -1,0 +1,85 @@
+{
+  "uid" : "1dbee0a8f5bb79f7",
+  "name" : "retryCb()",
+  "fullName" : "globals/session.retryCb()",
+  "historyId" : "8bee91289108d14d99434db663d646cf",
+  "time" : {
+    "start" : 1542186483059,
+    "stop" : 1542186483061,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "does nothing if no tests to retry",
+      "time" : {
+        "start" : 1542186483060,
+        "stop" : 1542186483060,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "retries tests",
+      "time" : {
+        "start" : 1542186483061,
+        "stop" : 1542186483061,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/session"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/session"
+  }, {
+    "name" : "testMethod",
+    "value" : "retryCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/session"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "1dbee0a8f5bb79f7.json",
+  "parameterValues" : [ ]
+}
