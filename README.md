@@ -46,7 +46,7 @@
 ## Features
 
 - Cross-platform: can be launched easily in **linux**, **macos**, **windows**.
-- Concept is based on [STEPS-architecture](tutorial-steps-architecture.html)
+- Concept is based on [STEPS-architecture](tutorial-steps-architecture.html).
 - Plugins system based on [STEPS-protocol](tutorial-steps-protocol.html).
 - Oriented to complex functional [scenarios](tutorial-concepts.html)
 - Indepentently executed [chunks](tutorial-concepts.html) inside a test
