@@ -1,0 +1,85 @@
+{
+  "uid" : "93ead07758987dd2",
+  "name" : "ScopeType",
+  "fullName" : "Session 2018-11-14 08:20:42.ScopeType",
+  "historyId" : "5e61252917bdf9fc0223ae0b7d16e50f",
+  "time" : {
+    "start" : 1542176448062,
+    "stop" : 1542176448063,
+    "duration" : 1
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "instance",
+      "time" : {
+        "start" : 1542176448062,
+        "stop" : 1542176448063,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : ".setType()",
+      "time" : {
+        "start" : 1542176448063,
+        "stop" : 1542176448063,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Session 2018-11-14 08:20:42"
+  }, {
+    "name" : "testClass",
+    "value" : "Session 2018-11-14 08:20:42"
+  }, {
+    "name" : "testMethod",
+    "value" : "ScopeType"
+  }, {
+    "name" : "package",
+    "value" : "Session 2018-11-14 08:20:42"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "93ead07758987dd2.json",
+  "parameterValues" : [ ]
+}

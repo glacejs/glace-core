@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>GlaceJS Tutorial: STEPS protocol</title>
+	<title>GlaceJS Tutorial: Plugins system & STEPS protocol</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -61,7 +61,7 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
@@ -103,20 +103,106 @@
 <header>
     
 
-    <h2>STEPS protocol</h2>
+    <h2>Plugins system & STEPS protocol</h2>
 </header>
 
 <article>
-    <p>Way to develop <code>GlaceJS</code>-compatible applications which may be used as <code>GlaceJS</code> plugins. Any application which implements <code>STEPS</code> protocol should follow next rules:</p>
+    <p>Plugins are used to outfit <code>glace-core</code> with <a href="tutorial-steps-architecture.html">steps</a> for specific functionality which is missing in the core.
+Currently <code>glace</code> ecosystem provides next plugins which are assembled in project <a href="https://glacejs.github.io/glace-js"><code>glace-js</code></a>:</p>
 <ul>
-<li>Its modules should be lazy-loaded, for example, <code>require(&quot;glace-web&quot;)</code> should be empty by default</li>
-<li>It should provide <code>Steps</code> module, which based on <code>STEPS</code> architecture, for example, <code>require(&quot;glace-web&quot;).Steps</code></li>
-<li><code>Steps</code> module is object with functions, which will be mixed with base <code>Steps</code> class.</li>
-<li>It should provide <code>globals</code> module, for example, <code>require(&quot;glace-web&quot;).globals</code>, which will be loaded after main <code>globals</code> and may override it.</li>
-<li>It should provide <code>pluginHelp</code> module, for example, <code>require(&quot;glace-web&quot;).pluginHelp</code>, which will extend application help.</li>
-<li>It should active plugin fixtures on <code>Steps</code> module import.</li>
+<li><a href="https://glacejs.github.io/glace-image"><strong>glace-image</strong></a> - to process images &amp; screenshots;</li>
+<li><a href="https://glacejs.github.io/glace-proxy"><strong>glace-proxy</strong></a> - to manage http &amp; mitm proxy servers;</li>
+<li><a href="https://glacejs.github.io/glace-testgen"><strong>glace-testgen</strong></a> - to generate (auto)tests with ML;</li>
+<li><a href="https://glacejs.github.io/glace-video"><strong>glace-video</strong></a> - to capture &amp; process video;</li>
+<li><a href="https://glacejs.github.io/glace-web"><strong>glace-web</strong></a> - to launch web tests in browser;</li>
+<li><a href="https://glacejs.github.io/glace-xvfb"><strong>glace-xvfb</strong></a> - to launch tests in virtual display (headless);</li>
 </ul>
-<p><code>STEPS</code> protocol is bidirectional. It means that any plugin may be easily transformed to standalone application, and any standalone application may be used as plugin.</p>
+<h3>Core Extension Points</h3><p>Main task of any plugin to provide additional <strong>steps</strong>, but it also can supply <strong>config</strong>, <strong>help</strong>, <strong>fixtures</strong>, which are involved in extension points in <code>glace-core</code>.</p>
+<p>Configurating is a first stage in <code>glace-core</code>, all other happens after. And plugin configs also will be loaded right after core configuration in <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/config.js#L271">glace-core/lib/config.js#L271</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>if (args.pluginsDir) config.plugins.dir = path.join(U.cwd, args.pluginsDir);
+config.plugins.disableDefault = U.defVal(args.disableDefaultPlugins, false);
+
+plugins.getModules(&quot;config&quot;); // HERE
+
+config.tools = U.defVal(config.tools, {});</code></pre><p>Plugin steps are loaded in <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/steps/index.js#L153">glace-core/lib/steps/index.js#L153</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>Steps.register(require(&quot;./timer&quot;));
+/* Load plugins steps */
+Steps.register.apply(Steps, plugins.getModules(&quot;Steps&quot;)); // HERE
+
+/**
+ * Set up debug mode for glace.</code></pre><p>Plugin helps are loaded in <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/steps/index.js#L153">glace-core/lib/help.js#L264</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>        });
+
+    for (var help of plugins.getModules(&quot;pluginHelp&quot;)) { // HERE
+        result = help(result, d);
+    }</code></pre><p>Plugin configs &amp; helps can include options which are used as inside plugin as in a project, which involve core &amp; plugins.
+For example, CLI option <code>--global-proxy</code> is defined in <code>glace-proxy</code> plugin but isn't used inside the plugin, because the plugin doesn't know when
+global proxy should be activated. But it's involved in <code>glace-js</code> which knows precisely when global proxy should start, <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/steps/index.js#L153">glace-js/lib/globals.js#L26</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>if (CONF.web.use && !CONF.cluster.slavesNum) fixtures.push(fxKillWebdriver);
+if (CONF.xvfb.use) fixtures.push(fxXvfb);
+if (CONF.proxy.global) fixtures.push(fxGlobalProxy); // HERE
+if (CONF.proxy.http) fixtures.push(fxHttpProxy);</code></pre><p>Fixtures are not loaded via an extension point. Cause they are global objects and wrappers over steps, they should be
+initialized with fixtures import in plugin steps, like <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/steps/index.js#L153">glace-proxy/lib/steps.js#L22</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>var U = require(&quot;glace-utils&quot;);
+
+require(&quot;./fixtures&quot;); // HERE
+var GlobalProxy = require(&quot;./globalProxy&quot;);
+var HttpProxy = require(&quot;./httpProxy&quot;);</code></pre><h3>Plugins Lazy Load</h3><p><code>glace-core</code> loads a found plugin by name and takes objects from a module, marked as <a href="https://github.com/glacejs/glace-proxy/blob/1.3.8/package.json#L5">main in plugin <code>package.json</code></a>. This module includes all objects, which are provided by plugin.
+In such case in order to avoid all objects initialisation on first request, like <code>steps</code> together with <code>config</code>, plugins
+should use lazy load on demand, like in <a href="https://github.com/glacejs/glace-image/blob/1.2.8/lib/index.js#L10">glace-image/lib/index.js#L10</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>Object.defineProperties(exports, {
+    /**
+     * @type {GlaceConfig}
+     */
+    config: {
+        get: function() {
+            config = config || require(&quot;./config&quot;);
+            return config;
+        },
+    },
+    /**
+     * @type {pluginHelp}
+     */
+    pluginHelp: {
+        get: function () {
+            pluginHelp = pluginHelp || require(&quot;./pluginHelp&quot;);
+            return pluginHelp;
+        }
+    },
+    /**
+     * @type {ImageSteps}
+     */
+    Steps: {
+        get: function() {
+            Steps = Steps || require(&quot;./steps&quot;);
+            return Steps;
+        },
+    },
+});</code></pre><p>And commonly <strong>lazy load</strong> is a good practice to load required stuff when it's required only.</p>
+<h3>Plugin Steps</h3><p>Plugin steps are mixin objects and don't have a constructor. For example, <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/steps/index.js#L153">glace-proxy/lib/steps.js#L28</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>var ProxySteps = {
+    __GlobalProxy: GlobalProxy,
+    __HttpProxy: HttpProxy,
+
+    registerProxy: function (opts) {
+        /**
+         * Helper to register proxy classes.</code></pre><p>Steps designed in plugin should also follow <a href="tutorial-steps-architecture.html"><strong>STEPS-architecture</strong></a> and <a href="https://github.com/glacejs/glace-image/blob/1.2.8/lib/steps.js#L89">can refer to steps and properties</a> defined
+in other plugins or core under <code>Steps</code> instance.</p>
+<p><em>Approach to design &amp; deliver steps together with other plugin stuff is named <strong>STEPS-protocol</strong>.</em></p>
+<h3>Plugins Autodiscovery</h3><p><code>glace-core</code> automatically loads plugin if it's located in <a href="https://docs.npmjs.com/files/folders">npm-folders</a> and its name starts with <code>glace-</code> prefix (exceptions are <code>glace-core</code>, <code>glace-js</code>, <code>glace-utils</code>).</p>
+<h3>Register custom plugins with CLI</h3><p>If plugin has name or location ineligible for autodiscovery, it can be loaded explicitly with <strong>CLI</strong> option <code>--plugins-dir &lt;/path/to/dir/of/plugins&gt;</code>. Plugins inside the folder can be as a <code>.js</code> file as a folder within <code>index.js</code> and will be loaded by their names.</p>
+<h3>Register custom plugins programmatically</h3><p>If there is a wrapper over <code>glace-core</code> runner, any custom plugin can be registered programmatically there as well, like <a href="https://github.com/glacejs/glace-web/blob/1.3.8/tests/run#L5">glace-web/tests/run#L5</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>var path = require(&quot;path&quot;);
+var glace = require(&quot;glace-core&quot;);
+glace.plugins.register(path.resolve(__dirname, &quot;..&quot;, &quot;lib&quot;)); // HERE
+glace.run(process.exit);</code></pre><h3>List found plugins</h3><p>With <strong>CLI</strong> option <code>--list-plugins</code> it's possible to print all available plugins and their location, for example:</p>
+<pre class="prettyprint source"><code>➜  glace-js git:(master) ✗ ./bin/glace --list-plugins
+1. glace-image /home/user/projects/glace/glace-js/node_modules/glace-image
+2. glace-proxy /home/user/projects/glace/glace-js/node_modules/glace-proxy
+3. glace-testgen /home/user/projects/glace/glace-js/node_modules/glace-testgen
+4. glace-video /home/user/projects/glace/glace-js/node_modules/glace-video
+5. glace-web /home/user/projects/glace/glace-js/node_modules/glace-web
+6. glace-xvfb /home/user/projects/glace/glace-js/node_modules/glace-xvfb</code></pre>
 </article>
 
 </section>
@@ -158,7 +244,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-13T21:29:04+02:00
+		on 2018-11-14T08:20:41+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -1,0 +1,70 @@
+{
+  "uid" : "8938939ffe4e6836",
+  "name" : "done()",
+  "fullName" : "reporter/xunit.done()",
+  "historyId" : "32553e9499df5cceccb62aa13280ec6",
+  "time" : {
+    "start" : 1542176448023,
+    "stop" : 1542176448026,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "",
+      "time" : {
+        "start" : 1542176448025,
+        "stop" : 1542176448025,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testMethod",
+    "value" : "done()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "8938939ffe4e6836.json",
+  "parameterValues" : [ ]
+}
