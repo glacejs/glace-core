@@ -37,8 +37,6 @@
     });
     ```
 
-    About `test`, `chunk` and other key words read [here](tutorial-concepts.html).
-
 1. Launch tests with command `glace tests.js` if you installed `glace-core` globally or with `./node_modules/glace-core/bin/glace tests.js` if locally and get the result.
 
     <img src="quick-start-report.png" alt="glace-core report" />
@@ -48,8 +46,6 @@
 - Cross-platform: can be launched easily in **linux**, **macos**, **windows**.
 - Concept is based on [STEPS-architecture](tutorial-steps-architecture.html).
 - Plugins system based on [STEPS-protocol](tutorial-steps-protocol.html).
-- Oriented to complex functional [scenarios](tutorial-concepts.html)
-- Indepentently executed [chunks](tutorial-concepts.html) inside a test
 - [Parameterization](tutorial-parameterization.html) inside and outside of test
 - Mechanism to launch tests in parallel workers.
 - Mechanism to [retry](tutorial-retry.html) failed tests
@@ -59,25 +55,34 @@
 - [Conftest](tutorial-tests-loading.html) and [preloads](tutorial-tests-loading.html) support
 - Test & chunk [options](tutorial-test-options.html)
 - Multiple reporting [system](tutorial-reports.html)
-- Stdout reporter in-box
-- [TestRail](http://www.gurock.com/testrail/) reporter in-box
+- Stdout reporter in-box.
+- [Allure](http://allure.qatools.ru/) reporter in-box.
+- [TestRail](http://www.gurock.com/testrail/) reporter in-box,
 - Easy to provide [custom reporter](https://github.com/glacejs/glace-core/blob/master/tests/e2e/testCustomReporter.js)
 - May read `CLI` arguments from `JSON` file
 - May be extended with custom `JavaScript` config
 - May be used as platform for own testing frameworks development
 
-## How to use
+## Reserved functions
 
-```
-glace [options] [sequence-of-test-files-or-folders]
-```
-
-[How `glace` loads tests ➤](tutorial-tests-loading.html)
+- [test](tutorial-common-used-funcs.html#test) - testcase definition;
+- [chunk](tutorial-common-used-funcs.html#chunk) - part of test executed independently;
+- [before](tutorial-common-used-funcs.html#before) - hook executed before chunks;
+- [after](tutorial-common-used-funcs.html#after) - hook executed after chunks;
+- [beforeChunk](tutorial-common-used-funcs.html#before-chunk) - hook executed before each chunk;
+- [afterChunk](tutorial-common-used-funcs.html#after-chunk) - hook executed after each chunk;
+- [$](tutorial-common-used-funcs.html#steps) - namespace of steps;
+- [CONF](tutorial-common-used-funcs.html#config) - configuration;
+- [fixtures](tutorial-common-used-funcs.html#fixtures) - modular & reusable blocks of test;
+- [iterators](tutorial-common-used-funcs.html#iterators) - cycles for tests, chunks and other blocks;
+- [suite](tutorial-common-used-funcs.html#suite) - groups tests to suites for visual output mostly;
+- [scope](tutorial-common-used-funcs.html#scope) - groups tests or chunks for visual or logical output, is used inside iterators also;
+- [session](tutorial-common-used-funcs.html#session) - first root suite, created by framework, not need to reuse by default.
 
 ## CLI options
 
 `Common`
-- `--version` - Show version number.
+- `--version` - Show version.
 - `-h, --help` - Show help.
 
 `Arguments`
@@ -144,42 +149,12 @@ glace [options] [sequence-of-test-files-or-folders]
 - `--list-tests [filter]` - List collected tests and exit.
 - `--list-fixtures [filter]` - List available fixtures and exit.
 
-## Test examples
+## Examples
 
-See [integration tests](https://github.com/glacejs/glace-core/tree/master/tests/e2e) in order to explore examples.
+There are [e2e tests](https://github.com/glacejs/glace-core/tree/master/tests/e2e) in order to explore `glace-core` examples.
 
-## Frameworks platform
+## Quality
 
-`GlaceJS` may be used as platform for own testing frameworks development. [Simple example](https://github.com/glacejs/glace-core/blob/master/tests/e2e/ownApp):
-
-```javascript
-require("colors");
-
-require("glace-core").run().then(errCode => {
-    if (!errCode) {
-        console.log("It's passed! 🙂".green.bold);
-    } else {
-        console.log("It's failed! 🙁".red.bold);
-    };
-    process.exit(errCode);
-});
-```
-
-## Tests and quality
-
-- Project tests report is <a href="allure-report/index.html" target="_blank">here</a>
-- Code coverage report is <a href="tests-cover/lcov-report/index.html" target="_blank">here</a>
-
-## Guidelines
-
-### How to retry tests or chunks
-
-In order to retry failed tests or chunks you may pass CLI options `--retry` or
-`--chunk-retry` to affect all tests or chunks or to specify `retry` option
-for concrete [test or chunk](tutorial-test-options.html).
-
-### How to use fixtures
-
-In order to avoid copy/paste with `before` and `after` hooks in tests you may use fixtures...
-
-[Read more ➤](tutorial-test-fixtures.html)
+`glace-core` is highly reliable framework. And it's ready to provide confirmation:
+- release <a href="allure-report/index.html" target="_blank">tests report</a>
+- release <a href="tests-cover/lcov-report/index.html" target="_blank">code coverage</a>
