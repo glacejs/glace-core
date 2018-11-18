@@ -32,28 +32,32 @@ suite("globals/test", () => {
             testFunc = sinon.spy();
             test_.__set__("testFunc", testFunc);
             conf.filter = {};
-            conf.test = { cases: [] };
+            conf.chunk = {};
+            conf.test = { id: 0, cases: [] };
+            conf.retry = { id: 0, chunkIds: {} };
         });
 
         chunk("registers test", () => {
             const test_cb = () => {};
             baseTest("my test", test_cb);
             expect(testFunc).to.be.calledOnce;
+            expect(conf.test.id).to.be.equal(1);
             expect(conf.test.cases).to.have.length(1);
             expect(conf.test.cases[0].name).to.be.equal("my test");
+            expect(conf.retry.chunkIds).to.be.eql({ 0: [] });
+            expect(conf.retry.curChunkIds).to.be.eql([]);
             const o = testFunc.args[0][0];
             expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
             expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
-            expect(o.retries).to.be.equal(0);
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
         });
 
         chunk("passes if test name is included in filter", () => {
             conf.filter.include = [{
-                name: "my test",
+                id: "my test",
                 params: [{ lang: "ru" }],
             }];
             const test_cb = () => {};
@@ -63,14 +67,13 @@ suite("globals/test", () => {
             expect(o.func).to.be.equal(test_cb);
             expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
-            expect(o.retries).to.be.equal(0);
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
         });
 
         chunk("breaks if test name is not included in filter", () => {
             conf.filter.include = [{
-                name: "some test",
+                id: "some test",
             }];
             baseTest("my test", () => {});
             expect(testFunc).to.not.be.called;
@@ -78,7 +81,7 @@ suite("globals/test", () => {
 
         chunk("passes if test name is not excluded in filter", () => {
             conf.filter.exclude = [{
-                name: "some test",
+                id: "some test",
             }];
             const test_cb = () => {};
             baseTest("my test", test_cb);
@@ -88,14 +91,13 @@ suite("globals/test", () => {
             expect(o.func).to.be.equal(test_cb);
             expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
-            expect(o.retries).to.be.equal(0);
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
         });
 
         chunk("breaks if test name is excluded in filter", () => {
             conf.filter.exclude = [{
-                name: "my test",
+                id: "my test",
             }];
             baseTest("my test", () => {});
             expect(testFunc).to.not.be.called;
@@ -112,7 +114,6 @@ suite("globals/test", () => {
             expect(o.func).to.be.equal(test_cb);
             expect(o.name).to.be.equal("second test");
             expect(o.fixtures).to.be.empty;
-            expect(o.retries).to.be.equal(0);
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
         });
@@ -139,18 +140,16 @@ suite("globals/test", () => {
         chunk("reads retries from config", () => {
             conf.test.retries = 2;
             baseTest("my test", () => {});
-            const o = testFunc.args[0][0];
-            expect(o.retries).to.be.equal(2);
+            expect(conf.retry.chunkIds).to.be.eql({ 2: [] });
         });
 
         chunk("reads retries from options", () => {
             baseTest("my test", { retry: 1 }, () => {});
-            const o = testFunc.args[0][0];
-            expect(o.retries).to.be.equal(1);
+            expect(conf.retry.chunkIds).to.be.eql({ 1: [] });
         });
 
         chunk("reads chunk retries from config", () => {
-            conf.test.chunkRetries = 2;
+            conf.chunk.retries = 2;
             baseTest("my test", () => {});
             const o = testFunc.args[0][0];
             expect(o.testOpts.chunkRetry).to.be.equal(2);
@@ -179,46 +178,23 @@ suite("globals/test", () => {
             const o = testFunc.args[0][0];
             expect(o.fixtures).to.be.eql(["fix1", "fix2"]);
         });
-    });
 
-    test("removeTestFromRetryQueue()", () => {
-        let removeTestFromRetryQueue, retryTests;
-
-        beforeChunk(() => {
-            removeTestFromRetryQueue = test_.__get__("removeTestFromRetryQueue");
-
-            retryTests = [];
-            test_.__set__("retryTests", retryTests);
-        });
-
-        chunk("does nothing if no tests for retry", () => {
-            removeTestFromRetryQueue();
-            expect(retryTests).to.be.empty;
-        });
-
-        chunk("removes test from retry queue", () => {
-            retryTests[0] = { args: { testCase: { name: "my test" }}};
-            removeTestFromRetryQueue(retryTests[0].args.testCase);
-            expect(retryTests).to.be.empty;
-        });
-
-        chunk("throws error if test is not found in retry queue", () => {
-            retryTests[0] = { args: { testCase: { name: "my test" }}};
-            removeTestFromRetryQueue({ name: "another test" });
-            expect(retryTests).to.have.length(1);
+        chunk("find test by id on retry", () => {
+            conf.retry.id = 1;
+            conf.test.cases = [{ id: 1, name: "my test" }];
+            baseTest("my test", () => {});
+            const o = testFunc.args[0][0];
+            expect(o.testCase).to.be.eql({ id: 1, name: "my test" });
         });
     });
 
     test("beforeCb()", () => {
-        let beforeCb, o, setLog, removeTestFromRetryQueue;
+        let beforeCb, o, setLog;
 
         beforeChunk(() => {
             beforeCb = test_.__get__("beforeCb");
             setLog = sinon.spy();
             test_.__set__("setLog", setLog);
-
-            removeTestFromRetryQueue = sinon.spy();
-            test_.__set__("removeTestFromRetryQueue", removeTestFromRetryQueue);
 
             o = {};
             o.testCase = {
@@ -236,18 +212,14 @@ suite("globals/test", () => {
             expect(o.testCase.reset).to.be.calledOnce;
             expect(o.testCase.start).to.be.calledOnce;
             expect(setLog).to.be.calledOnce;
-            expect(removeTestFromRetryQueue).to.be.calledOnce;
-            expect(removeTestFromRetryQueue.args[0][0]).to.be.equal(o.testCase);
         });
     });
 
     test("afterCb()", () => {
-        let afterCb, retryTests, o;
+        let afterCb, o;
 
         beforeChunk(() => {
             afterCb = test_.__get__("afterCb");
-            retryTests = [];
-            test_.__set__("retryTests", retryTests);
             o = {};
             o.testCase = {
                 errors: ["err"],
@@ -256,40 +228,20 @@ suite("globals/test", () => {
                 hasFailedParams: sinon.stub().returns(true),
                 failedParams: "test failed params",
             };
-            o.retries = 1;
         });
 
         chunk("ends as failed", () => {
             afterCb(o)();
-
             expect(o.testCase.end).to.be.calledOnce;
             expect(o.testCase.end.args[0][0]).to.be.equal("failed");
-            expect(o.retries).to.be.equal(1);
-            expect(retryTests).to.have.length(1);
         });
 
         chunk("ends as passed", () => {
             o.testCase.errors = [];
             o.testCase.status = "passed";
             afterCb(o)();
-
             expect(o.testCase.end).to.be.calledOnce;
             expect(o.testCase.end.args[0][0]).to.be.equal("passed");
-            expect(o.retries).to.be.equal(1);
-            expect(retryTests).to.have.length(0);
-        });
-
-        chunk("doesn't retry if retry attemps are exhausted", () => {
-            o.retries = 0;
-            afterCb(o)();
-
-            expect(o.retries).to.be.equal(0);
-            expect(retryTests).to.have.length(0);
-        });
-
-        chunk("ends as failed", () => {
-            afterCb(o)();
-            expect(retryTests).to.have.length(1);
         });
     });
 
@@ -336,6 +288,11 @@ suite("globals/test", () => {
         beforeChunk(() => {
             isFilterMatched = test_.__get__("isFilterMatched");
             conf.filter = { precise: false };
+        });
+
+        chunk("returns true if test id is matched", () => {
+            conf.test.id = 1;
+            expect(isFilterMatched("my test", "1")).to.be.true;
         });
 
         chunk("returns true if test names are equal", () => {

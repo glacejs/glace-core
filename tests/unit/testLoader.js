@@ -26,6 +26,7 @@ suite("loader", () => {
 
     beforeChunk(() => {
         _require = sinon.spy();
+        _require.cache = {};
         loader.__set__("require", _require);
     });
 
@@ -170,6 +171,21 @@ suite("loader", () => {
             loadTests("/path/to/dir");
             expect(_require).to.be.calledOnce;
             expect(_require.args[0][0]).to.be.equal("/path/to/dir/conftest.js");
+        });
+    });
+
+    test("reload()", () => {
+        let reload;
+
+        beforeChunk(() => {
+            reload = loader.__get__("reload");
+        });
+
+        chunk("forcibly reloads module", () => {
+            _require.cache = { "/my/path": null };
+            reload("/my/path");
+            expect(_require.cache).to.be.empty;
+            expect(_require).to.be.calledOnce;
         });
     });
 });

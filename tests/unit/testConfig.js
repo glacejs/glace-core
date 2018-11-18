@@ -111,18 +111,26 @@ suite("config", () => {
         });
     });
 
+    test("retry", () => {
+        chunk("default values", () => {
+            expect(config.retry).to.exist;
+            expect(config.retry.id).to.be.equal(0);
+            expect(config.retry.chunkIds).to.be.eql({});
+            expect(config.retry.curChunkIds).to.be.null;
+        });
+    });
+
     test("test", () => {
 
         chunk("default values", () => {
             expect(config.test).to.exist;
+            expect(config.test.id).to.be.equal(0);
             expect(config.test.curCase).to.be.null;
             expect(config.test.cases).to.be.empty;
             expect(config.test.languages).to.be.empty;
             expect(config.test.dirs).to.not.be.empty;
             expect(config.test.checkNames).to.be.true;
             expect(config.test.retries).to.be.equal(0);
-            expect(config.test.chunkRetries).to.be.equal(0);
-            expect(config.test.chunkTimeout).to.be.equal(180000);
         });
 
         chunk("custom languages", () => {
@@ -159,28 +167,43 @@ suite("config", () => {
             U.config.args.retry = 1;
             config = rewire(CONFIG_PATH);
             expect(config.test.retries).to.be.equal(1);
+
             U.config.args.retry = -1;
-            expect(() => rewire(CONFIG_PATH)).to.throw("Invalid `--retry`");
+            config = rewire(CONFIG_PATH);
+            expect(config.test.retries).to.be.equal(0);
+        });
+    });
+
+    test("chunk", () => {
+        chunk("default values", () => {
+            expect(config.chunk).to.exist;
+            expect(config.chunk.id).to.be.equal(0);
+            expect(config.chunk.curId).to.be.null;
+            expect(config.chunk.passedIds).to.be.eql([]);
+            expect(config.chunk.retries).to.be.equal(0);
+            expect(config.chunk.timeout).to.be.equal(180000);
         });
 
-        chunk("custom chunkRetries", () => {
+        chunk("custom retries", () => {
             U.config.args.chunkRetry = 1;
             config = rewire(CONFIG_PATH);
-            expect(config.test.chunkRetries).to.be.equal(1);
+            expect(config.chunk.retries).to.be.equal(1);
+
             U.config.args.chunkRetry = -1;
-            expect(() => rewire(CONFIG_PATH)).to.throw("Invalid `--chunk-retry`");
+            config = rewire(CONFIG_PATH);
+            expect(config.chunk.retries).to.be.equal(0);
         });
 
-        chunk("custom chunkTimeout", () => {
+        chunk("custom timeout", () => {
             U.config.args.chunkTimeout = 10;
             config = rewire(CONFIG_PATH);
-            expect(config.test.chunkTimeout).to.be.equal(10000);
+            expect(config.chunk.timeout).to.be.equal(10000);
         });
 
-        chunk("disabled chunkTimeout", () => {
+        chunk("disabled timeout", () => {
             U.config.args.chunkTimeout = "no";
             config = rewire(CONFIG_PATH);
-            expect(config.test.chunkTimeout).to.be.equal(Infinity);
+            expect(config.chunk.timeout).to.be.equal(Infinity);
         });
     });
 
@@ -250,11 +273,11 @@ suite("config", () => {
             const tmpPath = save_tmp_filter();
             U.config.args.include = tmpPath;
             config = rewire(CONFIG_PATH);
-            expect(config.filter.include).to.be.eql([{ name: "my test" }]);
+            expect(config.filter.include).to.be.eql([{ id: "1_1" }]);
             expect(config.filter.precise).to.be.true;
             U.config.args.include = "test #1 | test #2";
             config = rewire(CONFIG_PATH);
-            expect(config.filter.include).to.be.eql([{ name: "test #1" }, { name: "test #2" }]);
+            expect(config.filter.include).to.be.eql([{ id: "test #1" }, { id: "test #2" }]);
             expect(config.filter.precise).to.be.false;
         });
 
@@ -262,11 +285,11 @@ suite("config", () => {
             const tmpPath = save_tmp_filter();
             U.config.args.exclude = tmpPath;
             config = rewire(CONFIG_PATH);
-            expect(config.filter.exclude).to.be.eql([{ name: "my test" }]);
+            expect(config.filter.exclude).to.be.eql([{ id: "1_1" }]);
             expect(config.filter.precise).to.be.true;
             U.config.args.exclude = "test #1 | test #2";
             config = rewire(CONFIG_PATH);
-            expect(config.filter.exclude).to.be.eql([{ name: "test #1" }, { name: "test #2" }]);
+            expect(config.filter.exclude).to.be.eql([{ id: "test #1" }, { id: "test #2" }]);
             expect(config.filter.precise).to.be.false;
         });
     });
@@ -517,7 +540,7 @@ suite("config", () => {
             config = rewire(CONFIG_PATH);
             expect(config.test.dirs).has.length(1);
             expect(fs.readFileSync(config.test.dirs[0]).toString()).to.include("await $.debug()");
-            expect(config.test.chunkTimeout).to.be.equal(Infinity);
+            expect(config.chunk.timeout).to.be.equal(Infinity);
             expect(config.filter.grep).to.be.null;
             expect(config.filter.include).to.be.null;
             expect(config.filter.exclude).to.be.null;
@@ -530,7 +553,7 @@ suite("config", () => {
 
 const save_tmp_filter = () => {
     const tempPath = temp.path({ prefix: "test", suffix: ".json" });
-    const tempData = JSON.stringify([{ name: "my test" }]);
+    const tempData = JSON.stringify([{ id: "1_1" }]);
     fs.writeFileSync(tempPath, tempData);
     return tempPath;
 };

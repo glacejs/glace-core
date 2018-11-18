@@ -282,7 +282,6 @@ suite("reporter/stdout", () => {
             printStatistics,
             printSkippedTests,
             printTestErrors,
-            saveFailedTests,
             printSessionErrors;
 
         beforeChunk(() => {
@@ -296,9 +295,6 @@ suite("reporter/stdout", () => {
 
             printTestErrors = sinon.stub();
             stdoutReporter.__set__("printTestErrors", printTestErrors);
-
-            saveFailedTests = sinon.stub();
-            stdoutReporter.__set__("saveFailedTests", saveFailedTests);
 
             printSessionErrors = sinon.stub();
             stdoutReporter.__set__("printSessionErrors", printSessionErrors);
@@ -320,8 +316,6 @@ suite("reporter/stdout", () => {
             expect(printSkippedTests.args[0][0]).to.be.eql([{ status: "skipped" }]);
             expect(printTestErrors).to.be.calledOnce;
             expect(printTestErrors.args[0][0]).to.be.eql([{ status: "failed" }]);
-            expect(saveFailedTests).to.be.calledOnce;
-            expect(saveFailedTests.args[0][0]).to.be.eql([{ status: "failed" }]);
             expect(printSessionErrors).to.be.calledOnce;
         });
 
@@ -334,7 +328,6 @@ suite("reporter/stdout", () => {
             expect(printStatistics.args[0]).to.be.eql([0, 0]);
             expect(printSkippedTests).to.not.be.called;
             expect(printTestErrors).to.not.be.called;
-            expect(saveFailedTests).to.not.be.called;
             expect(printSessionErrors).to.be.calledOnce;
         });
     });
@@ -435,64 +428,6 @@ suite("reporter/stdout", () => {
             conf.session = { errors: [] };
             printSessionErrors();
             expect(stdout).to.not.be.called;
-        });
-    });
-
-    test("saveFailedTests()", () => {
-        let saveFailedTests, fs, log;
-
-        beforeChunk(() => {
-            saveFailedTests = stdoutReporter.__get__("saveFailedTests");
-
-            fs = {
-                unlinkSync: sinon.stub(),
-                existsSync: sinon.stub(),
-                writeFileSync: sinon.stub(),
-            };
-            stdoutReporter.__set__("fs", fs);
-
-            log = {
-                error: sinon.stub(),
-            };
-            stdoutReporter.__set__("LOG", log);
-
-            conf.report = { failedTestsPath: "/path/to/failed/tests" };
-        });
-
-        chunk("saves failed tests info to file", () => {
-            fs.existsSync.returns(false);
-            saveFailedTests([{ name: "my test", passedChunkIds: [1] }]);
-            expect(fs.unlinkSync).to.not.be.called;
-            expect(log.error).to.not.be.called;
-            expect(fs.writeFileSync).to.be.calledOnce;
-            expect(fs.writeFileSync.args[0][0]).to.be.equal("/path/to/failed/tests");
-            expect(fs.writeFileSync.args[0][1])
-                .to.be.equal(JSON.stringify([{ name: "my test", passed_chunk_ids: [1] }], null, "  "));
-        });
-
-        chunk("removes previous file with failed tests", () => {
-            fs.existsSync.returns(true);
-            saveFailedTests([]);
-            expect(fs.unlinkSync).to.be.calledOnce;
-            expect(fs.unlinkSync.args[0][0]).to.be.equal("/path/to/failed/tests");
-        });
-
-        chunk("logs & exits if can't remove previous file with failed tests", () => {
-            fs.existsSync.returns(true);
-            fs.unlinkSync.throws(Error("BOOM!"));
-            saveFailedTests([]);
-            expect(log.error).to.be.calledOnce;
-            expect(log.error.args[0][0]).to.be.startWith("Can't remove file '/path/to/failed/tests'");
-            expect(log.error.args[0][0]).to.include("BOOM!");
-        });
-
-        chunk("logs if can't save failed tests to file", () => {
-            fs.existsSync.returns(false);
-            fs.writeFileSync.throws(Error("BOOM!"));
-            saveFailedTests([]);
-            expect(log.error).to.be.calledOnce;
-            expect(log.error.args[0][0]).to.be.startWith("Can't write file '/path/to/failed/tests'");
-            expect(log.error.args[0][0]).to.include("BOOM!");
         });
     });
 });

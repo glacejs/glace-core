@@ -27,6 +27,7 @@ suite("run", () => {
 
             conf = {
                 session: {},
+                chunk: {},
                 test: {},
                 tools: {},
                 cluster: {},
