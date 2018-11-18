@@ -31,7 +31,7 @@ suite("globals/session", () => {
 
         chunk("with callback only", () => {
             const cb = () => {};
-            sess.session(cb);
+            sess(cb);
 
             expect(conf.session.errors).to.be.empty;
 
@@ -40,13 +40,14 @@ suite("globals/session", () => {
             expect(suite_.args[0][1]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
-            expect(sessCb.args[0][0]).to.be.eql([]);
-            expect(sessCb.args[0][1]).to.be.equal(cb);
+            expect(sessCb.args[0][0]).to.be.equal("my session");
+            expect(sessCb.args[0][1]).to.be.eql([]);
+            expect(sessCb.args[0][2]).to.be.equal(cb);
         });
 
         chunk("with name & callback", () => {
             const cb = () => {};
-            sess.session("custom session", cb);
+            sess("custom session", cb);
 
             expect(conf.session.errors).to.be.empty;
 
@@ -55,13 +56,14 @@ suite("globals/session", () => {
             expect(suite_.args[0][1]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
-            expect(sessCb.args[0][0]).to.be.eql([]);
-            expect(sessCb.args[0][1]).to.be.equal(cb);
+            expect(sessCb.args[0][0]).to.be.equal("custom session");
+            expect(sessCb.args[0][1]).to.be.eql([]);
+            expect(sessCb.args[0][2]).to.be.equal(cb);
         });
 
         chunk("with fixtures & callback", () => {
             const cb = () => {};
-            sess.session(null, ["my fixture"], cb);
+            sess(null, ["my fixture"], cb);
 
             expect(conf.session.errors).to.be.empty;
 
@@ -70,13 +72,14 @@ suite("globals/session", () => {
             expect(suite_.args[0][1]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
-            expect(sessCb.args[0][0]).to.be.eql(["my fixture"]);
-            expect(sessCb.args[0][1]).to.be.equal(cb);
+            expect(sessCb.args[0][0]).to.be.equal("my session");
+            expect(sessCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(sessCb.args[0][2]).to.be.equal(cb);
         });
 
         chunk("with name, fixtures & callback", () => {
             const cb = () => {};
-            sess.session("custom session", ["my fixture"], cb);
+            sess("custom session", ["my fixture"], cb);
 
             expect(conf.session.errors).to.be.empty;
 
@@ -85,19 +88,23 @@ suite("globals/session", () => {
             expect(suite_.args[0][1]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
-            expect(sessCb.args[0][0]).to.be.eql(["my fixture"]);
-            expect(sessCb.args[0][1]).to.be.equal(cb);
+            expect(sessCb.args[0][0]).to.be.equal("custom session");
+            expect(sessCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(sessCb.args[0][2]).to.be.equal(cb);
         });
     });
 
     test("sessCb()", () => {
-        let sessCb, after_, u;
+        let sessCb, after_, afterCb, u;
 
         beforeChunk(() => {
             sessCb = sess.__get__("sessCb");
 
             after_ = sinon.stub();
             sess.__set__("after", after_);
+
+            afterCb = sinon.stub();
+            sess.__set__("afterCb", afterCb);
 
             u = {
                 wrap: sinon.stub().returns(() => {}),
@@ -107,72 +114,59 @@ suite("globals/session", () => {
 
         chunk("calls callback with fixtures", () => {
             const cb = () => {};
-            sessCb(["my fixture"], cb)();
+            sessCb("my session", ["my fixture"], cb)();
 
             expect(u.wrap).to.be.calledOnce;
             expect(u.wrap.args[0][0]).to.be.eql(["my fixture"]);
             expect(u.wrap.args[0][1]).to.be.equal(cb);
 
             expect(after_).to.be.calledOnce;
-            expect(after_.args[0][0]).to.be.equal(sess.__get__("afterCb"));
+            expect(afterCb).to.be.calledOnce;
+            expect(afterCb.args[0][0]).to.be.equal("my session");
+            expect(afterCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(afterCb.args[0][2]).to.be.equal(cb);
         });
     });
 
     test("afterCb()", () => {
-        let afterCb, retryTests, session_;
+        let afterCb, conf, suite, sessCb;
 
         beforeChunk(() => {
             afterCb = sess.__get__("afterCb");
 
-            retryTests = [];
-            sess.__set__("retryTests", retryTests);
+            conf = {
+                retry: {},
+                test: {},
+            };
+            sess.__set__("CONF", conf);
 
-            session_ = sinon.stub();
-            sess.__set__("global", { session: session_ });
+            suite = sinon.stub();
+            sess.__set__("suite", suite);
+
+            sessCb = sinon.stub();
+            sess.__set__("sessCb", sessCb);
         });
 
-        chunk("does nothing if no tests to retry", () => {
-            retryTests.push({ args: { retries: 0 }});
-            afterCb();
-
-            expect(session_).to.not.be.called;
+        chunk("clears retry session and exit", () => {
+            conf.retry.chunkIds = { 1: ["1_1"] };
+            conf.retry.id = 1;
+            afterCb("my sess", ["my fix"], () => {})();
+            expect(conf.retry.chunkIds).to.be.empty;
+            expect(suite).to.not.be.called;
         });
 
-        chunk("retries tests with common name", () => {
-            retryTests.push({ args: { retries: 1 }});
-            afterCb();
-
-            expect(session_).to.be.calledOnce;
-            expect(session_.args[0][0]).to.be.equal("my session");
-            expect(session_.args[0][1]).to.be.equal(sess.__get__("retryCb"));
-        });
-    });
-
-    test("retryCb()", () => {
-        let retryCb, retryTests;
-
-        beforeChunk(() => {
-            retryCb = sess.__get__("retryCb");
-
-            retryTests = [];
-            sess.__set__("retryTests", retryTests);
-        });
-        
-        chunk("does nothing if no tests to retry", () => {
-            retryTests.push({ args: { retries: 0 }, func: sinon.stub() });
-            retryCb();
-
-            expect(retryTests[0].func).to.not.be.called;
-        });
-
-        chunk("retries tests", () => {
-            retryTests.push({ args: { retries: 1 }, func: sinon.stub() });
-            retryCb();
-
-            expect(retryTests[0].func).to.be.calledOnce;
-            expect(retryTests[0].func.args[0][0]).to.be.equal(retryTests[0].args);
-
-            expect(retryTests[0].args.retries).to.be.equal(0);
+        chunk("retries tests session", () => {
+            conf.retry.chunkIds = { 1: ["1_1"], 2: ["2_1"] };
+            conf.retry.id = 1;
+            const cb = () => {};
+            afterCb("my sess", ["my fix"], cb)();
+            expect(conf.retry.chunkIds).to.be.eql({ 2: ["2_1"] });
+            expect(suite).to.be.calledOnce;
+            expect(suite.args[0][0]).to.be.equal("my sess");
+            expect(sessCb).to.be.calledOnce;
+            expect(sessCb.args[0][0]).to.be.equal("my sess");
+            expect(sessCb.args[0][1]).to.be.eql(["my fix"]);
+            expect(sessCb.args[0][2]).to.be.equal(cb);
         });
     });
 });

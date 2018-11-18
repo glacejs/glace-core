@@ -48,7 +48,7 @@ suite("reporter/base", () => {
     });
 
     test("on end", () => {
-        let onEnd, conf, reporters, fs;
+        let onEnd, conf, reporters, fs, saveFailedTests;
 
         beforeChunk(() => {
             onEnd = methods["end"];
@@ -60,6 +60,9 @@ suite("reporter/base", () => {
                 existsSync: sinon.stub().returns(false),
             };
             GlaceReporter.__set__("fs", fs);
+
+            saveFailedTests = sinon.stub();
+            GlaceReporter.__set__("saveFailedTests", saveFailedTests);
 
             conf = {
                 test: {
@@ -79,6 +82,7 @@ suite("reporter/base", () => {
         chunk("tests session is failed if there are failed tests", () => {
             conf.test.cases.push({ status: testing.TestCase.FAILED });
             onEnd();
+            expect(saveFailedTests).to.be.calledOnce;
             expect(conf.session.isPassed).to.be.false;
         });
 
@@ -551,8 +555,8 @@ suite("reporter/base", () => {
             passChunkId = GlaceReporter.__get__("passChunkId");
 
             conf = {
-                counters: {
-                    passedChunkIds: [],
+                chunk: {
+                    passedIds: [],
                 },
             };
             GlaceReporter.__set__("CONF", conf);
@@ -560,18 +564,18 @@ suite("reporter/base", () => {
 
         chunk("does nothing if no chunk id", () => {
             passChunkId();
-            expect(conf.counters.passedChunkIds).to.be.empty;
+            expect(conf.chunk.passedIds).to.be.empty;
         });
 
         chunk("does nothing if chunk id is marked as passed already", () => {
-            conf.counters.curChunkId = 1;
-            conf.counters.passedChunkIds.push(1);
+            conf.chunk.curId = 1;
+            conf.chunk.passedIds.push(1);
             passChunkId();
-            expect(conf.counters.passedChunkIds).to.have.length(1);
+            expect(conf.chunk.passedIds).to.have.length(1);
         });
 
         chunk("marks chunk id as passed if it is not yet before", () => {
-            conf.counters.curChunkId = 1;
+            conf.chunk.curId = 1;
             conf.test = {
                 curCase: {
                     addPassedChunkId: sinon.spy(),
@@ -580,8 +584,8 @@ suite("reporter/base", () => {
 
             passChunkId();
 
-            expect(conf.counters.passedChunkIds).to.be.eql([1]);
-            expect(conf.counters.curChunkId).to.be.null;
+            expect(conf.chunk.passedIds).to.be.eql([1]);
+            expect(conf.chunk.curId).to.be.null;
             expect(conf.test.curCase.addPassedChunkId).to.be.calledOnce;
             expect(conf.test.curCase.addPassedChunkId.args[0][0]).to.be.equal(1);
         });
@@ -618,6 +622,66 @@ suite("reporter/base", () => {
             handleSkipState(mochaTest);
             expect(mochaTest.state).to.be.equal("skipped");
             expect(conf.test.curCase.skipChunk).to.be.null;
+        });
+    });
+
+    test("saveFailedTests()", () => {
+        let saveFailedTests, fs, log, conf;
+
+        beforeChunk(() => {
+            saveFailedTests = GlaceReporter.__get__("saveFailedTests");
+
+            fs = {
+                unlinkSync: sinon.stub(),
+                existsSync: sinon.stub(),
+                writeFileSync: sinon.stub(),
+            };
+            GlaceReporter.__set__("fs", fs);
+
+            log = {
+                error: sinon.stub(),
+            };
+            GlaceReporter.__set__("LOG", log);
+
+            conf = {};
+            GlaceReporter.__set__("CONF", conf);
+            conf.report = { failedTestsPath: "/path/to/failed/tests" };
+        });
+
+        chunk("saves failed tests info to file", () => {
+            fs.existsSync.returns(false);
+            saveFailedTests([{ id: 1, passedChunkIds: [1] }]);
+            expect(fs.unlinkSync).to.not.be.called;
+            expect(log.error).to.not.be.called;
+            expect(fs.writeFileSync).to.be.calledOnce;
+            expect(fs.writeFileSync.args[0][0]).to.be.equal("/path/to/failed/tests");
+            expect(fs.writeFileSync.args[0][1])
+                .to.be.equal(JSON.stringify([{ id:1, passed_chunk_ids: [1] }], null, "  "));
+        });
+
+        chunk("removes previous file with failed tests", () => {
+            fs.existsSync.returns(true);
+            saveFailedTests([]);
+            expect(fs.unlinkSync).to.be.calledOnce;
+            expect(fs.unlinkSync.args[0][0]).to.be.equal("/path/to/failed/tests");
+        });
+
+        chunk("logs & exits if can't remove previous file with failed tests", () => {
+            fs.existsSync.returns(true);
+            fs.unlinkSync.throws(Error("BOOM!"));
+            saveFailedTests([]);
+            expect(log.error).to.be.calledOnce;
+            expect(log.error.args[0][0]).to.be.startWith("Can't remove file '/path/to/failed/tests'");
+            expect(log.error.args[0][0]).to.include("BOOM!");
+        });
+
+        chunk("logs if can't save failed tests to file", () => {
+            fs.existsSync.returns(false);
+            fs.writeFileSync.throws(Error("BOOM!"));
+            saveFailedTests([]);
+            expect(log.error).to.be.calledOnce;
+            expect(log.error.args[0][0]).to.be.startWith("Can't write file '/path/to/failed/tests'");
+            expect(log.error.args[0][0]).to.include("BOOM!");
         });
     });
 });

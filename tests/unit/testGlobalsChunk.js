@@ -24,16 +24,25 @@ suite("globals/chunk", () => {
             _chunkCb = sinon.stub();
             chunk_.__set__("_chunkCb", _chunkCb);
 
-            conf.counters = {
-                chunkId: 0,
-                testId: 1,
-                passedChunkIds: [],
+            conf.test = {
+                id: 1,
+            };
+            conf.chunk = {
+                id: 0,
+                passedIds: [],
+            };
+            conf.retry = {
+                id: 0,
+                chunkIds: {},
+                curChunkIds: [],
             };
         });
 
         chunk("with callback only", () => {
             const cb = () => {};
             chunk_(cb);
+
+            expect(conf.retry.curChunkIds).to.be.eql(["1_1"]);
 
             expect(it).to.be.calledOnce;
             expect(it.args[0][0]).to.be.equal("");
@@ -79,13 +88,26 @@ suite("globals/chunk", () => {
             expect(_chunkCb.args[0][0]).to.be.equal("");
         });
 
-        chunk("skipped if chunk is passed already", () => {
-            conf.counters.passedChunkIds.push("1_1");
+        chunk("skipped on session retry if chunk is passed already", () => {
+            conf.chunk.passedIds.push("1_1");
             const cb = () => {};
             chunk_(cb);
 
             expect(it).to.not.be.called;
             expect(_chunkCb).to.not.be.called;
+        });
+
+        chunk("launched on session retry if not passed in previous session run", () => {
+            conf.retry.id = 1;
+            conf.retry.chunkIds = { 1: "1_1" };
+            chunk_(() => {});
+            expect(it).to.be.calledOnce;
+        });
+
+        chunk("skipped on session retry if passed in previous session run", () => {
+            conf.retry.id = 1;
+            chunk_(() => {});
+            expect(it).to.not.be.called;
         });
     });
 
@@ -95,8 +117,8 @@ suite("globals/chunk", () => {
         beforeChunk(() => {
             _chunkCb = chunk_.__get__("_chunkCb");
 
-            conf.counters = {
-                curChunkId: null,
+            conf.chunk = {
+                curId: null,
             };
             conf.test = {
                 curCase: {
@@ -112,7 +134,7 @@ suite("globals/chunk", () => {
             expect(conf.test.curCase.addChunk).to.be.calledOnce;
             expect(conf.test.curCase.addChunk.args[0][0]).to.be.equal("my chunk");
             expect(conf.test.curCase.skipChunk).to.be.null;
-            expect(conf.counters.curChunkId).to.be.equal("1_1");
+            expect(conf.chunk.curId).to.be.equal("1_1");
         });
 
         chunk("skips sync function", () => {
@@ -121,7 +143,7 @@ suite("globals/chunk", () => {
             expect(conf.test.curCase.addChunk).to.be.calledOnce;
             expect(conf.test.curCase.addChunk.args[0][0]).to.be.equal("my chunk");
             expect(conf.test.curCase.skipChunk).to.be.equal("my chunk");
-            expect(conf.counters.curChunkId).to.be.equal("1_1");
+            expect(conf.chunk.curId).to.be.equal("1_1");
         });
 
         chunk("calls async function", async () => {
@@ -130,7 +152,7 @@ suite("globals/chunk", () => {
             expect(conf.test.curCase.addChunk).to.be.calledOnce;
             expect(conf.test.curCase.addChunk.args[0][0]).to.be.equal("my chunk");
             expect(conf.test.curCase.skipChunk).to.be.null;
-            expect(conf.counters.curChunkId).to.be.equal("1_1");
+            expect(conf.chunk.curId).to.be.equal("1_1");
         });
 
         chunk("calls async function", async () => {
@@ -139,7 +161,12 @@ suite("globals/chunk", () => {
             expect(conf.test.curCase.addChunk).to.be.calledOnce;
             expect(conf.test.curCase.addChunk.args[0][0]).to.be.equal("my chunk");
             expect(conf.test.curCase.skipChunk).to.be.equal("my chunk");
-            expect(conf.counters.curChunkId).to.be.equal("1_1");
+            expect(conf.chunk.curId).to.be.equal("1_1");
+        });
+
+        chunk("throws error if chunk is not under test", () => {
+            conf.test = {};
+            expect(_chunkCb("my chunk", "1_1", {}, () => 1)).to.throw();
         });
 
         chunk("sets execution retry", () => {
