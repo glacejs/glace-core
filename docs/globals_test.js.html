@@ -117,10 +117,7 @@ const TestCase = require("../testing").TestCase;
 const ScopeType = require("../testing").ScopeType;
 const setLog = require("../utils").setLog;
 
-const retryTests = require("./session").retryTests;
 const scope_ = require("./scope");
-
-let GID = 0;
 
 /**
  * Basis for any test case.
@@ -147,17 +144,18 @@ let GID = 0;
  */
 const baseTest = (names => {
     return (name, opts, fixtures, func) => {
-        GID++;
+        CONF.test.id++;
+        CONF.chunk.id = 0;
 
         let preloaded_chunk_ids;
         const o = {};
 
-        if (CONF.filter.testIds &amp;&amp; !CONF.filter.testIds.includes(GID)) return;
+        if (CONF.filter.testIds &amp;&amp; !CONF.filter.testIds.includes(CONF.test.id)) return;
 
         if (CONF.filter.include) {
             let isIncluded = false;
             for (const include of CONF.filter.include) {
-                if (isFilterMatched(name, include.name)) {
+                if (isFilterMatched(name, include.id)) {
                     preloaded_chunk_ids = include.passed_chunk_ids;
                     isIncluded = true;
                     break;
@@ -168,11 +166,11 @@ const baseTest = (names => {
 
         if (CONF.filter.exclude) {
             for (const exclude of CONF.filter.exclude) {
-                if (isFilterMatched(name, exclude.name)) return;
+                if (isFilterMatched(name, exclude.id)) return;
             }
         }
 
-        if (CONF.test.checkNames) {
+        if (CONF.test.checkNames &amp;&amp; !CONF.retry.id) {
             if (names.includes(name)) {
                 throw new Error(`Test case '${name}' is added already`);
             }
@@ -195,30 +193,34 @@ const baseTest = (names => {
 
         const skip = !!opts.skip;
         const skipReason = _.isString(opts.skip) ? opts.skip : null;
-        o.retries = U.defVal(opts.retry, CONF.test.retries, 0);
+        const retries = U.defVal(opts.retry, CONF.test.retries, 0);
         o.testOpts = {};
-        o.testOpts.chunkRetry = U.defVal(opts.chunkRetry, CONF.test.chunkRetries, 0);
+        o.testOpts.chunkRetry = U.defVal(opts.chunkRetry, CONF.chunk.retries, 0);
         o.testOpts.chunkTimeout = U.defVal(opts.chunkTimeout);
 
-        o.testCase = new TestCase(name, GID);
-        o.testCase.addPassedChunkIds(preloaded_chunk_ids || []);
-        CONF.test.cases.push(o.testCase);
-
-        if (skip) {
-            o.testCase.status = TestCase.SKIPPED;
-            if (skipReason) o.testCase.addDetails(skipReason);
-            return;
+        if (!CONF.retry.id) {
+            o.testCase = new TestCase(name, CONF.test.id);
+            o.testCase.addPassedChunkIds(preloaded_chunk_ids || []);
+            CONF.test.cases.push(o.testCase);
+            if (skip) {
+                o.testCase.status = TestCase.SKIPPED;
+                if (skipReason) o.testCase.addDetails(skipReason);
+            }
+        } else {
+            o.testCase = CONF.test.cases.filter(t => t.id === CONF.test.id)[0];
+            expect(o.testCase).to.exist;
         }
 
-        if (o.retries > 0) retryTests.push({ func: testFunc, args: o });
+        if (o.testCase.status === TestCase.SKIPPED) return;
+
+        if (!CONF.retry.chunkIds[retries]) CONF.retry.chunkIds[retries] = [];
+        CONF.retry.curChunkIds = CONF.retry.chunkIds[retries];
+
         testFunc(o);
     };
 })([]);
 
 const testFunc = o => {
-    CONF.counters.testId = o.testCase.id;
-    CONF.counters.chunkId = 0;
-
     scope_(new ScopeType(o.name).setType("test"), o.testOpts, () => {
         before(beforeCb(o));
         U.wrap(o.fixtures, o.func)();
@@ -226,17 +228,7 @@ const testFunc = o => {
     });
 };
 
-const removeTestFromRetryQueue = testCase => {
-    for (const retry of retryTests) {
-        if (retry.args.testCase === testCase) {
-            _.pull(retryTests, retry);
-            return;
-        }
-    }
-};
-
 const beforeCb = o => () => {
-    removeTestFromRetryQueue(o.testCase);
     o.testCase.reset();
     o.testCase.start();
     CONF.test.curCase = o.testCase;
@@ -251,11 +243,6 @@ const afterCb = o => () => {
     } else {
         o.testCase.end(TestCase.PASSED);
     }
-
-    if (o.testCase.status !== TestCase.FAILED || o.retries &lt;= 0) {
-        return;
-    }
-    retryTests.push({ func: testFunc, args: o });
 };
 
 /**
@@ -299,11 +286,13 @@ const test = (name, opts, fixtures, func) => {
     baseTest(name, opts, fixtures, func);
 };
 
-const isFilterMatched = (testName, filterName) => {
+const isFilterMatched = (testName, filterId) => {
+    if (filterId == CONF.test.id) return true;
+    filterId = filterId.toString();
     if (CONF.filter.precise) {
-        return testName.toLowerCase() === filterName.toLowerCase();
+        return testName.toLowerCase() === filterId.toLowerCase();
     } else {
-        return testName.toLowerCase().includes(filterName.toLowerCase());
+        return testName.toLowerCase().includes(filterId.toLowerCase());
     }
 };
 
@@ -353,7 +342,7 @@ module.exports = test;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-14T11:07:59+02:00
+		on 2018-11-20T20:00:43+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -836,7 +836,7 @@
 
         <tr>
             
-                <td class="name"><code>test</code></td>
+                <td class="name"><code>retry</code></td>
             
 
             <td class="type">
@@ -859,7 +859,7 @@
 
             
 
-            <td class="description last"><p>Test namespace.</p>
+            <td class="description last"><p>Retry settings namespace.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -884,6 +884,224 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Number of retried session.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chunkIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last"><p>Chunk ids grouped by retry values. For
+example: <code>{1: ['1_1', '1_2'], 3: ['2_1'], 2: ['3_1', '3_2']}</code>. Populated on
+first session run.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>curChunkIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>Reference to currently
+populated <code>retry.chunkIds</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>test</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Test settings namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Number of currently created test. Each test has
+unique incremental id. On first session run it's assigned, on retry is used
+to find test by id, because test name can be non-unique.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -1119,10 +1337,188 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code>chunkRetries</code></td>
+                <td class="name"><code>chunk</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Chunk settings namespace.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Number of chunk inside a test, incremental,
+starts from <code>0</code> in each test. Fully unique chunk id is consist of <code>test.id</code> &amp;
+<code>chunk.id</code>, like <code>1_1</code>, 1_2<code>,</code>2_1`.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>curId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>Currently executed fully unique chunk id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>passedIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last"><p>Fully unique ids of passed chunks.
+Used to skip already passed chunks on retry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>retries</code></td>
             
 
             <td class="type">
@@ -1154,14 +1550,14 @@
             
 
             <td class="description last"><p>Number of chunk retries on failure.
- Can be overridden with CLI option <code>--chunk-retry</code>.</p></td>
+Can be overridden with CLI option <code>--chunk-retry</code>.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>chunkTimeout</code></td>
+                <td class="name"><code>timeout</code></td>
             
 
             <td class="type">
@@ -1187,13 +1583,13 @@
             
                 <td class="default">
                 
-                    180000
+                    180
                 
                 </td>
             
 
-            <td class="description last"><p>Timeout of chunk execution, ms.
- Can be overridden with CLI option <code>--chunk-timeout</code>, sec.</p></td>
+            <td class="description last"><p>Timeout of chunk execution, sec.
+Can be overridden with CLI option <code>--chunk-timeout</code>, sec.</p></td>
         </tr>
 
     
@@ -2880,7 +3276,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-14T11:07:59+02:00
+		on 2018-11-20T20:00:43+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
