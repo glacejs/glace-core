@@ -292,7 +292,12 @@ suite("globals/test", () => {
 
         chunk("returns true if test id is matched", () => {
             conf.test.id = 1;
-            expect(isFilterMatched("my test", "1")).to.be.true;
+            expect(isFilterMatched("my test", 1)).to.be.true;
+        });
+
+        chunk("returns false if test id is matched", () => {
+            conf.test.id = 2;
+            expect(isFilterMatched("my test", 1)).to.be.false;
         });
 
         chunk("returns true if test names are equal", () => {
