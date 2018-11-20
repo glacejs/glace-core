@@ -1,3 +1,8 @@
+### v1.9.0
+
+- [Enhanced](https://github.com/glacejs/glace-core/commit/04967ccf5c598fde726fd663451daa495c480301) `retry` mode to involve
+all hooks in tests session.
+
 ### v1.8.9
 
 - [Updated](https://github.com/glacejs/glace-core/commit/5b2a1105e009461eb3cabbddec0b1aeec76435d3) log message format.
