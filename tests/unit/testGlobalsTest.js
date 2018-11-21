@@ -207,7 +207,7 @@ suite("globals/test", () => {
         });
 
         chunk(() => {
-            beforeCb(o)();
+            beforeCb(o.testCase)({})();
             expect(conf.test.curCase).to.be.equal(o.testCase);
             expect(o.testCase.reset).to.be.calledOnce;
             expect(o.testCase.start).to.be.calledOnce;
@@ -316,6 +316,29 @@ suite("globals/test", () => {
 
         chunk("returns true if filter doesn't include test name", () => {
             expect(isFilterMatched("my test", "MY TST")).to.be.false;
+        });
+    });
+
+    test("initTestFixture()", () => {
+        let initTestFixture, u;
+
+        beforeChunk(() => {
+            initTestFixture = test_.__get__("initTestFixture");
+
+            u = {
+                makeFixture: sinon.stub(),
+            };
+            test_.__set__("U", u);
+
+            test_.__set__("beforeCb", o => o);
+            test_.__set__("afterCb", "after");
+        });
+
+        chunk("makes test fixture", () => {
+            initTestFixture({ testCase: "testcase" });
+            expect(u.makeFixture).to.be.calledOnce;
+            expect(u.makeFixture.args[0][0])
+                .to.be.eql({ before: "testcase", after: "after" });
         });
     });
 });
