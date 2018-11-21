@@ -37,7 +37,9 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("my session");
-            expect(suite_.args[0][1]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.null;
+            expect(suite_.args[0][2]).to.be.eql([]);
+            expect(suite_.args[0][3]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("my session");
@@ -53,7 +55,9 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("custom session");
-            expect(suite_.args[0][1]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.null;
+            expect(suite_.args[0][2]).to.be.eql([]);
+            expect(suite_.args[0][3]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("custom session");
@@ -69,7 +73,9 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("my session");
-            expect(suite_.args[0][1]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.null;
+            expect(suite_.args[0][2]).to.be.eql(["my fixture"]);
+            expect(suite_.args[0][3]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("my session");
@@ -85,7 +91,9 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("custom session");
-            expect(suite_.args[0][1]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.null;
+            expect(suite_.args[0][2]).to.be.eql(["my fixture"]);
+            expect(suite_.args[0][3]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("custom session");
@@ -95,7 +103,7 @@ suite("globals/session", () => {
     });
 
     test("sessCb()", () => {
-        let sessCb, after_, afterCb, u;
+        let sessCb, after_, afterCb;
 
         beforeChunk(() => {
             sessCb = sess.__get__("sessCb");
@@ -105,21 +113,13 @@ suite("globals/session", () => {
 
             afterCb = sinon.stub();
             sess.__set__("afterCb", afterCb);
-
-            u = {
-                wrap: sinon.stub().returns(() => {}),
-            };
-            sess.__set__("U", u);
         });
 
         chunk("calls callback with fixtures", () => {
-            const cb = () => {};
+            const cb = sinon.stub();
             sessCb("my session", ["my fixture"], cb)();
 
-            expect(u.wrap).to.be.calledOnce;
-            expect(u.wrap.args[0][0]).to.be.eql(["my fixture"]);
-            expect(u.wrap.args[0][1]).to.be.equal(cb);
-
+            expect(cb).to.be.calledOnce;
             expect(after_).to.be.calledOnce;
             expect(afterCb).to.be.calledOnce;
             expect(afterCb.args[0][0]).to.be.equal("my session");
