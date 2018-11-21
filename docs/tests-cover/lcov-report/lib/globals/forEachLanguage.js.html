@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>40/40</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">95% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>31/31</span>
+        <span class='fraction'>34/34</span>
       </div>
     </div>
     <p class="quiet">
@@ -126,7 +126,8 @@
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,27 +183,28 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -264,25 +266,26 @@ const forEachLanguage = (name, opts, fixtures, func) =&gt; {
 &nbsp;
 const _langCb = (name, fixtures, func) =&gt; lang =&gt; {
     name = name || "for language";
+    const _fixtures = [langFixture(lang)].concat(fixtures);
 &nbsp;
-    scope(`${name} "${lang}"`, () =&gt; {
-        let oldLang;
-&nbsp;
-        before(() =&gt; {
-            if (CONF.test.curCase) {
-                oldLang = CONF.test.curCase.testParams.language;
-                CONF.test.curCase.testParams.language = lang;
-            }
-        });
-&nbsp;
-        U.wrap(fixtures, () =&gt; func(lang))();
-&nbsp;
-        after(() =&gt; {
-            if (CONF.test.curCase) {
-                CONF.test.curCase.testParams.language = oldLang;
-            }
-        });
+    scope(`${name} "${lang}"`, null, _fixtures, () =&gt; {
+        func(lang);
     });
+};
+&nbsp;
+const beforeCb = lang =&gt; ctx =&gt; () =&gt; {
+    if (!CONF.test.curCase) return;
+    ctx.oldLang = CONF.test.curCase.testParams.language;
+    CONF.test.curCase.testParams.language = lang;
+};
+&nbsp;
+const afterCb = ctx =&gt; () =&gt; {
+    if (!CONF.test.curCase) return;
+    CONF.test.curCase.testParams.language = ctx.oldLang;
+};
+&nbsp;
+const langFixture = lang =&gt; {
+    return U.makeFixture({ before: beforeCb(lang), after: afterCb });
 };
 &nbsp;
 module.exports = forEachLanguage;
@@ -292,7 +295,7 @@ module.exports = forEachLanguage;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 20 2018 20:00:54 GMT+0200 (EET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 21 2018 19:15:59 GMT+0200 (EET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

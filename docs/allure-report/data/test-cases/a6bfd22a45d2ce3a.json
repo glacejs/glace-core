@@ -1,0 +1,92 @@
+{
+  "uid" : "a6bfd22a45d2ce3a",
+  "name" : ".addEnvironment()",
+  "fullName" : "allure helper..addEnvironment()",
+  "historyId" : "274a103f56ec28733d60bc98d68e852",
+  "time" : {
+    "start" : 1542820553759,
+    "stop" : 1542820553765,
+    "duration" : 6
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "adds environment value",
+      "time" : {
+        "start" : 1542820553760,
+        "stop" : 1542820553762,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing",
+      "time" : {
+        "start" : 1542820553763,
+        "stop" : 1542820553765,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "allure helper"
+  }, {
+    "name" : "testClass",
+    "value" : "allure helper"
+  }, {
+    "name" : "testMethod",
+    "value" : ".addEnvironment()"
+  }, {
+    "name" : "package",
+    "value" : "allure helper"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "a6bfd22a45d2ce3a.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

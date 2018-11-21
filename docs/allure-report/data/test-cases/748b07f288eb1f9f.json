@@ -1,0 +1,77 @@
+{
+  "uid" : "748b07f288eb1f9f",
+  "name" : "initTestFixture()",
+  "fullName" : "globals/test.initTestFixture()",
+  "historyId" : "6f511c688326510e72e74cc38e1b1b97",
+  "time" : {
+    "start" : 1542820556291,
+    "stop" : 1542820556294,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "makes test fixture",
+      "time" : {
+        "start" : 1542820556292,
+        "stop" : 1542820556294,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/test"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/test"
+  }, {
+    "name" : "testMethod",
+    "value" : "initTestFixture()"
+  }, {
+    "name" : "package",
+    "value" : "globals/test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "748b07f288eb1f9f.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

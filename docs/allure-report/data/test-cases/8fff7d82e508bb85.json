@@ -1,0 +1,77 @@
+{
+  "uid" : "8fff7d82e508bb85",
+  "name" : "langFixture()",
+  "fullName" : "globals/forEachLanguage.langFixture()",
+  "historyId" : "d8f71e807f257bc267a064707b85f2a1",
+  "time" : {
+    "start" : 1542820556175,
+    "stop" : 1542820556178,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "makes new fixture",
+      "time" : {
+        "start" : 1542820556176,
+        "stop" : 1542820556178,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testMethod",
+    "value" : "langFixture()"
+  }, {
+    "name" : "package",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "8fff7d82e508bb85.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
