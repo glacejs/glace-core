@@ -1,3 +1,7 @@
+### v1.9.1
+
+- [Enhanced](https://github.com/glacejs/glace-core/commit/e72bf8071a53e8272dcd02ad0129662dcba8ef26) fixtures usage.
+
 ### v1.9.0
 
 - [Enhanced](https://github.com/glacejs/glace-core/commit/04967ccf5c598fde726fd663451daa495c480301) `retry` mode to involve

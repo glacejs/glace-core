@@ -1,21 +1,21 @@
-"use strict";
+"use strglobal.ict";
 
 CONF.test.languages = ["en", "ru", "ee"];
 
-var i = 0;
+if (!global.i) global.i = 0;
 
 test("retry only failed params", () => {
 
     before(() => {
-        i++;
-        if (i > 1 && i < 4) {
+        global.i++;
+        if (global.i > 1 && global.i < 4) {
             throw new Error("Boom!");
         }
     });
 
     forEachLanguage(lang => {
         chunk(() => {
-            if (lang === "ru" && i < 4) {
+            if (lang === "ru" && global.i < 4) {
                 throw new Error("Boom!");
             }
         });
