@@ -13,8 +13,8 @@ test("It should be failed", () => {
     chunk(() => {});
 });
 
-test("Failed parametrization", ctx => {
-    forEachLanguage(ctx, lang => {
+test("Failed parametrization", () => {
+    forEachLanguage(lang => {
         chunk("proba", () => {
             if (lang === "ru")
                 throw new Error("BOOM!");
@@ -47,8 +47,8 @@ test("It should have one failed & one passed chunk", () => {
     chunk("My chunk #2", () => {});
 });
 
-test("It should iterate tested languages", ctx => {
-    forEachLanguage(ctx, { languages: [ "ru", "ee", "en" ] }, lang => {
+test("It should iterate tested languages", () => {
+    forEachLanguage({ languages: [ "ru", "ee", "en" ] }, lang => {
         chunk(() => {
             expect(CONF.test.curCase.testParams.language).to.be.equal(lang);
         });
@@ -61,13 +61,13 @@ var myFixture = func => {
     func();
 };
 
-test("It should involve fixture", null /* options */, [myFixture], () => {
+test("It should involve fixture", [myFixture], () => {
     chunk(() => {
         expect(spy.calledOnce).to.be.true;
     });
 });
 
-test("It should involve fixture in iterator", ctx => {
+test("It should involve fixture in iterator", () => {
 
     var languages = ["ru", "ee", "en"];
     var spy = sinon.spy();
@@ -76,7 +76,7 @@ test("It should involve fixture in iterator", ctx => {
         func();
     };
 
-    forEachLanguage(ctx, { languages: languages }, [myFixture], () => {
+    forEachLanguage([myFixture], { languages }, () => {
         chunk(() => {});
     });
 
@@ -94,11 +94,11 @@ test("It should be skipped without reason", { skip: true }, () => {
     chunk(() => {});
 });
 
-var ii = 0;
+if (!global.ii) global.ii = 0;
 test("It should be retried 3 times", { retry: 3 }, () => {
     chunk(() => {
-        if (ii < 3) {
-            ii++;
+        if (global.ii < 3) {
+            global.ii++;
             throw new Error("BOOM!");
         };
     });

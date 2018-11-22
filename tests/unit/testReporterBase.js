@@ -130,7 +130,7 @@ suite("reporter/base", () => {
 
             beforeChunk(() => {
                 mochaSuite = {
-                    title: new testing.ScopeType("my").setType(methodName),
+                    title: new testing.ScopeType("my").setType(methodName === "scope" ? undefined : methodName),
                 };
                 reporters.push({});
                 reporters[0][methodName] = sinon.spy();
@@ -153,7 +153,6 @@ suite("reporter/base", () => {
         chunk("nothing happends if reporter method doesn't exist", () => {
             reporters.push({
                 suite: sinon.spy(),
-                scope: sinon.spy(),
                 test: sinon.spy(),
             });
             let mochaSuite = {
@@ -161,7 +160,6 @@ suite("reporter/base", () => {
             };
             onSuite(mochaSuite);
             expect(reporters[0].suite).to.not.be.called;
-            expect(reporters[0].scope).to.not.be.called;
             expect(reporters[0].test).to.not.be.called;
         });
     });
@@ -194,7 +192,7 @@ suite("reporter/base", () => {
 
             beforeChunk(() => {
                 mochaSuite = {
-                    title: new testing.ScopeType("my").setType(type),
+                    title: new testing.ScopeType("my").setType(type === "scope" ? undefined : type),
                 };
                 reporters.push({});
                 reporters[0][methodName] = sinon.spy();
@@ -217,7 +215,6 @@ suite("reporter/base", () => {
         chunk("nothing happends if reporter method doesn't exist", () => {
             reporters.push({
                 suiteEnd: sinon.spy(),
-                scopeEnd: sinon.spy(),
                 testEnd: sinon.spy(),
             });
             let mochaSuite = {
@@ -225,7 +222,6 @@ suite("reporter/base", () => {
             };
             onSuiteEnd(mochaSuite);
             expect(reporters[0].suiteEnd).to.not.be.called;
-            expect(reporters[0].scopeEnd).to.not.be.called;
             expect(reporters[0].testEnd).to.not.be.called;
         });
     });

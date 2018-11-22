@@ -23,12 +23,12 @@ suite("globals/test", () => {
         test_.__reset__();
     });
 
-    test("baseTest()", () => {
-        let baseTest,
+    test("_test()", () => {
+        let _test,
             testFunc;
 
         beforeChunk(() => {
-            baseTest = test_.__get__("baseTest");
+            _test = test_.__get__("_test");
             testFunc = sinon.spy();
             test_.__set__("testFunc", testFunc);
             conf.filter = {};
@@ -39,7 +39,7 @@ suite("globals/test", () => {
 
         chunk("registers test", () => {
             const test_cb = () => {};
-            baseTest("my test", test_cb);
+            _test("my test", [], {}, test_cb);
             expect(testFunc).to.be.calledOnce;
             expect(conf.test.id).to.be.equal(1);
             expect(conf.test.cases).to.have.length(1);
@@ -47,9 +47,7 @@ suite("globals/test", () => {
             expect(conf.retry.chunkIds).to.be.eql({ 0: [] });
             expect(conf.retry.curChunkIds).to.be.eql([]);
             const o = testFunc.args[0][0];
-            expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
-            expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
@@ -61,11 +59,10 @@ suite("globals/test", () => {
                 params: [{ lang: "ru" }],
             }];
             const test_cb = () => {};
-            baseTest("my test", test_cb);
+            _test("my test", [], {}, test_cb);
             expect(testFunc).to.be.calledOnce;
             const o = testFunc.args[0][0];
             expect(o.func).to.be.equal(test_cb);
-            expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
@@ -75,7 +72,7 @@ suite("globals/test", () => {
             conf.filter.include = [{
                 id: "some test",
             }];
-            baseTest("my test", () => {});
+            _test("my test", [], {}, () => {});
             expect(testFunc).to.not.be.called;
         });
 
@@ -84,12 +81,11 @@ suite("globals/test", () => {
                 id: "some test",
             }];
             const test_cb = () => {};
-            baseTest("my test", test_cb);
+            _test("my test", [], {}, test_cb);
             expect(testFunc).to.be.calledOnce;
             const o = testFunc.args[0][0];
             expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
-            expect(o.name).to.be.equal("my test");
             expect(o.fixtures).to.be.empty;
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
@@ -99,20 +95,19 @@ suite("globals/test", () => {
             conf.filter.exclude = [{
                 id: "my test",
             }];
-            baseTest("my test", () => {});
+            _test("my test", [], {}, () => {});
             expect(testFunc).to.not.be.called;
         });
 
         chunk("passes if test name is uniq on check", () => {
             conf.test.checkNames = true;
             const test_cb = () => {};
-            baseTest("first test", test_cb);
-            baseTest("second test", test_cb);
+            _test("first test", [], {}, test_cb);
+            _test("second test", [], {}, test_cb);
             expect(testFunc).to.be.calledTwice;
             const o = testFunc.args[1][0];
             expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
-            expect(o.name).to.be.equal("second test");
             expect(o.fixtures).to.be.empty;
             expect(o.testOpts.chunkRetry).to.be.equal(0);
             expect(o.testOpts.chunkTimeout).to.not.exist;
@@ -120,61 +115,61 @@ suite("globals/test", () => {
 
         chunk("breaks if test name is not uniq on check", () => {
             conf.test.checkNames = true;
-            baseTest("uniq test", () => {});
-            expect(() => baseTest("uniq test", () => {})).to.throw("is added already");
+            _test("uniq test", [], {}, () => {});
+            expect(() => _test("uniq test", () => {})).to.throw("is added already");
             expect(testFunc).to.be.calledOnce;
         });
 
         chunk("skips without reason", () => {
-            baseTest("my test", { skip: true }, () => {});
+            _test("my test", [], { skip: true }, () => {});
             expect(testFunc).to.not.be.called;
             expect(conf.test.cases[0].status).to.be.equal("skipped");
             expect(conf.test.cases[0].rawInfo).to.be.empty;
         });
 
         chunk("skips with reason", () => {
-            baseTest("my test", { skip: "some bug" }, () => {});
+            _test("my test", [], { skip: "some bug" }, () => {});
             expect(conf.test.cases[0].rawInfo[0]).to.be.equal("some bug");
         });
 
         chunk("reads retries from config", () => {
             conf.test.retries = 2;
-            baseTest("my test", () => {});
+            _test("my test", [], {}, () => {});
             expect(conf.retry.chunkIds).to.be.eql({ 2: [] });
         });
 
         chunk("reads retries from options", () => {
-            baseTest("my test", { retry: 1 }, () => {});
+            _test("my test", [], { retry: 1 }, () => {});
             expect(conf.retry.chunkIds).to.be.eql({ 1: [] });
         });
 
         chunk("reads chunk retries from config", () => {
             conf.chunk.retries = 2;
-            baseTest("my test", () => {});
+            _test("my test", [], {}, () => {});
             const o = testFunc.args[0][0];
             expect(o.testOpts.chunkRetry).to.be.equal(2);
         });
 
         chunk("reads chunk retries from options", () => {
-            baseTest("my test", { chunkRetry: 1 }, () => {});
+            _test("my test", [], { chunkRetry: 1 }, () => {});
             const o = testFunc.args[0][0];
             expect(o.testOpts.chunkRetry).to.be.equal(1);
         });
 
         chunk("reads chunk timeout from options", () => {
-            baseTest("my test", { chunkTimeout: 100 }, () => {});
+            _test("my test", [], { chunkTimeout: 100 }, () => {});
             const o = testFunc.args[0][0];
             expect(o.testOpts.chunkTimeout).to.be.equal(100);
         });
 
         chunk("have fixtures with undefined options", () => {
-            baseTest("my test", undefined, ["fix1", "fix2"], () => {});
+            _test("my test", ["fix1", "fix2"], {}, () => {});
             const o = testFunc.args[0][0];
             expect(o.fixtures).to.be.eql(["fix1", "fix2"]);
         });
 
         chunk("have fixtures with null options", () => {
-            baseTest("my test", null, ["fix1", "fix2"], () => {});
+            _test("my test", ["fix1", "fix2"], {}, () => {});
             const o = testFunc.args[0][0];
             expect(o.fixtures).to.be.eql(["fix1", "fix2"]);
         });
@@ -182,9 +177,16 @@ suite("globals/test", () => {
         chunk("find test by id on retry", () => {
             conf.retry.id = 1;
             conf.test.cases = [{ id: 1, name: "my test" }];
-            baseTest("my test", () => {});
+            _test("my test", [], {}, () => {});
             const o = testFunc.args[0][0];
             expect(o.testCase).to.be.eql({ id: 1, name: "my test" });
+        });
+
+        chunk("omitted if test id isn't matched", () => {
+            conf.test.id = 1;
+            conf.filter.testIds = [1];
+            _test("my test", [], {}, () => {});
+            expect(conf.test.cases).to.be.empty;
         });
     });
 
@@ -246,39 +248,55 @@ suite("globals/test", () => {
     });
 
     test("test()", () => {
-        let test_func, baseTest, func;
+        let _test;
 
         beforeChunk(() => {
-            test_func = test_.__get__("test");
-            baseTest = sinon.spy();
-            test_.__set__("baseTest", baseTest);
-            func = () => {};
+            _test = sinon.spy();
+            test_.__set__("_test", _test);
         });
 
-        chunk(() => {
-            test_func("my test", func);
-            expect(baseTest).to.be.calledOnce;
-            expect(baseTest.args[0]).to.be.eql(["my test", {}, [], func]);
+        chunk("with name & callback", () => {
+            const cb = () => {};
+            test_("my test", cb);
+
+            expect(_test).to.be.calledOnce;
+            expect(_test.args[0][0]).to.be.equal("my test");
+            expect(_test.args[0][1]).to.be.eql([]);
+            expect(_test.args[0][2]).to.be.eql({});
+            expect(_test.args[0][3]).to.be.equal(cb);
         });
 
-        chunk("takes options", () => {
-            test_func("my test", { a: 1 }, func);
-            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, [], func]);
+        chunk("with name, fixtures & callback", () => {
+            const cb = () => {};
+            test_("my test", ["my fixture"], cb);
+
+            expect(_test).to.be.calledOnce;
+            expect(_test.args[0][0]).to.be.equal("my test");
+            expect(_test.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_test.args[0][2]).to.be.eql({});
+            expect(_test.args[0][3]).to.be.equal(cb);
         });
 
-        chunk("takes options and fixtures", () => {
-            test_func("my test", { a: 1 }, ["fix"], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", { a: 1 }, ["fix"], func]);
+        chunk("with name, options & callback", () => {
+            const cb = () => {};
+            test_("my test", { retry: 1 }, cb);
+
+            expect(_test).to.be.calledOnce;
+            expect(_test.args[0][0]).to.be.equal("my test");
+            expect(_test.args[0][1]).to.be.eql([]);
+            expect(_test.args[0][2]).to.be.eql({ retry: 1 });
+            expect(_test.args[0][3]).to.be.equal(cb);
         });
 
-        chunk("takes undefined options", () => {
-            test_func("my test", undefined, ["fix"], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", {}, ["fix"], func]);
-        });
+        chunk("with name, fixtures, options & callback", () => {
+            const cb = () => {};
+            test_("my test", ["my fixture"], { retry: 1 }, cb);
 
-        chunk("takes null options", () => {
-            test_func("my test", null, ["fix"], func);
-            expect(baseTest.args[0]).to.be.eql(["my test", {}, ["fix"], func]);
+            expect(_test).to.be.calledOnce;
+            expect(_test.args[0][0]).to.be.equal("my test");
+            expect(_test.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_test.args[0][2]).to.be.eql({ retry: 1 });
+            expect(_test.args[0][3]).to.be.equal(cb);
         });
     });
 
@@ -335,7 +353,7 @@ suite("globals/test", () => {
         });
 
         chunk("makes test fixture", () => {
-            initTestFixture({ testCase: "testcase" });
+            initTestFixture("testcase");
             expect(u.makeFixture).to.be.calledOnce;
             expect(u.makeFixture.args[0][0])
                 .to.be.eql({ before: "testcase", after: "after" });
