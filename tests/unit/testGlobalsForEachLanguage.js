@@ -28,42 +28,94 @@ suite("globals/forEachLanguage", () => {
             const cb = () => {};
             forEachLanguage(cb);
             expect(_langCb).to.be.calledOnce;
-            expect(_langCb.args[0][0]).to.be.equal(null);
+
+            expect(_langCb.args[0][0]).to.be.equal("for language");
             expect(_langCb.args[0][1]).to.be.eql([]);
-            expect(_langCb.args[0][2]).to.be.equal(cb);
+            expect(_langCb.args[0][2]).to.be.eql({});
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+
             expect(langCapture).to.be.calledOnce;
             expect(langCapture.args[0][0]).to.be.equal("ru");
         });
 
         chunk("with name & callback", () => {
-            forEachLanguage("for langs", () => {});
+            const cb = () => {};
+            forEachLanguage("for lang", cb);
             expect(_langCb).to.be.calledOnce;
-            expect(_langCb.args[0][0]).to.be.equal("for langs");
-        });
 
-        chunk("with name, options & callback", () => {
-            forEachLanguage("for langs", { languages: ["en", "et"] }, () => {});
-            expect(langCapture).to.be.calledTwice;
-            expect(langCapture.args[0][0]).to.be.equal("en");
-            expect(langCapture.args[1][0]).to.be.equal("et");
-        });
-
-        chunk("with name, options, fixtures & callback", () => {
-            forEachLanguage("for langs", { languages: ["en"] }, ["my fixture"], () => {});
-            expect(_langCb).to.be.calledOnce;
-            expect(_langCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_langCb.args[0][0]).to.be.equal("for lang");
+            expect(_langCb.args[0][1]).to.be.eql([]);
+            expect(_langCb.args[0][2]).to.be.eql({});
+            expect(_langCb.args[0][3]).to.be.equal(cb);
         });
 
         chunk("with options & callback", () => {
-            forEachLanguage(null, { languages: ["en", "et"] }, () => {});
+            const cb = () => {};
+            forEachLanguage({ languages: ["en"] }, cb);
             expect(_langCb).to.be.calledOnce;
-            expect(_langCb.args[0][0]).to.be.equal(null);
+
+            expect(_langCb.args[0][0]).to.be.equal("for language");
+            expect(_langCb.args[0][1]).to.be.eql([]);
+            expect(_langCb.args[0][2]).to.be.eql({ languages: ["en"] });
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+
+            expect(langCapture).to.be.calledOnce;
+            expect(langCapture.args[0][0]).to.be.equal("en");
         });
 
         chunk("with fixtures & callback", () => {
-            forEachLanguage(null, null, ["my fixture"], () => {});
-            expect(langCapture).to.be.calledOnce;
-            expect(langCapture.args[0][0]).to.be.equal("ru");
+            const cb = () => {};
+            forEachLanguage(["my fixture"], cb);
+            expect(_langCb).to.be.calledOnce;
+
+            expect(_langCb.args[0][0]).to.be.equal("for language");
+            expect(_langCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_langCb.args[0][2]).to.be.eql({});
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+        });
+
+        chunk("with name, fixtures & callback", () => {
+            const cb = () => {};
+            forEachLanguage("with lang", ["my fixture"], cb);
+            expect(_langCb).to.be.calledOnce;
+
+            expect(_langCb.args[0][0]).to.be.equal("with lang");
+            expect(_langCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_langCb.args[0][2]).to.be.eql({});
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+        });
+
+        chunk("with name, options & callback", () => {
+            const cb = () => {};
+            forEachLanguage("with lang", { languages: ["en"] }, cb);
+            expect(_langCb).to.be.calledOnce;
+
+            expect(_langCb.args[0][0]).to.be.equal("with lang");
+            expect(_langCb.args[0][1]).to.be.eql([]);
+            expect(_langCb.args[0][2]).to.be.eql({ languages: ["en"] });
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+        });
+
+        chunk("with fixtures, options & callback", () => {
+            const cb = () => {};
+            forEachLanguage(["my fixture"], { languages: ["en"] }, cb);
+            expect(_langCb).to.be.calledOnce;
+
+            expect(_langCb.args[0][0]).to.be.equal("for language");
+            expect(_langCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_langCb.args[0][2]).to.be.eql({ languages: ["en"] });
+            expect(_langCb.args[0][3]).to.be.equal(cb);
+        });
+
+        chunk("with name, fixtures, options & callback", () => {
+            const cb = () => {};
+            forEachLanguage("with lang", ["my fixture"], { languages: ["en"] }, cb);
+            expect(_langCb).to.be.calledOnce;
+
+            expect(_langCb.args[0][0]).to.be.equal("with lang");
+            expect(_langCb.args[0][1]).to.be.eql(["my fixture"]);
+            expect(_langCb.args[0][2]).to.be.eql({ languages: ["en"] });
+            expect(_langCb.args[0][3]).to.be.equal(cb);
         });
     });
 
@@ -77,14 +129,15 @@ suite("globals/forEachLanguage", () => {
             forEachLanguage.__set__("langFixture", langFixture);
         });
 
-        chunk("uses default name", () => {
+        chunk(() => {
             const scope_ = sinon.stub();
             forEachLanguage.__set__("scope", scope_);
             const cb = sinon.stub();
-            _langCb(null, [], cb)("ru");
+            _langCb("with language", [], {}, cb)("ru");
             expect(scope_).to.be.calledOnce;
-            expect(scope_.args[0][0]).to.be.equal("for language \"ru\"");
-            expect(scope_.args[0][2]).to.have.length(1);
+            expect(scope_.args[0][0]).to.be.equal("with language \"ru\"");
+            expect(scope_.args[0][1]).to.have.length(1);
+            expect(scope_.args[0][2]).to.be.eql({});
 
             expect(langFixture).to.be.calledOnce;
             expect(langFixture.args[0][0]).to.be.equal("ru");
@@ -92,15 +145,6 @@ suite("globals/forEachLanguage", () => {
             scope_.args[0][3]();
             expect(cb).to.be.calledOnce;
             expect(cb.args[0][0]).to.be.equal("ru");
-        });
-
-        chunk("passes custom name", () => {
-            const scope_ = sinon.stub();
-            forEachLanguage.__set__("scope", scope_);
-            
-            _langCb("with language", [], () => {})("ru");
-            expect(scope_).to.be.calledOnce;
-            expect(scope_.args[0][0]).to.be.equal("with language \"ru\"");
         });
     });
 
