@@ -1,3 +1,8 @@
+### v1.9.3
+
+- [Skipped](https://github.com/glacejs/glace-core/commit/4758ff08f21b36ca76a07d849dabca69403bdc85) processesing of mocha
+root suite in reporter.
+
 ### v1.9.2
 
 - [Moved](https://github.com/glacejs/glace-core/commit/89305c1c5750f06682b5ca7be3c6c3791afce6c0) fixtures before options in arguments, enhanced arguments usage.
