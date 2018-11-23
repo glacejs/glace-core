@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>14/14</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>14/14</span>
       </div>
     </div>
     <p class="quiet">
@@ -102,12 +102,9 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,35 +137,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">233x</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">233x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">233x</span>
-<span class="cline-any cline-yes">233x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-yes">227x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">231x</span>
-<span class="cline-any cline-yes">231x</span>
-<span class="cline-any cline-yes">231x</span>
-<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 &nbsp;
-var U = require("glace-utils");
+const _ = require("lodash");
+const U = require("glace-utils");
 &nbsp;
 /**
  * Execute tests scope.
@@ -176,11 +169,11 @@ var U = require("glace-utils");
  * @global
  * @function
  * @arg {string} name - Scope name.
+ * @arg {function[]} [fixtures] - List of fixtures.
  * @arg {object} [opts] - Scope options.
  * @arg {number} [opts.chunkRetry] - Number of chunk retries on failure.
  * @arg {number} [opts.chunkTimeout] - Time to execute chunk or hook, sec.
- * @arg {function[]} [fixtures] - List of fixtures.
- * @arg {function} func - Function with test cases.
+ * @arg {function} func - Callback function with test cases.
  * @example
 &nbsp;
 scope("Some test scope", () =&gt; {
@@ -198,28 +191,23 @@ scope("Some test scope", () =&gt; {
 });
 &nbsp;
  */
-const scope = (name, opts, fixtures, func) =&gt; {
+const scope = (name, fixtures, opts, func) =&gt; {
 &nbsp;
-    if (opts instanceof Function) {
-        func = opts;
-        opts = {};
-        fixtures = [];
-    }
-    if (fixtures instanceof Function) {
-        func = fixtures;
-        fixtures = [];
-    }
-    opts = opts || {};
+    if (_.isFunction(opts)) [func, opts] = [opts];
+    if (_.isPlainObject(fixtures)) [opts, fixtures] = [fixtures];
+    if (_.isFunction(fixtures)) [func, fixtures] = [fixtures];
+&nbsp;
     fixtures = fixtures || [];
+    opts = opts || {};
 &nbsp;
-    describe(name, scopeCb(opts, fixtures, func));
+    describe(name, scopeCb(fixtures, opts, func));
 };
 &nbsp;
 /**
  * Scope callback.
  * @ignore
  */
-const scopeCb = (opts, fixtures, func) =&gt; function () {
+const scopeCb = (fixtures, opts, func) =&gt; function () {
     if (opts.chunkRetry) this.retries(opts.chunkRetry);
     if (opts.chunkTimeout) this.timeout(opts.chunkTimeout * 1000);
     U.wrap(fixtures, func)();
@@ -232,7 +220,7 @@ module.exports = scope;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 21 2018 19:15:59 GMT+0200 (EET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 23 2018 07:31:00 GMT+0200 (EET)
 </div>
 </div>
 <script src="../../prettify.js"></script>
