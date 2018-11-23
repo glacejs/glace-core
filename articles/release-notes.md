@@ -1,3 +1,7 @@
+### v1.9.2
+
+- [Moved](https://github.com/glacejs/glace-core/commit/89305c1c5750f06682b5ca7be3c6c3791afce6c0) fixtures before options in arguments, enhanced arguments usage.
+
 ### v1.9.1
 
 - [Enhanced](https://github.com/glacejs/glace-core/commit/e72bf8071a53e8272dcd02ad0129662dcba8ef26) fixtures usage.
