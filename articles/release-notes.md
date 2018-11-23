@@ -1,3 +1,7 @@
+### v1.9.4
+
+- [Fixed](https://github.com/glacejs/glace-core/commit/d897137de3507600a67ee1dab1fb4ab0803087f9) bug to use scope in session.
+
 ### v1.9.3
 
 - [Skipped](https://github.com/glacejs/glace-core/commit/4758ff08f21b36ca76a07d849dabca69403bdc85) processesing of mocha
