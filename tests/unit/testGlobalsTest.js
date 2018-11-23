@@ -49,8 +49,8 @@ suite("globals/test", () => {
             const o = testFunc.args[0][0];
             expect(o.func).to.be.equal(test_cb);
             expect(o.fixtures).to.be.empty;
-            expect(o.testOpts.chunkRetry).to.be.equal(0);
-            expect(o.testOpts.chunkTimeout).to.not.exist;
+            expect(o.opts.chunkRetry).to.be.equal(0);
+            expect(o.opts.chunkTimeout).to.not.exist;
         });
 
         chunk("passes if test name is included in filter", () => {
@@ -64,8 +64,8 @@ suite("globals/test", () => {
             const o = testFunc.args[0][0];
             expect(o.func).to.be.equal(test_cb);
             expect(o.fixtures).to.be.empty;
-            expect(o.testOpts.chunkRetry).to.be.equal(0);
-            expect(o.testOpts.chunkTimeout).to.not.exist;
+            expect(o.opts.chunkRetry).to.be.equal(0);
+            expect(o.opts.chunkTimeout).to.not.exist;
         });
 
         chunk("breaks if test name is not included in filter", () => {
@@ -87,8 +87,8 @@ suite("globals/test", () => {
             expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
             expect(o.fixtures).to.be.empty;
-            expect(o.testOpts.chunkRetry).to.be.equal(0);
-            expect(o.testOpts.chunkTimeout).to.not.exist;
+            expect(o.opts.chunkRetry).to.be.equal(0);
+            expect(o.opts.chunkTimeout).to.not.exist;
         });
 
         chunk("breaks if test name is excluded in filter", () => {
@@ -109,8 +109,8 @@ suite("globals/test", () => {
             expect(o.ctxs).to.not.exist;
             expect(o.func).to.be.equal(test_cb);
             expect(o.fixtures).to.be.empty;
-            expect(o.testOpts.chunkRetry).to.be.equal(0);
-            expect(o.testOpts.chunkTimeout).to.not.exist;
+            expect(o.opts.chunkRetry).to.be.equal(0);
+            expect(o.opts.chunkTimeout).to.not.exist;
         });
 
         chunk("breaks if test name is not uniq on check", () => {
@@ -147,19 +147,19 @@ suite("globals/test", () => {
             conf.chunk.retries = 2;
             _test("my test", [], {}, () => {});
             const o = testFunc.args[0][0];
-            expect(o.testOpts.chunkRetry).to.be.equal(2);
+            expect(o.opts.chunkRetry).to.be.equal(2);
         });
 
         chunk("reads chunk retries from options", () => {
             _test("my test", [], { chunkRetry: 1 }, () => {});
             const o = testFunc.args[0][0];
-            expect(o.testOpts.chunkRetry).to.be.equal(1);
+            expect(o.opts.chunkRetry).to.be.equal(1);
         });
 
         chunk("reads chunk timeout from options", () => {
             _test("my test", [], { chunkTimeout: 100 }, () => {});
             const o = testFunc.args[0][0];
-            expect(o.testOpts.chunkTimeout).to.be.equal(100);
+            expect(o.opts.chunkTimeout).to.be.equal(100);
         });
 
         chunk("have fixtures with undefined options", () => {
