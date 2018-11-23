@@ -37,9 +37,8 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("my session");
-            expect(suite_.args[0][1]).to.be.null;
-            expect(suite_.args[0][2]).to.be.eql([]);
-            expect(suite_.args[0][3]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.eql([]);
+            expect(suite_.args[0][2]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("my session");
@@ -55,9 +54,8 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("custom session");
-            expect(suite_.args[0][1]).to.be.null;
-            expect(suite_.args[0][2]).to.be.eql([]);
-            expect(suite_.args[0][3]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.eql([]);
+            expect(suite_.args[0][2]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("custom session");
@@ -73,9 +71,8 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("my session");
-            expect(suite_.args[0][1]).to.be.null;
-            expect(suite_.args[0][2]).to.be.eql(["my fixture"]);
-            expect(suite_.args[0][3]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.eql(["my fixture"]);
+            expect(suite_.args[0][2]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("my session");
@@ -91,9 +88,8 @@ suite("globals/session", () => {
 
             expect(suite_).to.be.calledOnce;
             expect(suite_.args[0][0]).to.be.equal("custom session");
-            expect(suite_.args[0][1]).to.be.null;
-            expect(suite_.args[0][2]).to.be.eql(["my fixture"]);
-            expect(suite_.args[0][3]).to.be.equal("sessCb");
+            expect(suite_.args[0][1]).to.be.eql(["my fixture"]);
+            expect(suite_.args[0][2]).to.be.equal("sessCb");
 
             expect(sessCb).to.be.calledOnce;
             expect(sessCb.args[0][0]).to.be.equal("custom session");
