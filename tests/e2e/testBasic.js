@@ -1,125 +1,78 @@
 "use strict";
 
-var sinon = require("sinon");
+suite("basic", () => {
 
-test("It should be passed", () => {
-    chunk("My chunk", () => {});
-});
+    scope("chunk management", () => {
 
-test("It should be failed", () => {
-    chunk("My chunk", () => {
-        throw new Error("BOOM!");
-    });
-    chunk(() => {});
-});
-
-test("Failed parametrization", () => {
-    forEachLanguage(lang => {
-        chunk("proba", () => {
-            if (lang === "ru")
-                throw new Error("BOOM!");
+        test("my test", () => {
+            chunk(() => {
+                expect(1).to.be.equal(1);
+            });
+        });
+    
+        test("with skipped chunk", () => {
+            chunk(() => false);
+        });
+    
+        test("with chunk retry", () => {
+            let i;
+            chunk({ retry: 1 }, () => {
+                if (i) return;
+                i = 1;
+                throw Error("BOOM!");
+            });
+        });
+    
+        test("with chunk timeout", () => {
+            chunk({ timeout: 1 }, () => {});
+        });
+    
+        test("with two chunks", () => {
+            chunk("first", () => {});
+            chunk("second", () => {});
         });
     });
-});
 
-test("It should contain skipped chunk", () => {
-    chunk("failed", () => {
-        throw new Error("BOOM!");
-    });
-    chunk("skipped", () => {
-        if ($.isTestFailed()) return false;
-    });
-});
+    scope("test management", () => {
 
-test("It shouldn't have chunk name", () => {
-    chunk(() => {});
-});
+        test("with chunk retry option", { chunkRetry: 1 }, () => {
+            let i;
+            chunk(() => {
+                if (i) return;
+                i = 1;
+                throw Error("BOOM!");
+            });
+        });
 
-test("It should have two passed chunks", () => {
-    chunk("My chunk #1", () => {});
-    chunk("My chunk #2", () => {});
-});
+        test("skipped", { skip: true }, () => {
+            chunk(() => {});
+        });
 
-test("It should have one failed & one passed chunk", () => {
-    chunk("My chunk #1", () => {
-        throw new Error("BOOM!");
-    });
-    chunk("My chunk #2", () => {});
-});
+        test("skipped with reason", { skip: "Bug http://bugs.io/123" }, () => {
+            chunk(() => {});
+        });
 
-test("It should iterate tested languages", () => {
-    forEachLanguage({ languages: [ "ru", "ee", "en" ] }, lang => {
-        chunk(() => {
-            expect(CONF.test.curCase.testParams.language).to.be.equal(lang);
+        test("with fixture", [fxMyFixture], () => {
+            chunk(() => {});
+        });
+
+        test("with retry", { retry: 1 }, () => {
+            chunk(() => {
+                if (global.i) return;
+                global.i = 1;
+                throw Error("BOOM!");
+            });
         });
     });
-});
 
-var spy = sinon.spy();
-var myFixture = func => {
-    before(spy);
-    func();
-};
+    scope("steps management", () => {
 
-test("It should involve fixture", [myFixture], () => {
-    chunk(() => {
-        expect(spy.calledOnce).to.be.true;
-    });
-});
-
-test("It should involve fixture in iterator", () => {
-
-    var languages = ["ru", "ee", "en"];
-    var spy = sinon.spy();
-    var myFixture = func => {
-        before(spy);
-        func();
-    };
-
-    forEachLanguage([myFixture], { languages }, () => {
-        chunk(() => {});
-    });
-
-    after(() => {
-        expect(spy.callCount).to.be.equal(languages.length);
-    });
-});
-
-test("It should be skipped with reason",
-    { skip: "bug https://bug.tracker.io/BUG-1001" }, () => {
-        chunk(() => {});
-    });
-
-test("It should be skipped without reason", { skip: true }, () => {
-    chunk(() => {});
-});
-
-if (!global.ii) global.ii = 0;
-test("It should be retried 3 times", { retry: 3 }, () => {
-    chunk(() => {
-        if (global.ii < 3) {
-            global.ii++;
-            throw new Error("BOOM!");
-        };
-    });
-});
-
-test("Its chunks should be retried 3 times", { chunkRetry: 3 }, () => {
-    var i = 0;
-    chunk(() => {
-        if (i < 3) {
-            i++;
-            throw new Error("BOOM!");
-        };
-    });
-});
-
-test("Its chunk should be retried 3 times", () => {
-    var i = 0;
-    chunk({ retry: 3 }, () => {
-        if (i < 3) {
-            i++;
-            throw new Error("BOOM!");
-        };
+        test("is passed with timer check", () => {
+            chunk(async () => {
+                await $.startTimer();
+                await $.pause(0.1, "sleep");
+                await $.checkTimer({ "to be above": 0.1 });
+            });
+        });
     });
 });
