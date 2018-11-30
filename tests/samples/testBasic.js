@@ -1,0 +1,125 @@
+"use strict";
+
+var sinon = require("sinon");
+
+test("It should be passed", () => {
+    chunk("My chunk", () => {});
+});
+
+test("It should be failed", () => {
+    chunk("My chunk", () => {
+        throw new Error("BOOM!");
+    });
+    chunk(() => {});
+});
+
+test("Failed parametrization", () => {
+    forEachLanguage(lang => {
+        chunk("proba", () => {
+            if (lang === "ru")
+                throw new Error("BOOM!");
+        });
+    });
+});
+
+test("It should contain skipped chunk", () => {
+    chunk("failed", () => {
+        throw new Error("BOOM!");
+    });
+    chunk("skipped", () => {
+        if ($.isTestFailed()) return false;
+    });
+});
+
+test("It shouldn't have chunk name", () => {
+    chunk(() => {});
+});
+
+test("It should have two passed chunks", () => {
+    chunk("My chunk #1", () => {});
+    chunk("My chunk #2", () => {});
+});
+
+test("It should have one failed & one passed chunk", () => {
+    chunk("My chunk #1", () => {
+        throw new Error("BOOM!");
+    });
+    chunk("My chunk #2", () => {});
+});
+
+test("It should iterate tested languages", () => {
+    forEachLanguage({ languages: [ "ru", "ee", "en" ] }, lang => {
+        chunk(() => {
+            expect(CONF.test.curCase.testParams.language).to.be.equal(lang);
+        });
+    });
+});
+
+var spy = sinon.spy();
+var myFixture = func => {
+    before(spy);
+    func();
+};
+
+test("It should involve fixture", [myFixture], () => {
+    chunk(() => {
+        expect(spy.calledOnce).to.be.true;
+    });
+});
+
+test("It should involve fixture in iterator", () => {
+
+    var languages = ["ru", "ee", "en"];
+    var spy = sinon.spy();
+    var myFixture = func => {
+        before(spy);
+        func();
+    };
+
+    forEachLanguage([myFixture], { languages }, () => {
+        chunk(() => {});
+    });
+
+    after(() => {
+        expect(spy.callCount).to.be.equal(languages.length);
+    });
+});
+
+test("It should be skipped with reason",
+    { skip: "bug https://bug.tracker.io/BUG-1001" }, () => {
+        chunk(() => {});
+    });
+
+test("It should be skipped without reason", { skip: true }, () => {
+    chunk(() => {});
+});
+
+if (!global.ii) global.ii = 0;
+test("It should be retried 3 times", { retry: 3 }, () => {
+    chunk(() => {
+        if (global.ii < 3) {
+            global.ii++;
+            throw new Error("BOOM!");
+        };
+    });
+});
+
+test("Its chunks should be retried 3 times", { chunkRetry: 3 }, () => {
+    var i = 0;
+    chunk(() => {
+        if (i < 3) {
+            i++;
+            throw new Error("BOOM!");
+        };
+    });
+});
+
+test("Its chunk should be retried 3 times", () => {
+    var i = 0;
+    chunk({ retry: 3 }, () => {
+        if (i < 3) {
+            i++;
+            throw new Error("BOOM!");
+        };
+    });
+});
