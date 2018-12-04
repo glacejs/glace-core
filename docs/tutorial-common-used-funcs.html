@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>GlaceJS Tutorial: Commonly Used Functions</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">GlaceJS</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="GlaceConfig.html">GlaceConfig</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-allure.html">allure</a></li><li><a href="module-classifier.html">classifier</a></li><li><a href="module-cli.html">cli</a></li><li><a href="module-cluster.html">cluster</a></li><li><a href="module-error.html">error</a></li><li><a href="module-globals_index.html">globals/index</a></li><li><a href="module-hacking.html">hacking</a></li><li><a href="module-index.html">index</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-matcher.html">matcher</a></li><li><a href="module-plugins.html">plugins</a></li><li><a href="module-reporter_allure.html">reporter/allure</a></li><li><a href="module-reporter_index.html">reporter/index</a></li><li><a href="module-reporter_stdout.html">reporter/stdout</a></li><li><a href="module-reporter_testrail.html">reporter/testrail</a></li><li><a href="module-reporter_xunit.html">reporter/xunit</a></li><li><a href="module-testing.html">testing</a></li><li><a href="module-tools.html">tools</a></li><li><a href="module-utils.html">utils</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="GlaceReporter.html">GlaceReporter</a></li><li><a href="module-error-ConfigError.html">error~ConfigError</a></li><li><a href="module-error-StepError.html">error~StepError</a></li><li><a href="module-testing-ScopeType.html">testing~ScopeType</a></li><li><a href="module-testing-TestCase.html">testing~TestCase</a></li><li><a href="Steps.html">Steps</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="mixins.list.html" class="dropdown-toggle" data-toggle="dropdown">Mixins<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="TimerSteps.html">TimerSteps</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="tutorial-common-used-funcs.html">Commonly Used Functions</a></li><li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#after">after</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#before">before</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#suite">suite</a></li><li><a href="global.html#test">test</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			<section class="tutorial-section">
+
+<header>
+    
+
+    <h2>Commonly Used Functions</h2>
+</header>
+
+<article>
+    <h3><a name="test" href="#test">#</a> test</h3><p><code>test</code> is a central function which is used to create a testcase unit. <a href="global.html#test">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should print 'hello world'&quot;, () => {
+    chunk(() => {
+        console.log(&quot;hello world&quot;);
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-15 09:27:15
+
+  test: It should print 'hello world'
+hello world
+    ✓ chunk
+
+  ✓ 1 passed test
+  1 executed chunk
+
+  Summary tests time is 0.003 sec
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><p><code>test</code> should contain as minimum one <code>chunk</code>, named or unnamed.</p>
+<h3><a name="chunk" href="#chunk">#</a> chunk</h3><p><code>chunk</code> is independently executed part of <code>test</code>. <em>Independently</em> means even if
+first chunk is failed, other chunks will be executed in any case. <a href="global.html#chunk">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should include one unnamed chunk&quot;, () => {
+    chunk(() => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});
+
+test(&quot;It should include one named chunk&quot;, () => {
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});
+
+test(&quot;It should include several chunks&quot;, () => {
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    chunk(&quot;second chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});
+
+test(&quot;It should include failed & passed chunks&quot;, () => {
+    chunk(&quot;which is failed&quot;, () => {
+        throw Error(&quot;BOOM!&quot;);
+    });
+    chunk(&quot;which is passed&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-15 09:38:45
+
+  test: It should include one unnamed chunk
+do some stuff
+    ✓ chunk
+
+  test: It should include one named chunk
+do some stuff
+    ✓ chunk: first chunk
+
+  test: It should include several chunks
+do some stuff
+    ✓ chunk: first chunk
+do some stuff
+    ✓ chunk: second chunk
+
+  test: It should include failed & passed chunks
+    ✖ chunk: which is failed
+do some stuff
+    ✓ chunk: which is passed
+
+  ✓ 3 passed tests
+  ✖ 1 failed test
+  6 executed chunks
+
+  Summary tests time is 0.005 sec
+
+TEST FAILURES:
+
+test: It should include failed & passed chunks
+
+which is failed
+message: BOOM!
+stack: Error: BOOM!
+    at chunk (example.js:24:15)
+    at Context.&lt;anonymous> (lib/globals/chunk.js:88:18)
+    at next (lib/hacking.js:45:20)
+    at Immediate.&lt;anonymous> (lib/hacking.js:88:9)
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><h3><a name="before" href="#before">#</a> before</h3><p><code>before</code> is a hook executed before all chunks inside a test or before all tests inside a suite / scope / session. <a href="global.html#before">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should execute hook before all chunks&quot;, () => {
+    before(() => {
+        console.log(&quot;some stuff before chunks&quot;);
+    });
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    chunk(&quot;second chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});</code></pre><h3><a name="after" href="#after">#</a> after</h3><p><code>after</code> is a hook executed after all chunks inside a test or after all tests inside a suite / scope / session. <a href="global.html#after">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should execute hook after all chunks&quot;, () => {
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    chunk(&quot;second chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    after(() => {
+        console.log(&quot;some stuff after chunks&quot;);
+    });
+});</code></pre><h3><a name="before-chunk" href="#before-chunk">#</a> beforeChunk</h3><p><code>beforeChunk</code> is a hook executed before each chunk inside a test. <a href="global.html#beforeChunk">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should execute hook before each chunk&quot;, () => {
+    beforeChunk(() => {
+        console.log(&quot;some stuff before each chunk&quot;);
+    });
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    chunk(&quot;second chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+});</code></pre><h3><a name="after-chunk" href="#after-chunk">#</a> afterChunk</h3><p><code>afterChunk</code> is a hook executed after each chunk inside a test. <a href="global.html#afterChunk">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;It should execute hook after each chunk&quot;, () => {
+    chunk(&quot;first chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    chunk(&quot;second chunk&quot;, () => {
+        console.log(&quot;do some stuff&quot;);
+    });
+    afterChunk(() => {
+        console.log(&quot;some stuff after each chunk&quot;);
+    });
+});</code></pre><h3><a name="steps" href="#steps">#</a> $</h3><p><code>$</code> is the steps namespace, central concept of <code>glace</code> <a href="tutorial-steps-architecture.html">philosophy</a>. Ideally and normally in <code>glace</code> tests
+to have only step calls inside test chunks. <code>glace-core</code> provides only basic <a href="Steps.html">steps</a>, other steps for specific actions are provided by
+plugins or should be implemented together with tests development. There are more <a href="https://github.com/glacejs/glace-js/tree/master/tests/e2e">examples</a> of steps usage in <code>glace-js</code>. And here some basic:</p>
+<pre class="prettyprint source lang-javascript"><code>suite(&quot;Timer steps&quot;, () => {
+
+    test(&quot;It should sleep 1 sec&quot;, () => {
+        chunk(async () => {
+            await $.pause(1, &quot;sleep 1 sec&quot;);
+        });
+    });
+
+    test(&quot;It should pass timer check&quot;, () => {
+        chunk(async () => {
+            await $.startTimer();
+            await $.pause(1, &quot;sleep&quot;);
+            await $.checkTimer({ &quot;to be above&quot;: 1 });
+        });
+    });
+
+    test(&quot;It should fail timer check&quot;, () => {
+        chunk(async () => {
+            await $.startTimer();
+            await $.pause(1, &quot;sleep&quot;);
+            await $.checkTimer({ &quot;to be below&quot;: 1 });
+        });
+    });
+
+    test(&quot;It should fail because timer is not started&quot;, () => {
+        chunk(async () => {
+            await $.startTimer();
+            await $.pause(1, &quot;sleep&quot;);
+            await $.stopTimer();
+            await $.checkTimer({ &quot;to be equal&quot;: 1 });
+        });
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-16 08:29:39
+
+  suite: Timer steps
+
+    test: It should sleep 1 sec
+      ✓ chunk
+
+    test: It should pass timer check
+      ✓ chunk
+
+    test: It should fail timer check
+      ✖ chunk
+
+    test: It should fail because timer is not started
+      ✖ chunk
+
+  ✓ 2 passed tests
+  ✖ 2 failed tests
+  4 executed chunks
+
+  Summary tests time is 4.032 sec
+
+TEST FAILURES:
+
+test: It should fail timer check
+
+message: Timing is failed: expected 1.005 to be below 1
+stack: AssertionError: Timing is failed: expected 1.005 to be below 1
+    at Proxy.Assertion.correspond (lib/matcher.js:50:27)
+    at Proxy.checkTimer (lib/steps/timer.js:135:56)
+    at chunk (example.js:23:21)
+    at &lt;anonymous>
+
+test: It should fail because timer isn't started
+
+message: Timer isn't started: expected null to exist
+stack: AssertionError: Timer isn't started: expected null to exist
+    at Proxy.getTimer (lib/steps/timer.js:103:54)
+    at Proxy.checkTimer (lib/steps/timer.js:135:21)
+    at chunk (example.js:32:21)
+    at &lt;anonymous>
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><h3><a name="config" href="#config">#</a> CONF</h3><p><code>CONF</code> refers to <code>glace</code> configuration and is mostly used inside steps, features or iterators, rather than inside tests directly.
+For example, <a href="https://github.com/glacejs/glace-core/blob/1.8.9/lib/globals/forEachLanguage.js#L66">glace-core/lib/globals/forEachLanguage.js#L66</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>scope(`${name} &quot;${lang}&quot;`, () => {
+    let oldLang;
+
+    before(() => {
+        if (CONF.test.curCase) {
+            oldLang = CONF.test.curCase.testParams.language;
+            CONF.test.curCase.testParams.language = lang;
+        }
+    });
+
+    U.wrap(fixtures, () => func(lang))();
+
+    after(() => {
+        if (CONF.test.curCase) {
+            CONF.test.curCase.testParams.language = oldLang;
+        }
+    });
+});</code></pre><p><code>CONF</code> is global object for all <code>glace</code> components, which means that even if some <code>glace</code> plugin imports own config module internally,
+finally it works in the same global config namespace. <a href="GlaceConfig.html">Full info ➤</a></p>
+<h3><a name="fixtures" href="#fixtures">#</a> fixtures</h3><p><code>Fixtures</code> are reusable functions, which can add hooks before and after test or group of tests.
+They were introduced to <code>glace-core</code> under impression of <a href="https://docs.pytest.org/en/latest/fixture.html">pytest fixtures</a>.
+Simple fixture can be presented as:</p>
+<pre class="prettyprint source lang-javascript"><code>const myFixture = testFunc => {
+    before(() => console.log(&quot;fixture before&quot;));
+    testFunc();
+    after(() => console.log(&quot;fixture after&quot;));
+};</code></pre><p>Now it can be reusable as many times as it needs. For example:</p>
+<pre class="prettyprint source lang-javascript"><code>suite(&quot;My suite&quot;, [myFixture], () => {
+
+    test(&quot;first test&quot;, () => {
+        chunk(() => {});
+    });
+
+    test(&quot;second test&quot;, [myFixture], () => {
+        chunk(() => {});
+    });
+});</code></pre><p>Run result:</p>
+<pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-22 07:39:21
+
+  suite: My suite
+fixture before
+
+    test: first test
+      ✓ chunk
+
+    test: second test
+fixture before
+      ✓ chunk
+fixture after
+fixture after
+
+  ✓ 2 passed tests
+  2 executed chunks
+
+  Summary tests time is 0.005 sec
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><p><code>Fixtures</code> can be used with <a href="global.html#test">test</a>, <a href="global.html#scope">scope</a>, <a href="global.html#suite">suite</a>, <a href="global.html#session">session</a> and <a href="global.html#forEachLanguage">forEachLanguage</a>.</p>
+<p>Many <code>glace</code> plugins offer fixtures as wrappers on their steps. For example, <a href="https://github.com/glacejs/glace-web/blob/1.3.8/lib/fixtures.js#L18">glace-web/lib/fixtures.js#L18</a>.
+And <code>glace-js</code> session is fully based on <a href="https://github.com/glacejs/glace-js/blob/2.5.2/lib/globals.js#L24">fixtures reusage</a>.</p>
+<h3><a name="iterators" href="#iterators">#</a> iterators</h3><p><code>iterators</code> are used to make parametrization over tests or chunks. Underhood <code>iterators</code> are cycles.
+<code>glace-core</code> provides iterator <a href="global.html#forEachLanguage">forEachLanguage</a> to make easy localisation tests.</p>
+<pre class="prettyprint source lang-javascript"><code>suite(&quot;Localisation tests&quot;, () => {
+    test(&quot;my test&quot;, () => {
+        forEachLanguage(lang => {
+            chunk(() => {
+                // someLangSpecificStuff(lang);
+            });
+        });
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js --languages en,ru,fr
+
+suite: Session 2018-11-22 07:39:21
+
+  suite: Localisation tests
+
+    test: my test
+
+      scope: for language &quot;en&quot;
+        ✓ chunk
+
+      scope: for language &quot;ru&quot;
+        ✓ chunk
+
+      scope: for language &quot;fr&quot;
+        ✓ chunk
+
+  ✓ 1 passed test
+  3 executed chunks
+
+  Summary tests time is 0.004 sec
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><h3><a name="suite" href="#suite">#</a> suite</h3><p><code>suite</code> is used to group tests. <a href="global.html#suite">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>suite(&quot;my tests&quot;, () => {
+    test(&quot;first test&quot;, () => {
+        chunk(() => {});
+    });
+
+    test(&quot;second test&quot;, () => {
+        chunk(() => {});
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-22 07:39:21
+
+  suite: my tests
+
+    test: first test
+      ✓ chunk
+
+    test: second test
+      ✓ chunk
+
+  ✓ 2 passed tests
+  2 executed chunks
+
+  Summary tests time is 0.004 sec
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><h3><a name="scope" href="#scope">#</a> scope</h3><p><code>scope</code> is used to group tests or chunks. <a href="global.html#scope">Full info ➤</a></p>
+<pre class="prettyprint source lang-javascript"><code>test(&quot;my test&quot;, () => {
+
+    scope(&quot;user chunks&quot;, () => {
+        chunk(&quot;login as user&quot;, () => {});
+        chunk(&quot;post a message&quot;, () => {});
+    });
+
+    scope(&quot;admin chunks&quot;, () => {
+        chunk(&quot;login as admin&quot;, () => {});
+        chunk(&quot;moderate messages&quot;, () => {});
+    });
+});</code></pre><pre class="prettyprint source"><code>➜ glace-core: ./bin/glace example.js
+
+suite: Session 2018-11-22 07:39:21
+
+  test: my test
+
+    scope: user chunks
+      ✓ chunk: login as user
+      ✓ chunk: post a message
+
+    scope: admin chunks
+      ✓ chunk: login as admin
+      ✓ chunk: moderate messages
+
+  ✓ 1 passed test
+  4 executed chunks
+
+  Summary tests time is 0.004 sec
+
+-----------------------------------------------------------
+Local report is /home/user/projects/glace/glace-core/report</code></pre><h3><a name="session" href="#session">#</a> session</h3><p><code>session</code> is root suite, which is created automatically (not need to use it explicitly). <a href="global.html#session">Full info ➤</a></p>
+<p>But it can be overridden to extend its functionality, for example <a href="https://github.com/glacejs/glace-js/blob/2.5.3/lib/globals.js#L13">glace-js/lib/globals.js#L13</a>:</p>
+<pre class="prettyprint source lang-javascript"><code>const gSession = session;
+global.session = (name, fixtures, func) => {
+    if (_.isFunction(fixtures)) [func, fixtures] = [fixtures];
+    if (_.isArray(name)) [fixtures, name] = [name];
+    if (_.isFunction(name)) [func, name] = [name];
+    fixtures = fixtures || [];
+    if (CONF.web.use && !CONF.cluster.slavesNum) fixtures.push(fxKillWebdriver);
+    if (CONF.xvfb.use) fixtures.push(fxXvfb);
+    if (CONF.proxy.global) fixtures.push(fxGlobalProxy);
+    if (CONF.proxy.http) fixtures.push(fxHttpProxy);
+    if (CONF.web.use && !CONF.webdriver.host) fixtures.push(fxSelenium);
+    if (CONF.web.use) fixtures.push(fxBrowser);
+    if (CONF.image.screenOnFail) fixtures.push(fxScreenOnFail);
+    gSession(name, fixtures, func);
+};</code></pre>
+</article>
+
+</section>
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright 2017
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-12-04T07:26:52+02:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

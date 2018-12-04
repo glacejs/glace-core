@@ -1,0 +1,85 @@
+{
+  "uid" : "d1d7588b5510a577",
+  "name" : "start()",
+  "fullName" : "reporter/xunit.start()",
+  "historyId" : "ee338f937ef5610994abe66bf109fb84",
+  "time" : {
+    "start" : 1543901218219,
+    "stop" : 1543901218221,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "removes previous report if it exists",
+      "time" : {
+        "start" : 1543901218219,
+        "stop" : 1543901218220,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing if no previous report",
+      "time" : {
+        "start" : 1543901218220,
+        "stop" : 1543901218221,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testMethod",
+    "value" : "start()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d1d7588b5510a577.json",
+  "parameterValues" : [ ]
+}

@@ -200,7 +200,25 @@
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,6 +332,24 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -472,21 +508,24 @@ const isFilterMatched = (testName, filterId) =&gt; {
 };
 &nbsp;
 /**
- * Executes test case.
+ * Global function, existing in `glace` tests, which creates test case.
  *
  * @global
  * @function
- * @arg {string} name - Name of test case.
+ * @arg {string} name - Name of test case. By default, should be unique in session.
+ * But uniqueness check can be skipped with CLI option `--dont-check-names`.
  * @arg {object} [opts] - Options.
- * @arg {boolean|string} [opts.skip=false] - Flag to skip test or skip reason.
- * @arg {number} [opts.retry=0] - Number of retries on failure. Overrides
- *  config value for concrete test.
- * @arg {number} [opts.chunkRetry=0] - Number of chunk retries on failure.
- *  Overrides config value for concrete test chunks.
- * @arg {?number} [opts.chunkTimeout=null] - Time to execute chunk or hook, sec.
- * @arg {function[]} [fixtures] - Involved fixtures list.
- * @arg {function} func - Test function.
- * @example
+ * @arg {boolean|string} [opts.skip=false] - Flag to skip test or skip reason message.
+ * @arg {?number} [opts.retry=null] - Number of test retries on failure. Overrides
+ * [config](GlaceConfig.html#test-retry) settings.
+ * @arg {?number} [opts.chunkRetry=null] - &lt;a name="test-chunk-retry" href="#test-chunk-retry"&gt;#&lt;/a&gt;
+ * Number of chunk retries on failure. Overrides [config](GlaceConfig.html#test-chunk-retry) settings.
+ * @arg {?number} [opts.chunkTimeout=null] - &lt;a name="test-chunk-timeout" href="#test-chunk-timeout"&gt;#&lt;/a&gt;
+ * Time to execute chunk or hook, **sec**. Overrides [config](GlaceConfig.html#test-chunk-timeout) settings.
+ * @arg {function[]} [fixtures] - Involved [fixtures](tutorial-common-used-funcs.html#fixtures) list.
+ * @arg {function} func - Сallback function with [chunks](#chunk__anchor) and hooks.
+ *
+ * @example &lt;caption&gt;&lt;b&gt;Simple test&lt;/b&gt;&lt;/caption&gt;
  *
  * test("Some test", () =&gt; {
  *     chunk("Some chunk", () =&gt; {
@@ -494,6 +533,21 @@ const isFilterMatched = (testName, filterId) =&gt; {
  *     });
  * });
  *
+ * @example &lt;caption&gt;&lt;b&gt;Test with retry&lt;/b&gt;&lt;/caption&gt;
+ *
+ * test("Test with retry", { retry: 2 }, () =&gt; {
+ *     chunk(() =&gt; {
+ *         someFunc();
+ *     });
+ * });
+ *
+ * @example &lt;caption&gt;&lt;b&gt;Test with fixtures&lt;/b&gt;&lt;/caption&gt;
+ *
+ * test("Test with fixtures", null, [fix_func_1, fix_func_2], () =&gt; {
+ *     chunk(() =&gt; {
+ *         someFunc();
+ *     });
+ * });
  */
 const test = (name, fixtures, opts, func) =&gt; {
 &nbsp;
@@ -514,7 +568,7 @@ module.exports = test;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 23 2018 19:51:49 GMT+0200 (EET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 04 2018 07:26:58 GMT+0200 (EET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

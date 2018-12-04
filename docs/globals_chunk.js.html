@@ -61,14 +61,14 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-common-used-funcs.html">Commonly Used Functions</a></li><li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#$">$</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#after">after</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#before">before</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#suite">suite</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -113,19 +113,21 @@ const isPromise = require("is-promise");
 const CONF = require("../config");
 
 /**
- * Defines test chunk.
- * 
- * Contains actions and verifications, which will be executed separatly
- * from another chunks. This function is used to organize test
- * structure and to allocate independent test actions.
+ * Global function, existing in `glace` tests, which creates test chunk.
+ *
+ * `chunk` is independently executed part of `test`. It means that even if
+ * first chunk is failed, other will be executed in any case. `test` should
+ * contain as minimum one `chunk`.
  *
  * @global
  * @function
- * @arg {string} [name] - Name of chunk.
+ * @arg {string} [name=null] - Name of chunk.
  * @arg {object} [opts] - Chunk options.
- * @arg {number} [opts.retry] - Number of chunk retries on failure.
- * @arg {number} [opts.timeout] - Time limit to execute chunk, sec.
- * @arg {function} func - Callback function with test payload.
+ * @arg {?number} [opts.retry=null] - Number of chunk retries on failure. Overrides
+ * [config](GlaceConfig.html#test-chunk-retry) and [test](#test-chunk-retry) settings.
+ * @arg {?number} [opts.timeout=null] - Time limit to execute chunk, **sec**. Overrides
+ * [config](GlaceConfig.html#test-chunk-timeout) and [test](#test-chunk-timeout) settings.
+ * @arg {function} func - Callback function with test payload. Can be `async` too.
  *
  * @example &lt;caption>&lt;b>Anonymous chunk&lt;/b>&lt;/caption>
  *
@@ -151,6 +153,25 @@ const CONF = require("../config");
  *     chunk("My chunk", { retry: 2, timeout: 1 }, () => {
  *         var a = 5;
  *         expect(a).to.be.equal(2);
+ *     });
+ * });
+ *
+ * @example &lt;caption>&lt;b>Several chunks in test&lt;/b>&lt;/caption>
+ *
+ * test("My test", () => {
+ *     chunk("first chunk", () => {
+ *         expect(2).to.be.equal(3);
+ *     });
+ *     chunk("second chunk", () => {
+ *         expect(3).to.be.equal(3);
+ *     });
+ * });
+ *
+ * @example &lt;caption>&lt;b>Async chunk&lt;/b>&lt;/caption>
+ *
+ * test("My test", () => {
+ *     chunk(async () => {
+ *         await Promise.resolve("done!");
  *     });
  * });
  */
@@ -261,7 +282,7 @@ module.exports = chunk;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-23T19:51:40+02:00
+		on 2018-12-04T07:26:52+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

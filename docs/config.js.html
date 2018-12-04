@@ -61,14 +61,14 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-common-used-funcs.html">Commonly Used Functions</a></li><li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#$">$</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#after">after</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#before">before</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#suite">suite</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -145,7 +145,7 @@
  * example: `{1: ['1_1', '1_2'], 3: ['2_1'], 2: ['3_1', '3_2']}`. Populated on
  * first session run.
  * @prop {?array&lt;string>} [retry.curChunkIds=null] - Reference to currently
- * populated `retry.chunkIds`.
+ * populated group in `retry.chunkIds`.
  * @prop {object} test - Test settings namespace.
  * @prop {integer} [test.id=0] - Number of currently created test. Each test has
  * unique incremental id. On first session run it's assigned, on retry is used
@@ -158,19 +158,19 @@
  *  be overridden with CLI arguments or option `--targets` separated with comma.
  * @prop {boolean} [test.checkNames=true] - Flag to check test names uniqueness.
  *  Can be overridden with CLI option `--dont-check-names`.
- * @prop {integer} [test.retries=0] - Number of test retries on failure. Can
- *  be overridden with CLI option `--retry`.
+ * @prop {integer} [test.retries=0] - &lt;a name="test-retry" href="#test-retry">#&lt;/a>
+ * Number of test retries on failure. Overridden with CLI option `--retry`.
  * @prop {object} chunk - Chunk settings namespace.
  * @prop {integer} [chunk.id=0] - Number of chunk inside a test, incremental,
  * starts from `0` in each test. Fully unique chunk id is consist of `test.id` &amp;
- * `chunk.id`, like `1_1`, 1_2`, `2_1`.
+ * `chunk.id`, like `1_1`, `1_2`, `2_1`.
  * @prop {?string} [chunk.curId=null] - Currently executed fully unique chunk id.
  * @prop {array&lt;string>} [chunk.passedIds=[]] - Fully unique ids of passed chunks.
  * Used to skip already passed chunks on retry.
- * @prop {integer} [chunk.retries=0] - Number of chunk retries on failure.
- * Can be overridden with CLI option `--chunk-retry`.
- * @prop {integer} [chunk.timeout=180] - Timeout of chunk execution, sec.
- * Can be overridden with CLI option `--chunk-timeout`, sec.
+ * @prop {integer} [chunk.retries=0] - &lt;a name="test-chunk-retry" href="#test-chunk-retry">#&lt;/a>
+ * Number of chunk retries on failure. Overridden with CLI option `--chunk-retry`.
+ * @prop {integer} [chunk.timeout=180] - &lt;a name="test-chunk-timeout" href="#test-chunk-timeout">#&lt;/a>
+ * Timeout of chunk execution, **sec**. Overridden with CLI option `--chunk-timeout`.
  * @prop {object} report - Report namespace.
  * @prop {string} [report.dir=cwd/report] - Folder to save tests session report.
  * @prop {string} [report.testDir] - Folder to save test-specific artifacts.
@@ -480,7 +480,7 @@ module.exports = config;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-23T19:51:40+02:00
+		on 2018-12-04T07:26:52+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

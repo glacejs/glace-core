@@ -61,14 +61,14 @@
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
+					<li><a href="tutorial-common-used-funcs.html">Commonly Used Functions</a></li><li><a href="tutorial-concepts.html">GlaceJS concepts</a></li><li><a href="tutorial-mocha-uncaught.html">Mocha broken queue with uncaught exceptions</a></li><li><a href="tutorial-parameterization.html">Tests parameterization</a></li><li><a href="tutorial-plugins.html">How plugins work</a></li><li><a href="tutorial-release-notes.html">Release Notes</a></li><li><a href="tutorial-reports.html">Test reports</a></li><li><a href="tutorial-retry.html">Tests and chunks retry</a></li><li><a href="tutorial-steps-architecture.html">STEPS architecture</a></li><li><a href="tutorial-steps-protocol.html">Plugins system & STEPS protocol</a></li><li><a href="tutorial-test-fixtures.html">Test fixtures</a></li><li><a href="tutorial-test-options.html">Test & chunk options</a></li><li><a href="tutorial-tests-loading.html">How glace loads tests</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#$">$</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#test">test</a></li>
+					<li><a href="global.html#$">$</a></li><li><a href="global.html#after">after</a></li><li><a href="global.html#afterChunk">afterChunk</a></li><li><a href="global.html#allure">allure</a></li><li><a href="global.html#before">before</a></li><li><a href="global.html#beforeChunk">beforeChunk</a></li><li><a href="global.html#chunk">chunk</a></li><li><a href="global.html#CONF">CONF</a></li><li><a href="global.html#expect">expect</a></li><li><a href="global.html#forEachLanguage">forEachLanguage</a></li><li><a href="global.html#glaceRun">glaceRun</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#reporters">reporters</a></li><li><a href="global.html#rewire">rewire</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#scope">scope</a></li><li><a href="global.html#session">session</a></li><li><a href="global.html#sinon">sinon</a></li><li><a href="global.html#stubObject">stubObject</a></li><li><a href="global.html#suite">suite</a></li><li><a href="global.html#test">test</a></li>
 				</ul>
 			</li>
 			
@@ -641,7 +641,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="afterChunk"><span class="type-signature"></span>afterChunk(name, func)</h4>
+    <h4 class="name" id="after"><span class="type-signature"></span>after(func)</h4>
     
     
 </dt>
@@ -649,7 +649,9 @@
 
     
     <div class="description">
-        <p>Executes after each test chunk.</p>
+        <p>Global function, existing in <code>glace</code> tests, which create <code>after</code> hook.</p>
+<p><code>after</code> hook executes after all chunks in test or all tests in <a href="#scope">scope</a> /
+<a href="#suite">suite</a> / <a href="#session">session</a>.</p>
     </div>
     
 
@@ -684,13 +686,13 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>func</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">function</span>
 
 
 
@@ -701,9 +703,166 @@
 
             
 
-            <td class="description last"><p>Name of test case.</p></td>
+            <td class="description last"><p>Hook function. Can be <code>async</code> too.</p></td>
         </tr>
 
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="globals_index.js.html">globals/index.js</a>,
+				 <a href="globals_index.js.html#sunlight-1-line-199">line 199</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption"><b>after chunks</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;my test&quot;, () =&gt; {
+
+    after(() =&gt; {
+        doSomeThing();
+    });
+
+    chunk(&quot;first chunk&quot;, () =&gt; {
+        doSomeThingAgain();
+    });
+
+    chunk(&quot;second chunk&quot;, () =&gt; {
+        andDoSomeThingAgain();
+    });
+});</pre>
+
+        <p class="code-caption"><b>after tests</b></p>
+    
+    <pre class="sunlight-highlight-javascript">suite(&quot;my suite&quot;, () =&gt; {
+
+    after(async () =&gt; {
+        await db.connect();
+    });
+
+    test(&quot;first&quot;, () =&gt; {
+        chunk(async () =&gt; {
+            await db.query(&quot;select * from users&quot;);
+        });
+    });
+
+    test(&quot;second&quot;, () =&gt; {
+        chunk(async () =&gt; {
+            await db.query(&quot;select * from products&quot;);
+        });
+    });
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="afterChunk"><span class="type-signature"></span>afterChunk(func)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Global function, existing in <code>glace</code> tests, which creates <code>afterChunk</code> hook.</p>
+<p><code>afterChunk</code> hook executes after each chunk in test.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
@@ -770,7 +929,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="globals_index.js.html">globals/index.js</a>,
-				 <a href="globals_index.js.html#sunlight-1-line-167">line 167</a>
+				 <a href="globals_index.js.html#sunlight-1-line-302">line 302</a>
 			</li>
 		</ul>
 	</dd>
@@ -800,12 +959,15 @@
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">test(&quot;Some test&quot;, () =&gt; {
+
     afterChunk(() =&gt; {
         someFunc();
     });
+
     chunk(&quot;Chunk #1&quot;, () =&gt; {
         someFunc();
     });
+
     chunk(&quot;Chunk #2&quot;, () =&gt; {
         someFunc();
     });
@@ -819,7 +981,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="beforeChunk"><span class="type-signature"></span>beforeChunk(name, func)</h4>
+    <h4 class="name" id="before"><span class="type-signature"></span>before(func)</h4>
     
     
 </dt>
@@ -827,7 +989,9 @@
 
     
     <div class="description">
-        <p>Executes before each test chunk.</p>
+        <p>Global function, existing in <code>glace</code> tests, which create <code>before</code> hook.</p>
+<p><code>before</code> hook executes before all chunks in test or all tests in <a href="#scope">scope</a> /
+<a href="#suite">suite</a> / <a href="#session">session</a>.</p>
     </div>
     
 
@@ -862,13 +1026,13 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>func</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">function</span>
 
 
 
@@ -879,9 +1043,166 @@
 
             
 
-            <td class="description last"><p>Name of test case.</p></td>
+            <td class="description last"><p>Hook function. Can be <code>async</code> too.</p></td>
         </tr>
 
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="globals_index.js.html">globals/index.js</a>,
+				 <a href="globals_index.js.html#sunlight-1-line-150">line 150</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption"><b>before chunks</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;my test&quot;, () =&gt; {
+
+    before(() =&gt; {
+        doSomeThing();
+    });
+
+    chunk(&quot;first chunk&quot;, () =&gt; {
+        doSomeThingAgain();
+    });
+
+    chunk(&quot;second chunk&quot;, () =&gt; {
+        andDoSomeThingAgain();
+    });
+});</pre>
+
+        <p class="code-caption"><b>before tests</b></p>
+    
+    <pre class="sunlight-highlight-javascript">suite(&quot;my suite&quot;, () =&gt; {
+
+    before(async () =&gt; {
+        await db.connect();
+    });
+
+    test(&quot;first&quot;, () =&gt; {
+        chunk(async () =&gt; {
+            await db.query(&quot;select * from users&quot;);
+        });
+    });
+
+    test(&quot;second&quot;, () =&gt; {
+        chunk(async () =&gt; {
+            await db.query(&quot;select * from products&quot;);
+        });
+    });
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="beforeChunk"><span class="type-signature"></span>beforeChunk(func)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Global function, existing in <code>glace</code> tests, which creates <code>beforeChunk</code> hook.</p>
+<p><code>beforeChunk</code> hook executes before each chunk in test.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
@@ -948,7 +1269,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="globals_index.js.html">globals/index.js</a>,
-				 <a href="globals_index.js.html#sunlight-1-line-144">line 144</a>
+				 <a href="globals_index.js.html#sunlight-1-line-274">line 274</a>
 			</li>
 		</ul>
 	</dd>
@@ -978,12 +1299,15 @@
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">test(&quot;Some test&quot;, () =&gt; {
+
     beforeChunk(() =&gt; {
         someFunc();
     });
+
     chunk(&quot;Chunk #1&quot;, () =&gt; {
         someFunc();
     });
+
     chunk(&quot;Chunk #2&quot;, () =&gt; {
         someFunc();
     });
@@ -1005,10 +1329,10 @@
 
     
     <div class="description">
-        <p>Defines test chunk.</p>
-<p>Contains actions and verifications, which will be executed separatly
-from another chunks. This function is used to organize test
-structure and to allocate independent test actions.</p>
+        <p>Global function, existing in <code>glace</code> tests, which creates test chunk.</p>
+<p><code>chunk</code> is independently executed part of <code>test</code>. It means that even if
+first chunk is failed, other will be executed in any case. <code>test</code> should
+contain as minimum one <code>chunk</code>.</p>
     </div>
     
 
@@ -1034,6 +1358,8 @@ structure and to allocate independent test actions.</p>
         <th>Argument</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1070,6 +1396,12 @@ structure and to allocate independent test actions.</p>
                 </td>
             
 
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
             
 
             <td class="description last"><p>Name of chunk.</p></td>
@@ -1105,6 +1437,10 @@ structure and to allocate independent test actions.</p>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Chunk options.</p>
                 <h6 class="method-params-label method-subparams-label">Properties</h6>
@@ -1123,6 +1459,8 @@ structure and to allocate independent test actions.</p>
         <th>Argument</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1154,14 +1492,23 @@ structure and to allocate independent test actions.</p>
                 
 
                 
+                    &lt;nullable><br>
+                
 
                 
                 </td>
             
 
             
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
 
-            <td class="description last"><p>Number of chunk retries on failure.</p></td>
+            <td class="description last"><p>Number of chunk retries on failure. Overrides
+<a href="GlaceConfig.html#test-chunk-retry">config</a> and <a href="#test-chunk-retry">test</a> settings.</p></td>
         </tr>
 
     
@@ -1188,14 +1535,23 @@ structure and to allocate independent test actions.</p>
                 
 
                 
+                    &lt;nullable><br>
+                
 
                 
                 </td>
             
 
             
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
 
-            <td class="description last"><p>Time limit to execute chunk, sec.</p></td>
+            <td class="description last"><p>Time limit to execute chunk, <strong>sec</strong>. Overrides
+<a href="GlaceConfig.html#test-chunk-timeout">config</a> and <a href="#test-chunk-timeout">test</a> settings.</p></td>
         </tr>
 
     
@@ -1233,8 +1589,12 @@ structure and to allocate independent test actions.</p>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>Callback function with test payload.</p></td>
+            <td class="description last"><p>Callback function with test payload. Can be <code>async</code> too.</p></td>
         </tr>
 
     
@@ -1279,7 +1639,7 @@ structure and to allocate independent test actions.</p>
 		<ul class="dummy">
 			<li>
 				<a href="globals_chunk.js.html">globals/chunk.js</a>,
-				 <a href="globals_chunk.js.html#sunlight-1-line-50">line 50</a>
+				 <a href="globals_chunk.js.html#sunlight-1-line-71">line 71</a>
 			</li>
 		</ul>
 	</dd>
@@ -1332,6 +1692,25 @@ structure and to allocate independent test actions.</p>
     chunk(&quot;My chunk&quot;, { retry: 2, timeout: 1 }, () =&gt; {
         var a = 5;
         expect(a).to.be.equal(2);
+    });
+});</pre>
+
+        <p class="code-caption"><b>Several chunks in test</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;My test&quot;, () =&gt; {
+    chunk(&quot;first chunk&quot;, () =&gt; {
+        expect(2).to.be.equal(3);
+    });
+    chunk(&quot;second chunk&quot;, () =&gt; {
+        expect(3).to.be.equal(3);
+    });
+});</pre>
+
+        <p class="code-caption"><b>Async chunk</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;My test&quot;, () =&gt; {
+    chunk(async () =&gt; {
+        await Promise.resolve(&quot;done!&quot;);
     });
 });</pre>
 
@@ -1496,7 +1875,7 @@ expect(2).to.be.gte(0);</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="forEachLanguage"><span class="type-signature"></span>forEachLanguage( [ctx] [, fixtures] [, opts], func)</h4>
+    <h4 class="name" id="forEachLanguage"><span class="type-signature"></span>forEachLanguage( [name] [, fixtures] [, opts], func)</h4>
     
     
 </dt>
@@ -1533,6 +1912,8 @@ specified, it will be used firstly. Otherwise from configuration.</p>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -1543,7 +1924,7 @@ specified, it will be used firstly. Otherwise from configuration.</p>
 
         <tr>
             
-                <td class="name"><code>ctx</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
@@ -1569,8 +1950,14 @@ specified, it will be used firstly. Otherwise from configuration.</p>
             
 
             
+                <td class="default">
+                
+                    "for language"
+                
+                </td>
+            
 
-            <td class="description last"><p>Test case context.</p></td>
+            <td class="description last"><p>Iterator namespace (will be report).</p></td>
         </tr>
 
     
@@ -1602,6 +1989,10 @@ specified, it will be used firstly. Otherwise from configuration.</p>
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Involved fixtures list.</p></td>
@@ -1636,6 +2027,10 @@ specified, it will be used firstly. Otherwise from configuration.</p>
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Options.</p>
@@ -1821,6 +2216,10 @@ specified, it will be used firstly. Otherwise from configuration.</p>
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Function with test steps.</p></td>
@@ -3061,7 +3460,7 @@ files with tests</li>
             
 <hr>
 <dt>
-    <h4 class="name" id="test"><span class="type-signature"></span>test(name [, opts] [, fixtures], func)</h4>
+    <h4 class="name" id="suite"><span class="type-signature"></span>suite(name [, fixtures] [, opts], func)</h4>
     
     
 </dt>
@@ -3069,7 +3468,7 @@ files with tests</li>
 
     
     <div class="description">
-        <p>Executes test case.</p>
+        <p>Creates tests suite.</p>
     </div>
     
 
@@ -3131,7 +3530,370 @@ files with tests</li>
 
             
 
-            <td class="description last"><p>Name of test case.</p></td>
+            <td class="description last"><p>Suite name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fixtures</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;function()></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>List of fixtures.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Suite options.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>chunkRetry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Number of chunk retries on failure.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chunkTimeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Time to execute chunk or hook, sec.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>func</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Callback function with test cases.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="globals_index.js.html">globals/index.js</a>,
+				 <a href="globals_index.js.html#sunlight-1-line-141">line 141</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">suite(&quot;Some test suite&quot;, () =&gt; {
+    test(&quot;Some test name&quot;, () =&gt; {
+        before(() =&gt; {
+            someFunc();
+        });
+        chunk(&quot;chunk #1&quot;, () =&gt; {
+            someFunc();
+        });
+        chunk(&quot;chunk #2&quot;, () =&gt; {
+            someFunc();
+        });
+    });
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="test"><span class="type-signature"></span>test(name [, opts] [, fixtures], func)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Global function, existing in <code>glace</code> tests, which creates test case.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Name of test case. By default, should be unique in session.
+But uniqueness check can be skipped with CLI option <code>--dont-check-names</code>.</p></td>
         </tr>
 
     
@@ -3231,7 +3993,7 @@ files with tests</li>
                 </td>
             
 
-            <td class="description last"><p>Flag to skip test or skip reason.</p></td>
+            <td class="description last"><p>Flag to skip test or skip reason message.</p></td>
         </tr>
 
     
@@ -3258,6 +4020,8 @@ files with tests</li>
                 
 
                 
+                    &lt;nullable><br>
+                
 
                 
                 </td>
@@ -3266,13 +4030,13 @@ files with tests</li>
             
                 <td class="default">
                 
-                    0
+                    null
                 
                 </td>
             
 
-            <td class="description last"><p>Number of retries on failure. Overrides
- config value for concrete test.</p></td>
+            <td class="description last"><p>Number of test retries on failure. Overrides
+<a href="GlaceConfig.html#test-retry">config</a> settings.</p></td>
         </tr>
 
     
@@ -3299,6 +4063,8 @@ files with tests</li>
                 
 
                 
+                    &lt;nullable><br>
+                
 
                 
                 </td>
@@ -3307,13 +4073,13 @@ files with tests</li>
             
                 <td class="default">
                 
-                    0
+                    null
                 
                 </td>
             
 
-            <td class="description last"><p>Number of chunk retries on failure.
- Overrides config value for concrete test chunks.</p></td>
+            <td class="description last"><p><a name="test-chunk-retry" href="#test-chunk-retry">#</a>
+Number of chunk retries on failure. Overrides <a href="GlaceConfig.html#test-chunk-retry">config</a> settings.</p></td>
         </tr>
 
     
@@ -3355,7 +4121,8 @@ files with tests</li>
                 </td>
             
 
-            <td class="description last"><p>Time to execute chunk or hook, sec.</p></td>
+            <td class="description last"><p><a name="test-chunk-timeout" href="#test-chunk-timeout">#</a>
+Time to execute chunk or hook, <strong>sec</strong>. Overrides <a href="GlaceConfig.html#test-chunk-timeout">config</a> settings.</p></td>
         </tr>
 
     
@@ -3396,7 +4163,7 @@ files with tests</li>
 
             
 
-            <td class="description last"><p>Involved fixtures list.</p></td>
+            <td class="description last"><p>Involved <a href="tutorial-common-used-funcs.html#fixtures">fixtures</a> list.</p></td>
         </tr>
 
     
@@ -3428,7 +4195,7 @@ files with tests</li>
 
             
 
-            <td class="description last"><p>Test function.</p></td>
+            <td class="description last"><p>Сallback function with <a href="#chunk__anchor">chunks</a> and hooks.</p></td>
         </tr>
 
     
@@ -3473,7 +4240,7 @@ files with tests</li>
 		<ul class="dummy">
 			<li>
 				<a href="globals_test.js.html">globals/test.js</a>,
-				 <a href="globals_test.js.html#sunlight-1-line-142">line 142</a>
+				 <a href="globals_test.js.html#sunlight-1-line-160">line 160</a>
 			</li>
 		</ul>
 	</dd>
@@ -3500,10 +4267,28 @@ files with tests</li>
     
 
     
-        <h5>Example</h5>
+        <h5>Examples</h5>
         
+        <p class="code-caption"><b>Simple test</b></p>
+    
     <pre class="sunlight-highlight-javascript">test(&quot;Some test&quot;, () =&gt; {
     chunk(&quot;Some chunk&quot;, () =&gt; {
+        someFunc();
+    });
+});</pre>
+
+        <p class="code-caption"><b>Test with retry</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;Test with retry&quot;, { retry: 2 }, () =&gt; {
+    chunk(() =&gt; {
+        someFunc();
+    });
+});</pre>
+
+        <p class="code-caption"><b>Test with fixtures</b></p>
+    
+    <pre class="sunlight-highlight-javascript">test(&quot;Test with fixtures&quot;, null, [fix_func_1, fix_func_2], () =&gt; {
+    chunk(() =&gt; {
         someFunc();
     });
 });</pre>
@@ -3566,7 +4351,7 @@ files with tests</li>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-11-23T19:51:40+02:00
+		on 2018-12-04T07:26:52+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
