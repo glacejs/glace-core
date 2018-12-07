@@ -234,6 +234,8 @@ suite("Steps", () => {
         chunk(() => {
             expect(setupDebug()).to.include("- search");
             expect(global_.search()).to.be.equal("list of steps");
+            global_.doc((() => {}));
+            expect(global_.doc).to.be.a("function");
         });
     });
 });
