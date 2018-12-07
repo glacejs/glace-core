@@ -1,0 +1,92 @@
+{
+  "uid" : "55df5890fd6b6a50",
+  "name" : "start()",
+  "fullName" : "reporter/xunit.start()",
+  "historyId" : "ee338f937ef5610994abe66bf109fb84",
+  "time" : {
+    "start" : 1544166786297,
+    "stop" : 1544166786301,
+    "duration" : 4
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "removes previous report if it exists",
+      "time" : {
+        "start" : 1544166786298,
+        "stop" : 1544166786300,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing if no previous report",
+      "time" : {
+        "start" : 1544166786300,
+        "stop" : 1544166786301,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "testMethod",
+    "value" : "start()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/xunit"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "55df5890fd6b6a50.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

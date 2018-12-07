@@ -1,0 +1,92 @@
+{
+  "uid" : "55c29c0fe7a89353",
+  "name" : "beforeCb()",
+  "fullName" : "globals/forEachLanguage.beforeCb()",
+  "historyId" : "b8f7d484e117bc3e768f6eafcf0abbf1",
+  "time" : {
+    "start" : 1544166783459,
+    "stop" : 1544166783462,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "does nothing if no test case",
+      "time" : {
+        "start" : 1544166783460,
+        "stop" : 1544166783461,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "sets language to test case",
+      "time" : {
+        "start" : 1544166783461,
+        "stop" : 1544166783462,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testMethod",
+    "value" : "beforeCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "55c29c0fe7a89353.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}

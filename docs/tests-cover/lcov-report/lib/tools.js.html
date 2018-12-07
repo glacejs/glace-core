@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">99.07% </span>
+        <span class="strong">99.52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>214/216</span>
+        <span class='fraction'>209/210</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.53% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>67/68</span>
+        <span class='fraction'>66/66</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.19% </span>
+        <span class="strong">95.45% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>46/54</span>
+        <span class='fraction'>42/44</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">99.48% </span>
+        <span class="strong">99.46% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>190/191</span>
+        <span class='fraction'>185/186</span>
       </div>
     </div>
     <p class="quiet">
@@ -541,21 +541,7 @@
 <a name='L493'></a><a href='#L493'>493</a>
 <a name='L494'></a><a href='#L494'>494</a>
 <a name='L495'></a><a href='#L495'>495</a>
-<a name='L496'></a><a href='#L496'>496</a>
-<a name='L497'></a><a href='#L497'>497</a>
-<a name='L498'></a><a href='#L498'>498</a>
-<a name='L499'></a><a href='#L499'>499</a>
-<a name='L500'></a><a href='#L500'>500</a>
-<a name='L501'></a><a href='#L501'>501</a>
-<a name='L502'></a><a href='#L502'>502</a>
-<a name='L503'></a><a href='#L503'>503</a>
-<a name='L504'></a><a href='#L504'>504</a>
-<a name='L505'></a><a href='#L505'>505</a>
-<a name='L506'></a><a href='#L506'>506</a>
-<a name='L507'></a><a href='#L507'>507</a>
-<a name='L508'></a><a href='#L508'>508</a>
-<a name='L509'></a><a href='#L509'>509</a>
-<a name='L510'></a><a href='#L510'>510</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L496'></a><a href='#L496'>496</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -572,6 +558,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -716,6 +703,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -1048,22 +1036,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 &nbsp;
 /**
@@ -1084,6 +1056,7 @@ const U = require("glace-utils");
 const classifier = require("./classifier")();
 const CONF = require("./config");
 const plugins = require("./plugins");
+const utils = require("./utils");
 &nbsp;
 const d = U.switchColor();
 &nbsp;
@@ -1225,16 +1198,17 @@ const printFixtures = (filter, namesOnly=false) =&gt; {
  * @function
  */
 const fakeLoad = () =&gt; {
+    const dummy = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
 &nbsp;
-    global.before = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
-    global.after = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
-    global.beforeEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
-    global.afterEach = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
-    global.it = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+    global.before = dummy;
+    global.after = dummy;
+    global.beforeEach = dummy;
+    global.afterEach = dummy;
+    global.it = dummy;
     global.describe = <span class="fstat-no" title="function not covered" >(n</span>ame, cb) =&gt; {
 <span class="cstat-no" title="statement not covered" >        cb.call({</span>
-            retries: <span class="fstat-no" title="function not covered" >()</span> =&gt; {},
-            timeout: <span class="fstat-no" title="function not covered" >()</span> =&gt; {},
+            retries: dummy,
+            timeout: dummy,
         });
     };
 &nbsp;
@@ -1395,7 +1369,7 @@ const getFixtures = () =&gt; {
 &nbsp;
         fixtures.push({
             name: name,
-            doc: getDoc(func),
+            doc: utils.getDoc(func),
         });
     }
 &nbsp;
@@ -1479,7 +1453,7 @@ const getStepsData = names =&gt; {
         result.push({
             name: name,
             description: funcDescription(func),
-            doc: getDoc(func),
+            doc: utils.getDoc(func),
         });
     };
 &nbsp;
@@ -1552,22 +1526,6 @@ const mergeSteps = (base, merging) =&gt; {
 &nbsp;
 /**
  * Get function description.
- * @ignore
- */
-const getDoc = func =&gt; {
-    const doc = func
-        .__doc__
-        .split("\n")
-        .map(i =&gt; i.trim())
-        .filter(i =&gt; i)
-        .map(i =&gt; `   ${i}`)
-        .join("\n");
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!doc) <span class="cstat-no" title="statement not covered" >return doc;</span>
-    return `  /**\n${doc}\n   */`;
-};
-&nbsp;
-/**
- * Get function description.
  * @ignore 
  */
 const funcDescription = func =&gt; {
@@ -1579,7 +1537,7 @@ const funcDescription = func =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 04 2018 07:26:58 GMT+0200 (EET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 07 2018 09:13:07 GMT+0200 (EET)
 </div>
 </div>
 <script src="../prettify.js"></script>
