@@ -553,7 +553,7 @@ suite("tools", () => {
             };
             tools.__set__("global", global_);
 
-            tools.__set__("getDoc", () => "/** fixture docs */");
+            tools.__set__("utils", { getDoc: () => "/** fixture docs */" });
         });
 
         chunk(() => {
@@ -638,7 +638,7 @@ suite("tools", () => {
             });
 
             tools.__set__("funcDescription", () => "my step description");
-            tools.__set__("getDoc", () => "my step doc");
+            tools.__set__("utils", { getDoc: () => "my step doc" });
         });
 
         chunk(() => {
@@ -786,24 +786,6 @@ suite("tools", () => {
             }, {
                 name: "step 4",
             }]);
-        });
-    });
-
-    test("getDoc()", () => {
-        let getDoc;
-
-        beforeChunk(() => {
-            getDoc = tools.__get__("getDoc");
-        });
-
-        chunk(() => {
-            const func = function () {
-                /**
-                 * Hello world!
-                 */
-                return;
-            };
-            expect(getDoc(func)).to.be.equal("  /**\n   * Hello world!\n   */");
         });
     });
 

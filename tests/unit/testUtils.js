@@ -90,4 +90,29 @@ suite("utils", () => {
             expect(errMsg).to.include("selenium");
         });
     });
+
+    test("getDoc()", () => {
+
+        chunk("when doc is", () => {
+            const func = function () {
+                /**
+                 * Hello world!
+                 */
+                return;
+            };
+            expect(utils.getDoc(func)).to.be.equal("  /**\n   * Hello world!\n   */");
+        });
+
+        chunk("when no doc", () => {
+            expect(utils.getDoc(() => {})).to.be.empty;
+        });
+
+        chunk("when doc is empty", () => {
+            const func = function () {
+                /** */
+                return;
+            };
+            expect(utils.getDoc(func)).to.be.empty;
+        });
+    });
 });
