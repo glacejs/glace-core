@@ -1,3 +1,7 @@
+### v1.9.5
+
+- [Added](https://github.com/glacejs/glace-core/commit/8c691af6147d5f9337de53a8dc48884ecc934fd0) function to print function doc in interactive mode.
+
 ### v1.9.4
 
 - [Fixed](https://github.com/glacejs/glace-core/commit/d897137de3507600a67ee1dab1fb4ab0803087f9) bug to use scope in session.
