@@ -30,7 +30,7 @@ suite("reporter/testrail", () => {
 
             chunk(`throws exception if no testrail ${opt}`, () => {
                 CONF.testrail[opt] = null;
-                expect(() => rewire(TESTRAIL_PATH)).to.throw(`'${opt}' isn't specified`);
+                expect(() => rewire(TESTRAIL_PATH)).to.throw(`'${opt}' is not specified`);
             });
         });
     });
