@@ -1,3 +1,7 @@
+### v1.9.6
+
+- [Added](https://github.com/glacejs/glace-core/commit/f765a2bdcc4be3723571acec8452e8e355524ea9) entry points to override test comments in testrail report.
+
 ### v1.9.5
 
 - [Added](https://github.com/glacejs/glace-core/commit/8c691af6147d5f9337de53a8dc48884ecc934fd0) function to print function doc in interactive mode.
