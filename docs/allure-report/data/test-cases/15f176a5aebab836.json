@@ -1,0 +1,92 @@
+{
+  "uid" : "15f176a5aebab836",
+  "name" : "ScopeType",
+  "fullName" : "Session 2018-12-10 19:39:41.ScopeType",
+  "historyId" : "b646c78a729198e8e6097043ba28e91a",
+  "time" : {
+    "start" : 1544463588305,
+    "stop" : 1544463588308,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "instance",
+      "time" : {
+        "start" : 1544463588306,
+        "stop" : 1544463588307,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : ".setType()",
+      "time" : {
+        "start" : 1544463588307,
+        "stop" : 1544463588308,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Session 2018-12-10 19:39:41"
+  }, {
+    "name" : "testClass",
+    "value" : "Session 2018-12-10 19:39:41"
+  }, {
+    "name" : "testMethod",
+    "value" : "ScopeType"
+  }, {
+    "name" : "package",
+    "value" : "Session 2018-12-10 19:39:41"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "15f176a5aebab836.json",
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ ]
+}
