@@ -19,7 +19,7 @@ suite("config", () => {
         delete U.config.args.testrail;
         delete U.config.args.allure;
         delete U.config.args.xunit;
-        delete U.config.args.precise;
+        delete U.config.args.preciseMatch;
         delete U.config.args.g;
         delete U.config.args.grep;
         delete U.config.args.i;
@@ -264,7 +264,7 @@ suite("config", () => {
         });
 
         chunk("custom precise", () => {
-            U.config.args.precise = true;
+            U.config.args.preciseMatch = true;
             config = rewire(CONFIG_PATH);
             expect(config.filter.precise).to.be.true;
         });

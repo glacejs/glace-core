@@ -86,55 +86,64 @@
 - `-h, --help` - Show help.
 
 `Arguments`
-- `--config [path], -c` - Path to JSON file with CLI arguments. Default is `cwd/config.json` (if it exists).
+- `--config [path], -c` - Path to JSON file with CLI arguments. Default is `<cwd>/config.json` if it exists.
 
-**Note!** All options below may be set via `.json` file (see option `--config` above).
+**Note!** All options below may be set via `json` file (see option `--config` above).
 
 `Log`
 - `--stdout-log` - Print log messages to stdout.
-- `--log [path]` - Path to log file. Default is `cwd/glace.log`.
+- `--log [path]` - Path to log file. Default is `<cwd>/glace.log`.
 - `--log-level [level]` - Log level. Supported values are `error`, `warn`, `info`, `verbose`, `debug`, `silly`. Default is `debug`.
 
 `Core`
-- `--user-config [path]` - Path to JS file with configuration which will be merged with override default configuration. Default is `cwd/config.js` (if it exists).
+- `--user-config [path]` - Path to JS file with configuration which will be merged with override default configuration.
+Default is `<cwd>/config.js` if it exists.
 - `--session-name [name]` - Tests run session name. Default value includes word `session` and datetime.
-- `--grep <pattern>, -g` - Filter tests by name or name chunk.
-- `--include <sequence>` - Sequence of test name chunks separated by ` | ` in order to choose tests for run.
-- `--exclude <sequence>` - Sequence of test name chunks separated by ` | ` in order to exclude tests from run.
-- `--precise` - Precise tests inclusion or exclusion (not substring pattern).
-- `--report [path]` - Path to reports folder. Default is `cwd/report`.
-- `--dont-clear-report` - Don't clear previous report on tests run.
+- `--grep <pattern>, -g` - Filter tests by part of name (powered by `mocha`).
+- `--include <sequence>` - **1)** Sequence of test name parts separated by ` | ` in order to choose tests for run, **case-insensitive**.
+For example, `--include "my first test | my second test"` includes these ones in run only.
+**2)** Path to json file with test names or test ids in order to choose them for run. For example, it can be path to file with failed tests,
+which is generated `glace-core` if some tests were failed.
+- `--exclude <sequence>` - **1)** Sequence of test name parts separated by ` | ` in order to exclude tests from run, **case-insensitive**.
+For example, `--exclude "my first test | my second test"` excludes these ones from run.
+**2)** Path to json file with test names or test ids in order to exclude them from run.
+- `--precise-match` - Precise tests inclusion or exclusion matching (check full test name equivalence, not substring matching).
+- `--report [path]` - Path to report folder. Default is `<cwd>/report`.
+- `--dont-clear-report` - Don't clear folder of previous report before tests run.
 - `--dont-check-names` - Don't check test names uniqueness (_usually useful in unit testing_).
-- `--failed-tests-path [path]` - Path to save failed tests in JSON format. Default is `cwd/report/failed-tests.json`.
-- `--root-conftest <path>` - Path to root `conftest.js` which will be loaded before all.
-- `--languages <sequence>` - List of tested languages separated with comma.
+By default test names should be human-readable and unique among other tests in run.
+- `--failed-tests-path [path]` - Path to save failed tests in **json** format. Default is `<cwd>/report/failed-tests.json`.
+If there are failed tests in run, `glace-core` puts its info to json file, which can be used then with `--include` option to rerun failed tests only.
+- `--root-conftest <path>` - Path to root `conftest.js` which will be loaded before tests but after preloads.
+- `--languages <sequence>` - List of tested languages separated with comma. For example, `--languages "ru, en, ee"`.
 - `--retry [times]` - Number of times to retry failed test. Default is `0`.
-- `--chunk-retry [times]` - Number of times to retry failed chunk. Default is `0`.
-- `--chunk-timeout [sec]` - Time to execute chunk or hook, sec. Default is `180`.
+- `--chunk-retry [times]` - Number of times to retry failed chunk (powered by `mocha`). Default is `0`.
+- `--chunk-timeout [sec]` - Time to execute chunk or hook, **sec**. Default is `180`.
 - `--uncaught [type]` - Strategy to process uncaught exceptions. Default value is `log`. Supported values are `log` just to log uncaught exceptions, `fail` to fail test if uncaught exception happened, `mocha` to use default `mocha` mechanism ([unreliable](tutorial-mocha-uncaught.html)).
-- `--kill-procs <sequence>` - List of process names separated with comma, which will be killed before tests run.
+- `--kill-procs <sequence>` - List of process names separated with comma, which will be killed before tests run, **case-sensitive**.
+For example, `--kill-procs "java, chrome, selenium"`.
 - `--debug-on-fail` - Enter to interactive debug mode on step failure. **Incompatible with `--slaves` option**.
-- `--exit-on-fail` - Finish test run on first failure.
+- `--exit-on-fail` - Finish tests run on first failure.
 - `--errors-now` - Print error message immediately when it happened.
 - `--interactive, -i` - Launch interactive mode to execute steps manually in terminal. **Incompatible with `--slaves` option**.
-- `--slaves <number|auto>` - Split tests by slaves and execute them in separated processes in parallel. If it is `auto`, slaves amount will be equal to processor cores amount.
+- `--slaves <number|auto>` - Split tests by slaves and execute them concurrently in separated processes. If it is `auto`, slaves amount will be equal to processor cores amount.
 
 `Plugins`
-- `--list-plugins` - Show plugins only.
-- `--plugins-dir [path]` - Path to custom plugins folder. By default it searches plugins inside folder, where `glace-core` is installed.
-- `--disable-default-plugins` - Disable default plugins.
+- `--list-plugins` - List found plugins and exit.
+- `--plugins-dir [path]` - Path to custom plugins folder.
+- `--disable-default-plugins` - Disable default (autodiscovered) plugins.
 
 `xUnit`
 - `--xunit` - Activate xUnit reporter.
-- `--xunit-path [path]` - Path to xUnit report. Default is `cwd/report/xunit.xml`.
+- `--xunit-path [path]` - Path to xUnit report. Default is `<cwd>/report/xunit.xml`.
 - `--xunit-suite-name [name]` - Tests suite name in xUnit report. By default it's the same as session name.
 
 `Allure`
 - `--allure` - Activate [Allure](https://docs.qameta.io/allure/) reporter.
-- `--allure-dir [path]` - Path to allure reports folder. Default is `cwd/report/allure`.
+- `--allure-dir [path]` - Path to allure reports folder. Default is `<cwd>/report/allure`.
 
 `TestRail`
-- `--testrail` - Activate TestRail reporter.
+- `--testrail` - Activate [TestRail](https://www.gurock.com/testrail) reporter.
 - `--testrail-host <host>` - TestRail host.
 - `--testrail-user <user>` - TestRail username or email.
 - `--testrail-token <token>` - TestRail token.
@@ -145,9 +154,9 @@
 
 `Tools`
 - `--testrail-check` - Check TestRail cases consistency with implemented tests. 
-- `--list-steps [filter]` - List available steps and exit.
-- `--list-tests [filter]` - List collected tests and exit.
-- `--list-fixtures [filter]` - List available fixtures and exit.
+- `--list-steps [filter]` - List available steps and exit. If `filter` is omitted, list all steps.
+- `--list-tests [filter]` - List collected tests and exit. If `filter` is omitted, list all tests.
+- `--list-fixtures [filter]` - List available fixtures and exit. If `filter` is omitted, list all fixtures.
 
 ## Examples
 
