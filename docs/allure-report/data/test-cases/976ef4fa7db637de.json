@@ -1,0 +1,85 @@
+{
+  "uid" : "976ef4fa7db637de",
+  "name" : "on pass",
+  "fullName" : "reporter/base.on pass",
+  "historyId" : "9fb57071aafcede2d1ad60d4459deeff",
+  "time" : {
+    "start" : 1544533482192,
+    "stop" : 1544533482194,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "calls reporters 'pass' method if it exists",
+      "time" : {
+        "start" : 1544533482192,
+        "stop" : 1544533482193,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "calls reporters 'skip' method if it exists",
+      "time" : {
+        "start" : 1544533482193,
+        "stop" : 1544533482193,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testMethod",
+    "value" : "on pass"
+  }, {
+    "name" : "package",
+    "value" : "reporter/base"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "976ef4fa7db637de.json",
+  "parameterValues" : [ ]
+}

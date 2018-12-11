@@ -1,0 +1,70 @@
+{
+  "uid" : "5639046eaa71f1f5",
+  "name" : ".classify()",
+  "fullName" : "classifier..classify()",
+  "historyId" : "4a5d45fe5f0312d21311235a78fec78e",
+  "time" : {
+    "start" : 1544533478676,
+    "stop" : 1544533478678,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "",
+      "time" : {
+        "start" : 1544533478677,
+        "stop" : 1544533478678,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "classifier"
+  }, {
+    "name" : "testClass",
+    "value" : "classifier"
+  }, {
+    "name" : "testMethod",
+    "value" : ".classify()"
+  }, {
+    "name" : "package",
+    "value" : "classifier"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5639046eaa71f1f5.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,175 @@
+{
+  "uid" : "1a6ac2a264a2690a",
+  "name" : "forEachLanguage()",
+  "fullName" : "globals/forEachLanguage.forEachLanguage()",
+  "historyId" : "e962f5b5268f7f9aeabaccc155260fd8",
+  "time" : {
+    "start" : 1544533479901,
+    "stop" : 1544533479909,
+    "duration" : 8
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "with callback only",
+      "time" : {
+        "start" : 1544533479902,
+        "stop" : 1544533479903,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name & callback",
+      "time" : {
+        "start" : 1544533479904,
+        "stop" : 1544533479904,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with options & callback",
+      "time" : {
+        "start" : 1544533479904,
+        "stop" : 1544533479905,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with fixtures & callback",
+      "time" : {
+        "start" : 1544533479905,
+        "stop" : 1544533479906,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name, fixtures & callback",
+      "time" : {
+        "start" : 1544533479906,
+        "stop" : 1544533479907,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name, options & callback",
+      "time" : {
+        "start" : 1544533479907,
+        "stop" : 1544533479908,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with fixtures, options & callback",
+      "time" : {
+        "start" : 1544533479908,
+        "stop" : 1544533479909,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name, fixtures, options & callback",
+      "time" : {
+        "start" : 1544533479909,
+        "stop" : 1544533479909,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 8,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testMethod",
+    "value" : "forEachLanguage()"
+  }, {
+    "name" : "package",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "1a6ac2a264a2690a.json",
+  "parameterValues" : [ ]
+}

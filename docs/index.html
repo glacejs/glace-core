@@ -197,60 +197,69 @@
 </ul>
 <p><code>Arguments</code></p>
 <ul>
-<li><code>--config [path], -c</code> - Path to JSON file with CLI arguments. Default is <code>cwd/config.json</code> (if it exists).</li>
+<li><code>--config [path], -c</code> - Path to JSON file with CLI arguments. Default is <code>&lt;cwd&gt;/config.json</code> if it exists.</li>
 </ul>
-<p><strong>Note!</strong> All options below may be set via <code>.json</code> file (see option <code>--config</code> above).</p>
+<p><strong>Note!</strong> All options below may be set via <code>json</code> file (see option <code>--config</code> above).</p>
 <p><code>Log</code></p>
 <ul>
 <li><code>--stdout-log</code> - Print log messages to stdout.</li>
-<li><code>--log [path]</code> - Path to log file. Default is <code>cwd/glace.log</code>.</li>
+<li><code>--log [path]</code> - Path to log file. Default is <code>&lt;cwd&gt;/glace.log</code>.</li>
 <li><code>--log-level [level]</code> - Log level. Supported values are <code>error</code>, <code>warn</code>, <code>info</code>, <code>verbose</code>, <code>debug</code>, <code>silly</code>. Default is <code>debug</code>.</li>
 </ul>
 <p><code>Core</code></p>
 <ul>
-<li><code>--user-config [path]</code> - Path to JS file with configuration which will be merged with override default configuration. Default is <code>cwd/config.js</code> (if it exists).</li>
+<li><code>--user-config [path]</code> - Path to JS file with configuration which will be merged with override default configuration.
+Default is <code>&lt;cwd&gt;/config.js</code> if it exists.</li>
 <li><code>--session-name [name]</code> - Tests run session name. Default value includes word <code>session</code> and datetime.</li>
-<li><code>--grep &lt;pattern&gt;, -g</code> - Filter tests by name or name chunk.</li>
-<li><code>--include &lt;sequence&gt;</code> - Sequence of test name chunks separated by <code>|</code> in order to choose tests for run.</li>
-<li><code>--exclude &lt;sequence&gt;</code> - Sequence of test name chunks separated by <code>|</code> in order to exclude tests from run.</li>
-<li><code>--precise</code> - Precise tests inclusion or exclusion (not substring pattern).</li>
-<li><code>--report [path]</code> - Path to reports folder. Default is <code>cwd/report</code>.</li>
-<li><code>--dont-clear-report</code> - Don't clear previous report on tests run.</li>
-<li><code>--dont-check-names</code> - Don't check test names uniqueness (<em>usually useful in unit testing</em>).</li>
-<li><code>--failed-tests-path [path]</code> - Path to save failed tests in JSON format. Default is <code>cwd/report/failed-tests.json</code>.</li>
-<li><code>--root-conftest &lt;path&gt;</code> - Path to root <code>conftest.js</code> which will be loaded before all.</li>
-<li><code>--languages &lt;sequence&gt;</code> - List of tested languages separated with comma.</li>
+<li><code>--grep &lt;pattern&gt;, -g</code> - Filter tests by part of name (powered by <code>mocha</code>).</li>
+<li><code>--include &lt;sequence&gt;</code> - <strong>1)</strong> Sequence of test name parts separated by <code>|</code> in order to choose tests for run, <strong>case-insensitive</strong>.
+For example, <code>--include &quot;my first test | my second test&quot;</code> includes these ones in run only.
+<strong>2)</strong> Path to json file with test names or test ids in order to choose them for run. For example, it can be path to file with failed tests,
+which is generated <code>glace-core</code> if some tests were failed.</li>
+<li><code>--exclude &lt;sequence&gt;</code> - <strong>1)</strong> Sequence of test name parts separated by <code>|</code> in order to exclude tests from run, <strong>case-insensitive</strong>.
+For example, <code>--exclude &quot;my first test | my second test&quot;</code> excludes these ones from run.
+<strong>2)</strong> Path to json file with test names or test ids in order to exclude them from run.</li>
+<li><code>--precise-match</code> - Precise tests inclusion or exclusion matching (check full test name equivalence, not substring matching).</li>
+<li><code>--report [path]</code> - Path to report folder. Default is <code>&lt;cwd&gt;/report</code>.</li>
+<li><code>--dont-clear-report</code> - Don't clear folder of previous report before tests run.</li>
+<li><code>--dont-check-names</code> - Don't check test names uniqueness (<em>usually useful in unit testing</em>).
+By default test names should be human-readable and unique among other tests in run.</li>
+<li><code>--failed-tests-path [path]</code> - Path to save failed tests in <strong>json</strong> format. Default is <code>&lt;cwd&gt;/report/failed-tests.json</code>.
+If there are failed tests in run, <code>glace-core</code> puts its info to json file, which can be used then with <code>--include</code> option to rerun failed tests only.</li>
+<li><code>--root-conftest &lt;path&gt;</code> - Path to root <code>conftest.js</code> which will be loaded before tests but after preloads.</li>
+<li><code>--languages &lt;sequence&gt;</code> - List of tested languages separated with comma. For example, <code>--languages &quot;ru, en, ee&quot;</code>.</li>
 <li><code>--retry [times]</code> - Number of times to retry failed test. Default is <code>0</code>.</li>
-<li><code>--chunk-retry [times]</code> - Number of times to retry failed chunk. Default is <code>0</code>.</li>
-<li><code>--chunk-timeout [sec]</code> - Time to execute chunk or hook, sec. Default is <code>180</code>.</li>
+<li><code>--chunk-retry [times]</code> - Number of times to retry failed chunk (powered by <code>mocha</code>). Default is <code>0</code>.</li>
+<li><code>--chunk-timeout [sec]</code> - Time to execute chunk or hook, <strong>sec</strong>. Default is <code>180</code>.</li>
 <li><code>--uncaught [type]</code> - Strategy to process uncaught exceptions. Default value is <code>log</code>. Supported values are <code>log</code> just to log uncaught exceptions, <code>fail</code> to fail test if uncaught exception happened, <code>mocha</code> to use default <code>mocha</code> mechanism (<a href="tutorial-mocha-uncaught.html">unreliable</a>).</li>
-<li><code>--kill-procs &lt;sequence&gt;</code> - List of process names separated with comma, which will be killed before tests run.</li>
+<li><code>--kill-procs &lt;sequence&gt;</code> - List of process names separated with comma, which will be killed before tests run, <strong>case-sensitive</strong>.
+For example, <code>--kill-procs &quot;java, chrome, selenium&quot;</code>.</li>
 <li><code>--debug-on-fail</code> - Enter to interactive debug mode on step failure. <strong>Incompatible with <code>--slaves</code> option</strong>.</li>
-<li><code>--exit-on-fail</code> - Finish test run on first failure.</li>
+<li><code>--exit-on-fail</code> - Finish tests run on first failure.</li>
 <li><code>--errors-now</code> - Print error message immediately when it happened.</li>
 <li><code>--interactive, -i</code> - Launch interactive mode to execute steps manually in terminal. <strong>Incompatible with <code>--slaves</code> option</strong>.</li>
-<li><code>--slaves &lt;number|auto&gt;</code> - Split tests by slaves and execute them in separated processes in parallel. If it is <code>auto</code>, slaves amount will be equal to processor cores amount.</li>
+<li><code>--slaves &lt;number|auto&gt;</code> - Split tests by slaves and execute them concurrently in separated processes. If it is <code>auto</code>, slaves amount will be equal to processor cores amount.</li>
 </ul>
 <p><code>Plugins</code></p>
 <ul>
-<li><code>--list-plugins</code> - Show plugins only.</li>
-<li><code>--plugins-dir [path]</code> - Path to custom plugins folder. By default it searches plugins inside folder, where <code>glace-core</code> is installed.</li>
-<li><code>--disable-default-plugins</code> - Disable default plugins.</li>
+<li><code>--list-plugins</code> - List found plugins and exit.</li>
+<li><code>--plugins-dir [path]</code> - Path to custom plugins folder.</li>
+<li><code>--disable-default-plugins</code> - Disable default (autodiscovered) plugins.</li>
 </ul>
 <p><code>xUnit</code></p>
 <ul>
 <li><code>--xunit</code> - Activate xUnit reporter.</li>
-<li><code>--xunit-path [path]</code> - Path to xUnit report. Default is <code>cwd/report/xunit.xml</code>.</li>
+<li><code>--xunit-path [path]</code> - Path to xUnit report. Default is <code>&lt;cwd&gt;/report/xunit.xml</code>.</li>
 <li><code>--xunit-suite-name [name]</code> - Tests suite name in xUnit report. By default it's the same as session name.</li>
 </ul>
 <p><code>Allure</code></p>
 <ul>
 <li><code>--allure</code> - Activate <a href="https://docs.qameta.io/allure/">Allure</a> reporter.</li>
-<li><code>--allure-dir [path]</code> - Path to allure reports folder. Default is <code>cwd/report/allure</code>.</li>
+<li><code>--allure-dir [path]</code> - Path to allure reports folder. Default is <code>&lt;cwd&gt;/report/allure</code>.</li>
 </ul>
 <p><code>TestRail</code></p>
 <ul>
-<li><code>--testrail</code> - Activate TestRail reporter.</li>
+<li><code>--testrail</code> - Activate <a href="https://www.gurock.com/testrail">TestRail</a> reporter.</li>
 <li><code>--testrail-host &lt;host&gt;</code> - TestRail host.</li>
 <li><code>--testrail-user &lt;user&gt;</code> - TestRail username or email.</li>
 <li><code>--testrail-token &lt;token&gt;</code> - TestRail token.</li>
@@ -262,9 +271,9 @@
 <p><code>Tools</code></p>
 <ul>
 <li><code>--testrail-check</code> - Check TestRail cases consistency with implemented tests. </li>
-<li><code>--list-steps [filter]</code> - List available steps and exit.</li>
-<li><code>--list-tests [filter]</code> - List collected tests and exit.</li>
-<li><code>--list-fixtures [filter]</code> - List available fixtures and exit.</li>
+<li><code>--list-steps [filter]</code> - List available steps and exit. If <code>filter</code> is omitted, list all steps.</li>
+<li><code>--list-tests [filter]</code> - List collected tests and exit. If <code>filter</code> is omitted, list all tests.</li>
+<li><code>--list-fixtures [filter]</code> - List available fixtures and exit. If <code>filter</code> is omitted, list all fixtures.</li>
 </ul>
 <h2>Examples</h2><p>There are <a href="https://github.com/glacejs/glace-core/tree/master/tests/e2e">e2e tests</a> in order to explore <code>glace-core</code> examples.</p>
 <h2>Quality</h2><p><code>glace-core</code> is highly reliable framework. And it's ready to provide confirmation:</p>
@@ -321,7 +330,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-12-10T19:39:38+02:00
+		on 2018-12-11T15:04:35+02:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
