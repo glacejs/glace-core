@@ -87,6 +87,13 @@ suite("cluster", () => {
 
             expect(printArtifactsDir).to.be.calledOnce;
         });
+
+        chunk("does not clear report if it does not exist", async () => {
+            fs.existsSync.returns(false);
+            const cb = sinon.stub();
+            await cluster.launch(cb);
+            expect(u.clearEmptyFolders).to.not.be.called;
+        });
     });
 
     test("killProcs()", () => {

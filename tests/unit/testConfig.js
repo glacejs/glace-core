@@ -30,7 +30,10 @@ suite("config", () => {
         delete U.config.args.retry;
         delete U.config.args.chunkRetry;
         delete U.config.args.slaves;
+        delete U.config.args.include;
+        delete U.config.args.exclude;
         delete process.env.GLACE_SLAVE_ID;
+        delete process.env.GLACE_TEST_IDS;
         log = console.log;
         exit = process.exit;
         U.config.__testmode = true;
@@ -42,6 +45,24 @@ suite("config", () => {
         process.exit = exit;
         U.config.__testmode = false;
         sandbox.restore();
+    });
+
+    test("cluster", () => {
+
+        chunk("default values", () => {
+            expect(config.cluster).to.exist;
+            expect(config.cluster.slavesNum).to.be.equal(0);
+            expect(config.cluster.slaveId).to.be.null;
+            expect(config.cluster.isSlave).to.be.false;
+            expect(config.cluster.isMaster).to.be.false;
+        });
+
+        chunk("with auto number slaves", () => {
+            U.config.args.slaves = "auto";
+            config = rewire(CONFIG_PATH);
+            expect(config.cluster.slavesNum).to.be.a("number");
+            expect(config.cluster.slavesNum).to.be.above(0);
+        });
     });
 
     test("session", () => {
@@ -262,6 +283,7 @@ suite("config", () => {
     test("filter", () => {
 
         chunk("default values", () => {
+            config = rewire(CONFIG_PATH);
             expect(config.filter).to.exist;
             expect(config.filter.grep).to.be.undefined;
             expect(config.filter.precise).to.be.false;
@@ -297,6 +319,25 @@ suite("config", () => {
             expect(config.filter.precise).to.be.false;
         });
 
+        chunk("custom include from files", () => {
+            const tmpPath = save_tmp_filter([
+                {
+                    id: "1_1",
+                    passed_chunk_ids: [1, 2],
+                },
+                {
+                    id: "2_1",
+                },
+                {
+                    id: "2_2",
+                    passed_chunk_ids: [3, 4],
+                },
+            ]);
+            U.config.args.include = tmpPath;
+            config = rewire(CONFIG_PATH);
+            expect(config.chunk.passedIds).to.be.eql([1, 2, 3, 4]);
+        });
+
         chunk("custom exclude", () => {
             const tmpPath = save_tmp_filter();
             U.config.args.exclude = tmpPath;
@@ -307,6 +348,12 @@ suite("config", () => {
             config = rewire(CONFIG_PATH);
             expect(config.filter.exclude).to.be.eql([{ id: "test #1" }, { id: "test #2" }]);
             expect(config.filter.precise).to.be.false;
+        });
+
+        chunk("filtered test ids", () => {
+            process.env.GLACE_TEST_IDS = "1, 2";
+            config = rewire(CONFIG_PATH);
+            expect(config.filter.testIds).to.be.eql([1, 2]);
         });
     });
 
@@ -567,9 +614,10 @@ suite("config", () => {
     });
 });
 
-const save_tmp_filter = () => {
+const save_tmp_filter = data => {
+    data = data || [{ id: "1_1" }];
     const tempPath = temp.path({ prefix: "test", suffix: ".json" });
-    const tempData = JSON.stringify([{ id: "1_1" }]);
+    const tempData = JSON.stringify(data);
     fs.writeFileSync(tempPath, tempData);
     return tempPath;
 };
