@@ -1,0 +1,85 @@
+{
+  "uid" : "6b16830bbc341257",
+  "name" : ".pass()",
+  "fullName" : "allure helper..pass()",
+  "historyId" : "d025372c5843f9cf1b9b5795c1475e75",
+  "time" : {
+    "start" : 1544731436284,
+    "stop" : 1544731436287,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "passes step",
+      "time" : {
+        "start" : 1544731436285,
+        "stop" : 1544731436286,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing",
+      "time" : {
+        "start" : 1544731436286,
+        "stop" : 1544731436287,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "allure helper"
+  }, {
+    "name" : "testClass",
+    "value" : "allure helper"
+  }, {
+    "name" : "testMethod",
+    "value" : ".pass()"
+  }, {
+    "name" : "package",
+    "value" : "allure helper"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "6b16830bbc341257.json",
+  "parameterValues" : [ ]
+}

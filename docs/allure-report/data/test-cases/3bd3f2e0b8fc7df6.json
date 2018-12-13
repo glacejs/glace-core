@@ -1,0 +1,70 @@
+{
+  "uid" : "3bd3f2e0b8fc7df6",
+  "name" : "proxy instance",
+  "fullName" : "allure helper.proxy instance",
+  "historyId" : "ce2bc4ecc6b47f7f9bd8bfcba38c04ad",
+  "time" : {
+    "start" : 1544731436255,
+    "stop" : 1544731436260,
+    "duration" : 5
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "",
+      "time" : {
+        "start" : 1544731436257,
+        "stop" : 1544731436259,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "allure helper"
+  }, {
+    "name" : "testClass",
+    "value" : "allure helper"
+  }, {
+    "name" : "testMethod",
+    "value" : "proxy instance"
+  }, {
+    "name" : "package",
+    "value" : "allure helper"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "3bd3f2e0b8fc7df6.json",
+  "parameterValues" : [ ]
+}

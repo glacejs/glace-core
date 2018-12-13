@@ -1,0 +1,85 @@
+{
+  "uid" : "4a33223539d043fd",
+  "name" : "beforeCb()",
+  "fullName" : "globals/forEachLanguage.beforeCb()",
+  "historyId" : "b8f7d484e117bc3e768f6eafcf0abbf1",
+  "time" : {
+    "start" : 1544731437827,
+    "stop" : 1544731437828,
+    "duration" : 1
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "does nothing if no test case",
+      "time" : {
+        "start" : 1544731437827,
+        "stop" : 1544731437828,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "sets language to test case",
+      "time" : {
+        "start" : 1544731437828,
+        "stop" : 1544731437828,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "testMethod",
+    "value" : "beforeCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/forEachLanguage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "4a33223539d043fd.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,115 @@
+{
+  "uid" : "5c3c91ec98b00063",
+  "name" : ".get()",
+  "fullName" : "plugins module..get()",
+  "historyId" : "24daac4c82cb9371fc4f4290de4ab183",
+  "time" : {
+    "start" : 1544731440014,
+    "stop" : 1544731440018,
+    "duration" : 4
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "gets found plugins",
+      "time" : {
+        "start" : 1544731440015,
+        "stop" : 1544731440016,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "loads system plugins if they are not",
+      "time" : {
+        "start" : 1544731440016,
+        "stop" : 1544731440017,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "filters system plugins if they match custom",
+      "time" : {
+        "start" : 1544731440017,
+        "stop" : 1544731440018,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "concats custom plugins with system",
+      "time" : {
+        "start" : 1544731440018,
+        "stop" : 1544731440018,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "plugins module"
+  }, {
+    "name" : "testClass",
+    "value" : "plugins module"
+  }, {
+    "name" : "testMethod",
+    "value" : ".get()"
+  }, {
+    "name" : "package",
+    "value" : "plugins module"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5c3c91ec98b00063.json",
+  "parameterValues" : [ ]
+}

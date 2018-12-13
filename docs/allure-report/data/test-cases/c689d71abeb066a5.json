@@ -1,0 +1,100 @@
+{
+  "uid" : "c689d71abeb066a5",
+  "name" : "on test",
+  "fullName" : "reporter/base.on test",
+  "historyId" : "fa1c04bb5e4729dc07c7b007f508e2db",
+  "time" : {
+    "start" : 1544731440120,
+    "stop" : 1544731440123,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "does nothing if no reporters are registered",
+      "time" : {
+        "start" : 1544731440121,
+        "stop" : 1544731440122,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing if reporters don't have chunk method",
+      "time" : {
+        "start" : 1544731440122,
+        "stop" : 1544731440122,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "calls reporters' chunk method if it exists",
+      "time" : {
+        "start" : 1544731440122,
+        "stop" : 1544731440123,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testMethod",
+    "value" : "on test"
+  }, {
+    "name" : "package",
+    "value" : "reporter/base"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c689d71abeb066a5.json",
+  "parameterValues" : [ ]
+}

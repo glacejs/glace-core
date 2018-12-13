@@ -1,0 +1,100 @@
+{
+  "uid" : "cce9335dceeb73a8",
+  "name" : "._run()",
+  "fullName" : "run.._run()",
+  "historyId" : "a6ee01c30e8586990f9cfdc030bdfe2",
+  "time" : {
+    "start" : 1544731440473,
+    "stop" : 1544731440475,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "returns passed code",
+      "time" : {
+        "start" : 1544731440473,
+        "stop" : 1544731440474,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "returns failed code",
+      "time" : {
+        "start" : 1544731440474,
+        "stop" : 1544731440474,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "return forced failed code",
+      "time" : {
+        "start" : 1544731440474,
+        "stop" : 1544731440475,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "run"
+  }, {
+    "name" : "testClass",
+    "value" : "run"
+  }, {
+    "name" : "testMethod",
+    "value" : "._run()"
+  }, {
+    "name" : "package",
+    "value" : "run"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "cce9335dceeb73a8.json",
+  "parameterValues" : [ ]
+}

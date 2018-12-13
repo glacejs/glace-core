@@ -1,0 +1,100 @@
+{
+  "uid" : "8577d536369e9a7d",
+  "name" : "filterFixtures()",
+  "fullName" : "tools.filterFixtures()",
+  "historyId" : "cdf4ff3e104253447420358cb2f6da5b",
+  "time" : {
+    "start" : 1544731440764,
+    "stop" : 1544731440768,
+    "duration" : 4
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "returns nothing if filter is mismatched",
+      "time" : {
+        "start" : 1544731440766,
+        "stop" : 1544731440767,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "returns fixtures filtered by name",
+      "time" : {
+        "start" : 1544731440767,
+        "stop" : 1544731440767,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "returns fixtures filtered by doc",
+      "time" : {
+        "start" : 1544731440767,
+        "stop" : 1544731440768,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "tools"
+  }, {
+    "name" : "testClass",
+    "value" : "tools"
+  }, {
+    "name" : "testMethod",
+    "value" : "filterFixtures()"
+  }, {
+    "name" : "package",
+    "value" : "tools"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "8577d536369e9a7d.json",
+  "parameterValues" : [ ]
+}

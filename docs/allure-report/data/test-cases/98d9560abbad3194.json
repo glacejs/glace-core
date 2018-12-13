@@ -1,0 +1,100 @@
+{
+  "uid" : "98d9560abbad3194",
+  "name" : ".accountError()",
+  "fullName" : "utils..accountError()",
+  "historyId" : "88f3465599a39f4a3d590f9887cc50b5",
+  "time" : {
+    "start" : 1544731440792,
+    "stop" : 1544731440794,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "logs session error if no tests are run",
+      "time" : {
+        "start" : 1544731440792,
+        "stop" : 1544731440793,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "logs test error if tests are present",
+      "time" : {
+        "start" : 1544731440793,
+        "stop" : 1544731440794,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "logs empty error",
+      "time" : {
+        "start" : 1544731440794,
+        "stop" : 1544731440794,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "utils"
+  }, {
+    "name" : "testClass",
+    "value" : "utils"
+  }, {
+    "name" : "testMethod",
+    "value" : ".accountError()"
+  }, {
+    "name" : "package",
+    "value" : "utils"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "98d9560abbad3194.json",
+  "parameterValues" : [ ]
+}
