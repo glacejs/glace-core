@@ -89,6 +89,19 @@ suite("utils", () => {
             expect(errMsg).to.include("error stack");
             expect(errMsg).to.include("selenium");
         });
+
+        chunk("logs empty error", () => {
+            conf.test.curCase = {
+                addError: sinon.spy(),
+            };
+
+            utils.accountError("my chunk", {});
+
+            expect(conf.test.curCase.addError).to.be.calledOnce;
+
+            const errMsg = conf.test.curCase.addError.args[0][0];
+            expect(errMsg).to.equal("my chunk");
+        });
     });
 
     test("getDoc()", () => {
