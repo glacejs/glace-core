@@ -235,6 +235,11 @@ suite("Steps", () => {
             expect(setupDebug()).to.include("- search");
             expect(global_.search()).to.be.equal("list of steps");
             global_.doc((() => {}));
+            global_.doc(() => {
+                /**
+                 * My func.
+                 */
+            });
             expect(global_.doc).to.be.a("function");
         });
     });
