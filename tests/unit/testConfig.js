@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require("fs");
+const path = require("path");
 
 const temp = require("temp").track();
 const U = require("glace-utils");
@@ -28,6 +29,8 @@ suite("config", () => {
         delete U.config.args.dontCheckNames;
         delete U.config.args.retry;
         delete U.config.args.chunkRetry;
+        delete U.config.args.slaves;
+        delete process.env.GLACE_SLAVE_ID;
         log = console.log;
         exit = process.exit;
         U.config.__testmode = true;
@@ -222,6 +225,19 @@ suite("config", () => {
             U.config.args.reportDir = "my-report";
             config = rewire(CONFIG_PATH);
             expect(config.report.dir).to.endWith("my-report");
+        });
+
+        chunk("master dir", () => {
+            U.config.args.slaves = 1;
+            config = rewire(CONFIG_PATH);
+            expect(config.report.dir).to.endWith(path.join("report", "master"));
+        });
+
+        chunk("slave dir", () => {
+            U.config.args.slaves = 1;
+            process.env.GLACE_SLAVE_ID = 1;
+            config = rewire(CONFIG_PATH);
+            expect(config.report.dir).to.endWith(path.join("report", "slave-1"));
         });
 
         chunk("disabled clear", () => {
