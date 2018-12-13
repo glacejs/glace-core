@@ -66,10 +66,16 @@ suite("reporter/stdout", () => {
             stdoutReporter.__set__("indents", 0);
         });
 
-        chunk(() => {
+        chunk("prints scope details", () => {
             stdoutReporter.scope({ title: "my scope" });
             expect(stdout).to.be.calledTwice;
             expect(stdout.args[1][0]).to.be.include("scope: my scope");
+        });
+
+        chunk("prints nothing", () => {
+            stdoutReporter.__set__("indents", -1);
+            stdoutReporter.scope({ title: "my scope" });
+            expect(stdout).to.not.be.called;
         });
     });
 
@@ -93,10 +99,16 @@ suite("reporter/stdout", () => {
             stdoutReporter.__set__("indents", 0);
         });
 
-        chunk(() => {
+        chunk("prints suite details", () => {
             stdoutReporter.suite({ title: "my suite" });
             expect(stdout).to.be.calledTwice;
             expect(stdout.args[1][0]).to.be.include("suite: my suite");
+        });
+
+        chunk("prints nothing", () => {
+            stdoutReporter.__set__("indents", -1);
+            stdoutReporter.suite({ title: "my suite" });
+            expect(stdout).to.not.be.called;
         });
     });
 
@@ -120,10 +132,16 @@ suite("reporter/stdout", () => {
             stdoutReporter.__set__("indents", 0);
         });
 
-        chunk(() => {
+        chunk("prints test details", () => {
             stdoutReporter.test({ title: "my test" });
             expect(stdout).to.be.calledTwice;
             expect(stdout.args[1][0]).to.be.include("test: my test");
+        });
+
+        chunk("prints nothing", () => {
+            stdoutReporter.__set__("indents", -1);
+            stdoutReporter.test({ title: "my test" });
+            expect(stdout).to.not.be.called;
         });
     });
 
@@ -197,6 +215,13 @@ suite("reporter/stdout", () => {
             expect(stdout).to.be.calledOnce;
             expect(stdout.args[0][0]).to.include("✖ chunk");
             expect(stdout.args[0][0]).to.not.include("✖ chunk:");
+        });
+
+        chunk("prints chunk without name", () => {
+            stdoutReporter.fail({ type: "hook" });
+            expect(stdout).to.be.calledOnce;
+            expect(stdout.args[0][0]).to.include("✖ hook");
+            expect(stdout.args[0][0]).to.not.include("✖ hook:");
         });
 
         chunk("prints test error", () => {
@@ -354,6 +379,17 @@ suite("reporter/stdout", () => {
             expect(stdout.args[2][0]).to.include("2 executed chunks");
             expect(stdout.args[4][0]).to.include("Summary tests time is");
             expect(stdout.args[4][1]).to.include("1m 30s");
+        });
+
+        chunk("prints statistics of one chunk", () => {
+            conf.test = {
+                cases: [
+                    { duration: 60000, chunks: ["my chunk"] },
+                ],
+            };
+            printStatistics(0, 2);
+            expect(stdout.args[0][0]).to.include("2").and.include("failed tests");
+            expect(stdout.args[1][0]).to.include("1 executed chunk");
         });
 
         chunk("prints nothing", () => {

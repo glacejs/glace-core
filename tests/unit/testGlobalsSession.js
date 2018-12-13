@@ -96,6 +96,15 @@ suite("globals/session", () => {
             expect(sessCb.args[0][1]).to.be.eql(["my fixture"]);
             expect(sessCb.args[0][2]).to.be.equal(cb);
         });
+
+        chunk("with fixtures & callback", () => {
+            const cb = () => {};
+            sess(["my fixture"], cb);
+            expect(suite_).to.be.calledOnce;
+            expect(suite_.args[0][0]).to.be.equal("my session");
+            expect(suite_.args[0][1]).to.be.eql(["my fixture"]);
+            expect(suite_.args[0][2]).to.be.equal("sessCb");
+        });
     });
 
     test("sessCb()", () => {

@@ -144,6 +144,15 @@ suite("run", () => {
             expect(mocha.run).to.be.calledOnce;
             expect(fin).to.be.calledOnce;
         });
+
+        chunk("return forced failed code", () => {
+            mocha.run = sinon.spy(cb => cb(0));
+            CONF.session.isPassed = false;
+            _run(mocha, fin);
+            expect(code).to.be.equal(1);
+            expect(mocha.run).to.be.calledOnce;
+            expect(fin).to.be.calledOnce;
+        });
     });
 
     test(".resetReport()", () => {

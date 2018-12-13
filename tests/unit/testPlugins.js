@@ -296,5 +296,11 @@ suite("plugins module", () => {
             u.cwd = "/path/to/cwd";
             expect(dirsToSearchPlugins()).to.be.eql(["/path/to/cwd", "/path/to/plugins"]);
         });
+
+        chunk("does not inject main dir", () => {
+            require_.main = { filename: "/path/to/plugins/index.js" };
+            plugins.__set__("module", { paths: ["/path/to/plugins"]});
+            expect(dirsToSearchPlugins()).to.be.eql(["/path/to/plugins"]);
+        });
     });
 });

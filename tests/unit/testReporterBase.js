@@ -114,6 +114,11 @@ suite("reporter/base", () => {
             onEnd();
             expect(reporters[0].end).to.be.calledOnce;
         });
+
+        chunk("does nothing if no reporter does not have end method", () => {
+            reporters.push({});
+            onEnd();
+        });
     });
 
     test("on suite", () => {
@@ -317,6 +322,11 @@ suite("reporter/base", () => {
             expect(reporters[0].skip).to.be.calledOnce;
             expect(reporters[0].skip.args[0][0]).to.be.eql({ state: "skipped" });
         });
+
+        chunk("does nothing if reporter has no method", () => {
+            reporters.push({});
+            onPass({ state: "skipped" });
+        });
     });
 
     test("on fail", () => {
@@ -372,6 +382,11 @@ suite("reporter/base", () => {
 
             expect(runner.emit).to.be.calledOnce;
             expect(runner.emit.args[0][0]).to.be.equal("end");
+        });
+
+        chunk("does nothing if no reporter fail method", () => {
+            reporters.push({});
+            onFail({ title: "my chunk" }, "error");
         });
     });
 
@@ -542,6 +557,13 @@ suite("reporter/base", () => {
             expect(log.error).to.be.calledOnce;
             expect(log.error.args[0][0].toString()).to.include("BOOM!");
         });
+
+        chunk("does nothing if no report done methods", async () => {
+            reporters[0] = {};
+            await glaceReporter.done(failures, fn);
+            expect(fn).to.be.calledOnce;
+            expect(fn.args[0][0]).to.be.equal(failures);
+        });
     });
 
     test("passChunkId()", () => {
@@ -584,6 +606,14 @@ suite("reporter/base", () => {
             expect(conf.chunk.curId).to.be.null;
             expect(conf.test.curCase.addPassedChunkId).to.be.calledOnce;
             expect(conf.test.curCase.addPassedChunkId.args[0][0]).to.be.equal(1);
+        });
+
+        chunk("does not add chunk if no test", () => {
+            conf.chunk.curId = 1;
+            conf.test = {};
+            passChunkId();
+            expect(conf.chunk.passedIds).to.be.eql([1]);
+            expect(conf.chunk.curId).to.be.null;
         });
     });
 

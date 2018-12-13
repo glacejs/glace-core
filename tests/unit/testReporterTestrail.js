@@ -240,4 +240,20 @@ suite("reporter/testrail", () => {
             expect(console_.log.args[2][0]).to.include("TestRail report is");
         });
     });
+
+    test("processErrors()", () => {
+
+        chunk("process several errors", () => {
+            const result = testrailReporter.processErrors(["first", "second"]);
+            expect(result).to.be.equal("\n\nErrors:\n1. first\n\n2. second");
+        });
+    });
+
+    test("processExtras()", () => {
+
+        chunk("process several extras", () => {
+            const result = testrailReporter.processExtras(["first", "second"]);
+            expect(result).to.be.equal("\n\nExtra details:\n1. first\n\n2. second");
+        });
+    });
 });

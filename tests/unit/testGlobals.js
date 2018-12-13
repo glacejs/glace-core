@@ -85,5 +85,11 @@ suite("globals", () => {
             expect(x.c()).to.be.undefined;
             expect(x.c).to.be.calledOnce;
         });
+
+        chunk("skips reserved properties", () => {
+            const reserved = () => {};
+            const stubbed = stubObject({ __reserved: reserved });
+            expect(stubbed.__reserved).to.be.equal(reserved);
+        });
     });
 });
