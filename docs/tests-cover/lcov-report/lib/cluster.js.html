@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>69/69</span>
+        <span class='fraction'>68/68</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>64/64</span>
+        <span class='fraction'>62/62</span>
       </div>
     </div>
     <p class="quiet">
@@ -164,7 +164,20 @@
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,6 +208,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,8 +223,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -215,16 +231,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,8 +307,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 &nbsp;
 /**
- * Contains code to split tests by slaves and launch them in parallel with
- * separated processes.
+ * **Is used to execute tests concurrently in subprocesses.**
+ *
+ * Scheduler process is named `master`, subprocesses with tests are `slaves`.
+ * `Master` uses simple scheduling, splitting tests on parts by `slaves` number.
  *
  * @module
  */
@@ -305,14 +329,19 @@ const tools = require("./tools");
 &nbsp;
 module.exports = {
     /**
-     * Launch tests on slave(s).
+     * Launches tests in subprocesses.
      *
      * @async
+     * @instance
      * @function
-     * @arg {function} [cb] - Callback function to call at the end.
-     * @return {Promise&lt;number|void&gt;} - Result exit code if callback isn't passed.
+     * @arg {function} [cb] - Callback function executing at the end.
+     * @arg {number} cb.exitCode - Subprocesses summary exit code.
+     * @return {Promise&lt;number|*&gt;} Exit code if callback isn't passed,
+     * or result providing by callback.
      */
     launch: async cb =&gt; {
+        cb = cb || (o =&gt; o);
+&nbsp;
         resetArtifactsDir();
         await killProcs();
 &nbsp;
@@ -322,9 +351,7 @@ module.exports = {
         const procs = [];
 &nbsp;
         _.range(1, CONF.cluster.slavesNum + 1).forEach(i =&gt; {
-            procs.push(new Promise(resolve =&gt; {
-                launchSlave(i, cmd, argv, testIds)(resolve);
-            }));
+            procs.push(new Promise(launchSlave(i, cmd, argv, testIds)));
         });
 &nbsp;
         const codes = await Promise.all(procs);
@@ -332,20 +359,26 @@ module.exports = {
         printArtifactsDir();
 &nbsp;
         const resultCode = calcExitCode(codes);
-        if (cb) {
-            cb(resultCode);
-        } else {
-            return resultCode;
-        }
+        return cb(resultCode);
     },
 };
 &nbsp;
+/**
+ * Kills requested processes one time in `master`. In `slaves` killing is disabled.
+ *
+ * @ignore
+ */
 const killProcs = async () =&gt; {
     for (const procName of (CONF.session.killProcs || [])) {
         await U.killProcs(procName);
     }
 };
 &nbsp;
+/**
+ * Artifacts folder includes `master` report and `slaves` reports.
+ *
+ * @ignore
+ */
 const resetArtifactsDir = () =&gt; {
     if (CONF.report.clear &amp;&amp; fs.existsSync(CONF.cluster.artifactsDir)) {
         fse.removeSync(CONF.cluster.artifactsDir);
@@ -406,7 +439,7 @@ const endSlave = (resolve, i) =&gt; code =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Dec 13 2018 22:04:00 GMT+0200 (EET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 23:30:20 GMT+0200 (EET)
 </div>
 </div>
 <script src="../prettify.js"></script>
