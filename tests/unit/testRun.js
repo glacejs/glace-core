@@ -27,7 +27,7 @@ suite("run", () => {
 
             conf = {
                 session: {},
-                chunk: {},
+                chunk: { timeout: 1000, retries: 0 },
                 test: {},
                 tools: {},
                 cluster: {},

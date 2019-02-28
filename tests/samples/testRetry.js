@@ -1,7 +1,7 @@
 "use strict";
 
-var i = 0,
-    j = 0;
+global.i = global.i || 0,
+global.j = global.j || 0;
 
 suite("retry", () => {
 
