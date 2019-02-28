@@ -1,3 +1,7 @@
+### v1.9.7
+
+- Updated dependencies to latest versions.
+
 ### v1.9.6
 
 - [Added](https://github.com/glacejs/glace-core/commit/f765a2bdcc4be3723571acec8452e8e355524ea9) entry points to override test comments in testrail report.
