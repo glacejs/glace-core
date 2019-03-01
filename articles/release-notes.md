@@ -1,3 +1,7 @@
+### v1.9.8
+
+- Updated `glace-utils` to fresh version.
+
 ### v1.9.7
 
 - Updated dependencies to latest versions.
