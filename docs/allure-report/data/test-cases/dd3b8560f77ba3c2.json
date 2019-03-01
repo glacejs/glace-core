@@ -1,0 +1,85 @@
+{
+  "uid" : "dd3b8560f77ba3c2",
+  "name" : ".debug()",
+  "fullName" : "Steps..debug()",
+  "historyId" : "c6aac1a34fb5c06b6d042edaa760481d",
+  "time" : {
+    "start" : 1551413815459,
+    "stop" : 1551413815462,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "",
+      "time" : {
+        "start" : 1551413815460,
+        "stop" : 1551413815461,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Stop timer",
+        "time" : {
+          "start" : 1551413815460,
+          "stop" : 1551413815460,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Steps"
+  }, {
+    "name" : "testClass",
+    "value" : "Steps"
+  }, {
+    "name" : "testMethod",
+    "value" : ".debug()"
+  }, {
+    "name" : "package",
+    "value" : "Steps"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "dd3b8560f77ba3c2.json",
+  "parameterValues" : [ ]
+}

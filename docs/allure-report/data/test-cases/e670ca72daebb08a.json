@@ -1,0 +1,85 @@
+{
+  "uid" : "e670ca72daebb08a",
+  "name" : "afterCb()",
+  "fullName" : "globals/test.afterCb()",
+  "historyId" : "c8c0145139079246857f9135be666e63",
+  "time" : {
+    "start" : 1551413812780,
+    "stop" : 1551413812782,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "ends as failed",
+      "time" : {
+        "start" : 1551413812780,
+        "stop" : 1551413812781,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ends as passed",
+      "time" : {
+        "start" : 1551413812781,
+        "stop" : 1551413812782,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/test"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/test"
+  }, {
+    "name" : "testMethod",
+    "value" : "afterCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e670ca72daebb08a.json",
+  "parameterValues" : [ ]
+}

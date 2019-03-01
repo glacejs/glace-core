@@ -1,0 +1,85 @@
+{
+  "uid" : "eed2ae4f51adb10a",
+  "name" : "killProcs()",
+  "fullName" : "cluster.killProcs()",
+  "historyId" : "99db34bc0a50367be845e062ef364137",
+  "time" : {
+    "start" : 1551413811076,
+    "stop" : 1551413811078,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "kills required processes",
+      "time" : {
+        "start" : 1551413811077,
+        "stop" : 1551413811077,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing if no processes to kill",
+      "time" : {
+        "start" : 1551413811078,
+        "stop" : 1551413811078,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "cluster"
+  }, {
+    "name" : "testClass",
+    "value" : "cluster"
+  }, {
+    "name" : "testMethod",
+    "value" : "killProcs()"
+  }, {
+    "name" : "package",
+    "value" : "cluster"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "eed2ae4f51adb10a.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,85 @@
+{
+  "uid" : "f5fe95eeab6d052f",
+  "name" : "printSkippedTests()",
+  "fullName" : "reporter/stdout.printSkippedTests()",
+  "historyId" : "dacce545426f084f029e4def77993964",
+  "time" : {
+    "start" : 1551413815132,
+    "stop" : 1551413815135,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "prints info with details",
+      "time" : {
+        "start" : 1551413815133,
+        "stop" : 1551413815134,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "prints info without details",
+      "time" : {
+        "start" : 1551413815134,
+        "stop" : 1551413815135,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "testMethod",
+    "value" : "printSkippedTests()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "f5fe95eeab6d052f.json",
+  "parameterValues" : [ ]
+}
