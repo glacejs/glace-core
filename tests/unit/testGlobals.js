@@ -26,8 +26,23 @@ suite("globals", () => {
     });
     
     test("global rewire", () => {
-        chunk("exists", () => {
-            expect(rewire).to.exist;
+        let rewire_ = rewire("../../lib/globals/rewire");
+
+        afterChunk(() => {
+            rewire_.__reset__();
+        });
+
+        chunk("imports local module", () => {
+            expect(rewire_("../../lib/index")).to.exist;
+        });
+
+        chunk("available in interactive mode", () => {
+            rewire_.__set__("getCallerPath", () => null);
+            expect(rewire_("./lib/index")).to.exist;
+        });
+
+        chunk("throws exception on global module", () => {
+            expect(() => rewire_("fs")).to.throw("no such file or directory");
         });
     });
     
