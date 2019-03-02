@@ -1,3 +1,7 @@
+### v1.9.9
+
+- [Fixed](https://github.com/glacejs/glace-core/issues/270) bug that `rewire` didn't work in interactive mode.
+
 ### v1.9.8
 
 - Updated `glace-utils` to fresh version.
