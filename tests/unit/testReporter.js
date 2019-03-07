@@ -21,6 +21,11 @@ suite("reporter", () => {
         let base, plugins, require_;
 
         beforeChunk(() => {
+            CONF.xunit.use = false;
+            CONF.allure.use = false;
+            CONF.report.dots = false;
+            CONF.testrail.use = false;
+
             base = { register: sinon.spy() };
             reporter.__set__("base", base);
 
@@ -32,13 +37,16 @@ suite("reporter", () => {
         });
 
         chunk("activates default reporter", () => {
-            CONF.testrail.use = false;
-            CONF.xunit.use = false;
-            CONF.allure.use = false;
-
             reporter();
             expect(base.register).to.be.calledOnce;
             expect(base.register.args[0][0]).to.be.equal("./stdout");
+        });
+
+        chunk("uses dots as default reporter", () => {
+            CONF.report.dots = true;
+            reporter();
+            expect(base.register).to.be.calledOnce;
+            expect(base.register.args[0][0]).to.be.equal("./dots");
         });
 
         chunk("activates optional reporters", () => {

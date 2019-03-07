@@ -20,6 +20,7 @@ suite("config", () => {
         delete U.config.args.testrail;
         delete U.config.args.allure;
         delete U.config.args.xunit;
+        delete U.config.args.dots;
         delete U.config.args.preciseMatch;
         delete U.config.args.g;
         delete U.config.args.grep;
@@ -235,11 +236,18 @@ suite("config", () => {
 
         chunk("default values", () => {
             expect(config.report).to.exist;
+            expect(config.report.dots).to.be.false;
             expect(config.report.dir).to.endWith("report");
             expect(config.report.clear).to.be.true;
             expect(config.report.errorsNow).to.be.false;
             expect(config.report.failedTestsPath).to.endWith("failed-tests.json");
             expect(config.report.failedTestsPath).to.startWith(config.report.dir);
+        });
+
+        chunk("dots reporter", () => {
+            U.config.args.dots = true;
+            config = rewire(CONFIG_PATH);
+            expect(config.report.dots).to.be.true;
         });
 
         chunk("custom dir", () => {
