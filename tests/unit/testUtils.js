@@ -128,4 +128,63 @@ suite("utils", () => {
             expect(utils.getDoc(func)).to.be.empty;
         });
     });
+
+    test(".printTestErrors()", () => {
+        let log;
+
+        beforeChunk(() => {
+            log = sinon.stub();
+        });
+
+        chunk("prints test errors", () => {
+            utils.printTestErrors(
+                [{ name: "my test" , errors: ["my error"] }], log);
+            expect(log).to.have.callCount(6);
+            expect(log.args[1][0]).to.be.equal("\u001b[1mTEST FAILURES:\u001b[22m");
+            expect(log.args[3][0]).to.be.equal("\u001b[1m\u001b[36mtest: my test\u001b[39m\u001b[22m");
+            expect(log.args[5][0]).to.be.equal("\u001b[1m\u001b[31mmy error\u001b[39m\u001b[22m");
+        });
+
+        chunk("does nothing", () => {
+            utils.printTestErrors([], log);
+            expect(log).to.not.be.called;
+        });
+
+        chunk("uses default logger", () => {
+            utils.__set__("console", { log: log });
+            utils.printTestErrors([{ name: "my test" , errors: ["my error"] }]);
+            expect(log).to.have.callCount(6);
+        });
+    });
+
+    test(".printSessionErrors()", () => {
+        let log, conf;
+
+        beforeChunk(() => {
+            log = sinon.stub();
+            conf = {};
+            utils.__set__("CONF", conf);
+        });
+
+        chunk("prints session errors", () => {
+            conf.session = { errors: ["my error"] };
+            utils.printSessionErrors(log);
+            expect(log).to.have.callCount(4);
+            expect(log.args[1][0]).to.be.equal("\u001b[1mOUTTEST FAILURES:\u001b[22m");
+            expect(log.args[3][0]).to.be.equal("\u001b[1m\u001b[31mmy error\u001b[39m\u001b[22m");
+        });
+
+        chunk("does nothing", () => {
+            conf.session = { errors: [] };
+            utils.printSessionErrors(log);
+            expect(log).to.not.be.called;
+        });
+
+        chunk("uses default logger", () => {
+            utils.__set__("console", { log: log });
+            conf.session = { errors: ["my error"] };
+            utils.printSessionErrors();
+            expect(log).to.have.callCount(4);
+        });
+    });
 });
