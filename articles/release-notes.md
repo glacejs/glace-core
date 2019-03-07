@@ -1,3 +1,7 @@
+### v2.0.1
+
+- [Added](https://github.com/glacejs/glace-core/pull/273) `dots` reporter.
+
 ### v2.0.0
 
 - Fixed bug in `rewire` caller path calculation.
