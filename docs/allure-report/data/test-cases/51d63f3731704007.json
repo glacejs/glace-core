@@ -1,0 +1,85 @@
+{
+  "uid" : "51d63f3731704007",
+  "name" : "loadPlugins()",
+  "fullName" : "plugins module.loadPlugins()",
+  "historyId" : "7f09bba634a45e3c9089001f673f0914",
+  "time" : {
+    "start" : 1551936805735,
+    "stop" : 1551936805738,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "loads plugins",
+      "time" : {
+        "start" : 1551936805735,
+        "stop" : 1551936805736,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "throws error if plugin can't be loaded",
+      "time" : {
+        "start" : 1551936805736,
+        "stop" : 1551936805737,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "plugins module"
+  }, {
+    "name" : "testClass",
+    "value" : "plugins module"
+  }, {
+    "name" : "testMethod",
+    "value" : "loadPlugins()"
+  }, {
+    "name" : "package",
+    "value" : "plugins module"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "51d63f3731704007.json",
+  "parameterValues" : [ ]
+}

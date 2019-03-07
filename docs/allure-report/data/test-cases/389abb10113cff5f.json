@@ -1,0 +1,85 @@
+{
+  "uid" : "389abb10113cff5f",
+  "name" : ".addDescription()",
+  "fullName" : "allure helper..addDescription()",
+  "historyId" : "5adebab0723f5fa5b0d87de2a2232ab6",
+  "time" : {
+    "start" : 1551936802232,
+    "stop" : 1551936802235,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "adds description",
+      "time" : {
+        "start" : 1551936802233,
+        "stop" : 1551936802234,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing",
+      "time" : {
+        "start" : 1551936802234,
+        "stop" : 1551936802235,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "allure helper"
+  }, {
+    "name" : "testClass",
+    "value" : "allure helper"
+  }, {
+    "name" : "testMethod",
+    "value" : ".addDescription()"
+  }, {
+    "name" : "package",
+    "value" : "allure helper"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "389abb10113cff5f.json",
+  "parameterValues" : [ ]
+}

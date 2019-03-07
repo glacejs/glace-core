@@ -1,0 +1,85 @@
+{
+  "uid" : "c6fee0d9f327df30",
+  "name" : ".scope()",
+  "fullName" : "reporter/stdout..scope()",
+  "historyId" : "50dbd845670f43c7f3848d3efc31a07b",
+  "time" : {
+    "start" : 1551936805873,
+    "stop" : 1551936805875,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "prints scope details",
+      "time" : {
+        "start" : 1551936805874,
+        "stop" : 1551936805875,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "prints nothing",
+      "time" : {
+        "start" : 1551936805875,
+        "stop" : 1551936805875,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "testMethod",
+    "value" : ".scope()"
+  }, {
+    "name" : "package",
+    "value" : "reporter/stdout"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c6fee0d9f327df30.json",
+  "parameterValues" : [ ]
+}

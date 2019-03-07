@@ -1,0 +1,100 @@
+{
+  "uid" : "308adb9fd115ebef",
+  "name" : "on pass",
+  "fullName" : "reporter/base.on pass",
+  "historyId" : "9fb57071aafcede2d1ad60d4459deeff",
+  "time" : {
+    "start" : 1551936805821,
+    "stop" : 1551936805824,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "calls reporters 'pass' method if it exists",
+      "time" : {
+        "start" : 1551936805822,
+        "stop" : 1551936805822,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "calls reporters 'skip' method if it exists",
+      "time" : {
+        "start" : 1551936805823,
+        "stop" : 1551936805823,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing if reporter has no method",
+      "time" : {
+        "start" : 1551936805823,
+        "stop" : 1551936805824,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter/base"
+  }, {
+    "name" : "testMethod",
+    "value" : "on pass"
+  }, {
+    "name" : "package",
+    "value" : "reporter/base"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "308adb9fd115ebef.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,100 @@
+{
+  "uid" : "159feeb9a8232a0b",
+  "name" : ".printTestErrors()",
+  "fullName" : "utils..printTestErrors()",
+  "historyId" : "b81db5201c6f0304455d6397603991ff",
+  "time" : {
+    "start" : 1551936806338,
+    "stop" : 1551936806341,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "prints test errors",
+      "time" : {
+        "start" : 1551936806339,
+        "stop" : 1551936806340,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "does nothing",
+      "time" : {
+        "start" : 1551936806340,
+        "stop" : 1551936806340,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "uses default logger",
+      "time" : {
+        "start" : 1551936806340,
+        "stop" : 1551936806341,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "utils"
+  }, {
+    "name" : "testClass",
+    "value" : "utils"
+  }, {
+    "name" : "testMethod",
+    "value" : ".printTestErrors()"
+  }, {
+    "name" : "package",
+    "value" : "utils"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "159feeb9a8232a0b.json",
+  "parameterValues" : [ ]
+}

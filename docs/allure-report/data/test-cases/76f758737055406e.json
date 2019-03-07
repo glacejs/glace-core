@@ -1,0 +1,160 @@
+{
+  "uid" : "76f758737055406e",
+  "name" : "chunk()",
+  "fullName" : "globals/chunk.chunk()",
+  "historyId" : "60db0a2c80669ab92e0319c65f687cd3",
+  "time" : {
+    "start" : 1551936803556,
+    "stop" : 1551936803562,
+    "duration" : 6
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "with callback only",
+      "time" : {
+        "start" : 1551936803556,
+        "stop" : 1551936803557,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name & callback",
+      "time" : {
+        "start" : 1551936803558,
+        "stop" : 1551936803558,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with name, opts & callback",
+      "time" : {
+        "start" : 1551936803559,
+        "stop" : 1551936803559,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "with opts & callback",
+      "time" : {
+        "start" : 1551936803559,
+        "stop" : 1551936803560,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "skipped on session retry if chunk is passed already",
+      "time" : {
+        "start" : 1551936803560,
+        "stop" : 1551936803560,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "launched on session retry if not passed in previous session run",
+      "time" : {
+        "start" : 1551936803561,
+        "stop" : 1551936803561,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "skipped on session retry if passed in previous session run",
+      "time" : {
+        "start" : 1551936803561,
+        "stop" : 1551936803562,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/chunk"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/chunk"
+  }, {
+    "name" : "testMethod",
+    "value" : "chunk()"
+  }, {
+    "name" : "package",
+    "value" : "globals/chunk"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "76f758737055406e.json",
+  "parameterValues" : [ ]
+}
