@@ -124,7 +124,9 @@ If there are failed tests in run, `glace-core` puts its info to json file, which
 For example, `--kill-procs "java, chrome, selenium"`.
 - `--debug-on-fail` - Enter to interactive debug mode on step failure. **Incompatible with `--slaves` option**.
 - `--exit-on-fail` - Finish tests run on first failure.
+- `--dots` - Print dots instead of test & chunk names.
 - `--errors-now` - Print error message immediately when it happened.
+- `--deep-errors` - Print deep objects structure in error message.
 - `--interactive, -i` - Launch interactive mode to execute steps manually in terminal. **Incompatible with `--slaves` option**.
 - `--slaves <number|auto>` - Split tests by slaves and execute them concurrently in separated processes. If it is `auto`, slaves amount will be equal to processor cores amount.
 

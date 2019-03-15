@@ -12,8 +12,10 @@ suite("reporter/base", () => {
     let glaceReporter;
     const sandbox = sinon.createSandbox();
 
-    before(() => {
-        GlaceReporter.__set__("MochaReporter", function () {});
+    beforeChunk(() => {
+        const MochaReporter = function () {};
+        MochaReporter.generateDiff = () => "";
+        GlaceReporter.__set__("MochaReporter", MochaReporter);
         glaceReporter = new GlaceReporter(runner);
     });
 
@@ -354,15 +356,18 @@ suite("reporter/base", () => {
 
         chunk("calls reporters 'fail' method if it exists", () => {
             reporters.push({ fail: sinon.spy() });
-            onFail({ title: "my chunk" }, "error");
+            onFail({ title: "my chunk" },
+                { actual: "{\n\"a\": 1}", expected: "{\n\"b\": 2}" });
 
             expect(accountError).to.be.calledOnce;
             expect(accountError.args[0][0]).to.be.equal("my chunk");
-            expect(accountError.args[0][1]).to.be.equal("error");
+            expect(accountError.args[0][1]).to.be
+                .eql({ actual: "{\n\"a\": 1}", expected: "{\n\"b\": 2}", diff: "" });
 
             expect(reporters[0].fail).to.be.calledOnce;
             expect(reporters[0].fail.args[0][0]).to.be.eql({ title: "my chunk" });
-            expect(reporters[0].fail.args[0][1]).to.be.equal("error");
+            expect(reporters[0].fail.args[0][1]).to.be
+                .eql({ actual: "{\n\"a\": 1}", expected: "{\n\"b\": 2}", diff: "" });
         });
 
         chunk("fails session immediately if flag is set", () => {

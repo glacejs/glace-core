@@ -58,6 +58,7 @@ suite("utils", () => {
                 message: "error message",
                 stack: "error stack",
                 seleniumStack: { "selenium": "error" },
+                diff: "error diff",
             });
 
             expect(conf.session.errors).to.have.length(1);
@@ -66,6 +67,7 @@ suite("utils", () => {
             expect(errMsg).to.startWith("message: error message");
             expect(errMsg).to.include("error stack");
             expect(errMsg).to.include("selenium");
+            expect(errMsg).to.include("error diff");
         });
 
         chunk("logs test error if tests are present", () => {
@@ -78,6 +80,7 @@ suite("utils", () => {
                 message: "error message",
                 stack: "error stack",
                 seleniumStack: { "selenium": "error" },
+                diff: "error diff",
             });
 
             expect(conf.test.curCase.addError).to.be.calledOnce;
@@ -88,6 +91,7 @@ suite("utils", () => {
             expect(errMsg).to.include("message: error message");
             expect(errMsg).to.include("error stack");
             expect(errMsg).to.include("selenium");
+            expect(errMsg).to.include("error diff");
         });
 
         chunk("logs empty error", () => {
@@ -185,6 +189,33 @@ suite("utils", () => {
             conf.session = { errors: ["my error"] };
             utils.printSessionErrors();
             expect(log).to.have.callCount(4);
+        });
+    });
+
+    test("printErrors()", () => {
+        let log, printErrors;
+
+        beforeChunk(() => {
+            log = sinon.stub();
+            printErrors = utils.__get__("printErrors");
+        });
+
+        chunk("prints red line by defalt", () => {
+            printErrors(["hello world"], log);
+            expect(log.args[1][0]).to.be
+                .equal("\u001b[1m\u001b[31mhello world\u001b[39m\u001b[22m");
+        });
+
+        chunk("prints green/red line", () => {
+            printErrors(["+ expected - actual"], log);
+            expect(log.args[1][0]).to.be
+                .equal("\u001b[1m\u001b[32m+ expected\u001b[39m\u001b[22m \u001b[1m\u001b[31m- actual\u001b[39m\u001b[22m");
+        });
+
+        chunk("prints green line", () => {
+            printErrors(["+ b: 1"], log);
+            expect(log.args[1][0]).to.be
+                .equal("\u001b[1m\u001b[32m+ b: 1\u001b[39m\u001b[22m");
         });
     });
 });
