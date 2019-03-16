@@ -1,3 +1,7 @@
+### v2.0.3
+
+- [Fixed](https://github.com/glacejs/glace-core/pull/276/files) bugs with error diff calculation.
+
 ### v2.0.2
 
 - [Added](https://github.com/glacejs/glace-core/pull/275) feature to print diffs between objects in errors.
