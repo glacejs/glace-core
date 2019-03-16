@@ -9,11 +9,11 @@ const runner = {
 };
 
 suite("reporter/base", () => {
-    let glaceReporter;
+    let glaceReporter, MochaReporter;
     const sandbox = sinon.createSandbox();
 
     beforeChunk(() => {
-        const MochaReporter = function () {};
+        MochaReporter = function () {};
         MochaReporter.generateDiff = () => "";
         GlaceReporter.__set__("MochaReporter", MochaReporter);
         glaceReporter = new GlaceReporter(runner);
@@ -392,6 +392,18 @@ suite("reporter/base", () => {
         chunk("does nothing if no reporter fail method", () => {
             reporters.push({});
             onFail({ title: "my chunk" }, "error");
+        });
+
+        chunk("does not add diff if it is empty", () => {
+            MochaReporter.generateDiff = () => "+ expected - actual";
+            reporters.push({ fail: sinon.spy() });
+            onFail({ title: "my chunk" },
+                { actual: "{\n\"a\": 1}", expected: "{\n\"b\": 1}" });
+
+            expect(accountError).to.be.calledOnce;
+            expect(accountError.args[0][0]).to.be.equal("my chunk");
+            expect(accountError.args[0][1]).to.be
+                .eql({ actual: "{\n\"a\": 1}", expected: "{\n\"b\": 1}" });
         });
     });
 

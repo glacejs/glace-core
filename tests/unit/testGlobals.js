@@ -8,6 +8,25 @@ suite("globals", () => {
         sandbox.restore();
     });
 
+    test("chai", () => {
+        let chai = require("chai"),
+            threshold = chai.config.truncateThreshold;
+
+        beforeChunk(() => {
+            CONF.report.deepErrors = true;
+        });
+
+        afterChunk(() => {
+            CONF.report.deepErrors = false;
+            chai.config.truncateThreshold = threshold;
+        });
+
+        chunk("shows full objects in errors", () => {
+            rewire("../../lib/globals");
+            expect(chai.config.truncateThreshold).to.be.equal(0);
+        });
+    });
+
     test("chai as promised", () => {
 
         chunk("checks fulfilled promise", async () => {
