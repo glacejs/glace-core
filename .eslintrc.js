@@ -8,6 +8,7 @@ module.exports = {
         "$": true,
         "$$": true,
         "CONF": true,
+        "rehire": true,
         "sinon": true,
         "before": true,
         "after": true,
@@ -24,7 +25,6 @@ module.exports = {
         "expect": true,
         "chunk": true,
         "suite": true,
-        "rewire": true,
         "session": true
     },
     "extends": "eslint:recommended",

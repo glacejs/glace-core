@@ -1,6 +1,6 @@
 "use strict";
 
-const classifier = rewire("../../lib/classifier");
+const classifier = rehire("../../lib/classifier");
 
 suite("classifier", () => {
     let clsf;

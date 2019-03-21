@@ -1,6 +1,6 @@
 "use strict";
 
-const plugins = rewire("../../lib/plugins");
+const plugins = rehire("../../lib/plugins");
 
 suite("plugins module", () => {
 

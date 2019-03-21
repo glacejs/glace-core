@@ -1,6 +1,6 @@
 "use strict";
 
-const dots = rewire("../../lib/reporter/dots");
+const dots = rehire("../../lib/reporter/dots");
 
 suite("dots", () => {
     let write;

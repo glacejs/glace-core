@@ -12,7 +12,7 @@ suite("loader", () => {
 
     before(() => {
         CONF.__testmode = true;
-        loader = rewire("../../lib/loader");
+        loader = rehire("../../lib/loader");
         preloads = loader.__get__("preloads");
         mainConftests = loader.__get__("mainConftests");
         sessFunc = loader.__get__("sessFunc");

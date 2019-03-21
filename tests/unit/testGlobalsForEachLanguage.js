@@ -1,6 +1,6 @@
 "use strict";
 
-const forEachLanguage = rewire("../../lib/globals/forEachLanguage");
+const forEachLanguage = rehire("../../lib/globals/forEachLanguage");
 
 suite("globals/forEachLanguage", () => {
     let conf;

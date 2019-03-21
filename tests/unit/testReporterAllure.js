@@ -1,6 +1,6 @@
 "use strict";
 
-const allureReporter = rewire("../../lib/reporter/allure");
+const allureReporter = rehire("../../lib/reporter/allure");
 
 suite("reporter/allure", () => {
     let allure;

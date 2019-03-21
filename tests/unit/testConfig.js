@@ -38,7 +38,7 @@ suite("config", () => {
         log = console.log;
         exit = process.exit;
         U.config.__testmode = true;
-        config = rewire(CONFIG_PATH);
+        config = rehire(CONFIG_PATH);
     });
 
     afterChunk(() => {
@@ -60,7 +60,7 @@ suite("config", () => {
 
         chunk("with auto number slaves", () => {
             U.config.args.slaves = "auto";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.cluster.slavesNum).to.be.a("number");
             expect(config.cluster.slavesNum).to.be.above(0);
         });
@@ -85,53 +85,53 @@ suite("config", () => {
 
         chunk("custom name", () => {
             U.config.args.sessionName = "hello world";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.name).to.be.equal("hello world");
         });
 
         chunk("enabled interactive", () => {
             U.config.args.i = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.interactive).to.be.true;
             delete U.config.args.i;
             U.config.args.interactive = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.interactive).to.be.true;
         });
 
         chunk("enabled debugOnFail", () => {
             U.config.args.debugOnFail = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.debugOnFail).to.be.true;
             delete U.config.args.debugOnFail;
         });
 
         chunk("enabled exitOnFail", () => {
             U.config.args.exitOnFail = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.exitOnFail).to.be.true;
         });
 
         chunk("custom uncaughtException", () => {
             U.config.args.uncaught = "FAIL";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.uncaughtException).to.be.equal("fail");
             U.config.args.uncaught = "MOCHA";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.uncaughtException).to.be.equal("mocha");
             U.config.args.uncaught = "invalid";
-            expect(() => rewire(CONFIG_PATH)).to.throw("Invalid `--uncaught`");
+            expect(() => rehire(CONFIG_PATH)).to.throw("Invalid `--uncaught`");
         });
 
         chunk("custom rootConftest", () => {
             U.config.args.rootConftest = "conftest";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.rootConftest).to.endWith("conftest");
         });
 
         chunk("custom killProcs", () => {
             U.config.args.killProcs = "java, chrome";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.session.killProcs).to.be.eql(["java", "chrome"]);
         });
     });
@@ -160,41 +160,41 @@ suite("config", () => {
 
         chunk("custom languages", () => {
             U.config.args.languages = "ee, ru, en";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.languages).to.be.eql(["ee", "ru", "en"]);
         });
 
         chunk("custom dirs", () => {
             delete U.config.args._;
             delete U.config.args.targets;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.dirs).to.have.length(1);
             expect(config.test.dirs[0]).to.endWith("tests");
             delete U.config.args.targets;
             U.config.args._ = ["mytests"];
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.dirs).to.have.length(1);
             expect(config.test.dirs[0]).to.endWith("mytests");
             delete U.config.args._;
             U.config.args.targets = "mytests";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.dirs).to.have.length(1);
             expect(config.test.dirs[0]).to.endWith("mytests");
         });
 
         chunk("disabled checkNames", () => {
             U.config.args.dontCheckNames = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.checkNames).to.be.false;
         });
 
         chunk("custom retries", () => {
             U.config.args.retry = 1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.retries).to.be.equal(1);
 
             U.config.args.retry = -1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.retries).to.be.equal(0);
         });
     });
@@ -211,23 +211,23 @@ suite("config", () => {
 
         chunk("custom retries", () => {
             U.config.args.chunkRetry = 1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.chunk.retries).to.be.equal(1);
 
             U.config.args.chunkRetry = -1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.chunk.retries).to.be.equal(0);
         });
 
         chunk("custom timeout", () => {
             U.config.args.chunkTimeout = 10;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.chunk.timeout).to.be.equal(10000);
         });
 
         chunk("disabled timeout", () => {
             U.config.args.chunkTimeout = "no";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.chunk.timeout).to.be.equal(Infinity);
         });
     });
@@ -246,44 +246,44 @@ suite("config", () => {
 
         chunk("dots reporter", () => {
             U.config.args.dots = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.dots).to.be.true;
         });
 
         chunk("custom dir", () => {
             U.config.args.reportDir = "my-report";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.dir).to.endWith("my-report");
         });
 
         chunk("master dir", () => {
             U.config.args.slaves = 1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.dir).to.endWith(path.join("report", "master"));
         });
 
         chunk("slave dir", () => {
             U.config.args.slaves = 1;
             process.env.GLACE_SLAVE_ID = 1;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.dir).to.endWith(path.join("report", "slave-1"));
         });
 
         chunk("disabled clear", () => {
             U.config.args.dontClearReport = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.clear).to.be.false;
         });
 
         chunk("enabled errorsNow", () => {
             U.config.args.errorsNow = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.errorsNow).to.be.true;
         });
 
         chunk("custom failedTestsPath", () => {
             U.config.args.failedTestsPath = "my-failures";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.report.failedTestsPath).to.endWith("my-failures.json");
         });
     });
@@ -291,7 +291,7 @@ suite("config", () => {
     test("filter", () => {
 
         chunk("default values", () => {
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter).to.exist;
             expect(config.filter.grep).to.be.undefined;
             expect(config.filter.precise).to.be.false;
@@ -301,28 +301,28 @@ suite("config", () => {
 
         chunk("custom grep", () => {
             U.config.args.g = "my test";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.grep).to.be.equal("my test");
             delete U.config.args.g;
             U.config.args.grep = "my another test";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.grep).to.be.equal("my another test");
         });
 
         chunk("custom precise", () => {
             U.config.args.preciseMatch = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.precise).to.be.true;
         });
 
         chunk("custom include", () => {
             const tmpPath = save_tmp_filter();
             U.config.args.include = tmpPath;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.include).to.be.eql([{ id: "1_1" }]);
             expect(config.filter.precise).to.be.true;
             U.config.args.include = "test #1 | test #2";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.include).to.be.eql([{ id: "test #1" }, { id: "test #2" }]);
             expect(config.filter.precise).to.be.false;
         });
@@ -342,25 +342,25 @@ suite("config", () => {
                 },
             ]);
             U.config.args.include = tmpPath;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.chunk.passedIds).to.be.eql([1, 2, 3, 4]);
         });
 
         chunk("custom exclude", () => {
             const tmpPath = save_tmp_filter();
             U.config.args.exclude = tmpPath;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.exclude).to.be.eql([{ id: "1_1" }]);
             expect(config.filter.precise).to.be.true;
             U.config.args.exclude = "test #1 | test #2";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.exclude).to.be.eql([{ id: "test #1" }, { id: "test #2" }]);
             expect(config.filter.precise).to.be.false;
         });
 
         chunk("filtered test ids", () => {
             process.env.GLACE_TEST_IDS = "1, 2";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.filter.testIds).to.be.eql([1, 2]);
         });
     });
@@ -376,19 +376,19 @@ suite("config", () => {
 
         chunk("enabled use", () => {
             U.config.args.xunit = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.xunit.use).to.be.true;
         });
 
         chunk("custom path", () => {
             U.config.args.xunitPath = "my-xunit.xml";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.xunit.path).to.endWith("my-xunit.xml");
         });
 
         chunk("custom suite name", () => {
             U.config.args.xunitSuiteName = "my suite";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.xunit.suiteName).to.be.equal("my suite");
         });
     });
@@ -404,19 +404,19 @@ suite("config", () => {
 
         chunk("enabled use", () => {
             U.config.args.allure = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.allure.use).to.be.true;
         });
 
         chunk("custom dir", () => {
             U.config.args.allureDir = "my-allure";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.allure.dir).to.endWith("my-allure");
         });
 
         chunk("custom suiteName", () => {
             U.config.args.allureSuiteName = "my-suite";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.allure.suiteName).to.be.equal("my-suite");
         });
     });
@@ -437,49 +437,49 @@ suite("config", () => {
 
         chunk("enabled use", () => {
             U.config.args.testrail = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.use).to.be.true;
         });
 
         chunk("custom host", () => {
             U.config.args.testrailHost = "http://localhost";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.host).to.be.equal("http://localhost");
         });
 
         chunk("custom user", () => {
             U.config.args.testrailUser = "guest";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.user).to.be.equal("guest");
         });
 
         chunk("custom token", () => {
             U.config.args.testrailToken = "qwerty1234";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.token).to.be.equal("qwerty1234");
         });
 
         chunk("custom projectId", () => {
             U.config.args.testrailProjectId = "1234";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.projectId).to.be.equal("1234");
         });
 
         chunk("custom suiteId", () => {
             U.config.args.testrailSuiteId = "1234";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.suiteId).to.be.equal("1234");
         });
 
         chunk("custom runName", () => {
             U.config.args.testrailRunName = "my run";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.runName).to.be.equal("my run");
         });
 
         chunk("custom runDescription", () => {
             U.config.args.testrailRunDesc = "just a run";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.testrail.runDescription).to.be.equal("just a run");
         });
     });
@@ -494,13 +494,13 @@ suite("config", () => {
 
         chunk("custom dir", () => {
             U.config.args.pluginsDir = "my-plugins";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.plugins.dir).to.endWith("my-plugins");
         });
 
         chunk("enabled disableDefault", () => {
             U.config.args.disableDefaultPlugins = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.plugins.disableDefault).to.be.true;
         });
     });
@@ -521,55 +521,55 @@ suite("config", () => {
 
         chunk("enabled stepsList", () => {
             U.config.args.listSteps = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.stepsList).to.be.true;
             expect(config.tools.stepsFilter).to.be.null;
         });
 
         chunk("custom stepsFilter", () => {
             U.config.args.listSteps = "disable proxy";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.stepsList).to.be.true;
             expect(config.tools.stepsFilter).to.be.equal("disable proxy");
         });
 
         chunk("enabled testsList", () => {
             U.config.args.listTests = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.testsList).to.be.true;
             expect(config.tools.testsFilter).to.be.null;
         });
 
         chunk("custom testsFilter", () => {
             U.config.args.listTests = "disable proxy";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.testsList).to.be.true;
             expect(config.tools.testsFilter).to.be.equal("disable proxy");
         });
 
         chunk("enabled fixturesList", () => {
             U.config.args.listFixtures = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.fixturesList).to.be.true;
             expect(config.tools.fixturesFilter).to.be.null;
         });
 
         chunk("custom fixturesFilter", () => {
             U.config.args.listFixtures = "disable proxy";
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.fixturesList).to.be.true;
             expect(config.tools.fixturesFilter).to.be.equal("disable proxy");
         });
 
         chunk("enabled pluginsList", () => {
             U.config.args.listPlugins = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.pluginsList).to.be.true;
         });
 
         chunk("enabled checkTestrail", () => {
             U.config.args.testrailCheck = true;
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.tools.checkTestrail).to.be.true;
         });
     });
@@ -581,7 +581,7 @@ suite("config", () => {
         });
 
         chunk(() => {
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(plugins.getModules).to.be.calledOnce;
             expect(plugins.getModules.args[0][0]).to.be.equal("config");
         });
@@ -590,7 +590,7 @@ suite("config", () => {
     test("merge user config", () => {
         chunk(() => {
             U.config.args.userConfig = save_user_config();
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.custom).to.be.equal("my field");
         });
     });
@@ -608,7 +608,7 @@ suite("config", () => {
         });
 
         chunk(() => {
-            config = rewire(CONFIG_PATH);
+            config = rehire(CONFIG_PATH);
             expect(config.test.dirs).has.length(1);
             expect(fs.readFileSync(config.test.dirs[0]).toString()).to.include("await $.debug()");
             expect(config.chunk.timeout).to.be.equal(Infinity);

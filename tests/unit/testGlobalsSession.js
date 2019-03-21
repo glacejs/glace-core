@@ -1,6 +1,6 @@
 "use strict";
 
-const sess = rewire("../../lib/globals/session");
+const sess = rehire("../../lib/globals/session");
 
 suite("globals/session", () => {
     let conf;
