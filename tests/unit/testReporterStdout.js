@@ -1,6 +1,6 @@
 "use strict";
 
-const stdoutReporter = rewire("../../lib/reporter/stdout");
+const stdoutReporter = rehire("../../lib/reporter/stdout");
 
 suite("reporter/stdout", () => {
     let conf, stdout;

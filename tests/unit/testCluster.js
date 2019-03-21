@@ -1,6 +1,6 @@
 "use strict";
 
-const cluster = rewire("../../lib/cluster");
+const cluster = rehire("../../lib/cluster");
 
 suite("cluster", () => {
 

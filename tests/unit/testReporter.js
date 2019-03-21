@@ -6,7 +6,7 @@ suite("reporter", () => {
 
     before(() => {
         CONF.__testmode = true;
-        reporter = rewire("../../lib/reporter");
+        reporter = rehire("../../lib/reporter");
     });
 
     after(() => {

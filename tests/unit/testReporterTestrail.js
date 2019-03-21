@@ -16,7 +16,7 @@ suite("reporter/testrail", () => {
             runName: "my run", 
             runDescription: "my run description",
         };
-        testrailReporter = rewire(TESTRAIL_PATH);
+        testrailReporter = rehire(TESTRAIL_PATH);
     });
 
     afterChunk(() => {
@@ -30,7 +30,7 @@ suite("reporter/testrail", () => {
 
             chunk(`throws exception if no testrail ${opt}`, () => {
                 CONF.testrail[opt] = null;
-                expect(() => rewire(TESTRAIL_PATH)).to.throw(`'${opt}' is not specified`);
+                expect(() => rehire(TESTRAIL_PATH)).to.throw(`'${opt}' is not specified`);
             });
         });
     });

@@ -1,6 +1,6 @@
 "use strict";
 
-const Steps = rewire("../../lib/steps");
+const Steps = rehire("../../lib/steps");
 
 const obj1 = {
     method1: function () {},

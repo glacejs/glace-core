@@ -1,6 +1,6 @@
 "use strict";
 
-const ScopeType = rewire("../../lib/testing").ScopeType;
+const ScopeType = rehire("../../lib/testing").ScopeType;
 
 test("ScopeType", () => {
     let scopeType;

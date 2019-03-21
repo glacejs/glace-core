@@ -1,6 +1,6 @@
 "use strict";
 
-const xunitReporter = rewire("../../lib/reporter/xunit");
+const xunitReporter = rehire("../../lib/reporter/xunit");
 
 suite("reporter/xunit", () => {
 

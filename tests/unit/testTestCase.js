@@ -1,6 +1,6 @@
 "use strict";
 
-const TestCase = rewire("../../lib/testing").TestCase;
+const TestCase = rehire("../../lib/testing").TestCase;
 
 suite("TestCase", () => {
     let testCase;

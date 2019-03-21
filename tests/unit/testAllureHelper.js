@@ -15,7 +15,7 @@ suite("allure helper", () => {
 
         before(() => {
             CONF.allure.use = false;
-            allure = rewire("../../lib/allure");
+            allure = rehire("../../lib/allure");
         });
 
         test("proxy instance", () => {
@@ -44,7 +44,7 @@ suite("allure helper", () => {
 
         before(() => {
             CONF.allure.use = true;
-            allure = rewire("../../lib/allure");
+            allure = rehire("../../lib/allure");
         });
 
         after(() => {

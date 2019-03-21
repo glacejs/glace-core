@@ -3,11 +3,11 @@
 suite("globals/test", () => {
     let conf,
         sandbox = sinon.createSandbox(),
-        test_ = rewire("../../lib/globals/test");
+        test_ = rehire("../../lib/globals/test");
 
     before(() => {
         CONF.__testmode = true;
-        conf = rewire("../../lib/config");
+        conf = rehire("../../lib/config");
     });
 
     after(() => {

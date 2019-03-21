@@ -1,6 +1,6 @@
 "use strict";
 
-const run = rewire("../../lib/run");
+const run = rehire("../../lib/run");
 
 suite("run", () => {
     let fake;

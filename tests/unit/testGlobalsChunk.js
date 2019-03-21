@@ -1,6 +1,6 @@
 "use strict";
 
-const chunk_ = rewire("../../lib/globals/chunk");
+const chunk_ = rehire("../../lib/globals/chunk");
 
 suite("globals/chunk", () => {
     let conf;

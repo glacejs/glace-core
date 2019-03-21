@@ -1,6 +1,6 @@
 "use string";
 
-const error = rewire("../../lib/error");
+const error = rehire("../../lib/error");
 
 suite("error", () => {
 

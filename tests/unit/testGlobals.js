@@ -22,7 +22,7 @@ suite("globals", () => {
         });
 
         chunk("shows full objects in errors", () => {
-            rewire("../../lib/globals");
+            rehire("../../lib/globals");
             expect(chai.config.truncateThreshold).to.be.equal(0);
         });
     });
@@ -32,39 +32,24 @@ suite("globals", () => {
         chunk("checks fulfilled promise", async () => {
             await expect(Promise.resolve()).to.be.fulfilled;
         });
-    
+
         chunk("checks rejected promise", async () => {
             await expect(Promise.reject()).to.be.rejected;
         });
     });
-    
+
     test("global sinon", () => {
         chunk("exists", () => {
             expect(sinon).to.exist;
         });
     });
-    
-    test("global rewire", () => {
-        let rewire_ = rewire("../../lib/globals/rewire");
 
-        afterChunk(() => {
-            rewire_.__reset__();
-        });
-
-        chunk("imports local module", () => {
-            expect(rewire_("../../lib/index")).to.exist;
-        });
-
-        chunk("available in interactive mode", () => {
-            rewire_.__set__("getCallerPath", () => null);
-            expect(rewire_("./lib/index")).to.exist;
-        });
-
-        chunk("throws exception on global module", () => {
-            expect(() => rewire_("fs")).to.throw("no such file or directory");
+    test("global rehire", () => {
+        chunk("exists", () => {
+            expect(rehire).to.exist;
         });
     });
-    
+
     test("sinon-chai", () => {
         var func;
     

@@ -1,6 +1,6 @@
 "use strict";
 
-const scope_ = rewire("../../lib/globals/scope");
+const scope_ = rehire("../../lib/globals/scope");
 
 suite("globals/scope", () => {
 

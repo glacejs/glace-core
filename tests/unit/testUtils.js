@@ -1,6 +1,6 @@
 "use strict";
 
-const utils = rewire("../../lib/utils");
+const utils = rehire("../../lib/utils");
 
 suite("utils", () => {
 

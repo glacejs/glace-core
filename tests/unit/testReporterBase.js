@@ -1,7 +1,7 @@
 "use strict";
 
-const GlaceReporter = rewire("../../lib/reporter/base");
-const testing = rewire("../../lib/testing");
+const GlaceReporter = rehire("../../lib/reporter/base");
+const testing = rehire("../../lib/testing");
 
 const methods = {};
 const runner = {

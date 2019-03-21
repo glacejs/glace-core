@@ -2,7 +2,7 @@
 
 const Testrail = require("testrail-api");
 
-const tools = rewire("../../lib/tools");
+const tools = rehire("../../lib/tools");
 
 suite("tools", () => {
 
