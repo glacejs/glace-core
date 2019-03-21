@@ -1,0 +1,100 @@
+{
+  "uid" : "55d7dddee14b355b",
+  "name" : "scopeCb()",
+  "fullName" : "globals/scope.scopeCb()",
+  "historyId" : "63b5804e774196ac46ab7cb64c592917",
+  "time" : {
+    "start" : 1553183309780,
+    "stop" : 1553183309783,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "calls callback with fixtures",
+      "time" : {
+        "start" : 1553183309781,
+        "stop" : 1553183309782,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "sets chunk retry option",
+      "time" : {
+        "start" : 1553183309782,
+        "stop" : 1553183309782,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "sets chunk timeout option",
+      "time" : {
+        "start" : 1553183309783,
+        "stop" : 1553183309783,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/scope"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/scope"
+  }, {
+    "name" : "testMethod",
+    "value" : "scopeCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/scope"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "55d7dddee14b355b.json",
+  "parameterValues" : [ ]
+}
