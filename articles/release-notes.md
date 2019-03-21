@@ -1,3 +1,7 @@
+### v2.0.4
+
+- [Migrated](https://github.com/glacejs/glace-core/pull/277/files) to [`rehire`](https://github.com/schipiga/rehire).
+
 ### v2.0.3
 
 - [Fixed](https://github.com/glacejs/glace-core/pull/276/files) bugs with error diff calculation.
