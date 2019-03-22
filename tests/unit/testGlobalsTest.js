@@ -1,17 +1,17 @@
 "use strict";
 
+const _ = require("lodash");
+const U = require("glace-utils");
+
 suite("globals/test", () => {
     let conf,
         sandbox = sinon.createSandbox(),
         test_ = rehire("../../lib/globals/test");
 
     before(() => {
-        CONF.__testmode = true;
-        conf = rehire("../../lib/config");
-    });
-
-    after(() => {
-        CONF.__testmode = false;
+        conf = rehire("../../lib/config", {
+            "glace-utils": _.assign(_.clone(U), { config: { args: {}}}),
+        });
     });
 
     beforeChunk(() => {
