@@ -397,6 +397,18 @@ suite("reporter/stdout", () => {
             printStatistics(0, 0);
             expect(stdout).to.not.be.called;
         });
+
+        chunk("prints statistics for multiple passed tests", () => {
+            conf.test = {
+                cases: [
+                    { duration: 1000, chunks: ["my chunk"] },
+                    { duration: 1000, chunks: ["my chunk"] },
+                ],
+            };
+            printStatistics(2, 0);
+            expect(stdout.args[0][0]).to.include("2").and.include("passed tests");
+            expect(stdout.args[3][1]).to.include("2 sec");
+        });
     });
 
     test("printSkippedTests()", () => {
