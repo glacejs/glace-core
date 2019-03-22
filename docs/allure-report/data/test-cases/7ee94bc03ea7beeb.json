@@ -1,0 +1,85 @@
+{
+  "uid" : "7ee94bc03ea7beeb",
+  "name" : "afterCb()",
+  "fullName" : "globals/session.afterCb()",
+  "historyId" : "9b4e8f683ac51e15cc5ddc8e32fee23b",
+  "time" : {
+    "start" : 1553246677400,
+    "stop" : 1553246677402,
+    "duration" : 2
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "clears retry session and exit",
+      "time" : {
+        "start" : 1553246677401,
+        "stop" : 1553246677401,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "retries tests session",
+      "time" : {
+        "start" : 1553246677402,
+        "stop" : 1553246677402,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "globals/session"
+  }, {
+    "name" : "testClass",
+    "value" : "globals/session"
+  }, {
+    "name" : "testMethod",
+    "value" : "afterCb()"
+  }, {
+    "name" : "package",
+    "value" : "globals/session"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7ee94bc03ea7beeb.json",
+  "parameterValues" : [ ]
+}

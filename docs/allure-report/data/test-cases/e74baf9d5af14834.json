@@ -1,0 +1,79 @@
+{
+  "uid" : "e74baf9d5af14834",
+  "name" : "import",
+  "fullName" : "reporter.import",
+  "historyId" : "94b98ee96a9d8e942ececfd3096003ee",
+  "time" : {
+    "start" : 1553246679576,
+    "stop" : 1553246679579,
+    "duration" : 3
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "expected register to have been called exactly once, but it was called twice",
+  "statusTrace" : "activates default reporter\nmessage: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3484)\nstack: AssertionError: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (lib/reporter/index.js:5:3484)\n    at chunk (tests/unit/testReporter.js:23:35)\n    at Context.<anonymous> (lib/globals/chunk.js:66:668)\n    at next (lib/hacking.js:45:20)\n    at Immediate.<anonymous> (lib/hacking.js:99:9)",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "expected register to have been called exactly once, but it was called twice",
+    "statusTrace" : "activates default reporter\nmessage: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3484)\nstack: AssertionError: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (lib/reporter/index.js:5:3484)\n    at chunk (tests/unit/testReporter.js:23:35)\n    at Context.<anonymous> (lib/globals/chunk.js:66:668)\n    at next (lib/hacking.js:45:20)\n    at Immediate.<anonymous> (lib/hacking.js:99:9)",
+    "steps" : [ {
+      "name" : "activates default reporter",
+      "time" : {
+        "start" : 1553246679576,
+        "stop" : 1553246679579,
+        "duration" : 3
+      },
+      "status" : "failed",
+      "statusMessage" : "activates default reporter\nmessage: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (/Users/sergeichip/user/projects/glace/glace-core/lib/reporter/index.js:5:3484)\nstack: AssertionError: expected register to have been called exactly once, but it was called twice\n    register(stdout reporter) at main (lib/reporter/index.js:5:3052)\n    register({\n  chunk: function chunk() {},\n  end: function end() {},\n  fail: function fail() {},\n  pass: function pass() {},\n  scope: function scope() {},\n  scopeEnd: function scopeEnd() {},\n  skip: function skip() {},\n  start: function start() {},\n  suite: function suite() {},\n  suiteEnd: function suiteEnd() {},\n  test: function test() {},\n  testEnd: function testEnd() {}\n}) at main (lib/reporter/index.js:5:3484)\n    at chunk (tests/unit/testReporter.js:23:35)\n    at Context.<anonymous> (lib/globals/chunk.js:66:668)\n    at next (lib/hacking.js:45:20)\n    at Immediate.<anonymous> (lib/hacking.js:99:9)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter"
+  }, {
+    "name" : "testMethod",
+    "value" : "import"
+  }, {
+    "name" : "package",
+    "value" : "reporter"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "e74baf9d5af14834.json",
+  "parameterValues" : [ ]
+}

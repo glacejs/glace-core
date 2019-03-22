@@ -1,0 +1,100 @@
+{
+  "uid" : "66265e757720bc1d",
+  "name" : ".waitFor()",
+  "fullName" : "matcher..waitFor()",
+  "historyId" : "1206f300629e7dc52663a1aa7589a029",
+  "time" : {
+    "start" : 1553246677479,
+    "stop" : 1553246679534,
+    "duration" : 2055
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "passed",
+      "time" : {
+        "start" : 1553246677480,
+        "stop" : 1553246678000,
+        "duration" : 520
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "passed for async predicate",
+      "time" : {
+        "start" : 1553246678000,
+        "stop" : 1553246678504,
+        "duration" : 504
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "failed",
+      "time" : {
+        "start" : 1553246678504,
+        "stop" : 1553246679534,
+        "duration" : 1030
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "matcher"
+  }, {
+    "name" : "testClass",
+    "value" : "matcher"
+  }, {
+    "name" : "testMethod",
+    "value" : ".waitFor()"
+  }, {
+    "name" : "package",
+    "value" : "matcher"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "66265e757720bc1d.json",
+  "parameterValues" : [ ]
+}
