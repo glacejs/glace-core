@@ -26,13 +26,16 @@ suite("reporter", () => {
     });
 
     test("main", () => {
-        let base, plugins, require_, main;
+        let base, plugins, require_, main, config;
 
         beforeChunk(() => {
-            CONF.xunit.use = false;
-            CONF.allure.use = false;
-            CONF.report.dots = false;
-            CONF.testrail.use = false;
+            config = {
+                allure: {},
+                report: {},
+                testrail: {},
+                xunit: {},
+            };
+            reporter.__set__("CONF", config);
 
             base = { register: sinon.spy() };
             reporter.__set__("base", base);
@@ -53,16 +56,16 @@ suite("reporter", () => {
         });
 
         chunk("uses dots as default reporter", () => {
-            CONF.report.dots = true;
+            config.report.dots = true;
             main();
             expect(base.register).to.be.calledOnce;
             expect(base.register.args[0][0]).to.be.equal("./dots");
         });
 
         chunk("activates optional reporters", () => {
-            CONF.testrail.use = true;
-            CONF.xunit.use = true;
-            CONF.allure.use = true;
+            config.testrail.use = true;
+            config.xunit.use = true;
+            config.allure.use = true;
 
             main();
             expect(base.register.args[1][0]).to.be.equal("./testrail");
@@ -71,9 +74,9 @@ suite("reporter", () => {
         });
 
         chunk("activates plugin reporters", () => {
-            CONF.testrail.use = false;
-            CONF.xunit.use = false;
-            CONF.allure.use = false;
+            config.testrail.use = false;
+            config.xunit.use = false;
+            config.allure.use = false;
             plugins.getModules.returns(["my-reporter"]);
 
             main();
