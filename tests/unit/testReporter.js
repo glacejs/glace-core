@@ -3,14 +3,14 @@
 let reporter;
 
 suite("reporter", () => {
+    let register;
 
     before(() => {
-        CONF.__testmode = true;
-        reporter = rehire("../../lib/reporter");
-    });
-
-    after(() => {
-        CONF.__testmode = false;
+        register = sinon.stub();
+        reporter = rehire("../../lib/reporter", {
+            "./base": { register },
+            "./stdout": "stdout reporter",
+        });
     });
 
     afterChunk(() => {
@@ -18,7 +18,15 @@ suite("reporter", () => {
     });
 
     test("import", () => {
-        let base, plugins, require_;
+
+        chunk("activates default reporter", () => {
+            expect(register).to.be.calledOnce;
+            expect(register.args[0][0]).to.be.equal("stdout reporter");
+        });
+    });
+
+    test("main", () => {
+        let base, plugins, require_, main;
 
         beforeChunk(() => {
             CONF.xunit.use = false;
@@ -34,17 +42,19 @@ suite("reporter", () => {
 
             plugins = { getModules: sinon.stub().returns([]) };
             reporter.__set__("plugins", plugins);
+
+            main = reporter.__get__("main");
         });
 
         chunk("activates default reporter", () => {
-            reporter();
+            main();
             expect(base.register).to.be.calledOnce;
             expect(base.register.args[0][0]).to.be.equal("./stdout");
         });
 
         chunk("uses dots as default reporter", () => {
             CONF.report.dots = true;
-            reporter();
+            main();
             expect(base.register).to.be.calledOnce;
             expect(base.register.args[0][0]).to.be.equal("./dots");
         });
@@ -54,7 +64,7 @@ suite("reporter", () => {
             CONF.xunit.use = true;
             CONF.allure.use = true;
 
-            reporter();
+            main();
             expect(base.register.args[1][0]).to.be.equal("./testrail");
             expect(base.register.args[2][0]).to.be.equal("./xunit");
             expect(base.register.args[3][0]).to.be.equal("./allure");
@@ -66,7 +76,7 @@ suite("reporter", () => {
             CONF.allure.use = false;
             plugins.getModules.returns(["my-reporter"]);
 
-            reporter();
+            main();
             expect(base.register.args[1][0]).to.be.equal("my-reporter");
         });
     });

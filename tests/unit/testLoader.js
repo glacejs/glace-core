@@ -8,11 +8,15 @@ suite("loader", () => {
         loadTests,
         fs,
         _require,
+        _session = global.session,
+        configMock = { session: { preloads: [] }, test: { dirs: [] }},
         sandbox = sinon.createSandbox();
 
     before(() => {
-        CONF.__testmode = true;
-        loader = rehire("../../lib/loader");
+        global.session = sinon.stub();
+        loader = rehire("../../lib/loader", {
+            "./config": configMock, "./globals": null,
+        });
         preloads = loader.__get__("preloads");
         mainConftests = loader.__get__("mainConftests");
         sessFunc = loader.__get__("sessFunc");
@@ -20,22 +24,33 @@ suite("loader", () => {
         fs = loader.__get__("fs");
     });
 
-    after(() => {
-        CONF.__testmode = false;
-    });
-
     beforeChunk(() => {
+        Object.keys(configMock).forEach(k => delete configMock[k]);
+        configMock["session"] = { preloads: [] };
+        configMock["test"] = { dirs: [] };
         _require = sinon.spy();
         _require.cache = {};
         loader.__set__("require", _require);
     });
 
     afterChunk(() => {
-        CONF.session.preloads = [];
-        CONF.session.rootConftest = null;
-        CONF.session.killProcs = null;
+        configMock.session.preloads = [];
+        configMock.session.rootConftest = null;
+        configMock.session.killProcs = null;
         sandbox.restore();
         loader.__reset__();
+    });
+
+    test("import", () => {
+
+        chunk("starts session", () => {
+            expect(global.session).to.be.calledOnce;
+            expect(global.session.args[0][0]).to.be.equal(sessFunc);
+        });
+
+        afterChunk(() => {
+            global.session = _session;
+        });
     });
 
     test("preloads()", () => {
@@ -43,7 +58,7 @@ suite("loader", () => {
         beforeChunk(() => {
             sandbox.stub(fs, "existsSync").returns(true);
             sandbox.stub(fs, "statSync").returns({ isFile: () => true });
-            CONF.session.preloads = ["/path/to/my/preload"];
+            configMock.session.preloads = ["/path/to/my/preload"];
         });
 
         chunk("loads preloads", () => {
@@ -53,7 +68,7 @@ suite("loader", () => {
         });
 
         chunk("loads root conftest after preloads", () => {
-            CONF.session.rootConftest = "/path/to/my/root/conftest";
+            configMock.session.rootConftest = "/path/to/my/root/conftest";
             preloads();
             expect(_require).to.be.calledTwice;
             expect(_require.args[1][0]).to.be.equal("/path/to/my/root/conftest");
@@ -73,12 +88,12 @@ suite("loader", () => {
     test("mainConftests()", () => {
 
         beforeChunk(() => {
-            CONF.test.dirs = ["/path/to/test/dir"];
+            configMock.test.dirs = ["/path/to/test/dir"];
             sandbox.stub(fs, "existsSync").returns(true);
         });
 
         chunk("does nothing if no test targets", () => {
-            CONF.test.dirs = [];
+            configMock.test.dirs = [];
             mainConftests();
             expect(_require).to.not.be.called;
         });
@@ -105,8 +120,8 @@ suite("loader", () => {
         let load_tests;
 
         beforeChunk(() => {
-            CONF.test.dirs = ["/path/to/test/target"];
-            CONF.session.killProcs = null;
+            configMock.test.dirs = ["/path/to/test/target"];
+            configMock.session.killProcs = null;
             sandbox.stub(fs, "statSync").returns({ isDirectory: () => false });
             load_tests = sinon.stub();
             loader.__set__("loadTests", load_tests);
@@ -126,7 +141,7 @@ suite("loader", () => {
         });
 
         chunk("kill procs", async () => {
-            CONF.session.killProcs = ["selenium"];
+            configMock.session.killProcs = ["selenium"];
             const _before = sinon.spy();
             loader.__set__("before", _before);
             const U = loader.__get__("U");
