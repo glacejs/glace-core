@@ -1,3 +1,7 @@
+### v2.0.6
+
+- [Updated](https://github.com/glacejs/glace-core/pull/280/files) dependencies to fresh versions.
+
 ### v2.0.5
 
 - Used `rehire` feature to mock third-party modules. Removed crutches for testing.
