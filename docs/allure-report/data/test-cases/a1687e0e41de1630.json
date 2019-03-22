@@ -1,0 +1,70 @@
+{
+  "uid" : "a1687e0e41de1630",
+  "name" : ".end()",
+  "fullName" : "dots..end()",
+  "historyId" : "e64770da2364b3e11b911999fc4056fe",
+  "time" : {
+    "start" : 1553253380523,
+    "stop" : 1553253380527,
+    "duration" : 4
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "",
+      "time" : {
+        "start" : 1553253380524,
+        "stop" : 1553253380527,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "dots"
+  }, {
+    "name" : "testClass",
+    "value" : "dots"
+  }, {
+    "name" : "testMethod",
+    "value" : ".end()"
+  }, {
+    "name" : "package",
+    "value" : "dots"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "a1687e0e41de1630.json",
+  "parameterValues" : [ ]
+}

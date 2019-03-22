@@ -1,17 +1,6 @@
 {
   "total" : 27,
   "items" : [ {
-    "uid" : "6c388aca261e79307e6c5f4b8aaf006f",
-    "name" : "reporter",
-    "statistic" : {
-      "failed" : 1,
-      "broken" : 0,
-      "skipped" : 0,
-      "passed" : 1,
-      "unknown" : 0,
-      "total" : 2
-    }
-  }, {
     "uid" : "d5403d07b38654d7748aa6cfc6675d06",
     "name" : "tools",
     "statistic" : {
@@ -109,6 +98,17 @@
       "passed" : 10,
       "unknown" : 0,
       "total" : 10
+    }
+  }, {
+    "uid" : "0553611017f1aac338ed85b23061f5c9",
+    "name" : "cluster",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 8,
+      "unknown" : 0,
+      "total" : 8
     }
   } ]
 }

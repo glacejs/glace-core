@@ -1,0 +1,115 @@
+{
+  "uid" : "93a9307482cf26b9",
+  "name" : "main",
+  "fullName" : "reporter.main",
+  "historyId" : "9bcd696ff36f444b6c5259f011f4c02d",
+  "time" : {
+    "start" : 1553253380321,
+    "stop" : 1553253380327,
+    "duration" : 6
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "activates default reporter",
+      "time" : {
+        "start" : 1553253380322,
+        "stop" : 1553253380324,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "uses dots as default reporter",
+      "time" : {
+        "start" : 1553253380324,
+        "stop" : 1553253380325,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "activates optional reporters",
+      "time" : {
+        "start" : 1553253380325,
+        "stop" : 1553253380326,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "activates plugin reporters",
+      "time" : {
+        "start" : 1553253380326,
+        "stop" : 1553253380327,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "reporter"
+  }, {
+    "name" : "testClass",
+    "value" : "reporter"
+  }, {
+    "name" : "testMethod",
+    "value" : "main"
+  }, {
+    "name" : "package",
+    "value" : "reporter"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "93a9307482cf26b9.json",
+  "parameterValues" : [ ]
+}
