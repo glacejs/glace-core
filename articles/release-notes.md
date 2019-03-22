@@ -1,3 +1,7 @@
+### v2.0.5
+
+- Used `rehire` feature to mock third-party modules. Removed crutches for testing.
+
 ### v2.0.4
 
 - [Migrated](https://github.com/glacejs/glace-core/pull/277/files) to [`rehire`](https://github.com/schipiga/rehire).
